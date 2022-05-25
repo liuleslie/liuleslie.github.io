@@ -5,29 +5,30 @@
     <title>Leslie Liu</title>
     <link rel="stylesheet" href="https://use.typekit.net/zwl2xmq.css">
     <link rel="icon" type="image/x-icon" href="https://freight.cargo.site/t/original/i/aec8ffbf014e5ec50cb8d60c58a9a38c1dd753387520c7b3798300480d3083f6/lliu-favi.ico">
+    <base target="_blank">
     <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
     <style>
       @font-face {
         font-family: "karrik";
         src: url("https://cdn.glitch.global/e88d212e-4ce9-46a8-8c1d-7abd92ea13d8/Karrik-Regular.woff?v=1650588487689") format("woff");
       }
-     /* @font-face {
+      @font-face {
         font-family: letter-gothic-std,monospace;
         font-weight: 400;
         font-style: normal;
-      }*/
+      }
       body {
-        font-family: karrik, sans-serif;
-        /*font-family: letter-gothic-std, serif;*/
+        /*font-family: karrik, sans-serif;*/
+        font-family: letter-gothic-std, serif;
         font-size: 21px;
         margin: 1em;
         background-color: #efefef;
       }
       header {
-        margin: 0 auto 2em auto;
+        margin: 0 auto 3em auto;
       }
       footer {
-        margin: 3em auto 2em auto;
+        margin: 10em auto 2em auto;
       }
       /* stuff */
       #work tr {
@@ -36,13 +37,16 @@
       label {
         padding-right: 1em;
       }
+      #about {
+        padding: 30vh 0 10vh 0;
+      }
       table {
         /*vertical-align: text-top; */
         /*border: none;*/
-        border-bottom: 1px black solid;
+        border-bottom: 1px gray solid;
       }
       td, th {
-        border-top: 1px black solid;
+        border-top: 1px gray solid;
       }
       th {
         text-align: left;
@@ -51,22 +55,25 @@
       }
       tr {
         /*transition: 0.25s;*/
-        height: 20vh;
+        height: 33vh;
       }
       tr:hover {
         background-color: lightgray;
         /*transition: 0.5s;*/
       }
-      /*th a:hover {
-        font-style: italic;
-        background-color: #efefef;
-      }*/
+      th a:hover {
+        background-color: lightgray;
+        text-transform: uppercase;
+        /*font-style: italic;
+        background-color: #efefef;*/
+      }
       td a:hover {
         background-color: #efefef;
+        text-decoration: 1px solid underline;
       }
       td img { 
         display: block;
-        height: 20vh;
+        height: 33vh;
         margin: 0 auto 0 auto; 
       }
       .description {
@@ -81,11 +88,14 @@
       }*/
       a { 
         /*transition: 0.5s;*/
-        color:black; text-decoration: 1.5px black solid underline; }
+        color:black; text-decoration: 1.5px black dotted underline; }
       a:hover { 
         /*transition: 0.25s;*/
         background-color:greenyellow; text-decoration: none;}
       #wesley:hover {
+        background-color: orange;
+      }
+      #betsy:hover {
         background-color: orange;
       }
 
@@ -105,30 +115,29 @@
         display: table-row;
       }
 
-      /*#filter-object:checked ~ #work tr[data-type-primary="object"] {
-        display: table-row;
-      }*/
-
       #filter-experiment:checked ~ #work tr[data-type-primary="experiment"] {
         display: table-row;
       }
 
-      /*#filter-type:checked ~ #work tr[data-type-primary="type"] {
-        display: table-row;
-      }*/
-
-      @media (max-width: 1000px) {
+      @media (max-width: 1200px) {
         body {
           font-size: 15px;
         }
-        tr {
-          height: 10vh;
+        td img {
+          height: 18vh;
         }
+        
       }
 
       @media (max-width: 850px) {
         body {
           font-size: 12px;
+        }
+        td img {
+          height: 5vh;
+        }
+        tr {
+          padding: 0.5em 0 0.5em 0;
         }
       }
 
@@ -136,8 +145,34 @@
   </head>
   <body>
     <header>
-      <a href="about.html">Leslie Liu</a> is a designer dedicated to serious and silly things. Generally located somewhere along the East Coast of the US. <!-- Currently with <a href="https://regrets-only.com/">Regrets Only</a>. --><br><a href="https://files.cargocollective.com/c1434743/LL_Info_Sp22.pdf">Resume</a> / <a href="mailto:lesliu@protonmail.com">Email</a> / <a href="https://www.are.na/leslie-liu">Are.na</a> / <a href="https://www.instagram.com/lliu.site">Instagram</a> / <a href="https://liuleslie.github.io">Pond</a> / <a href="#colophon">Colophon</a>
+      <details>
+        <summary>Leslie Liu is a designer dedicated to serious and silly things. Generally located somewhere along the East Coast of the US. / <a href="https://files.cargocollective.com/c1434743/LL_Info_Sp22.pdf">Resume</a> / <a href="mailto:lesliu@protonmail.com">Email</a> / <a target="_self" href="#colophon">Colophon</a></summary>
+        <section id="about">
+          <p></p>
+          <p>Thank you for looking at my work.</p>
+          <p>Online elsewhere: <a href="https://www.are.na/leslie-liu">Are.na</a> / <a href="https://www.instagram.com/lliu.site">Instagram</a> / <a href="https://liuleslie.github.io">Pond</a></p>
+
+          <!-- Dear traveller,
+
+So glad you could make it to this clearing. Welcome!
+
+Leslie is a designer and internet culture researcher dreaming of stuff that helps us reconsider intimacy and connection. Leslie is interested in silly and serious things, chance encounters that empower us to be more vulnerable with one another. 
+
+With many inspirations, Leslie hopes to ask questions and learn about the world. Current topics of focus include media and memes, margins and book architecture, and chaos. Messing around with some tiny projects for the summer.
+
+Seeking research and internship opportunities — let’s chat! 
+
+
+
+Cheers,
+ -->
+          <!-- <p>Hi! Here are some projects that I’ve especially enjoyed working on and am quite proud of. They range from publication design to one-off microsites playing around with HTML and CSS. These days I’ve been wandering around <a href="https://gossipsweb.net/">the handmade web</a>, thinking about <a href="https://www.cdes2022capstone.show/#20">TV dinners</a>. In general I’m interested in experiences that are magical, stuff that helps us reconsider intimacy and connection, as well as overlooked or ignored spaces online, in books, and beyond.</p>
+          <p>Thank you for looking at my work.</p> -->
+        </section>
+      </details>
+      
     </header>
+
 
     <!-- <form action="javascript:void(0);" id="tags"> -->
       <input type="checkbox" id="filter-editorial" name="filter-editorial" checked>
@@ -168,112 +203,112 @@
     <table id="work" cellspacing="0" cellpadding="0">
       <tbody>
         <tr data-type-primary="editorial">
-          <th><a href="#">Junkyard</a></th>
-          <td><img src="https://freight.cargo.site/w/1000/q/75/i/ae029c4353d425eef002c8b274f6795d12c00e4a6f9935a90c66cf697e287201/junkyard1.png"></td>
-          <td class="description">An adaptation of Jussi Parikka’s essay, <a href="https://malware.hetnieuweinstituut.nl/en/malware-operational-art-ifthen-geopolitics-and-tricksters">“Malware as Operational Art: On the If/Then of Geopolitics and Tricksters,”</a> from Het Nieuwe Instituut’s 2019 exhibition, <a href="https://malware.hetnieuweinstituut.nl/en/malware-symptoms-viral-infection"><em>Malware: Symptoms of Viral Infection</em></a>. Parikka’s text encourages a reconsideration of glitches and instances of computer failure as the norm.</td>
+          <th><a target="_self" href="#">This book you are holding is a junkyard</a></th>
+          <td><img src="junk6.png"></td>
+          <td class="description">An adaptation of Jussi Parikka’s essay, <a href="https://malware.hetnieuweinstituut.nl/en/malware-operational-art-ifthen-geopolitics-and-tricksters">“Malware as Operational Art: On the If/Then of Geopolitics and Tricksters,”</a> from Het Nieuwe Instituut’s 2019 exhibition, <a href="https://malware.hetnieuweinstituut.nl/en/malware-symptoms-viral-infection"><em>Malware: Symptoms of Viral Infection</em></a>.</td>
           <td class="timestamp">2020</td>
         </tr>
 
         <tr data-type-primary="ix">
-          <th><a href="#">Basic Space</a></th>
+          <th><a target="_self" href="#">Basic Space</a></th>
           <td><img src="https://freight.cargo.site/w/800/q/75/i/9993fb96a4ccaeae99a112a65451d79f9d96c945aad367f4c4d85ba82f9b7065/basic-sitedmobile.png"></td>
           <td class="description">Assets for a speculative festival, Basic Space, that explores the potential of abstracting meme formats. Hover states on <a href="https://editor.p5js.org/liuleslie/present/ROlf0lZ3n">the microsite</a> reveal not only the skeleton of the title’s letterforms, but also additional information about the festival.</td>
           <td class="timestamp">2021</td>
         </tr>
 
         <tr data-type-primary="editorial">
-          <th><a href="#">Are.na Annual</a></th>
+          <th><a target="_self" href="#">Are.na Annual</a></th>
           <td><img src="https://freight.cargo.site/w/800/q/75/i/3d5708d567d8d67f61cced8eded509f8b24b824e0a8b48e89fadc4d2179994e1/annual2.png"></td>
           <td class="description">Editorial design with Daniel Pianetti for the <a href="https://store.are.na/collections/frontpage/products/are-na-annual-2022">2022 Are.na Annual</a>, a collection of essays, interviews, and artwork from the Are.na community.</td>
           <td class="timestamp">2022</td>
         </tr>
 
         <tr data-type-primary="ix">
-          <th><a href="#">Refringo</a></th>
+          <th><a target="_self" href="#">Refringo</a></th>
           <td><img src="https://cdn.glitch.me/bf97a6a0-d9b3-453c-b467-8fa84ac2baa4/refringo_screenshot.gif?v=1641327478303"></td>
           <td class="description"><a href="https://refringo.glitch.me/">An interactive modular alphabet</a> that explores chance relationships between part and whole. </td>
           <td class="timestamp">2021</td>
         </tr>
 
         <tr data-type-primary="editorial">
-          <th><a href="#">Remake</a></th>
+          <th><a target="_self" href="#">Remake</a></th>
           <td><img src="https://freight.cargo.site/w/800/q/75/i/75f519da2cf4b4f834d09ccfe70060b122ce005236440af7a2dc9999a9ed4aa0/remake2.png"></td>
           <td class="description">Editorial design for <a href="https://remake.wustl.edu/"><em>REMAKE</em></a>, an annual journal celebrating undergraduate first-year work. Dedicated to changing the top-down hierarchy of creative and academic content, <em>REMAKE</em> showcases a range of content ranging from art and research to creative writing and interviews.</td>
           <td class="timestamp">2021</td>
         </tr>
 
         <tr data-type-primary="editorial">
-          <th><a href="#">Nostalgia Loop</a></th>
+          <th><a target="_self" href="#">Nostalgia Loop</a></th>
           <td><img src="https://freight.cargo.site/w/800/q/75/i/7cf69124eaa0b7358173ef63a83d2074cbbd93c00c494677bee6061188daa654/nostalgia3.png"></td>
           <td class="description">A broadsheet housing two articles about the role of nostalgia in global and American politics. Influenced by the comfort of vintage food graphics, this newspaper considers how complacency can be dangerous.</td>
           <td class="timestamp">2021</td>
         </tr>
 
         <tr data-type-primary="illo">
-          <th><a href="#">Washington University Political Review</a></th>
+          <th><a target="_self" href="#">Washington University Political Review</a></th>
           <td><img src="https://freight.cargo.site/w/400/q/75/i/17c62dd2957674ca463733a88fbb23c12798598b410d431cef42ed62712e8fc0/wuprrr.png"></td>
           <td class="description">Assorted article illustrations for WUPR.</td>
           <td class="timestamp">2020–22</td>
         </tr>
 
         <tr data-type-primary="ix">
-          <th><a href="#">On Work</a></th>
+          <th><a target="_self" href="#">On Work</a></th>
           <td><img src="https://freight.cargo.site/t/original/i/b0aa22172e8a29776f689cf20b1e97b81addd0c932ac15cd0a83f19b5e656596/joesonaprev.jpg"></td>
           <td class="description">A set of four coffee sleeves that link to <a href="https://joesona.glitch.me/">a prototype of a selfie filter</a>. Pondering the nature of work and coffee culture. (Prototype contains flashing images.)</td>
           <td class="timestamp">2021</td>
         </tr>
 
         <tr data-type-primary="experiment">
-          <th><a href="#">Ouija Board Seance</a></th>
+          <th><a target="_self" href="#">Ouija Board Seance</a></th>
           <td><img src="https://freight.cargo.site/t/original/i/184cfa1a2d4ed8ec2a60c2e95f7b7e83c91b89d9f85f37de2d59eb08c29badf8/ouija-rep.png"></td>
-          <td class="description">A crowdsourced poster that plays with the gesture of obscuring and revealing information. A collaboration with <a href="https://www.beszi.work/">Betsy Ellison</a>.</td>
+          <td class="description">A crowdsourced poster that plays with the gesture of obscuring and revealing information. A collaboration with <a href="https://www.beszi.work/"><span id="betsy">Betsy Ellison</span></a>.</td>
           <td class="timestamp">2021</td>
         </tr>
 
         <tr data-type-primary="ix">
-          <th><a href="#">A Window For Two</a></th>
+          <th><a target="_self" href="#">A Window For Two</a></th>
           <td><img src="windowfortwo.png"></td>
-          <td class="description"><a href="https://editor.p5js.org/liuleslie/full/qOwz_m-Bb">An interactive program</a> exploring the poetics of screenshots; watch digital sunsets with your computer.</td>
+          <td class="description"><a href="https://editor.p5js.org/liuleslie/full/qOwz_m-Bb">A program</a> exploring the poetics of screenshots; watch digital sunsets with your computer.</td>
           <td class="timestamp">2020</td>
         </tr>
 
         <tr data-type-primary="experiment">
-          <th><a href="#">Meme Engine Sampler</a></th>
+          <th><a target="_self" href="#">Meme Engine Sampler</a></th>
           <td><img src="https://freight.cargo.site/t/original/i/bc3d30a40e54dad4565adb2d6db58f15df7d2ab29d22ddfedbf2381d140ac2c2/memeengine-zine.gif"></td>
           <td class="description">Abstracting meme formats via a custom-made Drawbot program. A collaboration with Nathan Springman.</td>
           <td class="timestamp">2021</td>
         </tr>
 
         <tr data-type-primary="ix">
-          <th><a href="#">Memory Garden</a></th>
+          <th><a target="_self" href="#">memory garden</a></th>
           <td><img src="https://d2w9rnfcy7mm78.cloudfront.net/14608469/original_4256afdb1be5710b62452b66ba5fd796.gif?1641571923?bc=0"></td>
           <td class="description">A digital zen garden: collecting worldwide memories submitted anonymously on the little memory app, <a href="https://editor.p5js.org/liuleslie/full/fR9ZGKOZ1">this prototype</a> explores ASCII art and the metaphor of memories as blossoming flowers. </td>
-          <td class="timestamp">2021</td>
+          <td class="timestamp">2020</td>
         </tr>
 
         <tr data-type-primary="experiment">
-          <th><a href="#">Computer Grass is Natural Grass</a></th>
+          <th><a target="_self" href="#">Computer Grass is Natural Grass</a></th>
           <td><img src="https://cdn.glitch.me/86840a24-fd4f-4f00-9577-160965555d60/folio_grass_1.gif?v=1640756074921"></td>
           <td class="description">A poster/<a href="https://computer-grass.glitch.me">website</a> about the materiality of interfaces and the metaphors that shape them. One side references interface elements characteristic of macOS and neumorphism, whereas the other is heavily influenced by the Talmud and other scholarly texts that use a bracketed composition for discussion.</td>
           <td class="timestamp">2021–</td>
         </tr>
 
         <tr data-type-primary="experiment">
-          <th><a href="#">Some texts on the iPhone</a></th>
+          <th><a target="_self" href="#">Some texts on the iPhone</a></th>
           <td><img src="iphonebook.png"></td>
           <td class="description">An art book containing various writings about and imagery of the iPhone to explore the device’s role in contemporary American society as status symbol, erotic object, spectacle of lightness, and luxury destroyed.</td>
           <td class="timestamp">2022</td>
         </tr>
 
         <tr data-type-primary="text">
-          <th><a href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/">Feelings at the Edge: A Chumbox Tour</a></th>
+          <th><a target="_self" href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/">Feelings at the Edge: A Chumbox Tour</a></th>
           <td><img src=""></td>
           <td class="description">An essay about sketchy internet chumbox ads. For Coven Berlin.</td>
           <td class="timestamp">2022</td>
         </tr>
 
         <tr data-type-primary="text">
-          <th><a href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/">The Mockup Aesthetic: Gestures of Transgression</a></th>
+          <th><a target="_self" href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/">The Mockup Aesthetic: Gestures of Transgression</a></th>
           <td><img src=""></td>
           <td class="description">An interactive essay about the politics of wheatpaste mockups. For FLAT.</td>
           <td class="timestamp">2022</td>
@@ -291,16 +326,17 @@
   <!-- </form> -->
 
     <footer id="colophon">
-      Colophon  <a href="#">^</a><br>
+      <a target="_self" href="#">^</a><br>
 
-      <p>With thanks to Jean-Baptiste Morizot and Lucas Le Bihan, who designed <a href="https://www.velvetyne.fr/fonts/karrik/">Karrik</a>, this site’s text font; <a href=""><span id="wesley">Wesley Aptekar-Cassels</span></a>, whose HTML + CSS list filtering demo helped me lay this website’s foundation.</p>
+      <!-- <p>With thanks to Jean-Baptiste Morizot and Lucas Le Bihan, who designed <a href="https://www.velvetyne.fr/fonts/karrik/">Karrik</a>, this site’s text font; <a href=""><span id="wesley">Wesley Aptekar-Cassels</span></a>, whose HTML + CSS list filtering demo helped me lay this website’s foundation.</p> -->
 
-      <p>This website also thanks <a href="https://solar.lowtechmagazine.com/about.html#how">Low-tech Magazine</a>, <a href="https://html.energy/">HTML Energy</a>, and <a href="https://multidimensional.link/southland?">more*</a> for their influence.</p>
+      <p>Set in <a href="https://en.wikipedia.org/wiki/Letter_Gothic">Letter Gothic</a>. With thanks to <a href=""><span id="wesley">Wesley Aptekar-Cassels</span></a>, whose HTML + CSS list filtering demo helped me lay this website’s foundation, as well as <a href="https://solar.lowtechmagazine.com/about.html#how">Low-tech Magazine</a>, <a href="https://html.energy/">HTML Energy</a>, and <a href="https://multidimensional.link/southland?">more*</a> for their influence.</p>
 
       <p>Coded from scratch. Some images have been dithered to keep things light.</p>
-      
 
-      <!-- Set in <a href="https://fonts.adobe.com/fonts/letter-gothic">Letter Gothic</a>.  -->
+
+
+      
 
     </footer>
     
@@ -310,4 +346,4 @@
 </html>
 
 
-<!-- thank you ..... https://stackoverflow.com/questions/5684144/how-to-completely-remove-borders-from-html-table -->
+<!-- thank you ..... https://stackoverflow.com/questions/5684144/how-to-completely-remove-borders-from-html-table ....... https://stackoverflow.com/questions/17281486/add-target-blank-in-css -->
