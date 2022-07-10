@@ -40,10 +40,11 @@ span.projtitle {
 #copy a:hover {
   text-decoration: none;
 }
-p.warning {
+p.warning, .caption {
   text-align: center;
   opacity: 0.5;
 }
+
 a.nav { 
   color:rgba(0,0,0,0.5); 
   text-decoration: 1.5px rgba(0,0,0,0.5) dotted underline; 
