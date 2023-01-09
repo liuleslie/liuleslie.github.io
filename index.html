@@ -120,6 +120,18 @@
         display: table-row;
       }
 
+      #sandwichboard-open, #sandwichboard-closed {
+        width: 25%;
+        mix-blend-mode: multiply;
+        margin: 0 auto;
+      }
+      #sandwichboard-open {
+        display: block;
+      }
+      #sandwichboard-closed {
+        display: none;
+      }
+
       @media (max-width: 1200px) {
         body {
           font-size: 15px;
@@ -127,7 +139,12 @@
         td img {
           height: 18vh;
         }
-        
+        #sandwichboard-closed {
+          display: none;
+        }
+        #sandwichboard-open {
+          display: block;
+        }
       }
 
       @media (max-width: 850px) {
@@ -140,18 +157,33 @@
         tr {
           padding: 0.5em 0 0.5em 0;
         }
+        #sandwichboard-open {
+          display: none;
+        }
+        #sandwichboard-closed {
+          display: block;
+        }
       }
 
       @media (min-width: 1700px) {
         body {
           font-size: 21px;
         }
+        #sandwichboard-closed {
+          display: none;
+        }
+        #sandwichboard-open {
+          display: block;
+        }
       }
     </style>
   </head>
-  
+
+
   <body>
     <header>
+      <img id="sandwichboard-open" src="landing/sandwichexpanded.png" alt="a blobby figure wearing a rectangular vest. on the panel to the left is the text '<html>' and on the right is '</html>'.">
+      <img id="sandwichboard-closed" src="landing/sandwichfolded.png" alt="a blobby figure wearing a sandwich board that says '<html>' on the front.">
       <details>
         <summary>Leslie Liu is an aspiring morning person living in New England. Leslie works primarily across print and interaction design, with additional interests in creative technology, user research, exhibition design, and new media. / <a href="LL_Info_Web.pdf">Resume</a> / <a href="mailto:lesliu@protonmail.com">Email</a> / <a href="https://www.linkedin.com/in/liu-leslie/">LinkedIn</a> / <a target="_self" href="#colophon">Colophon</a></summary>
         <section id="about">
