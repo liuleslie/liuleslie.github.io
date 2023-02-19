@@ -9,176 +9,425 @@
     <link rel="icon" type="image/x-icon" href="https://freight.cargo.site/t/original/i/aec8ffbf014e5ec50cb8d60c58a9a38c1dd753387520c7b3798300480d3083f6/lliu-favi.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="script.js"></script>
-    <base target="_blank">
+    <base target="_self">
     <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
     <style>
-      @font-face {
-        font-family: "karrik";
-        src: url("https://cdn.glitch.global/e88d212e-4ce9-46a8-8c1d-7abd92ea13d8/Karrik-Regular.woff?v=1650588487689") format("woff");
+      header, header a {
+        color: gray;
       }
-      /*@font-face {
-        font-family: "happy";
-        src: url('happy-times-NG_regular_master_web.ttf');
-      }*/
-      @font-face {
-        font-family: letter-gothic-std,monospace;
-        font-weight: 400;
-        font-style: normal;
+      header a {text-decoration: 1px gray underline;}
+      header a:hover {
+        text-decoration: 1px yellowgreen underline;
       }
       body {
-        /*font-family: karrik, sans-serif;*/
-        font-family: letter-gothic-std, serif;
-        /*font-family: happy, serif;*/
-        font-size: 18px;
-        margin: 0em;
-        background-color: seagreen;
-        
+        font-family: sans-serif;
+        color: white;
+        background-color: black;
+        margin: 0.5em 10em 3em 2em;
+        line-height: 1.2;
       }
+      table {
+        border-spacing: 0;
+      }
+      th, tr, td {
+        border-left: 10px #303030 solid;
+        padding: 3px 6px;
+      }
+      th {
+        text-align: left;
+        font-weight: normal;
+        text-transform: uppercase;
+      }
+      tr:hover {
+        color: gray;
+      }
+      table summary:hover {
+        text-transform: uppercase;
+        cursor: pointer;
+        /*font-weight: bolder;*/
+      }
+      details.entry {
+        width: 40vw;
+      }
+      img {
+        display: block;
+        width: 33vw;
+        margin: 1em 0;
+      }
+      img:hover {cursor: crosshair;}
       a {
-        color: black;
-        text-decoration: dotted underline black;
-        background-color: lightsalmon;
+        color: white;
+        text-decoration: 1px white underline;
       }
       a:hover {
-        background-color: whitesmoke;
+        cursor: alias;
+        color: yellowgreen;
+        text-decoration: none;
       }
-
-      section {
-        margin: 1em 2em 3em 2em;
+      section.imagery {
+        border-top: 1px gray dotted;
+        border-bottom: 1px gray dotted;
+        height: 33vh;
+        overflow: scroll;
+        margin-bottom: 1em;
       }
-      section#transitpizza {
-        margin-right: 0;
-      }
-      #transitpizza img {
+      section.imagery img {
+        margin: 1em auto;
         width: 100%;
-        border: 4px lightgray ridge;
       }
-      section#plaque, section#explainer {
-        padding: 1em;
-        background-color: lightgray;
-        border: 4px lightgray ridge;
-      }
-      section#explainer {
-        border: 4px silver ridge;
-        background-color: silver;
-      }
-
-      .center {
-        text-align: center;
-      }
-      li {
-        padding: 0 0 1em 0.5em;
-      }
-
-      main {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-
-      }
-
-      /*#sandwichboard-open, #sandwichboard-closed {
-        width: 33vw;
-        mix-blend-mode: multiply;
-        margin: 0 auto;
-      }
-      #sandwichboard-open {
-        display: block;
-      }
-      #sandwichboard-closed {
-        display: none;
-      }*/
-
-
-      @media (max-width: 1200px) {
-        body {
-          font-size: 15px;
+      @media (min-width: 1000px) {
+        section.imagery {
+          height: 50vh;
         }
-        /*#sandwichboard-closed {
-          display: none;
-        }
-        #sandwichboard-open {
-          display: block;
-        }*/
       }
-
-      @media (max-width: 850px) {
-        body {
-          font-size: 13px;
-        }
-        main {
-          grid-template-columns: 1fr;
-        }
-        section#transitpizza {
-          margin: 2em;
-        }
-        section {
-          margin: 2em;
-        }
-        
-        /*#sandwichboard-open {
-          display: none;
-        }
-        #sandwichboard-closed {
-          display: block;
-        }*/
-      }
-
-      @media (min-width: 1700px) {
-        body {
-          font-size: 21px;
-        }
-        /*#sandwichboard-closed {
-          display: none;
-        }
-        #sandwichboard-open {
-          display: block;
-        }*/
-      }
+      a#betsy:hover {color: gray;}
+      a.firm:hover {color: gray;}
+      .links a:hover {color: yellow}
+      a#soso:hover {color: #1B69FF}
     </style>
   </head>
-
-
   <body>
-    <main>
 
-      <!-- <img id="sandwichboard-open" src="landing/sandwichexpanded.png" alt="a blobby figure wearing a rectangular vest. on the panel to the left is the text '<html>' and on the right is '</html>'.">
-      <img id="sandwichboard-closed" src="landing/sandwichfolded.png" alt="a blobby figure wearing a sandwich board that says '<html>' on the front."> -->
-
-      <section id="transitpizza">
-        <img src="landing/transitpizza.png" alt="a slice of pizza, face down, on the floor of a bus, with empty blue seats above.">
-      </section>
-      <section id="plaque">
-        <p>Every few weeks I confront the urge to redesign my website. Part of it is because I'm so shamlessly online and have spread myself so thin (online persona wise) that attempts to unify my various selves end in long bouts of introspection, often to little avail. In lieu of a construction site GIF, here's me indulging in talking about myself — and things I'd like to address in some form or another:</p>
-        <ul>
-          <li>One day I would like to tell people that I specialize in self-contained websites.</li>
-          <li><a target="_self" href="index-portfolio.html">My design (and such) portfolio.</a> Work from 2020 – Spring of 2022.</li>
-          <li>Expanding definitions of what a technology is, understanding human systems and bureaucracies (what tech obscures)</li>
-          <li>Interfaces of yore and the metaphors that shape them</li>
-          <li>Much faith in the potential of the book form. Also: book (and by extension, mobile tech) as jewelry/accessory.</li>
-          <li>Mythogram and the legitimacy/power of diagramming/charted, graphed things. The power of drawn text.</li>
-        </ul>
-
-        <details>
-          <summary>I'm interested in thinking of/using this website as a <a href="https://en.wikipedia.org/wiki/Sandwich_board">sandwichboard</a>...</summary>
-          <section id="explainer">
-            <ol>
-              <li>the two-sided, hinged structure of a sandwichboard makes the person wearing it part of the advertisement. inexplicably this reflects my general attitude towards personal branding/self aware self promotion in graphic design.</li>
-              <li>the format loosely reminds me of books, and how we might translate a reading experience in print to the web. it also feels like HTML (with its matching tags).</li>
-              <li>i think there's a way to use the vernacular of advertising to both accomplish the primary purpose of this website as my portfolio, but also keep it personal (the personal/professional divide is what i struggle with here)</li>
-              <li>i feel there's some expressive potential in terms of responsiveness if we take this sandwichboard metaphor to the extreme</li>
-            </ol>
-
-          </section>
-        </details>
-        <br>
-      </section>
+    <header>
+      <p>* <a href="https://www.are.na/block/15944980">“all pursuits of knowledge are exercises in longing”</a></p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Wye_Marsh_Midland_painted_turtle_shedding_scutes.jpg/1599px-Wye_Marsh_Midland_painted_turtle_shedding_scutes.jpg?20170917135921" alt="a turtle relaxing on top of some leaves in a sparkly brook.">
+    </header>
 
 
-    </main>
 
-      
-      
-    
+    <table>
+      <tr>
+        <th>project</th>
+        <th>container</th>
+        <th>year</th>
+      </tr>
+
+
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>Fresh Not Frozen</summary>
+            <p>A small mobile site that delivers bite-size factoids about the American TV dinner.</p>
+            <p class="links">* <a href="https://freshnotfrozen.glitch.me/">website</a></p>
+            <div style="padding:70.57% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/702953044?h=832b866c57&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Fresh Not Frozen (demo)"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script><br>
+          </details>
+        </td>
+        <td>website (mobile)</td>
+        <td>2022–</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>Ouija Board Seance</summary>
+            <p>A crowdsourced poster that plays with the gesture of obscuring and revealing information. A collaboration with <a id="betsy" href="https://www.beszi.work/" target="_blank">Betsy Ellison</a>.</p>
+            <section class="imagery">
+              <img src="ouija/together.png" alt="three posters placed side by side, with a dense texture running throughout, with a mass of marks made by permanent markers blocking out event information in a pixel-like manner.">
+              <img src="ouija/2.png" alt="closeup view of the posters: various symbols line the posters in straight columns, some marked out with black permanent marker.">
+              <img src="ouija/1.png" alt="macro view of the posters, with various symbols in straight columns, some marked out with black permanent marker.">
+            </section>
+          </td>
+        <td>day-long installation</td>
+        <td>2022</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>Basic Space</summary>
+            <p>Assets for a speculative festival, Basic Space, that explores the potential of abstracting meme formats.</p>
+            <p class="links">* <a href="https://editor.p5js.org/liuleslie/full/ROlf0lZ3n">microsite</a></p>
+            <section class="imagery">
+              <img src="basic/sited.png" alt="Two images, side by side. Left: an empty hallway with posters strewn all over: one is draped on the handrail, two others on the ground. The title of the poster reads 'BASIC SPACE,' with supplementary text and a QR code around it, printed on a pink pattern. Right: a person scanning a QR code on a poster, whose title text reads 'BASIC SPACE', with their phone.">
+              <img src="basic/outside.png" alt="A person on a website with thick black lettering that reads 'BASIC SPACE', their computer stacked on top of posters of the same title.">
+              <img style="border-top: 0.25px solid gray;" src="basic/still.png" alt="Screenshot of a website, with a light gray background and large text in a thick, black outline, layered on top that reads, 'BASIC SPACE'. The cursor hovers over a part of the 'E' in 'SPACE', a meme from @dank.lloyd.wright popping up next to it and the area hovered over now a purple outlined circle.">
+            </section>
+          </details>
+        </td>
+        <td>website (desktop)</td>
+        <td>2021</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>This book you are holding is a junkyard</summary>
+            <p>An adaptation of Jussi Parikka’s essay, <a href="https://malware.hetnieuweinstituut.nl/en/malware-operational-art-ifthen-geopolitics-and-tricksters">“Malware as Operational Art: On the If/Then of Geopolitics and Tricksters,”</a> from Het Nieuwe Instituut’s 2019 exhibition, <em><a href="https://malware.hetnieuweinstituut.nl/en/malware-symptoms-viral-infection">Malware: Symptoms of Viral Infection</a></em>.</p>
+            <section class="imagery">
+              <img src="junkyard/rep.jpg" alt="A book cover against a patch of dead grass. The cover reads, 'This book you are holding is an unkempt garden, a junkyard. Let the weeds overgrow, hack through [the fences].' Its text is green, printed on newsprint. A sliver of the cover is cut out, revealing a green pattern in the interior.">
+              <img src="junkyard/above.jpg" alt="Overhead shot of an open book on a concrete ground. The text and images are green and the inner folds are densely textured with an unidentifiable pattern.">
+              <img src="junkyard/interior.jpg" alt="The inner fold of the front cover, photographed in front of a lawn with fallen leaves: unknown glyphs and diacritics spill out from the gutter in varying shades of green.">
+              <img src="junkyard/1.png" alt="Front cover of a book, typeset in a green font with a green geometric texture peeking through a cut-out area. The cover is slightly yellowed from having been out in the sun for a while. The background is black.">
+              <img src="junkyard/2.png" alt="Open spread of a book, typeset in a green font with green images. The background is black.">
+              <img src="junkyard/3.png" alt="Open spread of a book, typeset in a green font with green images. The background is black.">
+              <img src="junkyard/4.png" alt="Open spread of a book, typeset in a green font with green images. The background is black.">
+              <img src="junkyard/5.png" alt="Open spread of a book, typeset in a light gray/white font, against a dark green background. With parts of the top and bottom cut away, the previous and following pages peek through with an inversed color scheme (green text on light paper). The background is black.">
+              <img src="junkyard/6.png" alt="Open spread of a book, typeset in a green font. Its left page being cut away at the bottom reveals a scrambled, green texture from previous pages. The background is black.">
+              <img src="junkyard/7.png" alt="Open spread of a book, typeset in a green font with green images. The background is black.">
+              <img src="junkyard/8.png" alt="Open spread of a book, typeset in a green font with a green geometric texture peeking through a cut-out area. The background is black.">
+              <img src="junkyard/9.png" alt="Back cover of a book, typeset in a green font with green images. The background is black.">
+              
+            </section>
+          </details>
+        </td>
+        <td>book</td>
+        <td>2020</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>Refringo</summary>
+            <p>An interactive modular alphabet that explores chance relationships between part and whole.</p>
+            <p class="links">* <a href="https://refringo.glitch.me/">website</a></p>
+            <section class="imagery">
+              <img src="refringo/detail.png" alt="several warped rectangles of various colors, set against a black background.">
+              <img src="refringo/passive.png" alt="eight letters composed of rectangles, some distorted, in white outlines against a black background.">
+              <img src="refringo/active.png" alt="eight letters composed of rectangles, some distorted, in white outlines against a black background. some letters have dissolved into individual shapes that are filled in with solid, bright hues.">
+            </section>
+          </details>
+        </td>
+        <td>website (desktop)</td>
+        <td>2021</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>Remake</summary>
+            <p>Editorial design for <em><a href="https://remake.wustl.edu">REMAKE</a></em>, an annual journal from the Writing Department celebrating first-year work.</p>
+            <section class="imagery">
+              <img src="remake/1.png" alt="front cover of a magazine featuring an abstract texture in red, blue, and yellow. at the bottom is the word 'remake', centered.">
+              <img src="remake/2.png" alt="open spread of a magazine with colorful gradients delineating various areas of the page.">
+              <img src="remake/3.png" alt="open spread of a magazine with an image rendered in pink.">
+              <img src="remake/4.png" alt="open spread of a magazine with a bold blue gradient on the left side edge.">
+              <img src="remake/5.png" alt="open spread of a magazine with a pink title page on the right, and a blue gradient on the inner left margin.">
+              <img src="remake/6.png" alt="open spread of a magazine with full-color images and bright gradients on the right side edges.">
+              <img src="remake/7.png" alt="open spread of a magazine with blue gradients in the center.">
+              <!-- <img src="remake/8.png"> -->
+              <img src="remake/9.png" alt="open spread of a magazine with several columns of text, typeset in black.">
+              <img src="remake/10.png" alt="open spread of a magazine with several columns of text, typeset in black, as well as two full-color images.">
+              <img src="remake/11.png" alt="open spread of a magazine with several columns of text, typeset in black, as well as a full-color image.">
+              <img src="remake/12.png" alt="back cover of a magazine, with the text 'REMAKE 2' stretched across in blue; the backing texture is red and black. the background is a black void.">
+              <img src="remake/detail.jpg" alt="half-open view of a magazine, with brightly tinted edges.">
+            </section>
+          </details>
+        </td>
+        <td>book</td>
+        <td>2020–22</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>Are.na Annual</summary>
+            <p>Editorial design for the Are.na Annual, a collection of essays, interviews, and artwork from the Are.na community. With <a class="firm" href="https://www.are.na">Daniel Pianetti</a>.</p>
+            <p class="links">* <a href="https://store.are.na/products/are-na-annual-2022?variant=41491331285143">2022 Annual</a>, * <a href="https://store.are.na/products/are-na-annual-2023?variant=42763478794391">2023 Annual</a></p>
+            <section class="imagery">
+              <img src="annual/1.png" alt="front cover a book, with a spiral-like drawing on the front and a small logo placed in the lower left.">
+              <img src="annual/2.png" alt="open spread of a book with text and imagery set in black and white. the background is a black void.">
+              <img src="annual/3.png" alt="open spread of a book with text set in black, set against a black background.">
+              <img src="annual/4.png" alt="open spread of a book with images set in grayscale. the book is placed against a black void for a background.">
+              <img src="annual/5.png" alt="open spread of a book with text set in black, set against a black background.">
+              <img src="annual/6.png" alt="open spread of a book with text and imagery set in black and white. the background is a black void.">
+              <img src="annual/7.png" alt="open spread of a book with text set in black, set against a black background.">
+              <img src="annual/8.png" alt="open spread of a book with text and imagery set in black and white. the background is a black void.">
+            </section>
+          </details>
+        </td>
+        <td>book</td>
+        <td>2022–</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>Nostalgia Loop</summary>
+            <p>A broadsheet housing two articles about the role of nostalgia in global and American politics.</p>
+            <section class="imagery">
+              <img src="nostalgia/sited.png" alt="a newspaper placed among bushes, back side up: yellow text crosses over into a fragmented, collaged red texture.">
+              <img src="nostalgia/1.png" alt="front cover/first page of a newspaper, with text set in yellow and black atop a black and red collaged image. text reads, 'NOSTALGIA LOOP — FREE POSTER ENCLOSED — THE GOOD OLD DAYS & CONTEXTLESS NOSTALGIA — I CAN'T STOP THINKING ABOUT NOSTALGIA', in bold, thick fonts.">
+              <img src="nostalgia/2.png" alt="open spread of a newspaper, with headings in yellow and the background photo in red. most prominent text reads, 'THE GOOD OLD DAYS: NOSTALGIA'S POLITICAL APPEAL'.">
+              <img src="nostalgia/3.png" alt="open spread of a newspaper with narrow columns of text, imagery in grayscale, and pull quotes in red.">
+              <img src="nostalgia/4.png" alt="open spread of a newspaper with narrow columns of text, imagery in grayscale, and pull quotes in red.">
+              <img src="nostalgia/5.png" alt="a colorful red, yellow, and black spread of a newspaper, with a title page to the left and the bottom half of an enclosed poster on the right.">
+              <img src="nostalgia/6.png" alt="open spread of a newspaper with narrow columns of text, imagery in grayscale, and pull quotes in red.">
+              <img src="nostalgia/7.png" alt="back cover/final page of a newspaper, with yellow text running vertically across the page and a fragmented, collaged red texture in the background.">
+            </section>
+          </details>
+        </td>
+        <td>newspaper</td>
+        <td>2021</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>Songs for a Summer Stroll</summary>
+            <p>Playlist cover for A24’s “Songs for a Summer Stroll”, promoting the film <em>MEN</em>. With <a class="firm" href="https://regrets-only.com/">RegretsOnly</a>.</p>
+            <p class="links">* <a href="https://open.spotify.com/playlist/4TOxHziEGtfR3r4gPf45Mu">Spotify playlist</a></p>
+            <img src="landing/summerstroll.png" alt="cropped view of a graphic with nested images of a person, with fanciful doodles and writing in white all over.">
+          </details>
+        </td>
+        <td>graphics</td>
+        <td>2022</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>Washington University Political Review</summary>
+            <p>Assorted illustrations for WUPR.</p>
+            <section class="imagery">
+              <img src="wupr/rotnrebirth.png" alt="the front and back cover of a magazine, featuring 3D graphics rendered in saturated tones of red, yellow, orange, and olive. on the right side page (the front) is the issue's theme, 'WUPR 36.1: ROT & REBIRTH'.">
+              <img src="wupr/crt.png" alt="three people rendered in black outlines with brightly colored hair, skin, and clothes. in the background are stock photos of explosions.">
+              <img src="wupr/normalcy.png" alt="the text 'BIDEN'S EMPTY PROMISE TO RESTORE NORMALCY' in white, against a background divided in four quadrants of red, blue, purple, and green. around the text are various photos of dads at the grill.">
+              <img style="margin: 0 auto 8em 0" src="wupr/wellness.png" alt="pencil illustration of a person with green hair, surrounded by abstract eyes.">
+              <img style="width: 60%;margin:0 auto 8em auto;" src="wupr/surveillance.png" alt="illustration of a person's hand holding a phone, in which is reflected a part of their face. above the phone are some abstract eyes, rendered in pink-red.">
+              <img src="wupr/fragility.png" alt="collage of several photos of a palace and a character from the US installation of The Office. some text reads, 'WELCOME TO THE FRAGILITY ISSUE THIS IS A SAFE SPACE FOR ALL'.">
+              <img src="wupr/yardsigns.png" alt="several screenshots in preview mode, layered atop a green background. each screenshot includes an abstract composition in red, blue, and white.">
+              <img src="wupr/magenta.png" alt="a 3d modelled person sitting cross legged, with hands held up to signal 'OK'. two wine-red/deep purple spherical forms float about in the foreground.">
+              <img style="margin-bottom: 0" src="wupr/horizons.png" alt="a grainy collage of a 3D modelling/VR interface, a vaporwave sun, and chairs.">
+            </section>
+          </details>
+        </td>
+        <td>graphics</td>
+        <td>2020–22</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>A Window For Two</summary>
+            <p>A program exploring the poetics of screenshots; watch digital sunsets with your computer.</p>
+            <p class="links">* <a href="https://editor.p5js.org/liuleslie/full/qOwz_m-Bb">program</a></p>
+            <div style="padding:52.51% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/504107378?h=420afec708&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="A Window For Two"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script><br>
+          </details>
+        </td>
+        <td>program</td>
+        <td>2020</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>On Work</summary>
+            <p>A set of four coffee sleeves that link to a prototype of a selfie filter; pondering the nature of work.</p>
+            <p class="links">* <a href="https://joesona.glitch.me/">website</a> (contains flashing images.)</p>
+            <section class="imagery">
+              <img src="landing/joesona-thumb.png" alt="six brown coffee sleeves, each with an illustration and text in green, centered on the front.">
+              <img src="https://raw.githubusercontent.com/liuleslie/liuleslie.github.io/main/work/sleeve.jpg" alt="a scan of a tall white paper cup with a coffee sleeve that contains a quote from 'The Abolition of Work': 'I'd like life to be a game — but a game with high stakes. I want to play for keeps.' with the text 'Discover your #joesona today' below. To the right of this scan, a screenshot of an iPhone scanning a QR code on a coffee sleeve.">
+              <img src="https://raw.githubusercontent.com/liuleslie/liuleslie.github.io/main/work/prototype.jpg" alt="a browser screenshot of a website where the person's head is covered with the image of a teary-eyed large yellow teacup and the text 'AM I JUST A JOB?' on the forehead. In the corner of the website are green shapes overlaid with black text that read, 'Discover your #joesona today' 'Tap/click anywhere to save.' In the lower right corner is a person's hand holding a coffee.">
+            </section>
+          </details>
+        </td>
+        <td>graphics/program</td>
+        <td>2021</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>memory garden</summary>
+            <p>A digital zen garden sampling anonymous worldwide memories collected from the little memory app.</p>
+            <p class="links">* <a href="https://editor.p5js.org/liuleslie/full/fR9ZGKOZ1">program</a></p>
+            <section class="imagery">
+              <img src="landing/memgarden.gif" alt="a grid of glyphs, some flickering and changing symbols. as the cursor passes over certain glyphs, a black rectangle appears, containing white text.">
+            </section>
+          </details>
+        </td>
+        <td>program</td>
+        <td>2020</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>Computer Grass is Natural Grass</summary>
+            <p class="links">* <a href="https://computer-grass.glitch.me/">website</a></p>
+            <p>A poster/website about the materiality of interfaces and the metaphors that shape them.</p>
+            <section class="imagery">
+              <img src="https://pro2-bar-s3-cdn-cf1.myportfolio.com/23094f0a-6c1b-4998-9c09-df0bf8d63c46/9321b818-1390-4875-9097-aa407d73ea1a.jpg?h=682127b4efc460cda71c27d17fd732bd" alt="front side of a poster, with the title 'computer grass is natural grass'. the poster's background is light-gray. several images and accompanying captions are spread out across the surface, with muted green, mustard yellow, and red lines connecting related text blocks.">
+              <img src="https://pro2-bar-s3-cdn-cf4.myportfolio.com/23094f0a-6c1b-4998-9c09-df0bf8d63c46/5f929fa3-a1a8-484d-8650-e9ae83f6193e.jpg?h=28ff6f1d56f0da6f5e89f04b12d5e048" alt="back/reverse side of a poster: a packed-in block of text encircles a smaller, more narrow paragraph in the center. several rectangles with soft red, yellow, and green shadows float about around the bottom.">
+            </section>
+          </details>
+        </td>
+        <td>website/poster</td>
+        <td>2020–</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>Some Texts on the iPhone</summary>
+            <p>An art book that explores the iPhone’s role in contemporary American society as status symbol, erotic object, spectacle of lightness, and luxury destroyed.</p>
+            <section class="imagery">
+              <img src="iphone/set.png" alt="several clear acrylic sheets laid out on a wooden board, into which are placed a washer, bolt, and nut. the background on which the board and sheets are placed is light concrete.">
+              <img src="iphone/frosted-ip.png" alt="closeup of stacked acrylic sheets, with overlapping abstract textures and quotes typeset in a narrow serif font.">
+              <img src="iphone/iso-ip.png" alt="two blocks of acrylic sheets bolted together at the side, placed atop a wooden board and a larger scrap piece of acrylic.">
+              <img src="iphone/handheld.png" alt="a person's hand holding a few sheets of acrylic with engraved text and imagery. the background is a light concrete.">
+            </section>
+          </details>
+        </td>
+        <td>book</td>
+        <td>2022</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>Meme Engine Sampler</summary>
+            <p>Abstracting meme formats via a custom-made Drawbot program. A collaboration with Nathan Springman.</p>
+            <section class="imagery">
+              <img src="engine/pages.gif" alt="spreads of a small zine, whose pages contain various memes featuring uncannily rendered wojacks.">
+              <img style="margin-bottom: 2em;" src="engine/unfolded.gif" alt="unfolded views of the front and back of a piece of tabloid-sized paper. each side contains eight sections, on most of which are densely textured memes. on one side of the paper in the central four sections is the source code for the program used to compose the paper, typeset in bold Impact.">
+            </section>
+          </details>
+        </td>
+        <td>zine/program</td>
+        <td>2021</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>Feelings at the Edge</summary>
+            <p>An essay about sketchy internet chumbox ads. For Coven Berlin.</p>
+            <p class="links">* <a href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/">website</a></p>
+          </details>
+        </td>
+        <td>essay</td>
+        <td>2022</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>Gestures of Transgression</summary>
+            <p>An interactive essay about the politics of wheatpaste mockups. For FLAT.</p>
+            <p class="links">* <a href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/">website</a></p>
+          </details>
+        </td>
+        <td>essay</td>
+        <td>2022</td>
+      </tr>
+      <tr>
+        <td>
+          <details class="entry">
+            <summary>Kemper Student Educator Totes</summary>
+            <p>A tote bag for the Mildred Lane Kemper Art Museum's Student Educator Program.</p>
+            <section class="imagery">
+              <img src="https://web.archive.org/web/20220822013138im_/https://tortlegrafix.neocities.org/imagery/mlkam-tote-1.png" alt="a black tote on a sofa. the tote has screenprinted text and illustrations. it reads “STUDENT EDUCATOR” “Mildred Lane Kemper Art Museum” and the illustration is of two speech bubbles standing next to each other, with some shapes at eye level behind them.">
+              <img src="https://web.archive.org/web/20220822013138im_/https://tortlegrafix.neocities.org/imagery/mlkam-tote-2.png" alt="a black tote on a bench at a bus shelter.">
+            </section>
+          </details>
+        </td>
+        <td>bag</td>
+        <td>2022</td>
+      </tr>
+
+      <!-- <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr> -->
+         
+    </table>
+
+    <article style="margin-top: 3em;">
+      <details>
+        <summary>Aspiring morning person living in New England. Works primarily across print and interaction design, with additional interests in creative technology, user research, exhibition design, and new media. Currently a digital designer at <a id="soso" href="https://www.sosolimited.com/">Sosolimited</a>. Resume available upon request.</summary>
+        <p>
+          I am interested in experiences that are magical, stuff that helps us reconsider intimacy and connection, as well as overlooked or ignored spaces online, in books, and beyond. Dedicated to silly and serious things.
+        </p>
+        <p>I enjoy making friendly and generative tools, books, and programs and wading the handmade web. Recent topics that are important to me include mass/pop aesthetics, cringe and embarrassment online, and media both harsh and soft. I would like to become part of the background; always down for a chat or to collaborate.
+        </p>
+      </details>
+      <p>This website is mobile-hostile. It is also <a href="preface.txt">under constant reconsideration</a>.</p>
+    </article>
+
   </body>
 </html>
-
