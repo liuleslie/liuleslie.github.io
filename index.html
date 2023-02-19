@@ -82,15 +82,30 @@
       /*section.imagery:first-child {margin-top: 0;}
       section.imagery:last-child {margin-bottom: 0;}*/
       
-      
+      a#betsy:hover, a.firm:hover {color: gray;}
+      .links a:hover {color: yellow}
+      a#soso:hover {color: #1B69FF}
+
+      @media (max-width: 470px) {
+        body {
+          font-size:10px;
+        }
+        details.entry {
+          width: 75vw;
+        }
+        th:not(th:first-child), td:not(td:first-child) {
+          display: none;
+        }
+/*
+        tr:nth-child(2),tr:nth-child(3)  {
+          width:0;
+        }*/
+      }
       @media (min-width: 1000px) {
         section.imagery {
           height: 50vh;
         }
       }
-      a#betsy:hover, a.firm:hover {color: gray;}
-      .links a:hover {color: yellow}
-      a#soso:hover {color: #1B69FF}
     </style>
   </head>
   <body>
