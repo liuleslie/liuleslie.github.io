@@ -37,7 +37,7 @@
         margin: 1em 1em 3em 1em;
       }
       footer {
-        margin: 12em 1em 2em 1em;
+        margin: 40em 1em 1em 1em;
       }
       .sectionheader {
         font-weight: normal;
@@ -115,7 +115,7 @@
       }
 
       #preface {
-        margin: 16em 3em 1em 3em;
+        margin: 16em 3em 1em 2em;
       }
 
       #preface section {
@@ -129,16 +129,28 @@
         background-color: silver;
       }
 
+      blockquote {
+        border-left: 6px gray solid;
+        padding-left: 1em;
+      }
+      span.highlighted {
+        background-color: yellow;
+        mix-blend-mode: multiply;
+      }
+      #log li {
+        margin-bottom: 0.5em;
+      }
+
       /**/
 
       #greeting {
-        margin: 0 3em 0 3em;
+        margin: 0 3em 1em 3em;
       }
       #greeting img {
         display: inline-block;
         float: right;
         margin: 0 0 10px 20px;
-        height: 25vh;
+        height: 12vh;
         border: 4px gray ridge;
       }
       #greeting section {
@@ -155,7 +167,7 @@
 
 
 
-      .filter-intro-text {
+      .filter-intro-text, #now {
         margin-left: 3em;
       }
       input {
@@ -182,8 +194,11 @@
         display: table-row;
       }
 
-      #filter-intro {
+      #filter-intro, #log {
         margin-left: 1em;
+      }
+      #log {
+        margin-bottom: 2em;
       }
 
 
@@ -250,12 +265,22 @@
 
       <optgroup label="I am a general human being">
         <option value="#greeting">living in the U.S.</option>
-        <option value="#work">working in design.</option>
+        <option value="#work-top">working in design.</option>
       </optgroup>
 
       <optgroup label=""></optgroup>
 
-      
+      <optgroup label="This season">
+        <option value="#commonplace">I am collecting excerpts.</option>
+      </optgroup>
+
+      <optgroup label=""></optgroup>
+
+      <optgroup label="[Back Matter]">
+        <option value="#colophon">Colophon</option>
+        <option value="#log">Log</option>
+      </optgroup>
+
     </select>
 
 
@@ -284,14 +309,17 @@
    <!--   -->
 
     <section id="greeting">
-      <p><img src="landing/transitpizza.png" alt="a slice of pizza, face down, on the floor of a bus, with empty blue seats above.">Aspiring morning person living in New England. Works primarily across print and interaction design, with additional interests in creative technology, user research, exhibition design, and new media. Currently a digital designer at <a id="soso" href="https://www.sosolimited.com/">Sosolimited</a>.</p>
-      <p class="firstperson">I am interested in experiences that are magical, stuff that helps us reconsider intimacy and connection, as well as overlooked or ignored spaces online, in books, and beyond. Dedicated to silly and serious things.</p>
-      <p class="firstperson">I enjoy making friendly and generative tools, books, and programs and wading the handmade web. Recent topics that are important to me include mass/pop aesthetics, cringe and embarrassment online, and media both harsh and soft. I would like to become part of the background; always down for a <a href="mailto:lesliu@protonmail.com">chat</a> or to collaborate.</p>
+      <p>Aspiring morning person living in New England. Works primarily across print and interaction design, with additional interests in creative technology, user research, exhibition design, and new media. Currently a digital designer at <a id="soso" href="https://www.sosolimited.com/">Sosolimited</a>.</p>
+      <details>
+        <summary>more... </summary>
+        <p class="firstperson"><img src="landing/transitpizza.png" alt="a slice of pizza, face down, on the floor of a bus, with empty blue seats above.">I am interested in experiences that are magical, stuff that helps us reconsider intimacy and connection, as well as overlooked or ignored spaces online, in books, and beyond. Dedicated to silly and serious things.</p>
+        <p class="firstperson">I enjoy making friendly and generative tools, books, and programs and wading the handmade web. Recent topics that are important to me include mass/pop aesthetics, cringe and embarrassment online, and media both harsh and soft. I would like to become part of the background; always down for a <a href="mailto:lesliu@protonmail.com">chat</a> or to collaborate.</p>
+      </details>
     </section>
 
 
 
-    <div class="divider"></div>
+    <div id="work-top" class="divider"></div>
     <!-- furniture div/spacer here to use as toggle id/location -->
     <br><br>
     <span class="filter-intro-text">I am deeply invested in conversations about</span><br>
@@ -451,7 +479,62 @@
     </table>
 
     <div class="divider"></div>
+    <section id="now">
+      <section id="commonplace">
+        <p class="sectionheader">
+          Commonplace Section
+        </p>
 
+        <section style="height:60vh; width: 75vw; overflow: scroll; border:4px silver ridge; padding:10px">
+        
+          <blockquote class="quoteback" darkmode="" data-title="The%20cleverfooted%20squirrel's%20fall%20is%20inevitable" data-author="" cite="https://murid.neocities.org/write_fall.html#homepage">
+          You can't live life on platforms or out of a wallet, lest you lose your way and become a wandering ghost that is searching for a unexplained longing.
+          <footer><cite> <a href="https://murid.neocities.org/write_fall.html#homepage">https://murid.neocities.org/write_fall.html#homepage</a></cite></footer>
+          </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+          <blockquote class="quoteback" darkmode="" data-title="Nameless%20Feeling%20%E2%80%94%20Real%20Life" data-author="@_reallifemag" cite="https://reallifemag.com/nameless-feeling/">
+          Some may worry about whether powerful new neural-network models for generating text and images will <a href="https://erikhoel.substack.com/p/big-tech-is-replacing-human-artists" target="_blank" rel="noopener">replace workers and artists</a>. But this can be true only if beauty and creativity are measurable by one-dimensional metrics, if art and human endeavors are static forms whose rules and objectives do not change, if we reject the possibility of meaning and principle and are content with just vibes.
+          <footer>@_reallifemag<cite> <a href="https://reallifemag.com/nameless-feeling/">https://reallifemag.com/nameless-feeling/</a></cite></footer>
+          </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+          <blockquote class="quoteback" darkmode="" data-title="Everyone%20Is%20Beautiful%20and%20No%20One%20Is%20Horny%20-%20Blood%20Knife" data-author="Blood Knife" cite="https://bloodknife.com/everyone-beautiful-no-one-horny/">
+          When a nation feels threatened, it gets swole.
+          <footer>Blood Knife<cite> <a href="https://bloodknife.com/everyone-beautiful-no-one-horny/">https://bloodknife.com/everyone-beautiful-no-one-horny/</a></cite></footer>
+          </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+          <blockquote class="quoteback" darkmode="" data-title="Early%20Web%20Design%20Helped%20a%20Generation%20Express%20Themselves%20Online.%20How%20Do%20We%20Capture%20That%20Feeling%20Again%3F" data-author="" cite="https://eyeondesign.aiga.org/early-web-design-helped-generation-express/">
+          There is no longer a practical need for energetic, messy community sites, but what is life without desire? The need to be seen and to participate digitally and otherwise endures.
+          <footer><cite> <a href="https://eyeondesign.aiga.org/early-web-design-helped-generation-express/">https://eyeondesign.aiga.org/early-web-design-helped-generation-express/</a></cite></footer>
+          </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+          <blockquote class="quoteback" darkmode="" data-title="Real%20Deepfakes%20and%20Fake%20Deepfakes" data-author="" cite="https://lav.io/notes/deep-fakes-real-deeps-fake-reals/">
+          The harder part, I believe, is to detect a real that seems fake. An actual erosion of reality arises from our lack of willingness to believe the true things we are seeing with out own eyes. To detect when a joke isn’t a joke, when a LARP isn’t a LARP, when a draft opinion isn’t a draft, and so on.
+          <footer><cite> <a href="https://lav.io/notes/deep-fakes-real-deeps-fake-reals/">https://lav.io/notes/deep-fakes-real-deeps-fake-reals/</a></cite></footer>
+          </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+          <blockquote class="quoteback" darkmode="" data-title="The%20Potential%20of%20a%20Garden" data-author="" cite="http://radicalsradicants.com/essays/potentialofagarden/">
+          <p>Naming is control. It establishes, if not ownership, at least a relationship of some intimacy as well as a chain of bizarre equivalences: a set of wiggles in the muscles of the mouth and larynx = a set of phonemes = a constellation of letters = a star. It’s a pretty arbitrary chain, but it’s all that allows us to talk about the world. But what does it mean to name something that cannot hear you, in a world that doesn’t care?</p>
+          <p>Susan Tallman, <em>The Collections of Barbara Bloom</em>, 2007, p. 45.</p>
+          <footer><cite> <a href="http://radicalsradicants.com/essays/potentialofagarden/">http://radicalsradicants.com/essays/potentialofagarden/</a></cite></footer>
+          </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+          <blockquote class="quoteback" darkmode="" data-title="I%20Know%20a%20Place" data-author="Everest Pipkin" cite="https://pioneerworks.org/broadcast/i-know-a-place-pipkin">
+          Even now, being online is to watch history accumulate in real time. 
+          <footer>Everest Pipkin<cite> <a href="https://pioneerworks.org/broadcast/i-know-a-place-pipkin">https://pioneerworks.org/broadcast/i-know-a-place-pipkin</a></cite></footer>
+          </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+          <blockquote class="quoteback" darkmode="" data-title="Ambient%20Cruelty%20%E2%80%94%20Real%20Life" data-author="@_reallifemag" cite="https://reallifemag.com/ambient-cruelty/">
+          negativity as a tonal choice not only lends an air of discernment, but brims with expressive opportunity: the diction of dissatisfaction offers its own satisfactions.
+          <footer>@_reallifemag<cite> <a href="https://reallifemag.com/ambient-cruelty/">https://reallifemag.com/ambient-cruelty/</a></cite></footer>
+          </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+        </section>
+
+      </section>
+    </section>
+
+
+    <div class="divider"></div>
 
 
     <footer id="colophon">
@@ -461,6 +544,19 @@
 
       <p>Coded from scratch. The images on this website have been dithered to avoid lagginess. For higher resolution photos, please <a href="mailto:lesliu@protonmail.com">email</a> me.</p>
     </footer>
+    <section id="log">
+        <p class="sectionheader">Website Log</p>
+        <section style="height:8vh; width: 75vw; overflow: scroll; border:4px silver ridge; padding:10px">
+          <ul>
+            <li>February 27... everything on one main page now; need to tweak dropdown so that it updates as you scroll through</li>
+            <li>February 26... trying out <a href="index-3.html">a dropdown-based dialogue</a></li>
+            <li>February 19... tried <a href="index-2.html">a blunter layout</a> and a sans serif</li>
+            <li>c. January 8, 2023... introduced a landing page that comes before portfolio</li>
+            <li>June 11... bulk of portfolio copy done</li>
+            <li>May 22, 2022... bulk of portfolio section fleshed out</li>
+          </ul>
+        </section>
+      </section>
     
   </body>
 </html>
