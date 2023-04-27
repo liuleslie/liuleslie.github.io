@@ -12,57 +12,83 @@
     <script src="script.js"></script>
     <base target="_self">
     <style>
-      @font-face {
-        font-family: "karrik";
-        src: url("https://cdn.glitch.global/e88d212e-4ce9-46a8-8c1d-7abd92ea13d8/Karrik-Regular.woff?v=1650588487689") format("woff");
-      }
       body {
         background-color: black;
-        font-family: karrik, sans-serif;
+        font-family: sans-serif;
+        line-height: 120%;
+        letter-spacing: 0.25px;
         font-size: 18px;
         color: white;
-        margin: 1em 1em 3em 1em;
+        margin: 2em 3em 4em 3em;
       }
       a {
         color: dodgerblue;
-        text-decoration: none;
+        text-decoration: 1.5px dodgerblue underline;
       }
       a:hover {
         color: white;
+        text-decoration: none;
       }
-      #all {
-        margin-top: 10em;
+      #goods {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
       }
-      #wares, #ideas {
-        margin-left: 1em;
+      #clips {
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
       }
-      #goods img, #wares img {
-        width: 75%;
+      #clips article, #goods article {
+        padding:0.5em 1em 1em 1em;
+        margin:3px;
       }
-      #goods details, #wares details {
-        margin-bottom: 1em;
+      #digest img, #goods img {
+        display:block;
+      }
+      #digest p, #digest details {
+        font-size: 0.8em;
+        line-height: 1.14em;
+      }
+      #goods img {
+        width:100%;
+        margin-bottom:1em;
       }
       details summary {
-        color: lemonchiffon;
+        color: dodgerblue;
       }
-      img.more {
-        margin:1em;
+      #postscript {
+        margin-top:3em;
       }
+      #log li{
+        margin-bottom: 0.5em;
+      }
+      
+      h1 {
+        font-family: serif;
+        font-size: 1.25em;
+        font-weight: normal;
+        margin-top:3em;
+      }
+      h3 {
+        font-size: 1em;
+        font-weight: normal;
+      }
+
       @media (max-width: 700px) {
         body {
           font-size: 13px;
         }
-        #all {
+        #digest {
+          grid-template-columns: 1fr 1fr;
+        }
+        #goods {
           grid-template-columns: 1fr;
         }
       }
-      @media (max-width: 400px) {
+      /* @media (max-width: 400px) {
         body {
-          font-size: 11px;
+          font-size: 14px;
         }
-      }
+      } */
     </style>
   </head>
   <body>
@@ -72,69 +98,100 @@
     </blockquote>
     <script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
 
+    <h1>Weather</h1>
+    <section id="digest">
+      <section id="clips">
+        <article style="background-color: rgb(54, 53, 30); border:1px white solid">
+          <h3>A new era of liuleslie.github.io</h3>
+          <p>I am excited to announce (to no one in particular I suppose) that I am now investing more energy in making this an online home for myself! 
+            While there are other outposts I regularly return to, I haven't had one that's as overtly public-facing and <em>official</em>.
+          </p>
+        </article>
+        <article style="border:rgb(93, 188, 38) 1px solid">
+          <h3>Life Form Appreciation</h3>
+          <p>I have long wanted to make an <a href="https://en.wikipedia.org/wiki/Okra">okra</a> fanpage. Adding it here is the very first step to achieving that.</p>
+        </article>
+        <article style="border:1px yellow solid">
+          <h3>Incoming design projects</h3>
+          <p>I followed up and have finally in collaboration with a friend, come up with some merch designs for my chapter of ACM! Images to come.</p>
+        </article>
+        <article style="background-color: rgb(19, 27, 2); border:1px white solid">
+          <h3>Maintenance</h3>
+          <details>
+            <summary>Log</summary>
+            <ul id="log">
+              <li>added EIA fanzine #1 to projects section. Getting ready for a subpage... also: a major layout change to support more regular updates. 4/27/23.</li>
+              <li>added back projects that I find important for now. 4/10/23.</li>
+              <li>new quote/excerpt! previous quote: <a href="https://www.are.na/block/15944980">“all pursuits of knowledge are exercises in longing”</a>. 3/11/23.</li>
+              <li>Redesigned <em>yet again !?</em> 3/10/23.</p></li>
+            </ul>
+          </details>
+        </article>
+      </section>
+      
+    </section>
     <!-- <p><a href="https://www.are.na/block/15944980">“all pursuits of knowledge are exercises in longing”</a></p> -->
-    <section id="all">
-      <section id="goods">
+    
+
+    <h1>Goods</h1>
+    <section id="goods">
+      <article style="border:1px rgb(170, 53, 53) solid">
+        <h3>Feelings at the Edge: A Chumbox Tour</h3>
+        <p>An essay about sketchy internet chumbox ads. (2022)</p>
+        <p>* Read at <a href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour">Coven Berlin</a></p>
+      </article>
+      <article style="border:1px solid rgb(113, 82, 248)">
+        <h3>The Shape of Language: EIA</h3>
+        <p>Typesetting transcripts of <em>Everything Is Alive</em> episodes. A fan book (6.4MB, 5.5 × 8.5").</p>
+        <p>* <a href="twentythree/EIA.pdf">Full PDF</a></p>
         <details>
-          <summary>
-            Are.na Annual<br>
-            <img src="annual/23-1.png" alt="an over-the-shoulder shot of a person reading a book by the subway. the book is open to a spread of justified text.">
-          </summary>
-          * <a href="https://store.are.na/products/are-na-annual-2023?variant=42763478794391">2023, on service</a>
-          <img class="more" src="annual/23-2.png" alt="a person holding a thick, narrow book, examining the back cover. the cover is in vibrant purple and beige hues, depicting an abstract texture.">
-          <img class="more" src="annual/23-3.png" alt="an over-the-shoulder shot of a person reading a book on the train. the book is open to a spread of four images, printed in black and white.">
+          <summary>1 image</summary>
+          <img src="https://d2w9rnfcy7mm78.cloudfront.net/14559288/original_76245dc58418e698e35abdf2e1e4b8e4.gif?1641275930?bc=0" alt="a rapid flip through of scanned spreads of a book typeset in a black typewriter/monospace font on yellow, purple, and blue paper.">
         </details>
-        
-      </section>
-      <section id="wares">
+      </article>
+      <article style="border:1px solid rgb(212, 138, 138)">
+        <h3>Are.na Annual</h3>
+        <p>A collection of texts, conversations, art, and more about service.</p>
+        <p>* <a href="https://store.are.na/products/are-na-annual-2023?variant=42763478794391">Are.na Store</a></p>
         <details>
-          <summary>Feelings at the Edge: A Chumbox Tour</summary>
-          <p>An essay about sketchy internet chumbox ads. (2022)<br>
-          * <a href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour">Coven Berlin</a></p>
-          </summary>
+          <summary>3 images</summary>
+          <img src="annual/23-1.png" alt="an over-the-shoulder shot of a person reading a book by the subway. the book is open to a spread of justified text.">
+          <img src="annual/23-2.png" alt="a person holding a thick, narrow book, examining the back cover. the cover is in vibrant purple and beige hues, depicting an abstract texture.">
+          <img src="annual/23-3.png" alt="an over-the-shoulder shot of a person reading a book on the train. the book is open to a spread of four images, printed in black and white.">
         </details>
+      </article>
+      <article style="border:1px solid rgb(82, 135, 248)">
+        <h3>A Window For Two</h3>
+        <p>A sketch exploring the poetics of screenshots and the window interface metaphor. Watch sunsets with your computer.</p>
+        <p>* <a href="https://editor.p5js.org/liuleslie/full/qOwz_m-Bb">Program</a></p>
+        <p>* <a href="https://vimeo.com/504107378/420afec708">Vimeo recording</a></p>
+      </article>
+      <article style="border:1px solid whitesmoke">
+        <h3>memory garden</h3>
+        <p>A sketch collecting some anonymous memories from the little memory app.</p>
+        <p>* <a href="https://editor.p5js.org/liuleslie/full/fR9ZGKOZ1">Program</a></p>
         <details>
-          <summary>Gestures of Transgression</summary>
-          <p>An essay about the politics of wheatpaste mockups.<br>
-            * <a href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/">2022, Flat Journal</a></p>
+          <summary>1 image (GIF)</summary>
+          <img src="landing/memgarden.gif" alt="a grid of glyphs, some flickering and changing symbols. as the cursor passes over certain glyphs, a black rectangle appears, containing white text.">
         </details>
-        <details>
-          <summary>A Window For Two</summary>
-          <p>A program exploring the poetics of screenshots. (2020)<br>
-          * <a href="https://editor.p5js.org/liuleslie/full/qOwz_m-Bb">Program</a><br>
-          * <a href="https://vimeo.com/504107378/420afec708">Vimeo recording</a>
-        </p>
-        </details>
-        <details>
-          <summary>Refringo</summary>
-          <p>An interactive modular alphabet inspired by two sculptures. (2021)<br>
-          * <a href="https://refringo.glitch.me/">Website</a><br>
-          <img style="margin-bottom: 1em;margin-top:1em" src="refringo/cf.png" alt="lights placed across an interior wall, with rose-hued reflections projected onto the ceiling.">
-          <img src="refringo/cs.png" alt="a scaffolding of mirrors reflecting light onto the facade of a building. the roof is folded like a fan."></p>
-        </details>
-        <details>
-          <summary>Memory Garden</summary>
-          <p>
-            A collection of anonymous memories from the little memory app.<br>
-            * <a href="https://editor.p5js.org/liuleslie/full/fR9ZGKOZ1">Program</a>
-            <details style="padding-left: 1em;">
-              <summary>Sample GIF</summary><br>
-              <img src="landing/memgarden.gif" alt="a grid of glyphs, some flickering and changing symbols. as the cursor passes over certain glyphs, a black rectangle appears, containing white text.">
-            </details>
-          </p>
-        </details>
-        <details>
-          <summary>Computer Grass is Natural Grass</summary>
-          <p>
-            Learning about the history of computer interfaces through a handful of texts about how people approach its materiality and metaphors.<br>
-            * <a href="https://computer-grass.glitch.me/">Repository</a>
-          </p>
-        </details>
-      </section>
-      <section id="ideas">
+      </article>
+    </section>
+
+    <section id="postscript">
+      <p>Yours truly,</p>
+      <img src="blab360.gif" alt="a blob, drawn in black pencil, rotating 360 degrees.">
+      <p><a style="text-decoration: none" href="http://lesliu.123Guestbook.com/" target="guestbook">❦</a></p>
+    </section>
+
+
+
+     
+     
+      <!-- <section id="ideas">
         <details>
           <summary>log...</summary>
           <ul>
+            <li>added EIA fanzine #1 to projects section. Getting ready for a subpage... 4/27/23.</li>
             <li>added back projects that I find important for now. 4/10/23.</li>
             <li>new quote/excerpt! previous quote: <a href="https://www.are.na/block/15944980">“all pursuits of knowledge are exercises in longing”</a>. 3/11/23.</li>
             <li>Redesigned <em>yet again !?</em> 3/10/23.</p></li>
@@ -152,15 +209,16 @@
           <p style="padding-left:2em">I learned about &lt;summary&gt; and &lt;details&gt; from <a href="https://twitter.com/eli8527/status/1478435544975638535?s=20">this tweet</a> and it made me love HTML all the more.</p>
         </details>
         
-        <p style="margin-top: 3em;">As I work full-time in digital (interaction-adjacent) design, I would like to more systematically learn about user experience research + testing and accessibility in new media and experience design. <a href="mailto:leslie@sosolimited.com">I’d love to chat</a> if you have experience/interest in this sphere! Otherwise also very much down to gush about all things design and computational art.</p>
-        <p>Alternatively, leave something in <a href="http://lesliu.123Guestbook.com/" target="guestbook">the guestbook</a>?</p>
+        <p style="margin-top: 3em;">
+          Welcome to my website! Even this about section/greeting is in progress haha.
+        </p>
         <p>Yours truly,</p>
         <a href="https://d2w9rnfcy7mm78.cloudfront.net/17871985/original_2c6db4f528745c9148d7cd73ff1afae5.png?1662217685?bc=0"><img src="blab360.gif" alt="a blob, drawn in black pencil, rotating 360 degrees."></a>
-
+        <p><a href="http://lesliu.123Guestbook.com/" target="guestbook">❦</a></p>
         
 
-      </section>
-    </section>
+      </section> -->
+   
 
   </body>
 </html>
