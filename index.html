@@ -12,11 +12,21 @@
     <script src="script.js"></script>
     <base target="_self">
     <style>
+      @font-face {
+        font-family: "karrik";
+        src: url("https://cdn.glitch.global/e88d212e-4ce9-46a8-8c1d-7abd92ea13d8/Karrik-Regular.woff?v=1650588487689") format("woff");
+      }
+      /* @font-face {
+        font-family: letter-gothic-std,monospace;
+        font-weight: 400;
+        font-style: normal;
+        sr: url('https://use.typekit.net/zwl2xmq.css');
+      } */
       body {
         background-color: black;
-        font-family: sans-serif;
+        font-family: karrik;
         line-height: 120%;
-        letter-spacing: 0.25px;
+        /* letter-spacing: 0.25px; */
         font-size: 18px;
         color: white;
         margin: 2em 3em 4em 3em;
@@ -29,6 +39,11 @@
         color: white;
         text-decoration: none;
       }
+      #htmlday:hover {
+        box-shadow: 2px 2px 30px rgba(128, 255, 0, 0.8), 3px 3px 10px yellowgreen;
+        transition:.5s;
+      }
+      #htmlday { transition: 1s;}
       #goods {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -45,7 +60,7 @@
         display:block;
       }
       #digest p, #digest details {
-        font-size: 0.8em;
+        /* font-size: 0.8em; */
         line-height: 1.14em;
       }
       #goods img {
@@ -63,7 +78,7 @@
       }
       
       h1 {
-        font-family: serif;
+        text-transform: lowercase;
         font-size: 1.25em;
         font-weight: normal;
         margin-top:3em;
@@ -101,14 +116,28 @@
     <h1>Weather</h1>
     <section id="digest">
       <section id="clips">
-        <article style="border:1px lightskyblue solid">
+        <article id="htmlday" style="border:1px chartreuse solid;">
+          <h3>HTML Day</h3>
+          <img style="width: 100%" src="twentythree/20230603/ducks-1.png" alt="four ducks in a pond in the rain. the water is green from the surrounding trees. raindrops patter on the pond surface, creating wondrous ripples. some ducks dunk their heads underwater.">
+          <br>
+          <details>
+            <summary>
+              A fine transition from afternoon to evening in June
+            </summary>
+            <p>
+              I gathered with five fellow <a href="https://html.energy">HTML Energy</a> seekers in the Boston public garden on June 3 
+              for a freewrite. <a href="htmlday2023.html">Here is an account of the outing.</a>
+            </p>
+          </details>
+        </article>
+        <!-- <article style="border:1px lightskyblue solid">
           <h3>Shapes of Language</h3>
           <a href="language.html">Tiny Project #1</a>
         </article>
         <article style="border:1px gray solid">
           <h3>journal.html</h3>
           Learning about theories of the <a href="journal.html">diagram</a>
-        </article>
+        </article> -->
         <article style="border:1px yellow solid">
           <h3>More silence, please</h3>
           <img style="width:100%" src="twentythree/20230519.png" alt="sun glitter: sunlight glimmering across the surface of water, which glows in a pink-blue hue. in the foreground, some branches of a tree swaying in the wind.">
@@ -140,6 +169,7 @@
           <details>
             <summary>Log</summary>
             <ul id="log">
+              <li>switched back to Karrik for some character. 6/4/23.</li>
               <li>added EIA fanzine #1 to projects section. Getting ready for a subpage... also: a major layout change to support more regular updates. 4/27/23.</li>
               <li>added back projects that I find important for now. 4/10/23.</li>
               <li>new quote/excerpt! previous quote: <a href="https://www.are.na/block/15944980">“all pursuits of knowledge are exercises in longing”</a>. 3/11/23.</li>
@@ -170,7 +200,7 @@
         <p>Typesetting transcripts of <em>Everything Is Alive</em> episodes. A fan book (6.4MB, 5.5 × 8.5").</p>
         <p>* <a href="twentythree/EIA.pdf">Full PDF</a></p>
         <details>
-          <summary>1 image</summary>
+          <summary>1 image (GIF)</summary>
           <img src="https://d2w9rnfcy7mm78.cloudfront.net/14559288/original_76245dc58418e698e35abdf2e1e4b8e4.gif?1641275930?bc=0" alt="a rapid flip through of scanned spreads of a book typeset in a black typewriter/monospace font on yellow, purple, and blue paper.">
         </details>
       </article>
@@ -213,15 +243,6 @@
      
      
       <!-- <section id="ideas">
-        <details>
-          <summary>log...</summary>
-          <ul>
-            <li>added EIA fanzine #1 to projects section. Getting ready for a subpage... 4/27/23.</li>
-            <li>added back projects that I find important for now. 4/10/23.</li>
-            <li>new quote/excerpt! previous quote: <a href="https://www.are.na/block/15944980">“all pursuits of knowledge are exercises in longing”</a>. 3/11/23.</li>
-            <li>Redesigned <em>yet again !?</em> 3/10/23.</p></li>
-          </ul>
-        </details>
 
         <details>
           <summary>about this here website...</summary>
@@ -233,14 +254,6 @@
           <p style="padding-left:1em">Colophon... this website is set in Karrik by Jean-Baptiste Morizot and Lucas Le Bihan, from <a href="https://velvetyne.fr">Velvetyne Type Foundry.</a></p>
           <p style="padding-left:2em">I learned about &lt;summary&gt; and &lt;details&gt; from <a href="https://twitter.com/eli8527/status/1478435544975638535?s=20">this tweet</a> and it made me love HTML all the more.</p>
         </details>
-        
-        <p style="margin-top: 3em;">
-          Welcome to my website! Even this about section/greeting is in progress haha.
-        </p>
-        <p>Yours truly,</p>
-        <a href="https://d2w9rnfcy7mm78.cloudfront.net/17871985/original_2c6db4f528745c9148d7cd73ff1afae5.png?1662217685?bc=0"><img src="blab360.gif" alt="a blob, drawn in black pencil, rotating 360 degrees."></a>
-        <p><a href="http://lesliu.123Guestbook.com/" target="guestbook">❦</a></p>
-        
 
       </section> -->
    
