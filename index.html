@@ -17,7 +17,7 @@
         #about img {width:10%}
         #weather, #goods, #log {border-right: 1px dotted white;}
         header {border-bottom:1px dotted white}
-        h3 {font-size: 1em;}
+        h3 {font-size: 1em; font-weight: normal;}
         /* a { color:dodgerblue; text-decoration: none;}
         a:hover {text-decoration: 1px underline dodgerblue;} */
         a { color:#000097; text-decoration: 1px underline #000097}
@@ -33,6 +33,7 @@
         footer {padding: 3em 0 0 1em;}
         ul { list-style-type: square;}
         .timestamp {padding-right:1em;font-weight: bold;}
+        .cat {font-size:0.75em;letter-spacing: 1px;}
         @media (max-width:1200px) {
             #weather section, #goods section {grid-template-columns: 1fr;}
         }
@@ -103,31 +104,54 @@
             <h3>goods</h3>
             <section>
                 <details>
-                    <summary>Are.na Annual<br><img src="annual/23-1.png" alt="an over-the-shoulder shot of a person reading a book by the subway. the book is open to a spread of justified text."></summary>
+                    <summary>
+                        Remake 3 (2022)<br>
+                        <img src="twentythree/remake3_1.png" alt="a book with a white cover on a reflective metallic tabletop in front of some shop windows. in the foreground is the hand of a stranger passing by.">
+                    </summary>
+                    An annual journal celebrating first-year student work ranging from art and research to creative writing and interviews. A collaboration with the WUSTL Writing Department. [<a href="https://remake.wustl.edu/three">Online Issue</a>]
+                    <br><br>
+                    <img src="twentythree/remake3_3.png" alt="a hand holding a book with a white cover and upside-down black text. in the background are some buildings and a blue sky with scattered clouds.">
+                    <img src="twentythree/remake3_5.png" alt="a person holding a book sideways. on the open spread are some images, text boxes, and footnotes. in the background are some large leafy plants.">
+                    <img src="twentythree/remake3_4.png" alt="a person reading a magazine outside under the shade of some trees. on the open spread are some paragraphs of text.">
+                    <img src="twentythree/remake3_6.png" alt="a person reading a magazine beside some planters. on the open spread are two large photographs of people.">
+                    
+                </details>
+                <details>
+                    <summary>Are.na Annual 2023<br><img src="annual/23-1.png" alt="an over-the-shoulder shot of a person reading a book by the subway. the book is open to a spread of justified text."></summary>
                     A collection of texts, conversations, art, and more about service. Designed with Daniel Pianetti. (273pp, 4.5 × 7.7") [<a href="https://store.are.na/products/are-na-annual-2023?variant=42763478794391">Are.na Store</a>]<br><br>
                     <img src="annual/23-2.png" alt="a person holding a thick, narrow book, examining the back cover. the cover is in vibrant purple and beige hues, depicting an abstract texture.">
                     <img src="annual/23-3.png" alt="an over-the-shoulder shot of a person reading a book on the train. the book is open to a spread of four images, printed in black and white.">
                 </details>
             
                 <details>
-                    <summary>memory garden<br><img src="landing/memgarden.gif" alt="a grid of glyphs, some flickering and changing symbols. as the cursor passes over certain glyphs, a black rectangle appears, containing white text."></summary>
+                    <summary>memory garden (2020)<br><img src="landing/memgarden.gif" alt="a grid of glyphs, some flickering and changing symbols. as the cursor passes over certain glyphs, a black rectangle appears, containing white text."></summary>
                     A sketch collecting some anonymous memories from the little memory app. [<a href="https://editor.p5js.org/liuleslie/full/fR9ZGKOZ1">Program</a>]
                 </details>
                 <details>
-                    <summary>Shape of Language<br><img src="https://d2w9rnfcy7mm78.cloudfront.net/14559288/original_76245dc58418e698e35abdf2e1e4b8e4.gif?1641275930?bc=0" alt="a rapid flip through of scanned spreads of a book typeset in a black typewriter/monospace font on yellow, purple, and blue paper."></summary>
+                    <summary>Shape of Language (2021)<br><img src="https://d2w9rnfcy7mm78.cloudfront.net/14559288/original_76245dc58418e698e35abdf2e1e4b8e4.gif?1641275930?bc=0" alt="a rapid flip through of scanned spreads of a book typeset in a black typewriter/monospace font on yellow, purple, and blue paper."></summary>
                     Typesetting transcripts of <em>Everything Is Alive</em> episodes. A fan book (6.4MB, 5.5 × 8.5"). [<a href="twentythree/EIA.pdf">Full PDF</a>]
                 </details>
                 <details>
-                    <summary>A Window For Two<br><img src="landing/window-compressed.gif" alt="variously sized rectangles of varying opacities floating on a blue-orange gradient background." data-popupalt-original-title="null" title="variously sized rectangles of varying opacities floating on a blue-orange gradient background."></summary>
+                    <summary>A Window For Two (2020)<br><img src="landing/window-compressed.gif" alt="variously sized rectangles of varying opacities floating on a blue-orange gradient background." data-popupalt-original-title="null" title="variously sized rectangles of varying opacities floating on a blue-orange gradient background."></summary>
                     A sketch exploring the poetics of screenshots and the window interface metaphor. Watch sunsets with your computer. [<a href="https://editor.p5js.org/liuleslie/full/qOwz_m-Bb">Program</a>], [<a href="https://vimeo.com/504107378/420afec708">Vimeo recording</a>]
                 </details>
             </section>
         </article>
-        <article id="sketches">
+        <article id="sketches"> <!-- make a filterable checklist? -->
             <h3>sketches</h3>
+            <ul>
+                <li><span class="cat">[SKETCH]</span> <a href="sketches/leaves1.html" target="popup" onclick="window.open('sketches/leaves1.html','popup','width=400,height=400'); return false;">
+                    Leaves1</a></li>
+                <li><span class="cat">[WEBPAGE]</span> <a href="20230429.html">Loss</a></li>
+            </ul>
+            &nbsp;&nbsp;&nbsp;&nbsp;᠃ &nbsp;⚘᠂ ⚘ ˚ ⚘ ᠂ ⚘ ᠃ 
+            <ul>
+                <li><span class="cat">[ESSAY]</span> <a href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/">Chumboxes</a> (2022)</li>
+                <li><span class="cat">[ESSAY]</span> <a href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/">Wheatpaste Mockups</a> (2022)</li>
+                <li><span class="cat">[COMIC]</span> <a href="https://backslashlit.com/issues/5/leslie-liu">oneness</a> (2021)</span></li>
+                <li><span class="cat">[WEBPAGE]</span> <a href="https://somewhere-always.glitch.me/">Somewhere, Always</a> (2021)</li>
+            </ul>
             <!-- — some haptic device that makes the typing (when muted) on an iPhone 300% louder and more dimensional —  -->
-            <a href="sketches/leaves1.html" target="popup" onclick="window.open('sketches/leaves1.html','popup','width=400,height=400'); return false;">
-                Leaves1</a> — <a href="20230429.html">Loss</a>
         </article>
     </main>
     
