@@ -15,6 +15,11 @@ header img {
     padding-right:1em;
 }
 
+h3 {
+    font-weight:normal;
+    font-size:1em;
+}
+
 /* ------------------------------------------- */
 
 /* main img {
@@ -36,7 +41,7 @@ header img {
     background-color: gray;
 } */
 
-#folio figure {
+figure { /*used to be #folio figure*/
     display:inline-block;
     padding: 10px 10px 15px 10px;
     /* border-top: 1px rgb(76, 88, 62) solid; */
@@ -46,21 +51,37 @@ header img {
     transition: 0.25s;
     border: 4px rgb(177,183,132) ridge;
 }
-#folio figure img {
+
+/* #weather figure {
+    width: 18%
+} */
+
+figure img {
     width:100%;
 }
-#folio figcaption {
+figcaption {
     font-size:.6em;
 }
-#folio figure:hover {
+figure:hover {
     /* box-shadow: 0px 2px 10px rgb(50, 58, 41); */
     background-color: rgb(162, 166, 133);
     border: 8px rgb(162,166,133) ridge;
 }
 
+#weather figure {
+    transition: .5s;
+}
+
+/* #weather figure:hover {
+    padding:1em;
+    transition: 2s;
+    width:33%;
+} */
+
 summary {
     font-size:0.6em;
-    position:fixed;
+    /* position:fixed; */
+    /* background-color:rgb(203, 203, 143); */
     z-index: 3;
 }
 
@@ -87,18 +108,18 @@ a:hover {
 } */
 
 @media (max-width:1300px) {
-    #folio figure {
+    figure {
         width: 28%;
     }
 }
 
-@media (max-width:1000px) {
+@media (max-width:1120px) {
     body {
         font-size:24px;
         margin:1em 5em 3em 5em;
     }
-    #folio figure {
-        width:100%;
+    figure {
+        width:90%;
     }
 }
 @media (max-width:600px) {
