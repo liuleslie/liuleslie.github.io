@@ -12,6 +12,7 @@ $(document).ready(function() {
     $('.draggable').mouseenter(function(){
         $('.draggable').draggable({cursor:"grab"});
     });
+    
 
      
 });
