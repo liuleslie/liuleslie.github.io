@@ -8,3 +8,9 @@ body {
 img {
   width:100%;
 }
+
+@media (max-width: 1200px) {
+  body {
+  font-size: 15px;
+  }
+}
