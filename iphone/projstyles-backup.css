@@ -1,3 +1,4 @@
+
 body {
   font-family: Arial, sans-serif;
   font-size: 18px;
@@ -16,7 +17,7 @@ footer {
 }
 main {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   height: 85vh;
 }
 main section {
@@ -28,9 +29,7 @@ span.projtitle {
   padding-left: 3em; text-transform: uppercase;
 }
 #copy {
-  border-left: none;
-  border-top: none;
-  padding: 1em;
+  border-left: 1px black solid;
 }
 #copy a {
   color: black;
@@ -71,13 +70,13 @@ article#material {
 /* @media (max-width: 1200px) {
   body { font-size: 15px }
 } */
-@media (min-width: 800px) {
+@media (max-width: 1125px) {
   /* body { font-size: 15px } */
-  main { grid-template-columns: 1fr 1fr }
-  
+  main { grid-template-columns: 1fr }
   #copy {
-    border-top: 1px black solid;
-    border-left: 1px black solid;
+    border-left: none;
+    border-top: none;
+    padding: 1em;
   }
 }
 @media (min-width: 1700px) {
