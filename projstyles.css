@@ -70,7 +70,7 @@ article#material {
 /* @media (max-width: 1200px) {
   body { font-size: 15px }
 } */
-@media (max-width: 850px) {
+@media (max-width: 1125px) {
   body { font-size: 15px }
   main { grid-template-columns: 1fr }
   #copy {
