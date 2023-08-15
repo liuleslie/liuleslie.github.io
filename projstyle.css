@@ -9,6 +9,15 @@ img {
   width:100%;
 }
 
+/* section {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+section img {
+  padding-right:1em;
+} */
+
 @media (max-width: 1200px) {
   body {
   font-size: 15px;

@@ -10,7 +10,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
     <script src="script2.js"></script>
-    <base target="_self">
+    <base target="_blank">
     <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
     <style>
         body {
@@ -76,16 +76,14 @@
             cursor:pointer;
         }
 
-        #betsy:hover {
-            background-color: orange;
-        }
         #wesley:hover {
             background-color: deepskyblue;
         }
         #htmlday:hover {
             background-color: chartreuse;
         }
-        a:hover, #wesley:hover, #htmlday:hover, #betsy:hover {
+        a:hover, #wesley:hover, #htmlday:hover {
+
             transition:0.5s;
         }
 
@@ -149,15 +147,12 @@
             padding-bottom: 1em;
             }
 
-        }
-
-        @media (max-width:600px) {
             tbody {
                 grid-template-columns: 1fr;
             }
-            /* tr image {
+            tr image {
                 width: 70vw;
-            } */
+            }
         }
 
         @media (min-width: 1700px) {
@@ -182,8 +177,6 @@
             </p>
             <p class="dividerBelow">
                 Resume / additional work available upon request.
-                <br><br>
-                <a href="#"><img id="blob" src="blab360.gif" alt="a blob, drawn in black pencil, rotating 360 degrees."></a>
             </p>
         </details>
         <details>
@@ -203,9 +196,15 @@
 
         <input type="checkbox" id="filter-ix" name="filter-ix" checked>
         <label for="filter-ix">Interactive/Creative Coding</label>
+<!-- 
+        <input type="checkbox" id="filter-illo" name="filter-illo" checked>
+        <label for="filter-illo">Graphics</label> -->
 
         <input type="checkbox" id="filter-text" name="filter-text">
         <label for="filter-text">Writing</label>
+
+        <!-- <input type="checkbox" id="filter-object" name="filter-object" checked>
+        <label for="filter-object">Object</label> -->
 
         <input type="checkbox" id="filter-experiment" name="filter-experiment" checked>
         <label for="filter-experiment">Experiments</label>
@@ -215,159 +214,168 @@
 
         <br><br>
  
+    
         <table id="work" cellspacing="0" cellpadding="0">
         <tbody>
 
             <tr data-type-primary="editorial">
                 <td>
-                    <a href="annual/annual2.html" class="thumbnail">
+                    <a class="thumbnail" target="popup" onclick="window.open('annual/annual2.html','popup','width=400,height=400'); return false;">
                         <img src="landing/annual2.png" alt="">
                     </a>
-                    <details>
-                        <summary><a href="annual/annual2.html">Are.na Annual</a> (2023)</summary>
-                        <p>A collection of essays, interviews, and artwork from the Are.na community.</p>
-                    </details>
+                    <a target="popup" onclick="window.open('annual/annual2.html','popup','width=400,height=400'); return false;">
+                        Are.na Annual</a> (2023)
                 </td>
             </tr>
 
             <tr data-type-primary="editorial">
                 <td>
-                    <a href="remake/remake3.html" class="thumbnail">
+                    <a class="thumbnail" target="popup" onclick="window.open('remake/remake3.html','popup','width=400,height=400'); return false;">
                         <img src="landing/remake3.png" alt="">
                     </a>
-                    <details>
-                        <summary>
-                            <a href="remake/remake3.html">Remake</a> (2022)
-                        </summary>
-                        <p>An annual journal celebrating first-year work from Washington University in St. Louis.</p>
-                    </details>
+                    <a target="popup" onclick="window.open('remake/remake3.html','popup','width=400,height=400'); return false;">
+                        Remake</a> (2022)
                 </td>
             </tr> 
+            
+            <!-- 
+            <tr data-type-primary="illo">
+                <td>
+                    <a class="thumbnail" href="https://open.spotify.com/playlist/4TOxHziEGtfR3r4gPf45Mu"><img src="landing/summerstroll.png" alt="cropped view of a graphic with nested images of a person, with fanciful doodles and writing in white all over.">
+                    <a href="https://open.spotify.com/playlist/4TOxHziEGtfR3r4gPf45Mu">Songs for a Summer Stroll</a> (2022)
+                </td>
+            </tr>  -->
 
             <tr data-type-primary="experiment">
                 <td>
-                    <a href="iphone/iphone.html" class="thumbnail"><img src="landing/stoti-thumb.png" alt="sheets of clear plastic shaped like smartphones, with a hole punched in the margin to the left, displayed against a concrete background. other sheets of plastic are placed across a wooden board."></a>
-                    <details>
-                        <summary><a href="iphone/iphone.html">Some texts on the iPhone</a> (2022)</summary>
-                        <p>An art book containing various writings about and imagery of the iPhone to explore the device’s role in contemporary American society as status symbol, erotic object, spectacle of lightness, and luxury destroyed.</p>
-                    </details>
+                    <a class="thumbnail" target="popup" onclick="window.open('iphone/iphone.html','popup','width=400,height=400'); return false;"><img src="landing/stoti-thumb.png" alt="sheets of clear plastic shaped like smartphones, with a hole punched in the margin to the left, displayed against a concrete background. other sheets of plastic are placed across a wooden board."></a>
+                    <a  target="popup" onclick="window.open('iphone/iphone.html','popup','width=400,height=400'); return false;">Some texts on the iPhone</a> (2022)
                 </td>
             </tr>
 
 
             <tr data-type-primary="ix">
                 <td>
-                    <a href="fnf/fnf.html" class="thumbnail">
+                    <a class="thumbnail" target="popup" onclick="window.open('fnf/fnf.html','popup','width=400,height=400'); return false;">
                         <img src="landing/fnf-thumb.gif" alt="screengrabbed view of a red and yellow-white website with moving text on the left. to the right, a video of a person's hand holding a phone and tilting it around, against a black background.">
                     </a>
-                    <details>
-                        <summary><a href="fnf/fnf.html">Fresh Not Frozen</a> (2022)</summary>
-                        <p>A small mobile site that delivers bite-size factoids about the American TV dinner, perfectly portioned for distracted reading.</p>
-                    </details>
+                    <a target="popup" onclick="window.open('fnf/fnf.html','popup','width=400,height=400'); return false;">
+                        Fresh Not Frozen</a> (2022)
                 </td>
             </tr>
 
             <tr class="writing" data-type-primary="text">
                 <td>
                     <a class="thumbnail" href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/"><img src="landing/chum.png" alt="Olive green and white collage of various chumbox advertisement thumbnails: images of people, skin, and runny eggs."></a>
-                    <details>
-                        <summary><a href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/">Feelings at the Edge: A Chumbox Tour</a> (2022) </summary>
-                        <p>An essay about sketchy internet chumbox ads. For Coven Berlin.</p>
-                    </details>
+                    <a href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/">Feelings at the Edge: A Chumbox Tour</a> (2022) 
                 </td>
             </tr>
+
+            <!-- <tr data-type-primary="editorial">
+                <td>
+                    <a class="thumbnail" target="popup" onclick="window.open('annual/annual.html','popup','width=400,height=400'); return false;"><img src="landing/annual-uni-thumb.png" alt="open spread of a tall book, with text and imagery in black and white, against a black background."></a>
+                    <a  target="popup" onclick="window.open('annual/annual.html','popup','width=400,height=400'); return false;">Are.na Annual</a> (2022)
+                </td>
+            </tr> -->
 
             <tr class="writing" data-type-primary="text">
                 <td>
                     <a class="thumbnail" href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/"><img src="landing/gestures.png" alt="Olive green and white close-up screenshot of an essay, with an image of a Greek sculpture overlaid atop a paragraph and a graphic designer poster mockup."></a>
-                    <details>
-                        <summary>
-                            <a href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/">The Mockup Aesthetic: Gestures of Transgression</a> (2022)
-                        </summary>
-                        <p>An interactive essay about the politics of wheatpaste mockups. For FLAT.</p>
-                    </details>
+                    <a href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/">The Mockup Aesthetic: Gestures of Transgression</a> (2022)
                 </td>
             </tr>
 
             <tr data-type-primary="experiment">
                 <td>
-                    <a href="ouija/ouija.html" class="thumbnail alse;"><img src="landing/ouija.png" alt="two blocks of wood next to a set of densely textured posters, against a black background."></a>
-                    <details>
-                        <summary><a href="ouija/ouija.html">Ouija Board Seance</a> (2021)</summary>
-                        <p>A crowdsourced poster that plays with the gesture of obscuring and revealing information. A collaboration with <a href="https://www.beszi.work/"><span id="betsy">Betsy Ellison</span></a>.</p>
-                    </details>
+                    <a class="thumbnail" target="popup" onclick="window.open('ouija/ouija.html','popup','width=400,height=400'); return false;"><img src="landing/ouija.png" alt="two blocks of wood next to a set of densely textured posters, against a black background."></a>
+                    <a target="popup" onclick="window.open('ouija/ouija.html','popup','width=400,height=400'); return false;">Ouija Board Seance</a> (2021)
                 </td>
             </tr>
 
             <tr data-type-primary="ix">
                 <td>
-                    <a href="basic/basic.html" class="thumbnail alse;"><img src="landing/basicspace.gif" alt="screengrabbed view of a cursor moving around a light-gray website, with the title 'BASIC SPACE' in bold black outlines. the cursor alternates between bubbling dots of blue, red, purple, and green."></a>
-                    <details>
-                        <summary><a href="basic/basic.html">Basic Space</a> (2021)</summary>
-                        <p>Assets for a speculative festival, Basic Space, that explores the potential of abstracting meme formats. Hover states on <a href="https://editor.p5js.org/liuleslie/present/ROlf0lZ3n">the microsite</a> reveal not only the skeleton of the title’s letterforms, but also additional information about the festival.</p>
-                    </details>
+                    <a class="thumbnail" target="popup" onclick="window.open('basic/basic.html','popup','width=400,height=400'); return false;"><img src="landing/basicspace.gif" alt="screengrabbed view of a cursor moving around a light-gray website, with the title 'BASIC SPACE' in bold black outlines. the cursor alternates between bubbling dots of blue, red, purple, and green."></a>
+                    <a  target="popup" onclick="window.open('basic/basic.html','popup','width=400,height=400'); return false;">Basic Space</a> (2021)
                 </td>
             </tr>
 
             <tr data-type-primary="ix">
                 <td>
-                    <a href="refringo/refringo.html" class="thumbnail"><img src="landing/refringo-cropped.gif" alt="abstract composition of various distorted rectangles and shapes, each of which shifts color swiftly."></a>
-                    <details>
-                        <summary><a href="refringo/refringo.html" tur>Refringo</a> (2021)</summary>
-                        <p><a href="https://refringo.glitch.me/">An interactive modular alphabet</a> that explores chance relationships between part and whole.</p>
-                    </details>
+                    <a class="thumbnail" target="popup" onclick="window.open('refringo/refringo.html','popup','width=400,height=400'); return false;"><img src="landing/refringo-cropped.gif" alt="abstract composition of various distorted rectangles and shapes, each of which shifts color swiftly."></a>
+                    <a  target="popup" onclick="window.open('refringo/refringo.html','popup','width=400,height=400'); return false;">Refringo</a> (2021)
                 </td>
             </tr>
+
+            <!-- <tr data-type-primary="editorial">
+                <td>
+                    <a class="thumbnail" target="popup" onclick="window.open('remake/remake2.html','popup','width=400,height=400'); return false;"><img src="landing/remake-uni-thumb.png" alt="open spread of a book with text and imagery in full color, with brightly tinted margins. the background is a black void."></a>
+                    <a  target="popup" onclick="window.open('remake/remake2.html','popup','width=400,height=400'); return false;">Remake</a> (2021)
+                </td>
+            </tr> -->
 
             <tr data-type-primary="editorial">
                 <td>
-                    <a href="nostalgia/nostalgia.html" class="thumbnail"><img src="landing/nostalgia-uni-thumb.png" alt="open spread of text in a newspaper, with imagery shaded red in some areas. the background is a black void."></a>
-                    <details>
-                        <summary><a href="nostalgia/nostalgia.html" retur>Nostalgia Loop</a> (2021)</summary>
-                        <p>A broadsheet housing two articles about the role of nostalgia in global and American politics. Influenced by the comfort of vintage food graphics, this newspaper considers how complacency can be dangerous.</p>
-                    </details>
+                    <a class="thumbnail" target="popup" onclick="window.open('nostalgia/nostalgia.html','popup','width=400,height=400'); return false;"><img src="landing/nostalgia-uni-thumb.png" alt="open spread of text in a newspaper, with imagery shaded red in some areas. the background is a black void."></a>
+                    <a  target="popup" onclick="window.open('nostalgia/nostalgia.html','popup','width=400,height=400'); return false;">Nostalgia Loop</a> (2021)
                 </td>
             </tr>
+
+            <!-- <tr data-type-primary="experiment">
+                <td>
+                    <a class="thumbnail" target="popup" onclick="window.open('work/work.html','popup','width=400,height=400'); return false;"><img src="landing/joesona-thumb.png" alt="six coffee sleeves with green illustrations and text, scanned against a black void for a background."></a>
+                    <a  target="popup" onclick="window.open('work/work.html','popup','width=400,height=400'); return false;">On Work</a> (2021)
+                </td>
+            </tr> -->
 
             <tr data-type-primary="experiment">
                 <td>
-                    <a href="engine/engine.html" class="thumbnail"><img src="landing/mezine.gif" alt="open spreads of a zine, printed with wojacks and dense text, boxed in to form various compositions. the background is a black void."></a>
-                    <details>
-                        <summary><a href="engine/engine.html">Meme Engine Sampler</a> (2021)</summary>
-                        <p>Abstracting meme formats via a custom-made Drawbot program. A collaboration with Nathan Springman.</p>
-                    </details>
+                    <a class="thumbnail" target="popup" onclick="window.open('engine/engine.html','popup','width=400,height=400'); return false;"><img src="landing/mezine.gif" alt="open spreads of a zine, printed with wojacks and dense text, boxed in to form various compositions. the background is a black void."></a>
+                    <a  target="popup" onclick="window.open('engine/engine.html','popup','width=400,height=400'); return false;">Meme Engine Sampler</a> (2021)
                 </td>
             </tr>
+
+            <!-- <tr data-type-primary="experiment">
+                <td>
+                    <a class="thumbnail" href="https://vimeo.com/533118224"><img src="landing/navyseal-thumb.png"></a>
+                    <a href="https://vimeo.com/533118224">Navy Seal Copypasta</a> (2021)
+                </td>
+            </tr> -->
+
+            <!-- <tr data-type-primary="experiment">
+                <td>
+                    <a class="thumbnail" target="popup" onclick="window.open('grass.html','popup','width=400,height=400'); return false;"><img src="landing/compgrass.png" alt="closeup of a poster with several images in full color and annotations/captions in small blocks scattered about."></a>
+                    <a  target="popup" onclick="window.open('grass.html','popup','width=400,height=400'); return false;">Computer Grass is Natural Grass</a> (2020-)
+                </td>
+            </tr> -->
 
             <tr data-type-primary="editorial">
                 <td>
-                    <a href="junkyard/junkyard.html" class="thumbnail"><img src="landing/junk-uni-thumb.png" alt="open spread of an essay, typset in a green font with cut areas of the page revealing the textures of surrounding pages. the background is a black void."></a>
-                    <details>
-                        <summary><a href="junkyard/junkyard.html" tur>This book you are holding is a junkyard</a> (2020)</summary>
-                        <p>An adaptation of Jussi Parikka’s essay, <a href="https://malware.hetnieuweinstituut.nl/en/malware-operational-art-ifthen-geopolitics-and-tricksters">“Malware as Operational Art: On the If/Then of Geopolitics and Tricksters,”</a> from Het Nieuwe Instituut’s 2019 exhibition, <a href="https://malware.hetnieuweinstituut.nl/en/malware-symptoms-viral-infection"><em>Malware: Symptoms of Viral Infection</em></a>.</p>
-                    </details>
+                    <a class="thumbnail" target="popup" onclick="window.open('junkyard/junkyard.html','popup','width=400,height=400'); return false;"><img src="landing/junk-uni-thumb.png" alt="open spread of an essay, typset in a green font with cut areas of the page revealing the textures of surrounding pages. the background is a black void."></a>
+                    <a  target="popup" onclick="window.open('junkyard/junkyard.html','popup','width=400,height=400'); return false;">This book you are holding is a junkyard</a> (2020)
+                </td>
+            </tr>
+
+
+            <tr data-type-primary="ix">
+                <td>
+                    <a class="thumbnail" target="popup" onclick="window.open('memgarden/memgarden.html','popup','width=400,height=400'); return false;"><img src="landing/memgarden.gif" alt="a grid of glyphs, some flickering and changing symbols. as the cursor passes over certain glyphs, a black rectangle appears, containing white text."></a>
+                    <a  target="popup" onclick="window.open('memgarden/memgarden.html','popup','width=400,height=400'); return false;">memory garden</a> (2020)
                 </td>
             </tr>
 
             <tr data-type-primary="ix">
                 <td>
-                    <a href="memgarden/memgarden.html" class="thumbnail"><img src="landing/memgarden.gif" alt="a grid of glyphs, some flickering and changing symbols. as the cursor passes over certain glyphs, a black rectangle appears, containing white text."></a>
-                    <details>
-                        <summary><a href="memgarden/memgarden.html" retur>memory garden</a> (2020)</summary>
-                        <p>A digital zen garden: collecting worldwide memories submitted anonymously on the little memory app, <a href="https://editor.p5js.org/liuleslie/full/fR9ZGKOZ1">this prototype</a> explores ASCII art and the metaphor of memories as blossoming flowers. </p>
-                    </details>
+                    <a class="thumbnail" target="popup" onclick="window.open('window.html','popup','width=400,height=400'); return false;"><img src="landing/window-compressed.gif" alt="variously sized rectangles of varying opacities floating on a blue-orange gradient background."></a>
+                    <a  target="popup" onclick="window.open('window.html','popup','width=400,height=400'); return false;">A Window For Two</a> (2020)
                 </td>
             </tr>
 
-            <tr data-type-primary="ix">
+            <!-- <tr data-type-primary="illo">
                 <td>
-                    <a href="window.html" class="thumbnail"><img src="landing/window-compressed.gif" alt="variously sized rectangles of varying opacities floating on a blue-orange gradient background."></a>
-                    <details>
-                        <summary><a href="window.html">A Window For Two</a> (2020)</summary>
-                        <p><a href="https://editor.p5js.org/liuleslie/full/qOwz_m-Bb">A program</a> exploring the poetics of screenshots; watch digital sunsets with your computer.</p>
-                    </details>
+                    <a class="thumbnail" target="popup" onclick="window.open('wupr/wupr.html','popup','width=400,height=400'); return false;"><img src="landing/wuprcover.png" alt="a magazine's front and back cover, against a black void for a background. the colors across the covers range from red, yellow, and orange to olive."></a>
+                    <a target="popup" onclick="window.open('wupr/wupr.html','popup','width=400,height=400'); return false;">Washington University Political Review</a> (2020-22)  
                 </td>
-            </tr>
+            </tr> -->
 
             <tr class="weather" data-type-primary="weather">
                 <td>
