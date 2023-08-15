@@ -71,7 +71,7 @@ article#material {
 /* @media (max-width: 1200px) {
   body { font-size: 15px }
 } */
-@media (min-width: 800px) {
+@media (min-width: 1200px) {
   /* body { font-size: 15px } */
   main { grid-template-columns: 1fr 1fr }
   
