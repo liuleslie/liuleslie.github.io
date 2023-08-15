@@ -71,7 +71,7 @@ article#material {
   body { font-size: 15px }
 } */
 @media (max-width: 1125px) {
-  body { font-size: 15px }
+  /* body { font-size: 15px } */
   main { grid-template-columns: 1fr }
   #copy {
     border-left: none;
