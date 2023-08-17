@@ -140,18 +140,36 @@
             display: table-row;
         }
 
-
         #weather {
             display:grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        #weather article {
+            border-right:1px black solid;
+            padding: 1em;
+            height:50vw;
+            overflow: scroll;
+            transition:1s;
+        }
+        #weather article:hover {
+            background-color: rgb(182, 182, 182);
+            transition:0.5s;
         }
         #weather img {
-            width:93%;
+            width:100%;
             display:inline-block;
             margin-bottom: 10px;
         }
         #weather img:hover {
             cursor:crosshair;
+        } 
+        #weather .bucket {
+            position: -webkit-sticky;
+            position: sticky;
+            top:0;
+        }
+        #weathercontainer p {
+            font-size:1.5em;
         }
 
         .dividerBelow {
@@ -190,6 +208,9 @@
             tbody {
                 grid-template-columns: 1fr;
             }
+            .tooltip .tooltiptext {
+                width:80vw;
+            }
         }
 
         @media (min-width: 1700px) {
@@ -215,24 +236,6 @@
             <p>
                 Resume / additional work available upon request.
             </p>
-            
-            <details>
-                <summary style="padding-left:3em">Weather<br><br></summary>
-                <section id="weather"> <!-- removed class draggable -->
-                    <img src="twentythree/ao3.png" alt="an oversized indigo shirt on a black table with lights shining overhead. the shirt is laid rather flat, the back/reverse side facing up, with bold green text that reads, 07.10.23 NEVER FORGET, accompanied by a paragraph of a quote from Stuart Hall below.">
-                    <img src="twentythree/cyano.png" alt="a piece of cotton fabric, cut-out as a front panel of a tank top design, laid flat on a weathered wooden table. the fabric is printed with cyanotype: various memes are tiled on the front.">
-                    <img src="twentythree/maintenance2.png" alt="a piece of newsprint, screenprinted with graphics (stretched text and  comics) in black ink, on a concrete floor.">
-                    <img src="twentythree/maintenance1.png" alt="four zines/booklets, screenprinted with graphics (stretched text and  comics) in black ink, on a concrete floor.">
-                    <img src="twentythree/maintenance3.png" alt="a person walking in a bustling city on a sunny day: he has short brown hair and wears a light tan baseball cap, silver necklace, and dark shades. His top is a loose white shirt with a green graphic printed on the back.">
-                    <img src="twentythree/tote1.png" alt="a piece of light brown paper screenprinted with graphics (stretched text that reads 'Unyielding Resilience' and diagrams) in yellow, on a concrete floor.">
-                    <img src="twentythree/acmshirt1.png" alt="a person with black hair in an updo with a black claw clip, wearing an off-white shirt with two blocks of text arranged around three separate images, all in black and white. the main image depicts gargoyles on the facades of buildings, surrounded by keyboards and computer monitors.">
-                    <img src="twentythree/acmjersey2.png" alt="close-up frontal shot of a person wearing an off-white jacket with a broad navy stripe at the elbow. on the left chest is the acronym 'ACM' lettered using punctuation marks.">
-                    <img src="twentythree/acmjersey3.png" alt="close-up shot of the back of a person wearing an off-white jacket with a broad navy panel at the bottom. on the back reads the text 'Washington University in St. Louis Association for Computing Machinery'. Between the text is an oval composition of a computer with a smiley face sitting amidst blooming floral motifs.">
-                    <img src="twentythree/20230603/ducks-1.png" alt="four ducks in a pond in the rain. the water is green from the surrounding trees. raindrops patter on the pond surface, creating wondrous ripples. some ducks dunk their heads underwater.">
-                    <img src="twentythree/20230514.png" alt="sun glitter: sunlight glimmering across the surface of water, which is a rich, inky blue.">
-                    <img src="https://d2w9rnfcy7mm78.cloudfront.net/14559288/original_76245dc58418e698e35abdf2e1e4b8e4.gif?1641275930?bc=0" alt="a rapid flip through of scanned spreads of a book typeset in a black typewriter/monospace font on yellow, purple, and blue paper.">
-                </section>
-            </details>
             <p class="dividerBelow">
                 <a href="#"><img id="blob" src="blab360.gif" alt="a blob, drawn in black pencil, rotating 360 degrees."></a> 
                 <br><br>
@@ -265,164 +268,198 @@
         <br><br>
  
         <table id="work" cellspacing="0" cellpadding="0">
-        <tbody>
-            <tr data-type-primary="editorial">
-                <td>
-                    <a href="annual/annual2.html" class="thumbnail">
-                        <img src="landing/annual2.png" alt="">
-                    </a>
-                    <div class="tooltip">
-                        <p><a href="annual/annual2.html">Are.na Annual</a> (2023)</p>
-                        <p class="tooltiptext">A collection of essays, interviews, and artwork from the Are.na community.</p>
-                    </div>
-                </td>
-            </tr>
+            <tbody>
+                <tr data-type-primary="editorial">
+                    <td>
+                        <a href="annual/annual2.html" class="thumbnail">
+                            <img src="landing/annual2.png" alt="">
+                        </a>
+                        <div class="tooltip">
+                            <p><a href="annual/annual2.html">Are.na Annual</a> (2023)</p>
+                            <p class="tooltiptext">A collection of essays, interviews, and artwork from the Are.na community.</p>
+                        </div>
+                    </td>
+                </tr>
 
-            <tr data-type-primary="editorial">
-                <td>
-                    <a href="remake/remake3.html" class="thumbnail">
-                        <img src="landing/remake3.png" alt="">
-                    </a>
-                    <div class="tooltip">
-                        <p>
-                            <a href="remake/remake3.html">Remake</a> (2022)
-                        </p>
-                        <p class="tooltiptext">An annual journal celebrating first-year work from Washington University in St. Louis.</p>
-                    </div>
-                </td>
-            </tr> 
+                <tr data-type-primary="editorial">
+                    <td>
+                        <a href="remake/remake3.html" class="thumbnail">
+                            <img src="landing/remake3.png" alt="">
+                        </a>
+                        <div class="tooltip">
+                            <p>
+                                <a href="remake/remake3.html">Remake</a> (2022)
+                            </p>
+                            <p class="tooltiptext">An annual journal celebrating first-year work from Washington University in St. Louis.</p>
+                        </div>
+                    </td>
+                </tr> 
 
-            <tr data-type-primary="experiment">
-                <td>
-                    <a href="iphone/iphone.html" class="thumbnail"><img src="landing/stoti-thumb.png" alt="sheets of clear plastic shaped like smartphones, with a hole punched in the margin to the left, displayed against a concrete background. other sheets of plastic are placed across a wooden board."></a>
-                    <div class="tooltip">
-                        <p><a href="iphone/iphone.html">Some texts on the iPhone</a> (2022)</p>
-                        <p class="tooltiptext">An art book containing various writings about and imagery of the iPhone to explore the device’s role in contemporary American society as status symbol, erotic object, spectacle of lightness, and luxury destroyed.</p>
-                    </div>
-                </td>
-            </tr>
-
-
-            <tr data-type-primary="ix">
-                <td>
-                    <a href="fnf/fnf.html" class="thumbnail">
-                        <img src="landing/fnf-thumb.gif" alt="screengrabbed view of a red and yellow-white website with moving text on the left. to the right, a video of a person's hand holding a phone and tilting it around, against a black background.">
-                    </a>
-                    <div class="tooltip">
-                        <p><a href="fnf/fnf.html">Fresh Not Frozen</a> (2022)</p>
-                        <p class="tooltiptext">A small mobile site that delivers bite-size factoids about the American TV dinner, perfectly portioned for distracted reading.</p>
-                    </div>
-                </td>
-            </tr>
-
-            <tr class="writing" data-type-primary="text">
-                <td>
-                    <a class="thumbnail" href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/"><img src="landing/chum.png" alt="Olive green and white collage of various chumbox advertisement thumbnails: images of people, skin, and runny eggs."></a>
-                    <div class="tooltip">
-                        <p><a href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/">Feelings at the Edge: A Chumbox Tour</a> (2022) </p>
-                        <p class="tooltiptext">An essay about sketchy internet chumbox ads. For Coven Berlin.</p>
-                    </div>
-                </td>
-            </tr>
-
-            <tr class="writing" data-type-primary="text">
-                <td>
-                    <a class="thumbnail" href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/"><img src="landing/gestures.png" alt="Olive green and white close-up screenshot of an essay, with an image of a Greek sculpture overlaid atop a paragraph and a graphic designer poster mockup."></a>
-                    <div class="tooltip">
-                        <p>
-                            <a href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/">The Mockup Aesthetic: Gestures of Transgression</a> (2022)
-                        </p>
-                        <p class="tooltiptext">An interactive essay about the politics of wheatpaste mockups. For FLAT.</p>
-                    </div>
-                </td>
-            </tr>
-
-            <tr data-type-primary="experiment">
-                <td>
-                    <a href="ouija/ouija.html" class="thumbnail alse;"><img src="landing/ouija.png" alt="two blocks of wood next to a set of densely textured posters, against a black background."></a>
-                    <div class="tooltip">
-                        <p><a href="ouija/ouija.html">Ouija Board Seance</a> (2021)</p>
-                        <p class="tooltiptext">A crowdsourced poster that plays with the gesture of obscuring and revealing information. A collaboration with <a href="https://www.beszi.work/"><span id="betsy">Betsy Ellison</span></a>.</p>
-                    </div>
-                </td>
-            </tr>
-
-            <tr data-type-primary="ix">
-                <td>
-                    <a href="basic/basic.html" class="thumbnail alse;"><img src="landing/basicspace.gif" alt="screengrabbed view of a cursor moving around a light-gray website, with the title 'BASIC SPACE' in bold black outlines. the cursor alternates between bubbling dots of blue, red, purple, and green."></a>
-                    <div class="tooltip">
-                        <p><a href="basic/basic.html">Basic Space</a> (2021)</p>
-                        <p class="tooltiptext">Assets for a speculative festival, Basic Space, that explores the potential of abstracting meme formats.</p>
-                    </div>
-                </td>
-            </tr>
-
-            <tr data-type-primary="ix">
-                <td>
-                    <a href="refringo/refringo.html" class="thumbnail"><img src="landing/refringo-cropped.gif" alt="abstract composition of various distorted rectangles and shapes, each of which shifts color swiftly."></a>
-                    <div class="tooltip">
-                        <p><a href="refringo/refringo.html" tur>Refringo</a> (2021)</p>
-                        <p class="tooltiptext">An interactive modular alphabet that explores chance relationships between part and whole.</p>
-                    </div>
-                </td>
-            </tr>
-
-            <tr data-type-primary="editorial">
-                <td>
-                    <a href="nostalgia/nostalgia.html" class="thumbnail"><img src="landing/nostalgia-uni-thumb.png" alt="open spread of text in a newspaper, with imagery shaded red in some areas. the background is a black void."></a>
-                    <div class="tooltip">
-                        <p><a href="nostalgia/nostalgia.html" retur>Nostalgia Loop</a> (2021)</p>
-                        <p class="tooltiptext">A broadsheet housing two articles about the role of nostalgia in global and American politics. Influenced by the comfort of vintage food graphics, this newspaper considers how complacency can be dangerous.</p>
-                    </div>
-                </td>
-            </tr>
-
-            <tr data-type-primary="experiment">
-                <td>
-                    <a href="engine/engine.html" class="thumbnail"><img src="landing/mezine.gif" alt="open spreads of a zine, printed with wojacks and dense text, boxed in to form various compositions. the background is a black void."></a>
-                    <div class="tooltip">
-                        <p><a href="engine/engine.html">Meme Engine Sampler</a> (2021)</p>
-                        <p class="tooltiptext">Abstracting meme formats via a custom-made Drawbot program. A collaboration with Nathan Springman.</p>
-                    </div>
-                </td>
-            </tr>
-
-            <tr data-type-primary="editorial">
-                <td>
-                    <a href="junkyard/junkyard.html" class="thumbnail"><img src="landing/junk-uni-thumb.png" alt="open spread of an essay, typset in a green font with cut areas of the page revealing the textures of surrounding pages. the background is a black void."></a>
-                    <div class="tooltip">
-                        <p><a href="junkyard/junkyard.html" tur>This book you are holding is a junkyard</a> (2020)</p>
-                        <p class="tooltiptext">An adaptation of an essay about computer glitches and malware.</p>
-                    </div>
-                </td>
-            </tr>
-
-            <tr data-type-primary="ix">
-                <td>
-                    <a href="memgarden/memgarden.html" class="thumbnail"><img src="landing/memgarden.gif" alt="a grid of glyphs, some flickering and changing symbols. as the cursor passes over certain glyphs, a black rectangle appears, containing white text."></a>
-                    <div class="tooltip">
-                        <p><a href="memgarden/memgarden.html" retur>memory garden</a> (2020)</p>
-                        <p class="tooltiptext">A digital zen garden: collecting worldwide memories submitted anonymously on the little memory app; exploring ASCII art and the metaphor of memories as blossoming flowers. </p>
-                    </div>
-                </td>
-            </tr>
-
-            <tr data-type-primary="ix">
-                <td>
-                    <a href="window.html" class="thumbnail"><img src="landing/window-compressed.gif" alt="variously sized rectangles of varying opacities floating on a blue-orange gradient background."></a>
-                    <div class="tooltip">
-                        <p><a href="window.html">A Window For Two</a> (2020)</p>
-                        <p class="tooltiptext">A program exploring the poetics of screenshots; watch digital sunsets with your computer.</p>
-                    </div>
-                </td>
-            </tr>
+                <tr data-type-primary="experiment">
+                    <td>
+                        <a href="iphone/iphone.html" class="thumbnail"><img src="landing/stoti-thumb.png" alt="sheets of clear plastic shaped like smartphones, with a hole punched in the margin to the left, displayed against a concrete background. other sheets of plastic are placed across a wooden board."></a>
+                        <div class="tooltip">
+                            <p><a href="iphone/iphone.html">Some texts on the iPhone</a> (2022)</p>
+                            <p class="tooltiptext">An art book containing various writings about and imagery of the iPhone to explore the device’s role in contemporary American society as status symbol, erotic object, spectacle of lightness, and luxury destroyed.</p>
+                        </div>
+                    </td>
+                </tr>
 
 
-        </tbody>
+                <tr data-type-primary="ix">
+                    <td>
+                        <a href="fnf/fnf.html" class="thumbnail">
+                            <img src="landing/fnf-thumb.gif" alt="screengrabbed view of a red and yellow-white website with moving text on the left. to the right, a video of a person's hand holding a phone and tilting it around, against a black background.">
+                        </a>
+                        <div class="tooltip">
+                            <p><a href="fnf/fnf.html">Fresh Not Frozen</a> (2022)</p>
+                            <p class="tooltiptext">A small mobile site that delivers bite-size factoids about the American TV dinner, perfectly portioned for distracted reading.</p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="writing" data-type-primary="text">
+                    <td>
+                        <a class="thumbnail" href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/"><img src="landing/chum.png" alt="Olive green and white collage of various chumbox advertisement thumbnails: images of people, skin, and runny eggs."></a>
+                        <div class="tooltip">
+                            <p><a href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/">Feelings at the Edge: A Chumbox Tour</a> (2022) </p>
+                            <p class="tooltiptext">An essay about sketchy internet chumbox ads. For Coven Berlin.</p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="writing" data-type-primary="text">
+                    <td>
+                        <a class="thumbnail" href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/"><img src="landing/gestures.png" alt="Olive green and white close-up screenshot of an essay, with an image of a Greek sculpture overlaid atop a paragraph and a graphic designer poster mockup."></a>
+                        <div class="tooltip">
+                            <p>
+                                <a href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/">The Mockup Aesthetic: Gestures of Transgression</a> (2022)
+                            </p>
+                            <p class="tooltiptext">An interactive essay about the politics of wheatpaste mockups. For FLAT.</p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr data-type-primary="experiment">
+                    <td>
+                        <a href="ouija/ouija.html" class="thumbnail alse;"><img src="landing/ouija.png" alt="two blocks of wood next to a set of densely textured posters, against a black background."></a>
+                        <div class="tooltip">
+                            <p><a href="ouija/ouija.html">Ouija Board Seance</a> (2021)</p>
+                            <p class="tooltiptext">A crowdsourced poster that plays with the gesture of obscuring and revealing information. A collaboration with <a href="https://www.beszi.work/"><span id="betsy">Betsy Ellison</span></a>.</p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr data-type-primary="ix">
+                    <td>
+                        <a href="basic/basic.html" class="thumbnail alse;"><img src="landing/basicspace.gif" alt="screengrabbed view of a cursor moving around a light-gray website, with the title 'BASIC SPACE' in bold black outlines. the cursor alternates between bubbling dots of blue, red, purple, and green."></a>
+                        <div class="tooltip">
+                            <p><a href="basic/basic.html">Basic Space</a> (2021)</p>
+                            <p class="tooltiptext">Assets for a speculative festival, Basic Space, that explores the potential of abstracting meme formats.</p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr data-type-primary="ix">
+                    <td>
+                        <a href="refringo/refringo.html" class="thumbnail"><img src="landing/refringo-cropped.gif" alt="abstract composition of various distorted rectangles and shapes, each of which shifts color swiftly."></a>
+                        <div class="tooltip">
+                            <p><a href="refringo/refringo.html" tur>Refringo</a> (2021)</p>
+                            <p class="tooltiptext">An interactive modular alphabet that explores chance relationships between part and whole.</p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr data-type-primary="editorial">
+                    <td>
+                        <a href="nostalgia/nostalgia.html" class="thumbnail"><img src="landing/nostalgia-uni-thumb.png" alt="open spread of text in a newspaper, with imagery shaded red in some areas. the background is a black void."></a>
+                        <div class="tooltip">
+                            <p><a href="nostalgia/nostalgia.html" retur>Nostalgia Loop</a> (2021)</p>
+                            <p class="tooltiptext">A broadsheet housing two articles about the role of nostalgia in global and American politics. Influenced by the comfort of vintage food graphics, this newspaper considers how complacency can be dangerous.</p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr data-type-primary="experiment">
+                    <td>
+                        <a href="engine/engine.html" class="thumbnail"><img src="landing/mezine.gif" alt="open spreads of a zine, printed with wojacks and dense text, boxed in to form various compositions. the background is a black void."></a>
+                        <div class="tooltip">
+                            <p><a href="engine/engine.html">Meme Engine Sampler</a> (2021)</p>
+                            <p class="tooltiptext">Abstracting meme formats via a custom-made Drawbot program. A collaboration with Nathan Springman.</p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr data-type-primary="editorial">
+                    <td>
+                        <a href="junkyard/junkyard.html" class="thumbnail"><img src="landing/junk-uni-thumb.png" alt="open spread of an essay, typset in a green font with cut areas of the page revealing the textures of surrounding pages. the background is a black void."></a>
+                        <div class="tooltip">
+                            <p><a href="junkyard/junkyard.html" tur>This book you are holding is a junkyard</a> (2020)</p>
+                            <p class="tooltiptext">An adaptation of an essay about computer glitches and malware.</p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr data-type-primary="ix">
+                    <td>
+                        <a href="memgarden/memgarden.html" class="thumbnail"><img src="landing/memgarden.gif" alt="a grid of glyphs, some flickering and changing symbols. as the cursor passes over certain glyphs, a black rectangle appears, containing white text."></a>
+                        <div class="tooltip">
+                            <p><a href="memgarden/memgarden.html" retur>memory garden</a> (2020)</p>
+                            <p class="tooltiptext">A digital zen garden: collecting worldwide memories submitted anonymously on the little memory app; exploring ASCII art and the metaphor of memories as blossoming flowers. </p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr data-type-primary="ix">
+                    <td>
+                        <a href="window.html" class="thumbnail"><img src="landing/window-compressed.gif" alt="variously sized rectangles of varying opacities floating on a blue-orange gradient background."></a>
+                        <div class="tooltip">
+                            <p><a href="window.html">A Window For Two</a> (2020)</p>
+                            <p class="tooltiptext">A program exploring the poetics of screenshots; watch digital sunsets with your computer.</p>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
         </table>
         
-        <p style="margin: 3em 0 3em 0.5em; padding-top:1em;border-top:1px solid gray"><a target="_self" href="#top">Back to top</a></p>
-       
+        <p style="margin: 3em 0 1em 0.5em; padding-top:1em;border-top:1px solid gray"><a target="_self" href="#top">Back to top</a></p>
+        <details id="weathercontainer" style="margin:0 0 5em 0.5em;">
+            <summary>Weather</summary>
+            <p> 
+                Summertime is for aestivation. I'm stewing about in a moat of confusion, awe, amusement, mild interest, 
+                numbness, joy, dismay, cheerfulness, bewilderment, and occasional apathy.
+            </p>
+            <p>
+                Focusing on outputs this season: how can I channel all this <em>stuff</em> I'm gesturing wildly about 
+                in a systematic and recognizable format? There is so much to learn: I would like to learn 
+                resilience and optimism. 
+            </p>
+            <section id="weather"> <!-- removed class draggable -->
+                <article>
+                    <span class="bucket">Graphics</span><br><br>
+                    <img src="twentythree/ao3.png" alt="an oversized indigo shirt on a black table with lights shining overhead. the shirt is laid rather flat, the back/reverse side facing up, with bold green text that reads, 07.10.23 NEVER FORGET, accompanied by a paragraph of a quote from Stuart Hall below.">
+                    <img src="twentythree/cyano.png" alt="a piece of cotton fabric, cut-out as a front panel of a tank top design, laid flat on a weathered wooden table. the fabric is printed with cyanotype: various memes are tiled on the front.">
+                    <img src="twentythree/maintenance2.png" alt="a piece of newsprint, screenprinted with graphics (stretched text and  comics) in black ink, on a concrete floor.">
+                    <img src="twentythree/maintenance1.png" alt="four zines/booklets, screenprinted with graphics (stretched text and  comics) in black ink, on a concrete floor.">
+                    <img src="twentythree/maintenance3.png" alt="a person walking in a bustling city on a sunny day: he has short brown hair and wears a light tan baseball cap, silver necklace, and dark shades. His top is a loose white shirt with a green graphic printed on the back.">
+                    <img src="twentythree/tote1.png" alt="a piece of light brown paper screenprinted with graphics (stretched text that reads 'Unyielding Resilience' and diagrams) in yellow, on a concrete floor.">
+                    <img src="https://d2w9rnfcy7mm78.cloudfront.net/14559288/original_76245dc58418e698e35abdf2e1e4b8e4.gif?1641275930?bc=0" alt="a rapid flip through of scanned spreads of a book typeset in a black typewriter/monospace font on yellow, purple, and blue paper.">
+                </article>
+                <article>
+                    <span class="bucket">Collaborations</span><br><br>
+                    <img src="twentythree/acmshirt1.png" alt="a person with black hair in an updo with a black claw clip, wearing an off-white shirt with two blocks of text arranged around three separate images, all in black and white. the main image depicts gargoyles on the facades of buildings, surrounded by keyboards and computer monitors.">
+                    <img src="twentythree/acmjersey2.png" alt="close-up frontal shot of a person wearing an off-white jacket with a broad navy stripe at the elbow. on the left chest is the acronym 'ACM' lettered using punctuation marks.">
+                    <img src="twentythree/acmjersey3.png" alt="close-up shot of the back of a person wearing an off-white jacket with a broad navy panel at the bottom. on the back reads the text 'Washington University in St. Louis Association for Computing Machinery'. Between the text is an oval composition of a computer with a smiley face sitting amidst blooming floral motifs.">
+                </article>
+                <article>
+                    <span class="bucket">Small Talk</span><br><br>
+                    <img src="twentythree/20230603/ducks-1.png" alt="four ducks in a pond in the rain. the water is green from the surrounding trees. raindrops patter on the pond surface, creating wondrous ripples. some ducks dunk their heads underwater.">
+                    <img src="twentythree/20230514.png" alt="sun glitter: sunlight glimmering across the surface of water, which is a rich, inky blue.">
+                
+                </article>
+            </section>
+
+        </details>
        
     
     </main>
@@ -435,4 +472,4 @@
 </html>
 
 
-<!-- thank you ..... https://stackoverflow.com/questions/5684144/how-to-completely-remove-borders-from-html-table ....... https://stackoverflow.com/questions/17281486/add-target-blank-in-css ..... https://www.infradox.com/disable-right-clicking-dragging-images/ ...... -->
+<!-- NB. this has been disabled? i think? not that precious with images of my work at this point... // ..... https://stackoverflow.com/questions/5684144/how-to-completely-remove-borders-from-html-table ....... https://stackoverflow.com/questions/17281486/add-target-blank-in-css ..... https://www.infradox.com/disable-right-clicking-dragging-images/ ...... -->
