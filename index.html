@@ -28,9 +28,7 @@
         main {
             margin:1em;
         }
-        footer {
-            margin: 10em 1em 2em 1em;
-        }
+        
         /* stuff */
         label {
             padding-right: 1em;
@@ -106,7 +104,9 @@
 
 
 
-
+        #regretsonly:hover {
+            background-color: #E6DEFC;
+        }
         #betsy:hover {
             background-color: orange;
         }
@@ -116,7 +116,7 @@
         #htmlday:hover {
             background-color: chartreuse;
         }
-        a:hover, #wesley:hover, #htmlday:hover, #betsy:hover {
+        a:hover, #wesley:hover, #htmlday:hover, #betsy:hover, #regretsonly:hover {
             transition:0.5s;
         }
 
@@ -139,6 +139,9 @@
         #filter-experiment:checked ~ #work tr[data-type-primary="experiment"] {
             display: table-row;
         }
+        /* #filter-gfx:checked ~ #work tr[data-type-primary="gfx"] {
+            display: table-row;
+        } */
 
         #weather {
             display:grid;
@@ -237,7 +240,7 @@
                 Resume / additional work available upon request.
             </p>
             <p class="dividerBelow">
-                <a href="#"><img id="blob" src="blab360.gif" alt="a blob, drawn in black pencil, rotating 360 degrees."></a> 
+                <a href="https://liuleslie.github.io/now/"><img id="blob" src="blab360.gif" alt="a blob, drawn in black pencil, rotating 360 degrees."></a> 
                 <br><br>
             </p>
             
@@ -265,14 +268,30 @@
 
         <input type="checkbox" id="filter-experiment" name="filter-experiment" checked>
         <label for="filter-experiment">Experiments</label>
+<!-- 
+        <input type="checkbox" id="filter-gfx" name="filter-gfx">
+        <label for="filter-gfx">Graphics</label> -->
+
         <br><br>
  
         <table id="work" cellspacing="0" cellpadding="0">
             <tbody>
+                <tr data-type-primary="experiment">
+                    <td>
+                        <a href="graphics/maintenance.html" class="thumbnail">
+                            <img src="landing/maintenance.png" alt="a piece of newsprint, screenprinted with graphics (stretched text and  comics) in black ink, on a concrete floor.">
+                        </a>
+                        <div class="tooltip">
+                            <p><a href="">Maintenance / Unyielding</a> (2023)</p>
+                            <p class="tooltiptext">Assorted screenprinting explorations.</p>
+                        </div>
+                    </td>
+                </tr>
+
                 <tr data-type-primary="editorial">
                     <td>
                         <a href="annual/annual2.html" class="thumbnail">
-                            <img src="landing/annual2.png" alt="">
+                            <img src="landing/annual2.png" alt="a person holding a thick, narrow book, examining the back cover. the cover is in vibrant purple and beige hues, depicting an abstract texture.">
                         </a>
                         <div class="tooltip">
                             <p><a href="annual/annual2.html">Are.na Annual</a> (2023)</p>
@@ -284,7 +303,7 @@
                 <tr data-type-primary="editorial">
                     <td>
                         <a href="remake/remake3.html" class="thumbnail">
-                            <img src="landing/remake3.png" alt="">
+                            <img src="landing/remake3.png" alt="a book with a white cover on a reflective metallic tabletop in front of some shop windows. in the foreground is the hand of a stranger passing by.">
                         </a>
                         <div class="tooltip">
                             <p>
@@ -294,6 +313,20 @@
                         </div>
                     </td>
                 </tr> 
+
+                <!-- <tr data-type-primary="gfx">
+                    <td>
+                        <a href="https://open.spotify.com/playlist/4TOxHziEGtfR3r4gPf45Mu" class="thumbnail">
+                            <img src="landing/summerstroll.png" alt="cropped view of a graphic with nested images of a person, with fanciful doodles and writing in white all over.">
+                        </a>
+                        <div class="tooltip">
+                            <p>
+                                <a href="https://open.spotify.com/playlist/4TOxHziEGtfR3r4gPf45Mu">Songs for a Summer Stroll</a> (2022)
+                            </p>
+                            <p class="tooltiptext">Playlist cover for A24’s “Songs for a Summer Stroll”, promoting the film <em>MEN</em>. With <a id="regretsonly" href="https://regrets-only.com/">RegretsOnly</a>.</p>
+                        </div>
+                    </td>
+                </tr> -->
 
                 <tr data-type-primary="experiment">
                     <td>
@@ -421,47 +454,6 @@
                 </tr>
             </tbody>
         </table>
-        
-        <!-- <p style="margin: 3em 0 1em 0.5em; padding-top:1em;border-top:1px solid gray"><a target="_self" href="#top">Back to top</a></p>
-        <details id="weathercontainer" style="margin:0 0 5em 0.5em;">
-            <summary>Weather</summary>
-            <p> 
-                Summertime is for aestivation. I'm stewing about in a moat of confusion, awe, amusement, mild interest, 
-                numbness, joy, dismay, cheerfulness, bewilderment, and occasional apathy.
-            </p>
-            <p>
-                Focusing on outputs this season: how can I channel all this <em>stuff</em> I'm gesturing wildly about 
-                in a systematic and recognizable format? There is so much to learn: I would like to learn 
-                resilience and optimism. 
-            </p>
-            <section id="weather">
-                <article>
-                    <span class="bucket">Graphics</span><br><br>
-                    <img src="twentythree/ao3.png" alt="an oversized indigo shirt on a black table with lights shining overhead. the shirt is laid rather flat, the back/reverse side facing up, with bold green text that reads, 07.10.23 NEVER FORGET, accompanied by a paragraph of a quote from Stuart Hall below.">
-                    <img src="twentythree/cyano.png" alt="a piece of cotton fabric, cut-out as a front panel of a tank top design, laid flat on a weathered wooden table. the fabric is printed with cyanotype: various memes are tiled on the front.">
-                    <img src="twentythree/maintenance2.png" alt="a piece of newsprint, screenprinted with graphics (stretched text and  comics) in black ink, on a concrete floor.">
-                    <img src="twentythree/maintenance1.png" alt="four zines/booklets, screenprinted with graphics (stretched text and  comics) in black ink, on a concrete floor.">
-                    <img src="twentythree/maintenance3.png" alt="a person walking in a bustling city on a sunny day: he has short brown hair and wears a light tan baseball cap, silver necklace, and dark shades. His top is a loose white shirt with a green graphic printed on the back.">
-                    <img src="twentythree/tote1.png" alt="a piece of light brown paper screenprinted with graphics (stretched text that reads 'Unyielding Resilience' and diagrams) in yellow, on a concrete floor.">
-                    <img src="https://d2w9rnfcy7mm78.cloudfront.net/14559288/original_76245dc58418e698e35abdf2e1e4b8e4.gif?1641275930?bc=0" alt="a rapid flip through of scanned spreads of a book typeset in a black typewriter/monospace font on yellow, purple, and blue paper.">
-                </article>
-                <article>
-                    <span class="bucket">Collaborations</span><br><br>
-                    <img src="twentythree/acmshirt1.png" alt="a person with black hair in an updo with a black claw clip, wearing an off-white shirt with two blocks of text arranged around three separate images, all in black and white. the main image depicts gargoyles on the facades of buildings, surrounded by keyboards and computer monitors.">
-                    <img src="twentythree/acmjersey2.png" alt="close-up frontal shot of a person wearing an off-white jacket with a broad navy stripe at the elbow. on the left chest is the acronym 'ACM' lettered using punctuation marks.">
-                    <img src="twentythree/acmjersey3.png" alt="close-up shot of the back of a person wearing an off-white jacket with a broad navy panel at the bottom. on the back reads the text 'Washington University in St. Louis Association for Computing Machinery'. Between the text is an oval composition of a computer with a smiley face sitting amidst blooming floral motifs.">
-                </article>
-                <article>
-                    <span class="bucket">Small Talk</span><br><br>
-                    <img src="twentythree/20230603/ducks-1.png" alt="four ducks in a pond in the rain. the water is green from the surrounding trees. raindrops patter on the pond surface, creating wondrous ripples. some ducks dunk their heads underwater.">
-                    <img src="twentythree/20230514.png" alt="sun glitter: sunlight glimmering across the surface of water, which is a rich, inky blue.">
-                
-                </article>
-            </section>
-
-        </details> -->
-       
-    
     </main>
 
     
