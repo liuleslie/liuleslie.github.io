@@ -156,9 +156,9 @@
         #filter-experiment:checked ~ #work tr[data-type-primary="experiment"] {
             display: table-row;
         }
-        /* #filter-gfx:checked ~ #work tr[data-type-primary="gfx"] {
+        #filter-gfx:checked ~ #work tr[data-type-primary="gfx"] {
             display: table-row;
-        } */
+        }
 
         #weather {
             display:grid;
@@ -325,15 +325,15 @@
 
         <input type="checkbox" id="filter-experiment" name="filter-experiment" checked>
         <label for="filter-experiment">Experiments</label>
-<!-- 
-        <input type="checkbox" id="filter-gfx" name="filter-gfx">
-        <label for="filter-gfx">Graphics</label> -->
+
+        <input type="checkbox" id="filter-gfx" name="filter-gfx" checked>
+        <label for="filter-gfx">Graphics</label>
 
         <br><br>
  
         <table id="work" cellspacing="0" cellpadding="0">
             <tbody>
-                <tr data-type-primary="experiment">
+                <tr data-type-primary="gfx">
                     <td>
                         <a href="graphics/maintenance.html" class="thumbnail">
                             <img src="landing/maintenance.png" alt="a piece of newsprint, screenprinted with graphics (stretched text and  comics) in black ink, on a concrete floor.">
@@ -341,6 +341,18 @@
                         <div class="tooltip">
                             <p><a href="graphics/maintenance.html">Maintenance / Unyielding</a> (2023)</p>
                             <p class="tooltiptext">Assorted screenprinting explorations.</p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr data-type-primary="gfx">
+                    <td>
+                        <a href="graphics/acmmerch.html" class="thumbnail">
+                            <img src="landing/acmmerch.png" alt="a piece of newsprint, screenprinted with graphics (stretched text and  comics) in black ink, on a concrete floor.">
+                        </a>
+                        <div class="tooltip">
+                            <p><a href="graphics/acmmerch.html">ACM WUSTL Apparel</a> (2023)</p>
+                            <p class="tooltiptext">Jackets.</p>
                         </div>
                     </td>
                 </tr>
@@ -371,7 +383,7 @@
                     </td>
                 </tr> 
 
-                <!-- <tr data-type-primary="gfx">
+                <tr data-type-primary="gfx">
                     <td>
                         <a href="https://open.spotify.com/playlist/4TOxHziEGtfR3r4gPf45Mu" class="thumbnail">
                             <img src="landing/summerstroll.png" alt="cropped view of a graphic with nested images of a person, with fanciful doodles and writing in white all over.">
@@ -383,7 +395,7 @@
                             <p class="tooltiptext">Playlist cover for A24’s “Songs for a Summer Stroll”, promoting the film <em>MEN</em>. With <a id="regretsonly" href="https://regrets-only.com/">RegretsOnly</a>.</p>
                         </div>
                     </td>
-                </tr> -->
+                </tr>
 
                 <tr data-type-primary="experiment">
                     <td>
