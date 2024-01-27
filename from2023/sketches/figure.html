@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>On Figure</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                background-color: rgb(68, 0, 0);
+                color:whitesmoke;
+                font-size:21px;
+                margin: 3em auto 5em auto;
+                cursor: grab;
+            }
+            img {
+                height: 40vh;
+                display:block;
+                margin: 0 auto 0 auto;
+            }
+            figure {
+                transition: 2s;
+                width: 45vw;
+                margin: 0 auto 7em auto;
+                border: 1px whitesmoke solid;
+            }
+            figure img {
+                padding: 10px auto 3px auto;
+            }
+            figure figcaption {
+                padding: 10px 10px 10px 10px;
+            }
+            figcaption {
+                transition: 1s;
+                border-top:1px whitesmoke solid;
+                background-color: rgb(50, 0, 0);
+                display: grid;
+                grid-template-columns: 2fr 8fr;
+            }
+            figcaption :first-child { 
+                text-transform: lowercase;
+                font-style: italic;
+                padding-right: 2em;
+            }
+            figure:hover {
+                background-color: darkgray;
+                transition: 3s;
+                cursor: grabbing;
+            }
+            figcaption:hover {
+                background-color: rgb(68,0,0);
+                transition: 1s;
+            }
+            @media (max-width:1000px) {
+                body {
+                    font-size:18px;
+                }
+                figure {
+                    width: 70vw;
+                }
+            }
+            @media (max-width: 600px) {
+                body {
+                    font-size: 15px;
+                }
+                figure {
+                    width: 90vw;
+                }
+            }
+            /* layer in hover interaction meaning later */
+        </style>
+    </head>
+    <body>
+        <figure>
+            <img src="">
+            <figcaption>
+                <section>
+                    Fig. 1
+                </section>
+                <section>
+                    A &lt;figure&gt; shimmering in bits<br>
+                    is just as sensuous as one gingerly traced on paper
+                    <br><br>
+                    As I make space for a &lt;figure&gt;<br>
+                    I make sure to fluff up the pillows,<br>
+                    knock on the pedestal a few times (is it solid enough?)<br>
+                    (Will it crumble?)
+                    <br><br>
+                    &lt;figcaption&gt; needs to be sturdy enough<br>
+                    to be a resting place
+                </section>
+            </figcaption>
+        </figure>
+
+        <figure>
+            <img src="">
+            <figcaption>
+                <section>
+                    Fig. 2
+                </section>
+                <section>
+                    &lt;figure&gt; extends to me an invitation to be a little fanciful,<br>
+                    a little playful,<br>
+                    to play dress up and make believe
+                    <br><br>
+                    For on webpages like these,<br>
+                    we must treasure a sense of ceremony
+                </section>
+        </figure>
+    </body>
+</html>
