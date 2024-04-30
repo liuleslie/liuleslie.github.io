@@ -7,43 +7,85 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="https://use.typekit.net/zwl2xmq.css">
+        <link rel="icon" type="image/x-icon" href="https://freight.cargo.site/t/original/i/aec8ffbf014e5ec50cb8d60c58a9a38c1dd753387520c7b3798300480d3083f6/lliu-favi.ico">
+        <script src="script.js"></script>
+        <base target="_blank">
     </head>
     <style>
+        @font-face {
+            font-family: "karrik";
+            src: url("https://cdn.glitch.global/e88d212e-4ce9-46a8-8c1d-7abd92ea13d8/Karrik-Regular.woff?v=1650588487689") format("woff");
+        }
+
         body {
-            font-family: serif;
-            font-size:21px;
-            /* letter-spacing: 1px; */
+            font-family: karrik, sans-serif;
+            font-size:24px;
+            letter-spacing: 1px;
+            line-height: 1.2em;
             background-color: black;
             color:white;
             margin: 1em;
         }
-        li {margin-bottom: 1em;}
         a { color: chartreuse; text-decoration: none;}
-        a:hover { color: dodgerblue; text-decoration: dodgerblue dotted underline; }
+        a:hover { text-transform: uppercase; }
+        nav a { background-color: black;}
+        a:active { background-color: red; color: white;}
+        h1 { font-size: 1em; font-weight: normal; text-align: center; }
         h3 { font-weight: normal; font-size: 1em; text-decoration: 1px solid white underline;}
+        nav {position: fixed;}
+        #dandelion a { color: white; }
+        #dandelion a:hover {color:black;}
+        #dandelion a.invert {color:white;}
+        #katherine:hover {background-color: gray;}
+        #jina:hover {background-color: blue;}
+        #charlotte:hover {background-color: greenyellow}
+        #kim:hover {background-color: #471a1a}
+        #nico:hover {background-color: palegoldenrod;}
+        #daniela:hover {background-color: #8A9A5B;}
+        #omar:hover {background-color: lightsalmon;}
+        
+        @media (max-width: 600px) {
+            body {font-size: 16px;}
+        }
     </style>
     <body>
-        
+        <nav><a href="#bio">About</a>, <a href="#dandelion">Dandelion</a></nav><br><br><br>
         <main>
-            Welcome to my website.
-            <ol>
-                <li>Tell me: is it work, play, both, or neither?</li>
-                <li>
-                    Dandelion: poeticomp friends, Trust, CSS, R, S, J, & folk across the web.</p>
-                    <details>
-                        <summary><em>What is Dandelion?</em></summary>
-                        Loosely remembered networks of people who I am thankful for, inspired by, and want to acknowledge, among others not listed.
-                    </details>
-                    
-                </li>
-                <li><a href="https://connectionexercise.substack.com/">Scribbles</a></li>
-                <li><a href="https://liuleslie.github.io/now">Now</a></li>
-                <li><a href="https://lesliu.123guestbook.com/">Guestbook</a></li>
-                <li><a href="from2023/index.html">Projects between 2020 and 2023</a></li>
-            </ol>
-            
-            </ul>
-            
+            <img src="from2023/blab360.gif" alt="a blob, drawn in black pencil, rotating 360 degrees.">
+            <section id="bio">
+                <h1>✸ A little about Leslie</h1>
+                <p>
+                    Some person scampering around Turtle Island. 
+                    I am dedicated to silly and serious tools and interactions 
+                    for introspection, connection, and solidarity.
+                </p>
+                <p>
+                    Consider this website a sandwichboard that advertises* my latest notes, 
+                    happenings about town, and other such miscellany.
+                </p>
+                <p>
+                    * Quick links: <a href="https://connectionexercise.substack.com/">scattered navelgazing</a> + 
+                    <a href="https://liuleslie.github.io/now">what I'm up to now</a> + 
+                    <a href="https://lesliu.123guestbook.com/">a guestbook</a>.
+                </p>
+            </section>
+            <section id="dandelion">
+                <h1>❦ What is Dandelion?</h1>
+                <p>The dandelion section on my website comprises loosely remembered networks of people 
+                    I am thankful for, inspired by, and want to acknowledge, among others not listed. 
+                </p>
+                <p>
+                    <a class="invert" href="https://trust.support/">Trust</a>, 
+                    <a class="invert" id="kim" href="https://www.are.na/kimberly-scott/channels">Kim</a>, 
+                    <a id="daniela" href="https://notdaniela.com/">Daniela</a>, 
+                    <a id="charlotte" href="https://www.whatexactlyisupchuck.com/">Charlotte</a>, 
+                    <a id="omar" href="https://omar.website/">Omar</a>, Rebecca, R, M, 
+                    <a class="invert" id="jina" href="http://jinahyun.glitch.me/">Jina</a>, 
+                    <a id="nico" href="https://nicochilla.com/">Nico</a>, J, 
+                    <a class="invert" id="katherine" href="https://kayserifserif.place/">Katherine</a>
+                </p>
+            </section>
         </main>
     </body>
 </html>
