@@ -1,21 +1,42 @@
 <!DOCTYPE html>
-<!-- Welcome to my code... -->
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Leslie's website</title>
-        <meta name="description" content="Leslie's personal website.">
+        <title>Leslie's Website</title>
+        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
         <link rel="icon" type="image/x-icon" href="z-llfavi.svg">
-        <link href="https://typo.social/@nbhdlady" rel="me">
+        <script src="script.js"></script>
+        <base target="_self">
     </head>
     <style>
-        body{background-color:black;color:white; font-family: serif; letter-spacing: 1px; line-height: 1.2; margin: 0 1em; text-align: center;} 
-        main {margin: 0 25vw}
-        a {text-decoration:none; color: rgb(194, 184, 184); text-decoration: 1px dotted underline rgb(194, 184, 184);} 
-        a:hover{color:white; text-decoration: none;} h3 {font-size: 1em; font-weight: normal; margin-top:3em;}
-        
+        body {
+            font-family: sans-serif;
+            font-size:15px;
+            letter-spacing: .5px;
+            line-height: 1.2em;
+            background-color: black;
+            color:white;
+            margin: 1em 5em;
+            display:grid; 
+            grid-template-columns:1fr 4fr;
+        }
+        main {padding-left: 1em;}
+        /* main :nth-child(2) {border-top: none;} */
+        nav {position:fixed}
+        nav li {list-style-type: none; margin-bottom: 0.5em;}
+        section { margin: 2em auto; border-top: 1px dotted gray; background-color: rgb(30,30,30)}
+        a { color: white; background-color: rgb(50, 50, 50); text-decoration: 1px white dotted underline;}
+        a:hover { color: white; text-decoration: none; }
+        #log0 {color:slategray}
+        #log1 {color:gray}
+        #changelog p:hover {color:white;}
+        #changelog p {margin:0}
+        h1 { font-size: 1em; font-weight: normal; text-align: left;}
+        h3 { font-weight: normal; font-size: 1em; text-decoration: 1px solid white underline;}
+
         #katherine:hover {color: gray;}
         #daniel:hover {color: #FFC500;}
         #nico:hover {color: palegoldenrod;}
@@ -31,85 +52,95 @@
         #shannon:hover {color: #006666;}
         #karl:hover {color: lime;}
         .invert:hover {background-color: white;}
-        #wesley:hover {color:deepskyblue;}
-        @media (max-width: 800px) {main {margin: 0;}}        
+        #wesley:hover {color:deepskyblue;}     
         hr {color:rgb(100, 100, 100)}
 
-        #logcolor {color: slategray}
-        #logcolor:hover {color:white}
-
+        @media (max-width: 900px) {
+            body { grid-template-columns: 1fr; margin: 1em}
+            nav {display: none;}
+        }
     </style>
     <body>
+        <nav style="line-height: 1.5;">
+            <h1 style="text-align: left;">Menu</h1>
+            <p>
+                <a href="#stickynote">☘︎ Welcome</a><br>
+                <a href="#commonplace">⚓︎ Commonplace</a><br>
+                <a href="#colophon">★ Colophon</a><br>
+                <a href="#bio">✸ Webkeeper</a><br>
+                <a href="#dandelion">❦ Dandelion</a><br>
+                <a href="#links">☄︎ Links</a><br>
+                <a href="#changelog">⦿ Log</a><br>
+            </p>
+        </nav>
+        <br>
         <main>
-            <br>
             <img src="z-blab360-light.gif" alt="a black line drawing of a smiley blobby figure, rotating in 360 degrees atop a white background.">
+            <section id="stickynote">
+                <h1>☘︎ A warm welcome</h1>
+                <p>
+                    The clouds today are like their oil painting cousins: great, puffy, quite proper, a prototypical cloud. 
+                    The last time I read about clouds was from an Are.na block about the height of a cloud... we also may think of 
+                    the cloud metaphor for online storage. Things are not as innocent, unassuming, and idealistic as they seem.
+                </p>
+            </section>
+
+            <section id="commonplace">
+                <h1>⚓︎ A commonplace dump</h1>
+                <blockquote class="quoteback" darkmode="true" data-title="Aged%20to%20Perfection" data-author="Remy Labesque" cite="https://web.archive.org/web/20110508050855/http://designmind.frogdesign.com/blog/aged-to-perfection.html">
+                Aging with dignity is a criteria designers should recognize in their efforts.&nbsp; I’m thinking of a future when products are designed not for the brief moment when they are new, but for when they have been aged to perfection.
+                <footer><cite> <a href="https://web.archive.org/web/20110508050855/http://designmind.frogdesign.com/blog/aged-to-perfection.html">https://web.archive.org/web/20110508050855/http://designmind.frogdesign.com/blog/aged-to-perfection.html</a></cite></footer>
+                </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+
+            </section>
             
-            <!-- in before, here: there is an mp3 file that i add with audio description to ensure it is accessible. 
-             the audio description will probably be something like... "staccato tapping of a laptop keyboard, in a room 
-             with outside noise sort of muffled away. some scratches to the person's back who's typing this, haha" -->
-            
-            <!-- <section id="soundscape">
-                <audio controls>
-                    <source src="temp.mp3" type="audio/mpeg">
-                    Your browser doesn't support the &lt;audio&gt; element, unfortunately.
-                </audio>
-                </audio>
-            </section> -->
-
-            <h3>A Warm Welcome</h3>
-            <p>
-                The clouds today are like their oil painting cousins: great, puffy, quite proper, a prototypical cloud. 
-                The last time I read about clouds was from an Are.na block about the height of a cloud... we also may think of 
-                the cloud metaphor for online storage. Things are not as innocent, unassuming, and idealistic as they seem.
-            </p>
-
-            <hr>
-
-            <h3 style="margin-top: 2em;">✽ Dandelion</h3>
-            <p>
-                Loosely remembered networks of people I am thankful for, 
-                inspired by, and want to acknowledge, among others not listed, 
-                in no particular order. <br>
-
-                <a href="https://trust.support">Trust</a>, 
-                <a id="kim" class="invert" href="https://www.are.na/kimberly-scott">Kim</a>, 
-                <a id="daniela" href="https://notdaniela.com">Daniela</a>, 
-                <a id="charlotte" href="https://www.whatexactlyisupchuck.com">Charlotte</a>, 
-                <a id="omar" href="https://omar.website">Omar</a>, Rebecca, R, M, 
-                <a id="jina" class="invert" href="http://jinahyun.glitch.me">Jina</a>, 
-                <a id="nico" href="https://nicochilla.com">Nico</a>, 
-                <a id="katherine" href="https://kayserifserif.place">Katherine</a>, 
-                <a id="shannon" class="invert" href="https://www.instagram.com/petitehoneybee">Shannon</a>, 
-                <a id="daniel" href="https://danielum.net">Daniel</a>, 
-                S, <a id="trudy" href="http://www.trudy.computer">Trudy</a>, 
-                <a id="jake" href="https://jake.isnt.online">Jake</a>, 
-                <a id="andrew" class="invert" href="https://www.blot2046.com">Andrew</a>, 
-                <a id="ange" class="invert" href="https://www.instagram.com/permadwell">Ange</a>, 
-                <a id="karl" href="https://karl.today">Karl</a>
-            </p>
-
-
-            <h3>★ Colophon</h3>
-            <p>
-                Thanks to <a id="wesley" href="https://wesleyac.com">Wesley Aptekar-Cassels</a>, 
-                whose HTML + CSS list filtering demo helped me lay the foundation of a prominent prior iteration of this website, as well as 
-                <a href="https://pitscher.net">Pitscher</a>, <a href="https://solar.lowtechmagazine.com">Low-tech Magazine</a>, 
-                <a href="https://html.energy">HTML Energy</a> and <a href="https://multidimensional.link/southland?">more*</a> for their influence.
-            </p>
-
-            <h3>✸ Webkeeper</h3>
-            <p>
-                Some person scampering around Turtle Island. 
-                I am dedicated to silly and serious tools and interactions 
-                for introspection, connection, and solidarity. 
-                This website is a sandwichboard that advertises 
-                my latest notes, 
-                happenings about town, 
-                and other such miscellany.
-            </p>
-
-            <footer style="margin: 4em auto 2em auto">
-                <h3>❦ Miscellaneous Links</h3>
+            <section id="colophon">
+                <h1>★ Colophon</h1>
+                <p>
+                    Thanks to <a id="wesley" href="https://wesleyac.com">Wesley Aptekar-Cassels</a>, 
+                    whose HTML + CSS list filtering demo helped me lay the foundation of a prominent prior iteration of this website, as well as 
+                    <a href="https://pitscher.net">Pitscher</a>, <a href="https://solar.lowtechmagazine.com">Low-tech Magazine</a>, 
+                    <a href="https://html.energy">HTML Energy</a> and <a href="https://multidimensional.link/southland?">more*</a> for their influence.
+                </p>
+            </section>
+            <section id="bio">
+                <h1>✸ About the webkeeper</h1>
+                <p>
+                    Some person scampering around Turtle Island. 
+                    I am dedicated to silly and serious tools and interactions 
+                    for introspection, connection, and solidarity.
+                </p>
+                <p>
+                    Consider this website a sandwichboard that advertises my latest notes, 
+                    happenings about town, and other such miscellany.
+                </p>
+            </section>
+            <section id="dandelion">
+                <h1>❦ Dandelion</h1>
+                <p>The dandelion section on my website comprises loosely remembered networks of people 
+                    I am thankful for, inspired by, and want to acknowledge, among others not listed. 
+                </p>
+                <p>
+                    <a href="https://trust.support">Trust</a>, 
+                    <a id="kim" class="invert" href="https://www.are.na/kimberly-scott">Kim</a>, 
+                    <a id="daniela" href="https://notdaniela.com">Daniela</a>, 
+                    <a id="charlotte" href="https://www.whatexactlyisupchuck.com">Charlotte</a>, 
+                    <a id="omar" href="https://omar.website">Omar</a>, Rebecca, R, M, 
+                    <a id="jina" class="invert" href="http://jinahyun.glitch.me">Jina</a>, 
+                    <a id="nico" href="https://nicochilla.com">Nico</a>, 
+                    <a id="katherine" href="https://kayserifserif.place">Katherine</a>, 
+                    <a id="shannon" class="invert" href="https://www.instagram.com/petitehoneybee">Shannon</a>, 
+                    <a id="daniel" href="https://danielum.net">Daniel</a>, 
+                    S, <a id="trudy" href="http://www.trudy.computer">Trudy</a>, 
+                    <a id="jake" href="https://jake.isnt.online">Jake</a>, 
+                    <a id="andrew" class="invert" href="https://www.blot2046.com">Andrew</a>, 
+                    <a id="ange" class="invert" href="https://www.instagram.com/permadwell">Ange</a>, 
+                    <a id="karl" href="https://karl.today">Karl</a>
+                </p>
+            </section>
+            <section id="links">
+                <h1>☄︎ Miscellaneous links</h1>
                 <p>
                     What I'm up to <a href="https://liuleslie.github.io/now">now</a>, 
                     <a href="https://connectionexercise.substack.com/">scattered navelgazing</a>, 
@@ -123,12 +154,13 @@
                 </p>
                 <p>
                     <a href="https://gossipsweb.net">Coded from scratch</a> and in constant revision. <br>
-                    <span id="logcolor">Layout last changed during a stormy, blue-gray morning.</span>
                 </p>
-            </footer>
-            
-            
+            </section>
+            <section id="changelog">
+                <h1>⦿ Change log</h1>
+                <p id="log1">Layout last changed on July 8, 2024 twenty minutes before midnight.</p>
+                <p id="log0">Previously changed on June 28, 2024 during a stormy, blue-gray morning.</p>
+            </section>
         </main>
     </body>
-    
 </html>
