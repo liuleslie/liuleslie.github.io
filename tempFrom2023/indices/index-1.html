@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Portfolio website of Leslie Liu, print and interaction designer.">
+    <meta name="viewport" content="width=device-width">
+    <title>Leslie Liu</title>
+    <link rel="stylesheet" href="https://use.typekit.net/zwl2xmq.css">
+    <link rel="icon" type="image/x-icon" href="https://freight.cargo.site/t/original/i/aec8ffbf014e5ec50cb8d60c58a9a38c1dd753387520c7b3798300480d3083f6/lliu-favi.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <base target="_blank">
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <style>
+      @font-face {
+        font-family: "karrik";
+        src: url("https://cdn.glitch.global/e88d212e-4ce9-46a8-8c1d-7abd92ea13d8/Karrik-Regular.woff?v=1650588487689") format("woff");
+      }
+      /*@font-face {
+        font-family: "happy";
+        src: url('happy-times-NG_regular_master_web.ttf');
+      }*/
+      @font-face {
+        font-family: letter-gothic-std,monospace;
+        font-weight: 400;
+        font-style: normal;
+      }
+      body {
+        /*font-family: karrik, sans-serif;*/
+        font-family: letter-gothic-std, serif;
+        /*font-family: happy, serif;*/
+        font-size: 18px;
+        margin: 0em;
+        background-color: seagreen;
+        
+      }
+      a {
+        color: black;
+        text-decoration: dotted underline black;
+        background-color: lightsalmon;
+      }
+      a:hover {
+        background-color: whitesmoke;
+      }
+
+      section {
+        margin: 1em 2em 3em 2em;
+      }
+      section#transitpizza {
+        margin-right: 0;
+      }
+      #transitpizza img {
+        width: 100%;
+        border: 4px lightgray ridge;
+      }
+      section#plaque, section#explainer {
+        padding: 1em;
+        background-color: lightgray;
+        border: 4px lightgray ridge;
+      }
+      section#explainer {
+        border: 4px silver ridge;
+        background-color: silver;
+      }
+
+      .center {
+        text-align: center;
+      }
+      li {
+        padding: 0 0 1em 0.5em;
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+      }
+
+      /*#sandwichboard-open, #sandwichboard-closed {
+        width: 33vw;
+        mix-blend-mode: multiply;
+        margin: 0 auto;
+      }
+      #sandwichboard-open {
+        display: block;
+      }
+      #sandwichboard-closed {
+        display: none;
+      }*/
+
+
+      @media (max-width: 1200px) {
+        body {
+          font-size: 15px;
+        }
+        /*#sandwichboard-closed {
+          display: none;
+        }
+        #sandwichboard-open {
+          display: block;
+        }*/
+      }
+
+      @media (max-width: 850px) {
+        body {
+          font-size: 13px;
+        }
+        main {
+          grid-template-columns: 1fr;
+        }
+        section#transitpizza {
+          margin: 2em;
+        }
+        section {
+          margin: 2em;
+        }
+        
+        /*#sandwichboard-open {
+          display: none;
+        }
+        #sandwichboard-closed {
+          display: block;
+        }*/
+      }
+
+      @media (min-width: 1700px) {
+        body {
+          font-size: 21px;
+        }
+        /*#sandwichboard-closed {
+          display: none;
+        }
+        #sandwichboard-open {
+          display: block;
+        }*/
+      }
+    </style>
+  </head>
+
+
+  <body>
+    <main>
+
+      <!-- <img id="sandwichboard-open" src="landing/sandwichexpanded.png" alt="a blobby figure wearing a rectangular vest. on the panel to the left is the text '<html>' and on the right is '</html>'.">
+      <img id="sandwichboard-closed" src="landing/sandwichfolded.png" alt="a blobby figure wearing a sandwich board that says '<html>' on the front."> -->
+
+      <section id="transitpizza">
+        <img src="landing/transitpizza.png" alt="a slice of pizza, face down, on the floor of a bus, with empty blue seats above.">
+      </section>
+      <section id="plaque">
+        <p>Every few weeks I confront the urge to redesign my website. Part of it is because I'm so shamelessly online and have spread myself so thin (online persona wise) that attempts to unify my various selves end in long bouts of introspection, often to little avail. In lieu of a construction site GIF, here's me indulging in talking about myself — and things I'd like to address in some form or another:</p>
+        <ul>
+          <li>One day I would like to tell people that I specialize in self-contained websites.</li>
+          <li><a target="_self" href="index-portfolio-1.html">My design (and such) portfolio.</a> Work from 2020 – Spring of 2022.</li>
+          <li>Expanding definitions of what a technology is, understanding human systems and bureaucracies (what tech obscures)</li>
+          <li>Interfaces of yore and the metaphors that shape them</li>
+          <li>Much faith in the potential of the book form. Also: book (and by extension, mobile tech) as jewelry/accessory.</li>
+          <li>Mythogram and the legitimacy/power of diagramming/charted, graphed things. The power of drawn text.</li>
+        </ul>
+
+        <details>
+          <summary>I'm interested in thinking of/using this website as a <a href="https://en.wikipedia.org/wiki/Sandwich_board">sandwichboard</a>...</summary>
+          <section id="explainer">
+            <ol>
+              <li>the two-sided, hinged structure of a sandwichboard makes the person wearing it part of the advertisement. inexplicably this reflects my general attitude towards personal branding/self aware self promotion in graphic design.</li>
+              <li>the format loosely reminds me of books, and how we might translate a reading experience in print to the web. it also feels like HTML (with its matching tags).</li>
+              <li>i think there's a way to use the vernacular of advertising to both accomplish the primary purpose of this website as my portfolio, but also keep it personal (the personal/professional divide is what i struggle with here)</li>
+              <li>i feel there's some expressive potential in terms of responsiveness if we take this sandwichboard metaphor to the extreme</li>
+            </ol>
+
+          </section>
+        </details>
+        <br>
+      </section>
+
+
+    </main>
+
+      
+      
+    
+  </body>
+</html>
+
