@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hello, world!</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="description" content="" />
+        <link rel="icon" href="favicon.png">
+        <style>
+            @font-face {font-family: FEReg; src: url('FE/FluxischElse-Regular.woff') format('woff')}
+            @font-face {font-family: FELight;src: url('FE/FluxischElse-Light.woff') format('woff')}
+            @font-face {font-family: FEBold; src: url('FE/FluxischElse-Bold.woff') format('woff')}
+            body {
+                font-family: 'FELight', sans-serif; font-size:15px; letter-spacing: .5px; line-height: 1.3em;
+                background-color: lightgray; color: black;
+                max-width:70vw; margin:0.5em auto 2em auto;
+            }
+            h1,h2 { font-size: 1em; font-weight:normal}
+            h1 {text-align:center}
+            h2 {font-weight:normal;}
+            main {margin-top:3em;display:grid;grid-template-columns:1fr 1fr;border-top:1px gray dotted}
+            article {margin-bottom: 3em}
+            article img {width:100%;}
+            a {color:black;text-decoration:1px red underline}
+            /* main section {border:gray 1px dotted} */
+            @media (max-width:1000px) {
+                body { max-width: 90%; margin: 0.5em auto 2em auto }
+                main {grid-template-columns: 1fr}
+                #making, #taking {border-top: 1px dotted gray}
+                article {margin-top:3em;}
+            }
+        </style>
+    </head>
+
+    <body>
+        <section id="overview">
+            <h1>My Research Journal</h1>
+            <details>
+                <summary>Overview</summary>
+                <p>
+                    This page is a running diary chronicling things I’ve made and 
+                    things I’ve taken, whether from media, conversation, moments with 
+                    the world. Ostensibly I am working 
+                    towards a master’s degree in computational design... 
+                    but who knows what that means!
+                </p>
+                <p>
+                    I am not yet sure what form is most appropriate for these semi-formal, 
+                    somewhat loose entries. Let me add a table of contents at the start, for 
+                    some secret degree of polish.
+                </p>
+            </details>
+            
+            <nav>
+                <p>Contents</p>
+                <ol>
+                    <li>
+                        Making
+                        <ol>
+                            <li><a href="">Shape Grammar</a></li>
+                            <li>Data Entanglement</li>
+                            <li>Scallion work in progress</li>
+                        </ol>
+                    </li>
+                    <li>
+                        Taking (in)
+                        <ol>
+                            <li>Dynamic abstractions workshop, conference</li>
+                            <li>[on substack, too] asc conversation with ES</li>
+                            <li>notes on desire (from conversations with S, with M)</li>
+                        </ol>
+                    </li>
+                    
+                </ol>
+            </nav>
+        </section>
+        
+        <main>
+            <section id="making">
+                <h1>Making</h1>
+                <article>
+                    <h2>Shape Grammar</h2>
+                    <img src="journal-media/SG-schematic.png" alt="">
+                    <div style="padding:72.65% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1025495834?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SG 1"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+                    <div style="padding:72.65% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1025495875?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SG 3"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+                </article>
+                <article>
+                    <h2>Data Entanglement</h2>
+                    <div style="padding:100% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1025476272?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="IMG_5798"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+                </article>
+                
+
+            </section>
+            <section id="taking">
+                <h1>Taking</h1>
+
+            </section>
+        </main>
+    </body>
+
+</html>
