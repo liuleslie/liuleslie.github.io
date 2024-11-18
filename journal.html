@@ -10,93 +10,186 @@
             @font-face {font-family: FEReg; src: url('FE/FluxischElse-Regular.woff') format('woff')}
             @font-face {font-family: FELight;src: url('FE/FluxischElse-Light.woff') format('woff')}
             @font-face {font-family: FEBold; src: url('FE/FluxischElse-Bold.woff') format('woff')}
+            /* * {border:0.25px black dotted} */
             body {
                 font-family: 'FELight', sans-serif; font-size:15px; letter-spacing: .5px; line-height: 1.3em;
-                background-color: lightgray; color: black;
-                max-width:70vw; margin:0.5em auto 2em auto;
+                background-color: whitesmoke; color: indigo ;
+                max-width:80vw; 
+                margin:0.5em auto 2em auto;
             }
+            /* #log {width:100%;margin:2.5em auto 2em auto;}
+            .flex-container {
+                display:flex;
+                flex-flow: column nowrap;
+                height:80%;
+                overflow:scroll;
+                justify-content:center;
+                align-items:center;
+            } */
+            nav {position:fixed;background-color:beige; border:0.5px darkmagenta dotted;padding:0.5em}
+            nav details ol {border-top:0.5px darkmagenta dotted;}
+            nav details li {border-bottom:0.5px darkmagenta dotted;padding:0.25em 0 0 0}
+            nav details li:last-child {border-bottom:none}
+            main {display:grid;grid-template-columns:1fr 20fr}
+            img {display:block;width:100%}
             h1,h2 { font-size: 1em; font-weight:normal}
             h1 {text-align:center}
-            h2 {font-weight:normal;}
-            main {margin-top:3em;display:grid;grid-template-columns:1fr 1fr;border-top:1px gray dotted}
-            article {margin-bottom: 3em}
-            article img {width:100%;}
-            a {color:black;text-decoration:1px red underline}
-            /* main section {border:gray 1px dotted} */
+            h2 {font-weight:normal;margin-top:3em}
+            a {color:indigo;text-decoration:1px indigo solid underline}
+            a:hover {font-style:italic;text-decoration:none;}
             @media (max-width:1000px) {
                 body { max-width: 90%; margin: 0.5em auto 2em auto }
-                main {grid-template-columns: 1fr}
-                #making, #taking {border-top: 1px dotted gray}
                 article {margin-top:3em;}
             }
+            .container {
+                background-color:beige;
+                display:flex;flex-flow:row nowrap;
+                justify-content:flex-start; align-items:flex-start;gap:3px;
+                border:0.2px darkmagenta dotted;
+            }
+            .title {
+                width:12%
+            }
+            .contained {padding:1em}
+            .gallery {
+                height:100%;
+                width:30vw;
+                overflow:scroll;
+                display:flex;flex-flow:row nowrap;
+                flex-shrink:0;
+                gap:2px;
+            }
+            .gallery img {
+
+                display:inline-block;
+                width:100%;
+                /* position:relative */
+                /* width:30%; */
+                flex:none;
+                
+            }
+            .notes {width:0vw;}
+            /* .notes { flex-grow:2} */
+            /* .contained {} */
         </style>
     </head>
 
     <body>
-        <section id="overview">
-            <h1>My Research Journal</h1>
-            <details>
-                <summary>Overview</summary>
-                <p>
-                    This page is a running diary chronicling things I’ve made and 
-                    things I’ve taken, whether from media, conversation, moments with 
-                    the world. Ostensibly I am working 
-                    towards a master’s degree in computational design... 
-                    but who knows what that means!
-                </p>
-                <p>
-                    I am not yet sure what form is most appropriate for these semi-formal, 
-                    somewhat loose entries. Let me add a table of contents at the start, for 
-                    some secret degree of polish.
-                </p>
-            </details>
-            
-            <nav>
-                <p>Contents</p>
-                <ol>
-                    <li>
-                        Making
-                        <ol>
-                            <li><a href="">Shape Grammar</a></li>
-                            <li>Data Entanglement</li>
-                            <li>Scallion work in progress</li>
-                        </ol>
-                    </li>
-                    <li>
-                        Taking (in)
-                        <ol>
-                            <li>Dynamic abstractions workshop, conference</li>
-                            <li>[on substack, too] asc conversation with ES</li>
-                            <li>notes on desire (from conversations with S, with M)</li>
-                        </ol>
-                    </li>
-                    
-                </ol>
-            </nav>
-        </section>
-        
+        <h1>My Research Journal</h1>
         <main>
-            <section id="making">
-                <h1>Making</h1>
-                <article>
-                    <h2>Shape Grammar</h2>
-                    <img src="journal-media/SG-schematic.png" alt="">
-                    <div style="padding:72.65% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1025495834?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SG 1"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-                    <div style="padding:72.65% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1025495875?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SG 3"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-
-                </article>
-                <article>
-                    <h2>Data Entanglement</h2>
-                    <div style="padding:100% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1025476272?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="IMG_5798"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-                </article>
+            <!-- navigation bar, fixed on left -->
+            <nav> 
+                <a href="index.html">Return to Index</a>
+                <details>
+                    <summary>Contents</summary>
+                    <ol>
+                        <li>
+                            Making
+                            <ol>
+                                <li><a href="#shape-grammar">Shape Grammar</a></li>
+                                <li><a href="#data-entanglement">Data Entanglement</a></li>
+                                <li>Scallion work in progress</li>
+                            </ol>
+                        </li>
+                        <!-- <li>
+                            Taking (in)
+                            <ol>
+                                <li>Dynamic abstractions workshop, conference</li>
+                                <li>[on substack, too] asc conversation with ES</li>
+                                <li>notes on desire (from conversations with S, with M)</li>
+                            </ol>
+                        </li> -->
+                        
+                    </ol>
+                </details>
                 
+            </nav>
+            <br>
+            <div id="log">
+                <br>
 
-            </section>
-            <section id="taking">
-                <h1>Taking</h1>
+                <h2>Preface</h2>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Test here
+                </p>
 
-            </section>
+                <h2>Making</h2>
+                <div class="container">
+                    <div class="contained title" id="shape-grammar">Shape Grammar</div>
+                    <div class="contained gallery">
+                        <img src="/journal-media/ShapeGrammar_Schematic.png" alt="">
+                    </div>
+                    <div class="contained notes"></div>
+                </div>
+                <div class="container">
+                    <div class="contained title" id="data-entanglement">Data Entanglement</div>
+                    <div class="contained gallery">
+                        <img src="/journal-media/DataEntanglement_Front.png" alt="">
+                        <img src="/journal-media/DataEntanglement_Aerial.png" alt="">
+                    </div>
+                    <div class="contained notes"></div>
+                </div>
+
+                <h2>Taking</h2>
+                <div class="container">
+                    <div class="contained title">Kid Pix</div>
+                    <div class="contained gallery">
+                        <img src="/journal-media/Demosplash2024_Drawing1.png" alt="">
+                        <img src="/journal-media/Demosplash2024_Drawing2.png" alt="">
+                        <img src="/journal-media/Demosplash2024_Drawing3.png" alt="">
+                        <img src="/journal-media/Demosplash2024_Drawing4.png" alt="">
+                    </div>
+                    <div class="contained notes"></div>
+                </div>
+
+            </div>
         </main>
+        
     </body>
 
 </html>
+
+<!-- 
+
+<table>
+    <tr>
+        <th>Project</th>
+        <th>Information (inluding  media)</th>
+        <th>Notes</th>
+        <th>Next Steps</th>
+    </tr>
+    <tr>
+        <td>Shape Grammar</td>
+        <td>
+            <div class="flex-container">
+                <img src="/journal-media/ShapeGrammar_Schematic.png" alt="">
+                <img src="/journal-media/ShapeGrammar_Schematic.png" alt="">
+                <img src="/journal-media/ShapeGrammar_Schematic.png" alt="">
+                <img src="/journal-media/ShapeGrammar_Schematic.png" alt="">
+            </div>
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Data Entanglement</td>
+        <td>
+            <div class="flex-container">
+                <img src="/journal-media/DataEntanglement_Aerial.png" alt="">
+                <img src="/journal-media/DataEntanglement_Front.png" alt="">
+            </div>
+        </td>
+        <td><p>
+            Consequatur illum consequuntur autem quia possimus consequatur. Et quam velit error facilis illo beatae et exercitationem. Officia voluptates tempore aut iste et omnis est consectetur. Et quis aut sint. Placeat pariatur velit nemo maiores et eum. Aut eaque quasi omnis delectus ea et laudantium incidunt.
+            </p><p>
+            Et voluptatum et culpa nisi odit dignissimos veniam. Illum aliquam ipsa quas saepe impedit quod et. Laudantium earum ab quae totam nisi deserunt. Qui aut expedita aut molestiae a rerum. Magni eligendi expedita nulla dolores omnis. Recusandae qui numquam id ut ab amet.
+            </p><p>
+            Earum est ut sed odit molestiae ipsum reiciendis illum. Enim accusamus hic et natus consequuntur enim unde nesciunt. Quo illum qui fugit. Animi voluptatem eum ea unde eligendi dolor nisi aut. Quis sed voluptates esse.
+            </p><p>
+            Ullam repellat doloribus nesciunt ducimus. Quas libero excepturi non enim corrupti. Sint perferendis et qui. Saepe illum qui repellat id sit enim cupiditate. Ut quia eum rerum tempore.
+            </p><p>
+            Sit vero ut distinctio cupiditate occaecati ex. Sunt vero non corrupti iure maiores quia unde et. Aut sunt magnam ad. Assumenda voluptatem eaque et beatae beatae perferendis est eveniet. Eum qui libero blanditiis architecto ipsa quia placeat. Et corporis qui ut voluptas.
+            </p></td>
+        <td>asdf</td>
+    </tr>
+</table> -->
