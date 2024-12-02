@@ -34,13 +34,19 @@
             /* img {display:block;width:50vw} */
             h1,h2 { font-size: 1em; font-weight:normal}
             h1 {text-align:center;position: sticky;top: 1em;}
-            h2 {font-weight:normal;margin-top:3em;text-align:center;position:sticky;top:2em}
+            h2 {font-weight:normal;margin:6em auto 2em auto;text-align:center;position:sticky;top:3em;}
             a {color:indigo;text-decoration:1px indigo solid underline}
             a:hover {font-style:italic;text-decoration:none;}
             img {display:block;margin:1em auto;}
             @media (max-width:1000px) {
-                body { max-width: 90%; margin: 0.5em auto 2em auto }
+                /* body { width: 100%; margin: 0.5em auto 2em auto }
                 article {margin-top:3em;}
+                 */
+                body {margin:0.5em auto}
+                img {display:block;width:100%}
+                nav {position:sticky;top:0}
+                h1 {top:4em}
+                h2 {top:6em}
             }
             
         </style>
@@ -69,16 +75,17 @@
             <h2>-- Preface --</h2>
         </article>
         <article>
-            <h2>-- Shape Grammar --</h2>
+            <h2 id="shape-grammar">-- Shape Grammar --</h2>
             <img src="/journal-media/ShapeGrammar_Schematic.png" alt="Black text on white background of a flowchart diagram specifying the combination of a set of calligraphic strokes.">
+            <p></p>
         </article>
         <article>
-            <h2>-- Data Entanglement --</h2>
+            <h2 id="data-entanglement">-- Data Entanglement --</h2>
             <img src="/journal-media/DataEntanglement_Front.png" alt="Photo from front of a small, long rectangular LCD display reading 'Cloudflare, New Jersey, Sunny', positioned atop a small LEGO structure. Wires and cables peek from the back. The background is a green paper.">
             <img src="/journal-media/DataEntanglement_Aerial.png" alt="Overhead photo of a LCD display hooked up to a microcontroller, wires, rotating knob, and breadboard, all atop a LEGO structure. The paper in the background on which all is set atop is a saturated green color. A light blue, opaque piece of plastic curves around, above the breadboard, diffusing the bright red light of the electronics underneath.">
         </article>
         <article>
-            <h2>-- Kid Pix --</h2>
+            <h2 id="kidpix">-- Kid Pix --</h2>
             <img src="/journal-media/Demosplash2024_Drawing1.png" alt="Scribbled red handwriting and symmetrical gray lines atop white line illustrations on a black background.">
             <img src="/journal-media/Demosplash2024_Drawing2.png" alt="Scribbled red handwriting atop various black and white halftone textures, some intersecting with sharp black arcs. In the lower left, a paragraph of text that grows lighter in hue as it nears its end.">
             <img src="/journal-media/Demosplash2024_Drawing3.png" alt="White and red text on an inverted, white line on black background illustration of a child holding something and standing, feet apart, on a vast, empty landscape. Red halftone fills land forms in the distance.">
