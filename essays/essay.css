@@ -1,0 +1,22 @@
+@font-face { font-family: FEReg; src: url('../FE/FluxischElse-Regular.woff') format('woff');}
+@font-face { font-family: FELight; src: url('../FE/FluxischElse-Light.woff') format('woff');}
+@font-face { font-family: FEBold; src: url('../FE/FluxischElse-Bold.woff') format('woff');}
+body {
+    font-family: 'FELight', sans-serif; font-size:15px; letter-spacing: .5px; line-height: 1.3em;
+    background-color: whitesmoke; color: indigo ;
+    max-width:50vw; 
+    margin:0.5em auto 2em auto;
+}
+p {padding-bottom:0.5em}
+a {color:indigo;text-decoration:1px indigo solid underline}
+a:hover {font-style:italic;text-decoration:none;}
+img {display:block;margin:1em auto;}
+h1, h2, h3 {font-size:1em;font-weight: normal; text-align: center; line-height: 1em; font-family: FEReg}
+h1 { text-decoration: 1px indigo solid underline}
+h3, aside a { color: mediumorchid}
+aside a {text-decoration: 1px solid mediumorchid underline}
+/* ul { list-style-type: none;}
+li {width: 40vw; display:grid;grid-template-columns:5fr 1fr} */
+blockquote { display: block; background-color: beige }
+aside { display: block; color: mediumorchid; margin-left: 2.5em}
+nav { position: sticky; top: 1em;}

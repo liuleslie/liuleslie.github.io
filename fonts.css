@@ -1,0 +1,12 @@
+@font-face {
+    font-family: FEReg; 
+    src: url('FE/FluxischElse-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: FELight;
+    src: url('FE/FluxischElse-Light.woff') format('woff');
+}
+@font-face {
+    font-family: FEBold; 
+    src: url('FE/FluxischElse-Bold.woff') format('woff');
+}
