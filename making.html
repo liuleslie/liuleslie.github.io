@@ -2,47 +2,72 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Making</title>
+        <title>Making Journal</title>
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="description" content="" />
+        <link rel="icon" href="favicon.png">
         <link rel="stylesheet" href="fonts.css">
-        <link rel="stylesheet" href="essays/essay.css">
-        <link rel="icon" type="image/x-icon" href="z-llfavi.svg">
         <style>
-            hr {border: 1px dotted whitesmoke;}
-            body { background-color: forestgreen; color: white; }
-            nav {top: 2em; z-index: 3; border: 1px solid rgba(0,0,0,0);padding:1em 0}
-            nav:hover {text-decoration:none;background-color:rgba(34, 139, 34, 0.85); border:1px solid navy}
-            h1, h2, h3 {text-decoration: none}
-            h1 {color:navy}
-            h2 {padding-top:3em; color: white}
-            a {color: white; text-decoration: 1px white dotted underline}
-            ol {list-style-type: decimal; margin-bottom: 3em;}
-            details ul {list-style-type: none;}
-            details li {width: 40vw; display:grid;grid-template-columns:5fr 1fr}
-            img, div {border: 1px navy solid; width: 100%;}
-            article {border-top: 30px navy solid}
-            @media (max-width:1200px) {body {margin:0.5em;}}
+            body {
+                font-family: 'FELight', sans-serif; font-size:15px; letter-spacing: .5px; line-height: 1.3em;
+                background-color: whitesmoke; color: indigo ;
+                max-width:50vw; 
+                margin:0.5em auto 2em auto;
+            }
+            nav {z-index:3;position:fixed;background-color:beige; border:0.5px darkmagenta dotted;padding:0.5em}
+            nav details ol {border-top:0.5px darkmagenta dotted;}
+            nav details li {border-bottom:0.5px darkmagenta dotted;padding:0.25em 0 0 0}
+            nav details li:last-child {border-bottom:none}
+            main {display:grid;grid-template-columns:1fr 20fr}
+            img {display:block;width:50vw}
+            h1,h2 { font-size: 1em; font-weight:normal}
+            h1 {text-align:center;position: sticky;top: 1em;font-family:FEReg;text-decoration: 1px solid indigo underline}
+            h2 {font-weight:normal;margin-bottom:2em;padding-top:3em;text-align:center;top:3em;background-color:rgba(245, 245, 245, 0.75)}
+            a {color:indigo;text-decoration:1px indigo dotted underline}
+            a:hover {font-style:italic;text-decoration:none;}
+            img {display:block;margin:1em auto;}
+            article {border-top:30px thistle solid}
+            span.highlight {background-color:palegoldenrod}
+            @media (max-width:1000px) {
+                body {margin:0.5em auto}
+                img {display:block;width:100%}
+                nav {position:sticky;top:0}
+                h1 {top:4em}
+                h2 {top:6em}
+            }
+            
         </style>
     </head>
-    <nav>
-        Return to <a href="../index.html">Index</a>
-        <ol>
-            <li><a href="#rgb-led">RGB Sliding</a></li>
-            <li><a href="#tray">UGTVWMWZ</a></li>
-            <li><a href="#data-entanglement">Data Entanglement</a></li>
-            <li><a href="#shape-grammar">Shape Grammar</a></li>
-        </ol>
+    <nav> 
+        <a href="index.html">Return to Index</a> / <a href="#top">Top</a>
+        <details>
+            <summary>Contents</summary>
+            <ol>
+                <li><a href="#td-1">Scrappy Collage</a></li>
+                <li><a href="#rgb-led">RGB Sliding</a></li>
+                <li><a href="#tray">UGTVWMWZ</a></li>
+                <li><a href="#data-entanglement">Data Entanglement</a></li>
+                <li><a href="#shape-grammar">Shape Grammar</a></li>
+            </ol>
+        </details>
+        
     </nav>
     <body>
-        <h1>Making</h1>
+        <h1 style="z-index:5">Making Journal</h1>
+        <p style="padding-top:3em" id="top">
+            I am pursuing a Master’s degree in <a href="https://www.architecture.cmu.edu/computational-design">Computational Design</a> — let this log serve as a diary for things I’ve made and ideas I’ve taken on.
+        </p>
+        <p>What is computational design? I’ve come into this program thinking it had something to do with generative, programmatic design workflows... 
+            as I write this in December 2024 at the close of the first semester, I’m starting to think of the degree as a mode in which 
+            I can work to engage with <span class="highlight">sociotechnical systems</span> more meaningfully.
+        </p>
         <article>
-            <h2>-- TouchDesigner (I) --</h2>
+            <h2 id="td-1">—— TouchDesigner Collage (I) ——</h2>
             <div style="padding:55.58% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1043078280?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="TD 1"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
             <p>Getting to know TouchDesigner as a video editing tool... music is <a href="https://ashleyhelal.bandcamp.com/album/swimming"><em>Glade Springs</em> by Ashley Helal</a>.</p>
         </article>
         <article>
-            <h2 id="rgb-led">-- RGB Sliding --</h2>
+            <h2 id="rgb-led">—— RGB Sliding ——</h2>
             <div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1043075097?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="RGB LED 1"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
             <br>
             <div style="padding:79.81% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1043075108?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="RGB LED 2"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
@@ -53,7 +78,7 @@
             </p>
         </article>
         <article>
-            <h2 id="tray">-- UGTVWMWZ 2-Piece Silverware Flatware Set, Silicone Dishware Safe (City Chic) Adult Diet Tableware, Includes 1 Fork 1 Plate, Modular Configurable for Mealtime Relaxation, Destress Set for Teens Adults Halloween Christmas Gift --</h2>
+            <h2 id="tray">—— UGTVWMWZ 2-Piece Silverware Flatware Set, Silicone Dishware Safe (City Chic) Adult Diet Tableware, Includes 1 Fork 1 Plate, Modular Configurable for Mealtime Relaxation, Destress Set for Teens Adults Halloween Christmas Gift ——</h2>
             <div style="padding:78.69% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1043073561?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="UGTVWMWZ 1"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
             <p> Investigating the role mealtime videos choreograph expectations around dining, 
                 UGTVWMWZ is a tray with embedded screens (roughly demonstrated above) that maximizes 
@@ -66,7 +91,7 @@
         </article>
 
         <article>
-            <h2 id="data-entanglement">-- Data Entanglement --</h2>
+            <h2 id="data-entanglement">—— Data Entanglement ——</h2>
             <img src="https://d2w9rnfcy7mm78.cloudfront.net/32393145/original_a9798faa798d923c26778114d71b684c.png?1732150669?bc=0" alt="Photo from front of a small, long rectangular LCD display reading 'Cloudflare, New Jersey, Sunny', positioned atop a small LEGO structure. Wires and cables peek from the back. The background is a green paper.">
             <img src="https://d2w9rnfcy7mm78.cloudfront.net/32393144/original_0a75fee5e1c9accb0da357aa4acf2191.png?1732150669?bc=0" alt="Overhead photo of a LCD display hooked up to a microcontroller, wires, rotating knob, and breadboard, all atop a LEGO structure. The paper in the background on which all is set atop is a saturated green color. A light blue, opaque piece of plastic curves around, above the breadboard, diffusing the bright red light of the electronics underneath.">
             
@@ -77,7 +102,7 @@
         </article>
 
         <article>
-            <h2 id="shape-grammar">-- Shape Grammar --</h2>
+            <h2 id="shape-grammar">—— Shape Grammar ——</h2>
             <img src="https://d2w9rnfcy7mm78.cloudfront.net/32393143/original_e50165e521d9d90bfb3fdf65320d059e.png?1732150670?bc=0" alt="Black text on white background of a flowchart diagram specifying the combination of a set of calligraphic strokes.">
             
             <div style="padding:72.65% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1025495834?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SG 1"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
@@ -89,6 +114,4 @@
     </body>
 
 </html>
-
-
 
