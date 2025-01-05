@@ -18,6 +18,7 @@
                 max-width:60vw; margin:0.5em auto 2em auto;}
             a {color:gray;text-decoration: none}
             a:hover {color:white;cursor:alias}
+            .highlight {text-decoration: 2px solid underline darkolivegreen}
 
             h1 {font-size:1em;font-weight:normal;margin-top: 1em}
             nav a {position:fixed;top:1em;left:1em;z-index:3;}
@@ -59,6 +60,7 @@
             #filter-media:checked ~ #shed tr[data-type-primary="media"] {display: table-row;}
             #filter-misc:checked ~ #shed tr[data-type-primary="misc"] {display: table-row;}
             #shed tr {display: none;border-top: 1px dotted rgb(62, 62, 62);padding-top:0.125em}
+            #shed tr:hover {background-color:rgb(25,25,25)}
             #shed tr h2 {font-size:1em;font-weight:normal;text-align:center}
             #shed tr p {font-family:'FELight'}
             #shed tr img {display:block;width:100%;}
@@ -118,28 +120,28 @@
 
             <section class="borderless" id="ongoing">
                 <h1 id="categories">Stuff, by theme</h1>
-                <input type="checkbox" id="filter-ads" name="filter-ads">
+                <input type="checkbox" id="filter-ads" name="filter-ads" checked>
                 <label for="filter-ads">Ads, chum, meme</label><br>
 
-                <input type="checkbox" id="filter-interface" name="filter-interface">
+                <input type="checkbox" id="filter-interface" name="filter-interface" checked>
                 <label for="filter-interface">Interfaces, metaphors</label><br>
 
-                <input type="checkbox" id="filter-gaze" name="filter-gaze">
+                <input type="checkbox" id="filter-gaze" name="filter-gaze" checked>
                 <label for="filter-gaze">Touch, vision</label><br>
 
-                <input type="checkbox" id="filter-conditional" name="filter-conditional">
+                <input type="checkbox" id="filter-conditional" name="filter-conditional" checked>
                 <label for="filter-conditional">Conditional design</label><br>
 
-                <input type="checkbox" id="filter-media" name="filter-media">
+                <input type="checkbox" id="filter-media" name="filter-media" checked>
                 <label for="filter-media">AI/ML media, materiality, marginalia</label><br>
 
-                <input type="checkbox" id="filter-misc" name="filter-misc">
+                <input type="checkbox" id="filter-misc" name="filter-misc" checked>
                 <label for="filter-misc">Etc.</label>
 
                 <nav><a href="#categories">^ Return to top</a></nav>
 
 
-                <table id="shed"> <!-- cellspacing="0" cellpadding="0"> -->
+                <table id="shed" style="width:100%"> <!-- cellspacing="0" cellpadding="0"> -->
                     <tbody>
                         <tr data-type-primary="ads"><td><a class="ext" href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/">Feelings at the Edge: A Chumbox Tour</a></td></tr>
                         <tr data-type-primary="misc"><td><a class="ext" href="notes/n1.html">on love & joy in being</a></td></tr>
@@ -210,8 +212,8 @@
                 </table>
 
             </section>
-
-            <!-- <section>
+<!-- 
+            <section>
                 <h1>Portfolio</h1>
                 <p><a target="_blank" href="portfolio-test.html">Work from 2020 onwards; opens as a new link.</a></p>
             </section> -->
@@ -219,6 +221,24 @@
             <section>
                 <h1>Contact</h1>
                 <p><a href="http://users3.smartgb.com/g/g.php?a=s&i=g36-36279-2f">A guestbook</a>, if it strikes your fancy to leave a message.</p>
+            </section>
+
+            <section>
+                <h1>Commonplace</h1>
+                <blockquote>
+                    <p>
+                        <span class="highlight">I really want everyone to be themselves as much as they can, all the time.</span> 
+                        I want that from everyone because, in my mind, like you say, 
+                        that's the interesting part of the person. 
+                        Expressing your inner self is sometimes confusing or might not fit 
+                        certain preconceptions, so I really root for people to do it. 
+                        Maybe that’s the extrovert in me talking — it might be a very daunting thought 
+                        for people who are not comfortable with it. 
+                        But <span class="highlight">I just desperately want to understand what your position is.</span> 
+                        To me that has a lot to do with being honest.
+                    </p>
+                    <cite>&nbsp;&nbsp;&nbsp;&nbsp;— Malte Müller —— <a href="https://www.are.na/editorial/an-interview-with-malte-mueller">It’s Not Business, It’s Personal</a></cite>
+                </blockquote>
             </section>
             
 
