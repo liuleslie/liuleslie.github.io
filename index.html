@@ -53,12 +53,14 @@
             [data-type-primary="conditional"] a.ext {color:darkorange}
             [data-type-primary="media"] a.ext {color:khaki}
             [data-type-primary="misc"] a.ext {color:gainsboro}
+            .greyout {color:rgb(88, 76, 76);}
             #filter-ads:checked ~ #shed tr[data-type-primary="ads"] {display: table-row;}
             #filter-interface:checked ~ #shed tr[data-type-primary="interface"] {display: table-row;}
             #filter-gaze:checked ~ #shed tr[data-type-primary="gaze"] {display: table-row;}
             #filter-conditional:checked ~ #shed tr[data-type-primary="conditional"] {display: table-row;}
             #filter-media:checked ~ #shed tr[data-type-primary="media"] {display: table-row;}
             #filter-misc:checked ~ #shed tr[data-type-primary="misc"] {display: table-row;}
+            #filter-todo:checked ~ #shed tr[data-type-primary="todo"] {display: table-row;}
             #shed tr {display: none;border-top: 1px dotted rgb(62, 62, 62);padding-top:0.125em}
             #shed tr:hover {background-color:rgb(25,25,25)}
             #shed tr h2 {font-size:1em;font-weight:normal;text-align:center}
@@ -120,23 +122,26 @@
 
             <section class="borderless" id="ongoing">
                 <h1 id="categories">Stuff, by theme</h1>
-                <input type="checkbox" id="filter-ads" name="filter-ads" checked>
+                <input type="checkbox" id="filter-ads" name="filter-ads">
                 <label for="filter-ads">Ads, chum, meme</label><br>
 
-                <input type="checkbox" id="filter-interface" name="filter-interface" checked>
+                <input type="checkbox" id="filter-interface" name="filter-interface">
                 <label for="filter-interface">Interfaces, metaphors</label><br>
 
-                <input type="checkbox" id="filter-gaze" name="filter-gaze" checked>
+                <input type="checkbox" id="filter-gaze" name="filter-gaze">
                 <label for="filter-gaze">Touch, vision</label><br>
 
-                <input type="checkbox" id="filter-conditional" name="filter-conditional" checked>
+                <input type="checkbox" id="filter-conditional" name="filter-conditional">
                 <label for="filter-conditional">Conditional design</label><br>
 
-                <input type="checkbox" id="filter-media" name="filter-media" checked>
+                <input type="checkbox" id="filter-media" name="filter-media">
                 <label for="filter-media">AI/ML media, materiality, marginalia</label><br>
 
-                <input type="checkbox" id="filter-misc" name="filter-misc" checked>
-                <label for="filter-misc">Etc.</label>
+                <input type="checkbox" id="filter-misc" name="filter-misc">
+                <label for="filter-misc">Etc.</label><br>
+
+                <input type="checkbox" id="filter-todo" name="filter-todo" checked>
+                <label class="greyout" for="filter-todo">Note to self</label>
 
                 <nav><a href="#categories">^ Return to top</a></nav>
 
@@ -157,6 +162,18 @@
                         <tr data-type-primary="media"><td><a class="ext" href="https://liuleslie.github.io/essays/e1.html">Existentialism at the grocery store</a></td></tr>
                         <tr data-type-primary="ads"><td><a class="ext" href="https://liuleslie.github.io/alainifnchm">as long as im not in fullscreen nothing can hurt me</a></td></tr>
                         <tr data-type-primary="misc"><td><a class="ext" href="https://www.instagram.com/p/CyHeyITRIpc/?img_index=1">Window &lt; &gt; Slippers</a></td></tr>
+                        <tr data-type-primary="todo" class="greyout"><td>
+                            <p>A list of things I want to write about.</p>
+                            <ul>
+                                <li>on sandwichboards and books, hinged structures, self containment</li>
+                                <li>panelness, frames, enclosures (channel crawl)</li>
+                                <li>bare life, psych horror</li>
+                                <li>on writing with/in HTML, intertextuality</li>
+                                <li>tools to be more oneself (alternatively, a thank you note/esssay re: commonplace quote interview). addendum or extension: notes on dynamic abstraction and reduct.</li>
+                                <li>reflection on storytelling economies: stories i tell about my own “practice”, what is it all about, really? (writing, belles lettres)</li>
+                            </ul>
+                        </td></tr>
+                        
                         <!-- <tr data-type-primary="ads">
                             <td>
                                 <h2>UGTVWMWZ 2-Piece Silverware Flatware Set, Silicone Dishware Safe (City Chic) Adult Diet Tableware, Includes 1 Fork 1 Plate, Modular Configurable for Mealtime Relaxation, Destress Set for Teens Adults Halloween Christmas Gift</h2>
@@ -262,7 +279,7 @@
                 </details>
                 <p>
                     Thanks to <a class="folk" id="wesley" href="https://wesleyac.com">Wesley Aptekar-Cassels</a> for their <a href="https://hack.wesleyac.com/pokemon.html">CSS list filtering demo</a>, 
-                    Doriane for <a href="https://against.ungual.digital">against</a>, as well as 
+                    Doriane for <a href="https://against.ungual.digital">against</a> (color contrast checker), as well as 
                     <a class="folk" href="https://pitscher.net">Pitscher</a>, <a class="folk" href="https://solar.lowtechmagazine.com">Low-tech Magazine</a>, 
                     <a class="folk" href="https://html.energy">HTML Energy</a>, and <a class="folk" href="https://multidimensional.link/southland?">more*</a> for their influence.
                 </p>
