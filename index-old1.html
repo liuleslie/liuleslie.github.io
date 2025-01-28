@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Leslie's Website</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link rel="icon" type="image/x-icon" href="z-llfavi.svg">
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="fonts.css">
+        <base target="_self">
+        <style>
+            body {
+                font-family: 'FEReg', sans-serif; font-size:15px; letter-spacing: .5px; line-height: 1.3em;
+                background-color: black;color: white;
+                max-width:60vw; margin:0.5em auto 2em auto;}
+            a {color:gray;text-decoration: none}
+            a:hover {color:white;cursor:alias}
+            .highlight {text-decoration: 2px solid underline darkolivegreen}
+
+            h1 {font-size:1em;font-weight:normal;margin-top: 1em}
+            nav a {position:fixed;top:1em;left:1em;z-index:3;}
+
+            section {border-top: 1px rgb(71,60,60) dotted;}
+            .borderless {border:none}
+
+            #webkeeper p {padding:auto 1em}
+            .folk:hover{text-decoration: none;}
+            #wesley:hover{color:deepskyblue}
+            #kim:hover {background-color: #471a1a;}
+            #daniela:hover {color: #8A9A5B;}
+            #charlotte:hover {color: greenyellow}
+            #omar:hover {color: lightsalmon;}
+            #staoue:hover {background-color:#b1331b}
+            #jina:hover {background-color: blue;}
+            #nico:hover {color: palegoldenrod;}
+            #katherine:hover {color: gray;}
+            #shannon:hover {background-color: #006666;}
+            #daniel:hover {color: #FFC500;}
+            #trudy:hover {color: #01FF7E;}
+            #jake:hover {color: lightsteelblue;}
+            #ange:hover {background-color: royalblue;}
+            #holly:hover {color: #80B785;}
+            #mikki:hover {color: azure;}
+            #lauren:hover {color: lemonchiffon;}
+
+            tbody {display:grid; grid-template-columns: 1fr;margin-bottom:1em}
+            [data-type-primary="ads"] a.ext {color:lightsalmon}
+            [data-type-primary="interface"] a.ext {color:aquamarine}
+            [data-type-primary="gaze"] a.ext {color:lightpink}
+            [data-type-primary="conditional"] a.ext {color:darkorange}
+            [data-type-primary="media"] a.ext {color:khaki}
+            [data-type-primary="misc"] a.ext {color:gainsboro}
+            .greyout {color:rgb(88, 76, 76);}
+            #filter-ads:checked ~ #shed tr[data-type-primary="ads"] {display: table-row;}
+            #filter-interface:checked ~ #shed tr[data-type-primary="interface"] {display: table-row;}
+            #filter-gaze:checked ~ #shed tr[data-type-primary="gaze"] {display: table-row;}
+            #filter-conditional:checked ~ #shed tr[data-type-primary="conditional"] {display: table-row;}
+            #filter-media:checked ~ #shed tr[data-type-primary="media"] {display: table-row;}
+            #filter-misc:checked ~ #shed tr[data-type-primary="misc"] {display: table-row;}
+            #filter-todo:checked ~ #shed tr[data-type-primary="todo"] {display: table-row;}
+            #shed tr {display: none;border-top: 1px dotted rgb(62, 62, 62);padding-top:0.125em}
+            #shed tr:hover {background-color:rgb(25,25,25)}
+            #shed tr h2 {font-size:1em;font-weight:normal;text-align:center}
+            #shed tr p {font-family:'FELight'}
+            #shed tr img {display:block;width:100%;}
+            
+            details p, section p {padding-left:1em}
+            details p:last-child, #webkeeper {padding-bottom:1em; border-bottom: 1px dotted rgb(62, 62, 62);}
+            iframe {width:100%; height:30vh}
+
+            @media (max-width:950px) {body {max-width: 100%; margin:1em 2em}}
+        </style>
+    </head>
+    
+    <body>
+        <main>
+            <!-- <img src="z-blab360-light.gif" alt="A black line drawing of a smiley blobby figure, rotating in 360 degrees atop a white background."> -->
+            <img style="padding-top:0.5em;width:100%" src="2025/mbta-pizza.png" alt="a slice of pizza, face down, on the floor of a bus, with empty blue seats above.">
+            <!-- <img src="https://d2w9rnfcy7mm78.cloudfront.net/20023841/original_1e5a5bf2cfc1c5ae0c88b6d9a751b6a8.gif?1674636214?bc=0" alt="shifting grid of machine-learning-generated images of youtube video thumbnails."> -->
+            <!-- <img src="2025/20230514.png" alt=""> -->
+            <section class="borderless">
+                <h1><details id="webkeeper">
+                    <summary>Leslie Liu</summary>
+                    <p>
+                        I am broadly interested in interfaces and their metaphors, advertising, 
+                        and ecstatic experiences of / encounters with technology. 
+                    </p>
+                    <p>
+                        What I’m up to <a href="https://liuleslie.github.io/now">now</a>.
+                    </p>
+
+                    <details style="padding-left:1em">
+                        <summary>Dandelion</summary>
+                        <p style="border:none;padding-bottom:0">Loosely remembered networks of people I find myself thankful for, inspired by, 
+                            and want to acknowledge this season, among many others not listed... 
+                            <a class="folk" href="https://trust.support">Trust</a>, 
+                            <a class="folk" id="kim" class="invert" href="https://www.are.na/kimberly-scott">Kim</a>, 
+                            <a class="folk" id="daniela" href="https://notdaniela.com">Daniela</a>, 
+                            <a class="folk" id="charlotte" href="https://www.whatexactlyisupchuck.com">Charlotte</a>, 
+                            <a class="folk" id="omar" href="https://omar.website">Omar</a>, Rebecca, R, 
+                            <a class="folk" id="staoue">Staoue</a>, 
+                            <a class="folk" id="jina" class="invert" href="http://jinahyun.glitch.me">Jina</a>, 
+                            <a class="folk" id="nico" href="https://nicochilla.com">Nico</a>, 
+                            <a class="folk" id="katherine" href="https://kayserifserif.place">Katherine</a>, 
+                            <a class="folk" id="shannon" class="invert" href="https://www.instagram.com/petitehoneybee">Shannon</a>, 
+                            <a class="folk" id="daniel" href="https://danielum.net">Daniel</a>, 
+                            <a class="folk" id="trudy" href="http://www.trudy.computer">Trudy</a>, 
+                            <a class="folk" id="jake" href="https://jake.isnt.online">Jake</a>, 
+                            <a class="folk" id="holly" href="https://www.thisishollyli.com/">Holly</a>, 
+                            <a class="folk" id="ange" class="invert" href="https://www.instagram.com/permadwell">Ange</a>; 
+                            <a class="folk" id="mikki" href="https://mikki.studio/">Mikki Janower</a>, 
+                            <a class="folk" id="lauren" href="https://laurenfox.work/">Lauren Fox</a>, 
+                            <a href="https://studiomoniker.com/">Moniker</a>, <a href="https://www.kickscondor.com/">Kicks Condor</a>
+                        </p>
+                    </details>
+                </details></h1>
+
+            </section>
+
+            <section class="borderless" id="ongoing">
+                <h1 id="categories">Stuff, by theme</h1>
+                <input type="checkbox" id="filter-ads" name="filter-ads">
+                <label for="filter-ads">Ads, chum, meme</label><br>
+
+                <input type="checkbox" id="filter-interface" name="filter-interface">
+                <label for="filter-interface">Interfaces, metaphors</label><br>
+
+                <input type="checkbox" id="filter-gaze" name="filter-gaze">
+                <label for="filter-gaze">Touch, vision</label><br>
+
+                <input type="checkbox" id="filter-conditional" name="filter-conditional">
+                <label for="filter-conditional">Conditional design</label><br>
+
+                <input type="checkbox" id="filter-media" name="filter-media">
+                <label for="filter-media">AI/ML media, materiality, marginalia</label><br>
+
+                <input type="checkbox" id="filter-misc" name="filter-misc">
+                <label for="filter-misc">Etc.</label><br>
+
+                <input type="checkbox" id="filter-todo" name="filter-todo" checked>
+                <label class="greyout" for="filter-todo">Note to self</label>
+
+                <nav><a href="#categories">^ Return to top</a></nav>
+
+
+                <table id="shed" style="width:100%"> <!-- cellspacing="0" cellpadding="0"> -->
+                    <tbody>
+                        <tr data-type-primary="ads"><td><a class="ext" href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/">Feelings at the Edge: A Chumbox Tour</a></td></tr>
+                        <tr data-type-primary="misc"><td><a class="ext" href="notes/n1.html">on love & joy in being</a></td></tr>
+                        <tr data-type-primary="ads"><td><a class="ext" href="https://gesture-as-meme.glitch.me/">Gestures of Being as Meme</a></td></tr>
+                        <tr data-type-primary="media"><td><a class="ext" href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/">Wheatpaste Mockups: Gestures of Transgression</a></td></tr>
+                        <tr data-type-primary="misc"><td><a class="ext" href="https://www.are.na/blog/on-connection">On Connection</a></td></tr>
+                        <tr data-type-primary="misc"><td><a class="ext" href="essays/e2.html">Layer 29 of the Internet Onion: A Question as a Gift</a></td></tr>
+                        <tr data-type-primary="media"><td><a class="ext" href="essays/e3.html">Feeling From the Margins</a></td></tr>
+                        <tr data-type-primary="interface"><td><a class="ext" href="https://backslashlit.com/issues/5/leslie-liu">oneness</a></td></tr>
+                        <tr data-type-primary="misc"><td><a class="ext" href="https://somewhere-always.glitch.me/">somewhere always</a></td></tr>
+                        <tr data-type-primary="gaze"><td><a class="ext" href="https://www.instagram.com/p/CLi9KhjBhw4/?img_index=1">Who is searching me up on LinkedIn and what do they want from me?</a></td></tr>
+                        <tr data-type-primary="ads"><td><a class="ext" href="https://www.instagram.com/p/CV5_yoVr3RO/?img_index=1">(untitled test)</a></td></tr>
+                        <tr data-type-primary="media"><td><a class="ext" href="https://liuleslie.github.io/essays/e1.html">Existentialism at the grocery store</a></td></tr>
+                        <tr data-type-primary="ads"><td><a class="ext" href="https://liuleslie.github.io/alainifnchm">as long as im not in fullscreen nothing can hurt me</a></td></tr>
+                        <tr data-type-primary="misc"><td><a class="ext" href="https://www.instagram.com/p/CyHeyITRIpc/?img_index=1">Window &lt; &gt; Slippers</a></td></tr>
+                        <tr data-type-primary="todo" class="greyout"><td>
+                            <p>A list of things I want to write about.</p>
+                            <ul>
+                                <li>on sandwichboards and books, hinged structures, self containment</li>
+                                <li>panelness, frames, enclosures (channel crawl)</li>
+                                <li>bare life, psych horror</li>
+                                <li>on writing with/in HTML, intertextuality</li>
+                                <li>tools to be more oneself (alternatively, a thank you note/esssay re: commonplace quote interview). addendum or extension: notes on dynamic abstraction and reduct.</li>
+                                <li>reflection on storytelling economies: stories i tell about my own “practice”, what is it all about, really? (writing, belles lettres)</li>
+                            </ul>
+                        </td></tr>
+                        
+                        <!-- <tr data-type-primary="ads">
+                            <td>
+                                <h2>UGTVWMWZ 2-Piece Silverware Flatware Set, Silicone Dishware Safe (City Chic) Adult Diet Tableware, Includes 1 Fork 1 Plate, Modular Configurable for Mealtime Relaxation, Destress Set for Teens Adults Halloween Christmas Gift</h2>
+                                <div style="padding:78.69% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1043073561?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="UGTVWMWZ 1"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+                                <p> Investigating the role mealtime videos choreograph expectations around dining, 
+                                    UGTVWMWZ is a tray with embedded screens (roughly demonstrated above) that maximizes 
+                                    media absorption. Instead of assigning mealtime videos any moral judgment, 
+                                    the tray seeks to fuse media and dietary absorption, such that eating and interacting 
+                                    with food is situated as a means to an end — near-constant immersion into frenetic, 
+                                    serialized, always-on media. In this clip, the user launches pieces of food at 
+                                    respective compartments to scroll through media.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr data-type-primary="media">
+                            <td>
+                                <h2>Data Entanglement</h2>
+                                <img src="https://d2w9rnfcy7mm78.cloudfront.net/32393145/original_a9798faa798d923c26778114d71b684c.png?1732150669?bc=0" alt="Photo from front of a small, long rectangular LCD display reading 'Cloudflare, New Jersey, Sunny', positioned atop a small LEGO structure. Wires and cables peek from the back. The background is a green paper.">
+                                <img src="https://d2w9rnfcy7mm78.cloudfront.net/32393144/original_0a75fee5e1c9accb0da357aa4acf2191.png?1732150669?bc=0" alt="Overhead photo of a LCD display hooked up to a microcontroller, wires, rotating knob, and breadboard, all atop a LEGO structure. The paper in the background on which all is set atop is a saturated green color. A light blue, opaque piece of plastic curves around, above the breadboard, diffusing the bright red light of the electronics underneath.">
+                                
+                                <div style="padding:125% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1025476272?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Data Entanglement"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+                                
+                                <p>A reflection on how the data I produce flows through my local internet of things: particularly interested in the materiality of the internet (specifically, my router data), I found a 2021 <a href="https://www.ftc.gov/system/files/documents/reports/look-what-isps-know-about-you-examining-privacy-practices-six-major-internet-service-providers/p195402_isp_6b_staff_report.pdf">Federal Trade Commission report</a> examining how six major internet service providers (mine included) “amass large pools of sensitive data, and that their uses of such data could lead to significant harms, particularly when consumers are classified by demographic characteristics.”</p>
+                                <p>Rotating the knob/dial refreshes server locations between which data packets travel: this includes the hosting service, state, and local weather.</p>
+                            </td>
+                        </tr>
+                        <tr data-type-primary="misc">
+                            <td>
+                                <h2>Shape Grammar</h2>
+                                <img src="https://d2w9rnfcy7mm78.cloudfront.net/32393143/original_e50165e521d9d90bfb3fdf65320d059e.png?1732150670?bc=0" alt="Black text on white background of a flowchart diagram specifying the combination of a set of calligraphic strokes.">
+                                <div style="padding:72.65% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1025495834?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SG 1"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+                                <p>A shape grammar I developed from this thread about the relationship between writing and drawing. Has absurd beginnings from a clip of <em>Nathan For You</em> with the caricature artist, I was taken by the way east Asian scripts are generally represented by those who aren’t familiar with it: see wonton fonts and yellow peril propaganda.</p>
+                                <p>I adapted it as a shakily composed entry for <a href="https://radicalcharacters.org/radical-return">Radical Characters’ <em>Radical Return</em></a>. There was something in it about this question of <em><a href="https://www.are.na/block/13087100">how can I take advantage of my ignorance?</a></em></p>
+                                <p>With influences from asemic writing and botched tattoos of Chinese text, I suppose I am trying to ask, <em>What does it mean when a script, a hand, a calligraphic style becomes adornment for Latin letterforms, positioned as a signifier of some sort of exoticism, edginess, or allure?</em></p>
+                            </td>
+                        </tr>
+                        <tr data-type-primary="misc">
+                            <td>
+                                <h2>TouchDesigner Collage (I)</h2>
+                                <div style="padding:55.58% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1043078280?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="TD 1"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+                                <p>Getting to know TouchDesigner as a video editing tool... music is <a href="https://ashleyhelal.bandcamp.com/album/swimming"><em>Glade Springs</em> by Ashley Helal</a>.</p>
+                            </td>
+                        </tr> -->
+                        <!-- <tr data-type-primary="misc"><td><a href=""></a></td></tr>
+                        <tr data-type-primary="misc"><td><a href=""></a></td></tr>
+                        <tr data-type-primary="misc"><td><a href=""></a></td></tr>
+                        <tr data-type-primary="misc"><td><a href=""></a></td></tr>
+                        <tr data-type-primary="misc"><td><a href=""></a></td></tr>
+                        <tr data-type-primary="misc"><td><a href=""></a></td></tr> 
+                        <tr data-type-primary="misc"><td><a href=""></a></td></tr> -->
+
+                    </tbody>
+                </table>
+
+            </section>
+<!-- 
+            <section>
+                <h1>Portfolio</h1>
+                <p><a target="_blank" href="portfolio-test.html">Work from 2020 onwards; opens as a new link.</a></p>
+            </section> -->
+
+            <section>
+                <h1>Contact</h1>
+                <p><a href="http://users3.smartgb.com/g/g.php?a=s&i=g36-36279-2f">A guestbook</a>, if it strikes your fancy to leave a message.</p>
+            </section>
+
+            <section>
+                <h1>Commonplace</h1>
+                <blockquote>
+                    <p>
+                        <span class="highlight">I really want everyone to be themselves as much as they can, all the time.</span> 
+                        I want that from everyone because, in my mind, like you say, 
+                        that's the interesting part of the person. 
+                        Expressing your inner self is sometimes confusing or might not fit 
+                        certain preconceptions, so I really root for people to do it. 
+                        Maybe that’s the extrovert in me talking — it might be a very daunting thought 
+                        for people who are not comfortable with it. 
+                        But <span class="highlight">I just desperately want to understand what your position is.</span> 
+                        To me that has a lot to do with being honest.
+                    </p>
+                    <cite>&nbsp;&nbsp;&nbsp;&nbsp;— Malte Müller —— <a href="https://www.are.na/editorial/an-interview-with-malte-mueller">It’s Not Business, It’s Personal</a></cite>
+                </blockquote>
+            </section>
+            
+
+            <section>
+                <h1>Colophon <sup><a href="https://en.wikipedia.org/wiki/Colophon_(publishing)#History">[Rewritten, thank God.]</a></sup></h1>
+
+                <details>
+                    <summary>This is self-contained HTML set in <a href="http://osp.kitchen/foundry/fluxisch-else/">Fluxisch Else</a>.</summary>
+                    <p style="padding-left:3em">Why and how, ”self-contained?”</p>
+                    <p>There has always been something charming about a self-contained website to me. 
+                        This desire for the potential of expression made compact, travel-size, extends to other things: 
+                        sketchbooks, pockets, forms and multipurpose containers of information and thought.
+                    </p>
+                    <p>The infinite recomposability of a single HTML file is exciting to me: as I tab through 
+                        different past site-selves there is something resonant in the ways I am trying 
+                        to embody something more abstract, something aspirational: if my skeleton could be brutalist, 
+                        exacting somehow... and there is the tireless rewriting of a self, of this presence, 
+                        through the familiar tags and syntax, the usual sleight of hand by shoving things into 
+                        &lt;details&gt;.
+                    </p>
+                </details>
+                <p>
+                    Thanks to <a class="folk" id="wesley" href="https://wesleyac.com">Wesley Aptekar-Cassels</a> for their <a href="https://hack.wesleyac.com/pokemon.html">CSS list filtering demo</a>, 
+                    Doriane for <a href="https://against.ungual.digital">against</a> (color contrast checker), as well as 
+                    <a class="folk" href="https://pitscher.net">Pitscher</a>, <a class="folk" href="https://solar.lowtechmagazine.com">Low-tech Magazine</a>, 
+                    <a class="folk" href="https://html.energy">HTML Energy</a>, and <a class="folk" href="https://multidimensional.link/southland?">more*</a> for their influence.
+                </p>
+                <p><a href="https://gossipsweb.net">Coded from scratch</a> and in constant revision.</p>
+            </section>
+
+        </main>
+    </body>
+</html>
+
