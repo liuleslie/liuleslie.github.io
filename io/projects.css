@@ -1,0 +1,22 @@
+body {
+    width:80%;
+    font-family: 'FELight', sans-serif; 
+    font-size:15px; letter-spacing: .5px; line-height: 1.3em;
+}
+
+h1 {
+    font-size:1em;
+    text-align:center;
+    font-weight:normal;
+    position: fixed;
+    top: 0
+}
+
+img {
+    width:100%;
+}
+
+a {color:blue}
+a:hover {color:blueviolet}
+
+.caption {color:gray}
