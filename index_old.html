@@ -13,35 +13,431 @@
         <base target="_self">
         <style>
             body {
-                font-family: 'FEReg', sans-serif; font-size:15px; letter-spacing: .5px; line-height: 1.3em;
-                background-color: black;color: white;
-                max-width:60vw; margin:0.5em auto 3em auto;}
-            a {color:gray;text-decoration: none}
-            section {border-top: 1px rgb(71,60,60) dotted}
-            #webkeeper {border-top:none}
-            h1 {font-size:1em;font-weight:normal;}
-            
-            #wesley:hover{color:deepskyblue}
+                font-family: 'FEReg', sans-serif; 
+                font-size:15px; letter-spacing: .5px; line-height: 1.3em;
+                background-color: black; color: white; margin: 0.5em 0.5em 2em 0.5em;
+            }
+            p, details * { font-size: calc(1.25rem - 0.5vw); line-height:1.2 }
+            a { color:yellow;text-decoration: none }
+            a:hover { color:gray }
+            #recto { display: block; }
+            #verso { display:none; }
+            img { display: block; width:100% }
+            details p { padding-left: 2em }
+            article { margin-bottom: 0.5em; margin-top: 2em }
+            #preface details p { color:lightgray }
+            #preface details .quote { color: khaki }
+            .vd {color:lightgray}
 
-            #projects ul {padding-left:2em}
-            #projects li {list-style-type:none;}
-
-            a.ads {color:lightsalmon}
-            a.interface {color:aquamarine}
-            a.gaze {color:lightpink}
-            a.conditional {color:darkorange}
-            a.media {color:khaki}
-            a.misc {color:gainsboro}
-            p, details, #writing ul {padding-left:2em}
-            a:hover {color:white;text-decoration:1px dotted underline white}
-            .highlight {background-color:midnightblue}
-            @media (max-width:950px) {body {max-width: 100%; margin:1em 2em}}
+            @media (min-width: 1000px) {
+                body { 
+                    font-family: 'FELight';
+                    background-color: whitesmoke; color: indigo; 
+                    font-size: 1rem;
+                }
+                a {color: mediumorchid }
+                a:hover {background-color: whitesmoke; }
+                p { background-color: beige }
+                #recto { display:none }
+                #verso { display:block;
+                    height:90vh; display:grid;grid-template-rows:4fr 1fr; 
+                    border: 1px mediumpurple solid; 
+                }
+                #verso * {border: 0.5px mediumpurple dotted; padding: 0.1em }
+                #corpus { display:grid;grid-template-columns: 1fr 1fr; }
+                #commonplace { height: 75vh; }
+                #commonplace, #colophon { overflow: scroll; }
+                h1 { font-size: 1em; font-family:'FEReg'; font-weight:normal }
+                p, details { font-size: 1rem }
+                #wares li { list-style-type: none }
+                #wares h1 { margin-bottom: 0 }
+            }
         </style>
     </head>
     
+<!-- 
+sandwichboard hinge: 1000px — 1000 pixels because desktop mode is grand: https://x.com/turtlekiosk/status/1085059803121139712
+smaller: loud advertisey discreetly chummy
+wider: contemplative extra earneest
+-->
+
     <body>
-        <main>
-            <img style="padding-top:0.5em;width:100%" src="2025/mbta-pizza.png" alt="a slice of pizza, face down, on the floor of a bus, with empty blue seats above.">
+        <section id="recto">
+            <details id="preface" style="margin-bottom:2em">
+                <summary>Welcome to my personal website.</summary>
+                <p>
+                    This HTML is typset in <a href="http://osp.kitchen/foundry/fluxisch-else/">Fluxisch Else</a>, if it loads for you. 
+                    GIFs made using <a href="https://ezgif.com/">EZGif</a> and Adobe Photoshop 2024. Website written using Visual Studio Code, 
+                    hosted by GitHub via Microsoft.
+                </p>
+                <details style="padding-left:2em">
+                    <summary>This side of the website</summary>
+                    <p>
+                        I’ll get to this, surely — but a quick explainer is that I consider this website a sandwichboard. 
+                        The sandwichboard is an important metaphor for me: it is something that can be not only 
+                        standalone but also worn and traveled. The sandwichboard is like a T-shirt as a billboard. 
+                        (And how potent other media, wares are: yard signs, bumper stickers, hats.)
+                    </p>
+                    <p>
+                        In past iterations of this website, I’ve struggled to delineate what is cleanly “work” v. “play”; 
+                        I’d wanted to be able to categorize things neatly — how lovely to be able to point to something and 
+                        declare, “that is me!”
+                    </p>
+                    <p>
+                        I’ve since let go of this sort of thinking and embraced this tension where I am both fascinated by and 
+                        frustrated with advertising. From <a href="https://www.instagram.com/p/C1AKXAyu1us/">Yedoye on Subway Takes</a>: 
+                        <span class="quote">“Society went down a very dark path by making commercials funny. ... Because we’ve blurred the lines between what’s real and what’s not. 
+                        We are now clamoring for the right to be marketed to. That is our idea of liberation.”</span> 
+                    </p>
+                    <p>
+                        As a bright-eyed design student I used to exclaim “we really just wanna be artists... but don’t wanna take up the 
+                        mantle of what ‘art’ entails or the responsibility that comes with it...” — that advertising is graphic design’s 
+                        way of making art within the society and economic imaginaries we live in.
+                    </p>
+                    <p>
+                        As a computational design student now (I think for me this label really only means that I am actively trying to engage more computer) 
+                        the sandwichboard is a reminder of how we construct meaning from the environments in which we encounter resonant media. 
+                        Advertising, then, is a medium through which to think through the ways we’ve been told to desire, express, navigate the world. 
+                        I wouldn’t describe what I’m doing as necessarily trying to resist the at times sycophantic impulses of advertising — and by extension, 
+                        technologies — but rather I hope to make “stuff” that people find useful (for conversation and reflection), entertaining, or ideally — both.
+                    </p>
+                </details>
+                <details style="padding-left:4em">
+                    <summary>advertises various projects since fall of 2024.</summary>
+                    <p>I’m getting into the habit of blogging! I have been really enjoying <a href="https://densegut.tiddlyhost.com/">writing with TiddlyWiki</a> (a blog post about this to come).</p>
+                </details>
+                <p>If you’d like to leave a message, <a href="https://users3.smartgb.com/g/g.php?a=s&i=g36-36279-2f">here’s my guestbook</a>.</p>
+                <p>Thank you for visiting!</p>
+            </details>
+
+            <article>
+                <img src="https://d2w9rnfcy7mm78.cloudfront.net/36291564/original_67f1a38522e53c69f18d83f50d4f2ed5.png?1745794724?bc=0" alt="Two images. Left: a small canvas swatch, folded over and tucked into the corner of a page from a book. A light sewn into the fold slightly illuminates the page. Right: a person's hand cupping the canvas swatch, hovering over page numbers that are placed closed to the binding of the book for more visibility.">
+                <details>
+                    <summary>Bookmark (Apr 2025)</summary>
+                    <p>Discreet dogearing: a small e-textiles swatch — <a href="https://densegut.tiddlyhost.com/#Bookmark">Wiki</a></p>
+                </details>
+            </article>
+
+            <article>
+                <img src="https://d2w9rnfcy7mm78.cloudfront.net/36247074/original_e31d255bdbe7746438ab1e6e1065a40e.gif?1745589840?bc=0" alt="Scans of a zine with various collaged text and imagery. Stills include spreads where text is interspersed, placed both upright and upside down; common CAPTCHA authentication challenges also appear as cut-up compositions, with circular stickers that permeate the page with additional CAPTCHA imagery.">
+                <details>
+                    <summary>UNTITLED CAPTCHA ZINE (Apr 2025)</summary>
+                    <p>A process zine gathering writings across three essays about Completely Automated Public Turing tests to tell Computers and Humans Apart. Who are we working for, and where is our labor going?</p>
+                    <p>Part of a broader ongoing project, roughly titled “My Groveling and Me.”</p>
+                </details>
+            </article>
+            <article>
+                <img src="https://d2w9rnfcy7mm78.cloudfront.net/36235644/original_0a7aedd943f53a3e62098e6c7b895a1c.gif?1745552108?bc=0" alt="An overhead shot of a person sliding three sliders (red, green, and blue) on a breadboard to produce different colors in an LED bulb.">
+                <details>
+                    <summary>RGB Sliding (Dec 2024)</summary>
+                    <p>A quick exercise to get a bit familiarized with electronics: replicating the skeuomorph/interface metaphor of the digital RGB slider/controller. I’m interested in the potential of these input sources as instruments and sites of more ambiguous encounters in their own right.</p>
+                </details>
+            </article>
+            
+            <article>
+                <img src="https://d2w9rnfcy7mm78.cloudfront.net/36235646/original_e2d8199c7b1e53dd7dd22fbfee755748.gif?1745552117?bc=0" alt="A 3 by 2 grid of recordings of a person walking around, using a computer, and drawing while seeing themself in third person perspective.">
+                <details>
+                    <summary>Angler (Sept 2024)</summary>
+                    <p>A quick and dirty prototype of how it would feel to experience the world through third person perspective.</p>
+                    <p>In collaboration with Catherine Deng, Melinda Chen, and <a href="https://www.linkedin.com/in/carlotten">Carl Otten</a>.</p>
+                </details>
+            </article>
+            
+            <article>
+                <img src="https://d2w9rnfcy7mm78.cloudfront.net/36235648/original_0a17bd39f169663d340489479746068f.gif?1745552135?bc=0" alt="Overhead view of a person's hands tossing chips at a phone screen placed in a red meal tray compartment, where each chip's contact with the screen prompts the video to scroll.">
+                <details>
+                    <summary>UGTVWMWZ  2-Piece Silverware Flatware Set, Silicone Dishware Safe (City Chic) Adult Diet Tableware, Includes 1 Fork 1 Plate, Modular Configurable for Mealtime Relaxation, Destress Set for Teens Adults Halloween Christmas Gift) (Nov 2024)</summary>
+                    <p>Investigating the role mealtime videos choreograph expectations around dining, a mockup of a tray with embedded screens (roughly demonstrated above) that maximizes media absorption. Instead of assigning mealtime videos any moral judgment, the tray seeks to fuse media and dietary absorption, such that eating and interacting with food is situated as a means to an end — near-constant immersion into frenetic, serialized, always-on media. In this clip, the user launches pieces of food at respective compartments to scroll through media.</p>
+                    <p>In collaboration with Jocelyn Kiefel and <a href="https://www.linkedin.com/in/yousif-alnajjar/">Yousif Alnajjar</a>.</p>
+                </details>
+            </article>
+            
+            <article>
+                <img src="https://d2w9rnfcy7mm78.cloudfront.net/36235649/original_44d9b6fe5e4d492576c1d3b156b8716b.gif?1745552137?bc=0" alt="A small LCD display shows the hosting service, state, and local weather of internet router data. The LCD is positioned on a small platform comprising various orange, green, blue, and yellow LEGO blocks. The background is green.">
+                <details>
+                    <summary>Data Entanglement (Oct 2024)</summary>
+                    <p>
+                        A reflection on how the data I produce flows through my local internet of things: 
+                        particularly interested in the materiality of the internet (specifically, my router data), 
+                        I found a 2021 <a href="https://www.ftc.gov/system/files/documents/reports/look-what-isps-know-about-you-examining-privacy-practices-six-major-internet-service-providers/p195402_isp_6b_staff_report.pdf">Federal Trade Commission report</a> 
+                        examining how six major internet service providers (mine included) “amass large pools 
+                        of sensitive data, and that their uses of such data could lead to significant harms, 
+                        particularly when consumers are classified by demographic characteristics.”
+                    </p>
+                    <img src="https://d2w9rnfcy7mm78.cloudfront.net/32393144/original_0a75fee5e1c9accb0da357aa4acf2191.png?1732150669?bc=0" alt="Overhead photo of a LCD display hooked up to a microcontroller, wires, rotating knob, and breadboard, all atop a LEGO structure. The paper in the background on which all is set atop is a saturated green color. A light blue, opaque piece of plastic curves around, above the breadboard, diffusing the bright red light of the electronics underneath.">
+                    <p>Rotating the knob/dial refreshes server locations between which data packets travel: this includes the hosting service, state, and local weather.</p>
+                    
+                </details>
+            </article>
+
+            <article>
+                <video controls src="https://attachments.are.na/36501633/aae38ddffb7126d8a5684bcb276bfbfe.mp4?1746565101"></video>
+                <p class="vd">Video description: a cursor places words, which flock and scatter about in a light gray expanse.</p>
+                <details>
+                    <summary>Various sketches at Labs (Jan 2024)</summary>
+                    <p>A couple creative coding sketches completed when at Google Labs using “gen AI” user-generated content.</p>
+                    <p>(above) “mumurations” — <a href="https://x.com/GoogleLabs/status/1745528048806457750">Twitter</a></p>
+                    <video controls src="https://attachments.are.na/36501632/2b521df4ed0f6edb67f4840f0aea0922.mp4?1746565102"></video>
+                    <p>“colors in a fire” — <a href="https://x.com/GoogleLabs/status/1747729715337580748">Twitter</a></p>
+                    <p class="vd">Video description: pixels of a webcam feed pulse to the rhythm of an ambient soundscape. The color of the video shifts between pinks/reds, greens, and yellow.</p>
+                    <video controls src="https://attachments.are.na/36501634/6045f868f92ae6e167088d176c180e26.mp4?1746565102"></video>
+                    <p class="vd">“melting time” — <a href="https://x.com/GoogleLabs/status/1752376361925185936">Twitter</a></p>
+                    <p>Video description: a cursor drags an array of colors in vibrant hues across a black background; the colors shimmer and blur, reacting to audio input.</p>
+                    <video width="100%" controls src="https://attachments.are.na/36501635/2492eb4eda1e1c87ce574d8f060802df.mp4?1746565102"></video>
+                    <p>“temperature of unspoken words” — <a href="https://x.com/GoogleLabs/status/1752768857737941336">Twitter</a></p>
+                    <p class="vd">Video description: a cursor drags an array of colors in vibrant hues across a black background; the colors shimmer and blur, reacting to audio input</p>
+                </details>
+                
+                
+                
+            </article>
+
+        </section>
+
+        <section id="verso">
+            <div id="corpus">
+                <article id="wares">
+                    <ul>
+                        <h1>ads, feeling</h1>
+                        <li><a class="ads" href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/">Feelings at the Edge: A Chumbox Tour</a></li>
+                        <li><a class="ads" href="https://gesture-as-meme.glitch.me/">Gestures of Being as Meme</a></li>
+                        <li><a class="ads" href="https://www.instagram.com/p/CV5_yoVr3RO/?img_index=1">(untitled test)</a></li>
+                        <li><a class="ads" href="https://liuleslie.github.io/alainifnchm">as long as im not in fullscreen nothing can hurt me</a></li>
+                        <li><a class="gaze" href="https://www.instagram.com/p/CLi9KhjBhw4/?img_index=1">Who is searching me up on LinkedIn and what do they want from me?</a></li>                        
+                    </ul>
+                    <ul>
+                        <h1>media, interface</h1>
+                        <li><a class="media" href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/">Wheatpaste Mockups: Gestures of Transgression</a></li>
+                        <li><a class="media" href="essays/e3.html">Feeling From the Margins</a></li>
+                        <li><a class="media" href="https://liuleslie.github.io/essays/e1.html">Existentialism at the grocery store</a></li>
+                        <li><a class="media" href="essays/e4.html">Subway Surfers TikToks: Transcending Time and Space</a></li>
+                        <li><a class="interface" href="https://backslashlit.com/issues/5/leslie-liu">oneness</a></li>
+                    </ul>
+                    <ul>
+                        <h1>miscellaneous</h1>
+                        <li><a class="misc" href="notes/n1.html">on love & joy in being</a></li>
+                        <li><a class="misc" href="https://www.are.na/blog/on-connection">On Connection</a></li>
+                        <li><a class="misc" href="essays/e2.html">Layer 29 of the Internet Onion: A Question as a Gift</a></li>
+                        <li><a class="misc" href="https://somewhere-always.glitch.me/">somewhere always</a></li>
+                        <li><a class="misc" href="https://www.instagram.com/p/CyHeyITRIpc/?img_index=1">Window &lt; &gt; Slippers</a></li>
+                    </ul>
+
+                </article>
+                <article id="commonplace">
+
+                    <blockquote class="quoteback" darkmode="" data-title="An%20Interview%20with%20Malte%20M%C3%BCller%20%7C%20Are.na%20Editorial" data-author="Malte Müller" cite="https://www.are.na/editorial/an-interview-with-malte-mueller">
+                        I really want everyone to be themselves as much as they can, all the time. I want that from everyone because, in my mind, like you say, that's the interesting part of the person. Expressing your inner self is sometimes confusing or might not fit certain preconceptions, so I really root for people to do it. Maybe that’s the extrovert in me talking — it might be a very daunting thought for people who are not comfortable with it. But I just desperately want to understand what your position is. To me that has a lot to do with being honest.
+                        <footer>Malte Müller<cite><a href="https://www.are.na/editorial/an-interview-with-malte-mueller">https://www.are.na/editorial/an-interview-with-malte-mueller</a></cite></footer>
+                        </blockquote>
+                        <script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                    
+                    <blockquote class="quoteback" darkmode="" data-title="Intimacy%20and%20the%20Machine%3A%20Gamergirl%20Bathwater%20%E2%80%93%20or%3A%20%E2%80%9CIs%20Hentai%20Art%E2%80%9D%3F%20-%20Various%20Artists" data-author="Biz Sherbert" cite="https://various-artists.com/intimacy-and-the-machine/">
+                        She has a bone structure that elicits engagement,
+                        <footer>Biz Sherbert<cite> <a https://various-artists.com/intimacy-and-the-machine/">https://various-artists.com/intimacy-and-the-machine/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="Intimacy%20and%20the%20Machine%3A%20Godposting%20%E2%80%93%20or%3A%20New%20Internet%20Esotericism%20-%20Various%20Artists" data-author="Biz Sherbert" cite="https://various-artists.com/godposting/">
+                        At the heart of all this motion is a lust for crawling through someone else’s ambiguity, in staring at a post or profile for longer than the machine’s trained you to, in the toothsome frustration of trying to figure out what’s a revelation, what’s a dark joke, and what’s just the result of a chemically imbalanced brain and an eternally available keyboard.
+                        <footer>Biz Sherbert<cite> <a https://various-artists.com/godposting/">https://various-artists.com/godposting/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="Everyone%20Is%20Beautiful%20and%20No%20One%20Is%20Horny%20-%20Blood%20Knife" data-author="RS Benedict" cite="https://bloodknife.com/everyone-beautiful-no-one-horny/">
+                        When a nation feels threatened, it gets swole.
+                        <footer>RS Benedict<cite> <a https://bloodknife.com/everyone-beautiful-no-one-horny/">https://bloodknife.com/everyone-beautiful-no-one-horny/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="What%20the%20caves%20are%20trying%20to%20tell%20us" data-author="Sam Kriss" cite="https://theoutline.com/post/2209/what-the-caves-are-trying-to-tell-us">
+                        This is an incredible violence against that lost universe, a place grander and stranger than we could possibly imagine.
+                        <footer>Sam Kriss<cite> <a https://theoutline.com/post/2209/what-the-caves-are-trying-to-tell-us">https://theoutline.com/post/2209/what-the-caves-are-trying-to-tell-us</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="Dan%20Taeyoung" data-author="" cite="https://dantaeyoung.com/">
+                        Is an aesthetics ever possible without a power that enforces it? Is aesthetics itself ever NOT a manifestation of power in terms of form/vision/taste?
+                        <footer><cite> <a https://dantaeyoung.com/">https://dantaeyoung.com/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="Sand%20in%20the%20gears" data-author="Ingrid Burrington" cite="https://thecreativeindependent.com/essays/sand-in-the-gears/">
+                        For all the alchemy and labor that make iPhones appear untouched by human hands, at the end of the day all digital devices are just a bunch of slowly accumulated rocks, refined with chemicals and petroleum.
+                        <footer>Ingrid Burrington<cite> <a https://thecreativeindependent.com/essays/sand-in-the-gears/">https://thecreativeindependent.com/essays/sand-in-the-gears/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="Early%20Web%20Design%20Helped%20a%20Generation%20Express%20Themselves%20Online.%20How%20Do%20We%20Capture%20That%20Feeling%20Again%3F" data-author="" cite="https://eyeondesign.aiga.org/early-web-design-helped-generation-express/">
+                        There is no longer a practical need for energetic, messy community sites, but what is life without desire? The need to be seen and to participate digitally and otherwise endures.
+                        <footer><cite> <a https://eyeondesign.aiga.org/early-web-design-helped-generation-express/">https://eyeondesign.aiga.org/early-web-design-helped-generation-express/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="False%20Passives%20%E2%80%93%20Anna%20Badkhen" data-author="@emergence_zine" cite="https://emergencemagazine.org/essay/false-passives/">
+                        From the highway’s west shoulder, wooded scarps clawed at infinite low cloud.
+                        <footer>@emergence_zine<cite> <a https://emergencemagazine.org/essay/false-passives/">https://emergencemagazine.org/essay/false-passives/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="AWX" data-author="" cite="http://feral.earth/">
+                        Turns out the world always already was an internet, and websites are just kites.
+                            
+                        <footer><cite> <a http://feral.earth/">http://feral.earth/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="The Simple Site" data-author="" cite="https://the-simple-site.neocities.org/about.html">
+                        I am just one man, "The Man", surfing the web and posting links.
+                        <footer><cite> <a https://the-simple-site.neocities.org/about.html">https://the-simple-site.neocities.org/about.html</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="The%20Potential%20of%20a%20Garden" data-author="" cite="http://radicalsradicants.com/essays/potentialofagarden/">
+                        <p>Naming is control. It establishes, if not ownership, at least a relationship of some intimacy as well as a chain of bizarre equivalences: a set of wiggles in the muscles of the mouth and larynx = a set of phonemes = a constellation of letters = a star. It’s a pretty arbitrary chain, but it’s all that allows us to talk about the world. But what does it mean to name something that cannot hear you, in a world that doesn’t care?</p>
+                        
+                        <p>Susan Tallman, <em>The Collections of Barbara Bloom</em>, 2007, p. 45.</p>
+                        <footer><cite> <a http://radicalsradicants.com/essays/potentialofagarden/">http://radicalsradicants.com/essays/potentialofagarden/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="Essay%3A%20How%20do%20you%20describe%20TikTok%3F" data-author="Kyle Chayka" cite="https://kylechayka.substack.com/p/essay-how-do-you-describe-tiktok">
+                        In fact, just surfing TikTok feels vaguely creative, as if you move through the field of content with your mind alone.&nbsp;
+                        <footer>Kyle Chayka<cite> <a https://kylechayka.substack.com/p/essay-how-do-you-describe-tiktok">https://kylechayka.substack.com/p/essay-how-do-you-describe-tiktok</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="Essay%3A%20The%20digital%20death%20of%20collecting" data-author="Kyle Chayka" cite="https://kylechayka.substack.com/p/essay-the-digital-death-of-collecting">
+                        As a child of the 20th century I have often wondered why people turned to posting their personal memorabilia online in the first place—as opposed to keeping their artifacts to themselves, to be shared selectively and in person. It seems to me that the moment one embraces an Internet-enabled technology as a medium for sharing one’s lived experience, one is implicitly relinquishing control over those experiences. 
+                        <footer>Kyle Chayka<cite> <a https://kylechayka.substack.com/p/essay-the-digital-death-of-collecting">https://kylechayka.substack.com/p/essay-the-digital-death-of-collecting</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="The%20Aesthetics%20of%20Efficiency%20%E2%80%A2%20Infinite%20Caesura" data-author="@theflowingsky" cite="https://infinitecaesura.com/essays/automation#fn-:fig:1">
+                        This is the most important design issue today: that design is <em>always</em> imbued with a political rinse — it is not a pure medium, and it does not exist in a vacuum; design is always situated in a grander play of power.
+                        <footer>@theflowingsky<cite> <a https://infinitecaesura.com/essays/automation#fn-:fig:1">https://infinitecaesura.com/essays/automation#fn-:fig:1</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="Eat%20Your%20Feelings%20with%20Lazy%20Dog%E2%80%99s%20Nostalgic%20TV%20Dinners" data-author="@5280magazine" cite="https://www.5280.com/2021/09/eat-your-feelings-with-lazy-dogs-nostalgic-tv-dinners/">
+                        The mix of utility and nostalgia ended up being a boon for business—and for people looking for an easy, memorable meal in a format they loved.
+                        <footer>@5280magazine<cite> <a https://www.5280.com/2021/09/eat-your-feelings-with-lazy-dogs-nostalgic-tv-dinners/">https://www.5280.com/2021/09/eat-your-feelings-with-lazy-dogs-nostalgic-tv-dinners/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="These%20Viral%20'Mukbang'%20Stars%20Get%20Paid%20to%20Gorge%20on%20Food%E2%80%94at%20the%20Expense%20of%20Their%20Bodies" data-author="@MensHealthMag" cite="https://www.menshealth.com/health/a25892411/youtube-mukbang-stars-binge-eat/">
+                        “Given that I am not into the typical partying, I found I was having quite a bit of free time and felt a little lonely,” she explains to <em>Men's Health</em>. "I don’t know how I came across those types of videos initially, but I honestly think at my lowest, they made me feel less alone.” 
+                        <footer>@MensHealthMag<cite> <a https://www.menshealth.com/health/a25892411/youtube-mukbang-stars-binge-eat/">https://www.menshealth.com/health/a25892411/youtube-mukbang-stars-binge-eat/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="Into%20the%20Universe%20of%20Rendered%20Architectural%20Images" data-author="" cite="https://unthinking.photography/articles/into-the-universe-of-rendered-architectural-images">
+                        the future will look much the same as the present; there will simply be more of it.
+                        <footer><cite> <a https://unthinking.photography/articles/into-the-universe-of-rendered-architectural-images">https://unthinking.photography/articles/into-the-universe-of-rendered-architectural-images</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="asking%20questions%20%E2%80%94%20dylan%20flah" data-author="" cite="https://worldwidedylan.com/cv">
+                        the phalanges typing this wish to tell you they or any part connected do not identify with gender or sexuality.
+                        <footer><cite> <a https://worldwidedylan.com/cv">https://worldwidedylan.com/cv</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="Birds%20Aren%E2%80%99t%20Real%2C%20or%20Are%20They%3F%20Inside%20a%20Gen%20Z%20Conspiracy%20Theory." data-author="@nytimes" cite="https://www.nytimes.com/2021/12/09/technology/birds-arent-real-gen-z-misinformation.html">
+                        “It’s a way to combat troubles in the world that you don’t really have other ways of combating,” said Claire Chronis, 22, a Birds Aren’t Real organizer in Pittsburgh. “My favorite way to describe the organization is fighting lunacy with lunacy.”
+                        <footer>@nytimes<cite> <a https://www.nytimes.com/2021/12/09/technology/birds-arent-real-gen-z-misinformation.html">https://www.nytimes.com/2021/12/09/technology/birds-arent-real-gen-z-misinformation.html</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="The%20brilliance%20of%20Britta%20Perry%2C%20%E2%80%98Community%E2%80%99s%E2%80%99%20prophetic%20activist%20killjoy" data-author="@WashingtonPost" cite="https://www.washingtonpost.com/news/act-four/wp/2015/03/20/the-brilliance-of-britta-perry-communitys-prophetic-activist-killjoy/">
+                        But she is a useful caution about the dangers of substituting positions for feelings and opinions and mistaking what’s important to you for what’s important, period. Ending up homeless because you’re holding on to your teenage&nbsp;resentments&nbsp;doesn’t mean you know anything important about poverty. Giving up work you might enjoy and be good at defeats no interests other than your own. And you won’t be able to change the world if you’re too perpetually affronted to actually live in it.
+                        <footer>@WashingtonPost<cite> <a https://www.washingtonpost.com/news/act-four/wp/2015/03/20/the-brilliance-of-britta-perry-communitys-prophetic-activist-killjoy/">https://www.washingtonpost.com/news/act-four/wp/2015/03/20/the-brilliance-of-britta-perry-communitys-prophetic-activist-killjoy/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="About" data-author="ThisCouldBeBetter" cite="https://thiscouldbebetter.wordpress.com/about/">
+                        The motto “This Could Be Better” is not about a single post, but about life in general.  It could be seen either as really optimistic or really pessimistic, or both, which describes my personal philosophy pretty well
+                        <footer>ThisCouldBeBetter<cite> <a https://thiscouldbebetter.wordpress.com/about/">https://thiscouldbebetter.wordpress.com/about/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="Flat%20Journal" data-author="@flat_journal" cite="https://flatjournal.com/">
+                        What is it to touch without feeling, or perhaps, with a new understanding and experience of feeling?
+                        <footer>@flat_journal<cite> <a https://flatjournal.com/">https://flatjournal.com/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="Notes%20on%20Design%20Populism%20%7C%20ENTREPRECARIAT" data-author="@INCAmsterdam" cite="https://networkcultures.org/entreprecariat/notes-on-design-populism/">
+                        An elite is not necessarily an exploitative formation, but simply a closed group of people who determines their own criteria of inclusion. Design education, even when it is blatantly anti-capitalist, horizontal and the like, is doing exactly that: determining the criteria of inclusion within its cultural circle.
+                        <footer>@INCAmsterdam<cite> <a https://networkcultures.org/entreprecariat/notes-on-design-populism/">https://networkcultures.org/entreprecariat/notes-on-design-populism/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="Internship%20nightmare%20crawler%20Going%20Under%20is%20a%20darkly%20empowering%20adventure" data-author="@thefastpitch" cite="https://www.thepitchkc.com/going-under-is/">
+                        Workers themselves know better than anyone else what’s right for them and what needs to change about their conditions. More people just need to listen to them, to have some damn empathy for each other.
+                        <footer>@thefastpitch<cite> <a https://www.thepitchkc.com/going-under-is/">https://www.thepitchkc.com/going-under-is/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="The%20Abolition%20of%20Work" data-author="" cite="https://theanarchistlibrary.org/library/bob-black-the-abolition-of-work">
+                        What I really want to see is work turned into play.
+                        <footer><cite> <a https://theanarchistlibrary.org/library/bob-black-the-abolition-of-work">https://theanarchistlibrary.org/library/bob-black-the-abolition-of-work</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="Costco%20Capitalism" data-author="@bryanelehrer" cite="https://www.bryanlehrer.com/entries/costco/">
+                        Costco is not a principally moral company. It's moral only to the extent that it can do this while creating the same or higher amounts of value for its customers. It doesn't set but follows the standards of decency of its customers.
+                        <footer>@bryanelehrer<cite> <a https://www.bryanlehrer.com/entries/costco/">https://www.bryanlehrer.com/entries/costco/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="home%20%E2%80%94%20Tiny%20Ruins" data-author="" cite="https://www.tinyruins.com/home">
+                        <blockquote data-animation-role="quote">“She is always looking uneasily toward the next line, or moving toward mysticism. In sentimental contexts, she generates lines of wicked ambition.”
+                        </blockquote>
+                        — The New York Times
+                        <footer><cite> <a https://www.tinyruins.com/home">https://www.tinyruins.com/home</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="Abed%20from%20Community%20Is%20My%20Autistic%20Icon" data-author="@EscapistMag" cite="https://www.escapistmagazine.com/abed-from-community-is-my-autistic-icon/">
+                        That idea of dealing with a world that is gray with a mind that tries to see in black and white, of trying to push the square shaped peg into the round hole, is so integral to understanding our struggles not just as people on the spectrum, but as humans. When your life is filtered through media, it’s difficult to accept a reality where you don’t always ride off into the sunset. This is what it means to be on the spectrum.
+                        <footer>@EscapistMag<cite> <a https://www.escapistmagazine.com/abed-from-community-is-my-autistic-icon/">https://www.escapistmagazine.com/abed-from-community-is-my-autistic-icon/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="S01%20Episode%206%3A%20Being%20Cute%20in%20WeChat%E2%80%99s%20%22Moodboard%20Industrial%20Complex%22" data-author="Chaoyang Trap" cite="https://chaoyang.substack.com/p/ep6-wechat-sticker-design-is-my-passion">
+                        <a https://www.reuters.com/article/us-china-congress-millennials-insight/for-chinese-millennials-despondency-has-a-brand-name-idUSKCN1BF2J7" rel="noopener" target="_blank">“sang” 丧 culture</a> 
+                        <footer>Chaoyang Trap<cite> <a https://chaoyang.substack.com/p/ep6-wechat-sticker-design-is-my-passion">https://chaoyang.substack.com/p/ep6-wechat-sticker-design-is-my-passion</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="Crush" data-author="Larissa Pham" cite="https://believermag.com/larissa-pham-crush/">
+                        I’m curious now, though, about a word Carson uses—<em>concern</em>—which implies a fear of loss, and instilling that fear, a care for the self I didn’t have when we met. For I was never afraid of dissolution by desire, not the way the ancient Greeks put it—I wonder if they weren’t truly afraid of Eros, but if describing it with violence was simply a way of honoring its power, the same way they venerated their other gods. But I don’t know what comes after, once I decide to let desire have its way with me. 
+                        <footer>Larissa Pham<cite> <a https://believermag.com/larissa-pham-crush/">https://believermag.com/larissa-pham-crush/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="beep%20boop" data-author="" cite="https://zannah.neocities.org/about.html">
+                        loves technology and shiny things, but has never been mistaken for a crow.
+                        <footer><cite> <a https://zannah.neocities.org/about.html">https://zannah.neocities.org/about.html</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="%E5%B9%BF%E7%85%9C%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%96%E7%95%8C" data-author="" cite="https://www.douban.com/group/topic/1411237/">
+                        他在一幅作品中大胆地将汉字和英文统一为宋体，这基本上犯了设计的大忌，而广煜自己解释说，这样设计正是为了表达东西方文明的交汇、冲突，以及人们在这种冲突中表现出来的激动和茫然若失，“那些随处可见的粗糙的英文，以及用汉语拼音来表现时髦的表达方式，不是我们现在生活的写照吗？”
+                        
+                        <footer><cite> <a https://www.douban.com/group/topic/1411237/">https://www.douban.com/group/topic/1411237/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="A%20harm-reduction%20guide%20to%20using%20your%20phone%20less" data-author="@thecreativeindp" cite="https://thecreativeindependent.com/essays/a-harm-reduction-guide-to-using-your-phone-less/">
+                        I imagine it would be nice if there were more spaces and rooms where leaving your phone outside was a suggestion similar to taking off your shoes.
+                        <footer>@thecreativeindp<cite> <a https://thecreativeindependent.com/essays/a-harm-reduction-guide-to-using-your-phone-less/">https://thecreativeindependent.com/essays/a-harm-reduction-guide-to-using-your-phone-less/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="A%20Book%20is%20Technology%3A%20An%20Interview%20with%20Tan%20Lin" data-author="" cite="https://rhizome.org/editorial/2012/oct/24/interview-tan-lin/">
+                        But I think that reading that ends in an emotion is lame; I like it more when literature generates not a distinct emotion or feeling but a more generalized overall mood, and I like this more because I think it’s more reflective of the way we actually spend most of our lives.
+                        <footer><cite> <a https://rhizome.org/editorial/2012/oct/24/interview-tan-lin/">https://rhizome.org/editorial/2012/oct/24/interview-tan-lin/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="on%20abandoning%20capitalistic%20achievement%20to%20seek%20the%20freedom%20of%20play" data-author="@thecreativeindp" cite="https://thecreativeindependent.com/people/poet-and-professor-ross-gay-on-abandoning-capitalistic-achievement-to-seek-the-freedom-of-play/">
+                        <p><strong>I love that at any given moment, people are preparing dinner, crying, talking to their mom, whatever and Ross Gay is probably around in the building rollerskating.</strong></p>
+                        
+                        <p>He’s rollerskating.</p>
+                        
+                        <p><strong>That’s so precious to me.</strong></p>
+                        <footer>@thecreativeindp<cite> <a https://thecreativeindependent.com/people/poet-and-professor-ross-gay-on-abandoning-capitalistic-achievement-to-seek-the-freedom-of-play/">https://thecreativeindependent.com/people/poet-and-professor-ross-gay-on-abandoning-capitalistic-achievement-to-seek-the-freedom-of-play/</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+                        
+                        <blockquote class="quoteback" darkmode="" data-title="On%20Worlding%20%20%E2%80%94%20Are.na" data-author="@aredotna" cite="https://www.are.na/blog/on-worlding">
+                        in school it was obvious that design was about balancing order and chaos (see: adages like making and breaking the grid, learning the rules so you can break them, etc). But I was hungry for that third thing, that spirituality, for lack of a better term, that makes something feel like worlding.
+                        <footer>@aredotna<cite> <a https://www.are.na/blog/on-worlding">https://www.are.na/blog/on-worlding</a></cite></footer>
+                        </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+    
+                </article>
+            </div>
+            
+            <article id="colophon">
+                <h1>Colophon and Company</h1>
+                <p>This HTML is typset in <a href="http://osp.kitchen/foundry/fluxisch-else/">Fluxisch Else</a>, if it loads for you. Commonplace quotes facilitated by <a href="https://quotebacks.net/">Quotebacks</a>. Thanks to <a href="">Fruitful School</a>, <a href="https://html.energy">HTML Energy</a>, <a href="https://multidimensional.link/southland?">more*</a>, <a href="https://pitscher.net">Pitscher</a>, <a href="https://solar.lowtechmagazine.com">Low-tech Magazine</a>, and many more not listed here for their influence. <a href="https://gossipsweb.net">Coded from scratch</a> and in constant revision.</p>
+                <p><a href="http://users3.smartgb.com/g/g.php?a=s&i=g36-36279-2f">A guestbook</a>, if it strikes your fancy to leave a message.</p>
+            </article>
+        </section>
+
+
+
+
+
+
+        <!-- <main>
+            
 
             <section id="webkeeper">
                 <h1>Leslie Liu</h1>
@@ -57,7 +453,6 @@
                 <ul>
                     <li><a href="io/io.html">Scrappy input/output log</a></li>
                     <li><a href="https://densegut.tiddlyhost.com/">Blog</a></li>
-                    <!-- <li><a href="https://liuleslie.github.io/portfolio/index.html">Projects (2020–23)</a></li> -->
                 </ul>
                 <h1>Writing</h1>
                 <ul id="texts">
@@ -70,11 +465,9 @@
                     <li><a class="media" href="essays/e3.html">Feeling From the Margins</a></li>
                     <li><a class="interface" href="https://backslashlit.com/issues/5/leslie-liu">oneness</a></li>
                     <li><a class="misc" href="https://somewhere-always.glitch.me/">somewhere always</a></li>
-                    <!-- <li><a class="gaze" href="https://www.instagram.com/p/CLi9KhjBhw4/?img_index=1">Who is searching me up on LinkedIn and what do they want from me?</a></li> -->
                     <li><a class="ads" href="https://www.instagram.com/p/CV5_yoVr3RO/?img_index=1">(untitled test)</a></li>
                     <li><a class="media" href="https://liuleslie.github.io/essays/e1.html">Existentialism at the grocery store</a></li>
                     <li><a class="ads" href="https://liuleslie.github.io/alainifnchm">as long as im not in fullscreen nothing can hurt me</a></li>
-                    <!-- <li><a class="misc" href="https://www.instagram.com/p/CyHeyITRIpc/?img_index=1">Window &lt; &gt; Slippers</a></li> -->
                     <li><a class="media" href="essays/e4.html"><em>Subway Surfers</em> TikToks: Transcending Time and Space</a></li>
                 </ul>
             </section>
@@ -98,9 +491,10 @@
                 </blockquote>
             </section>            
 
+
             <section id="colophon">
                 <h1>Colophon</h1>
-                <p><a href="https://en.wikipedia.org/wiki/Colophon_(publishing)#History">Rewritten, thank God.</a> This is self-contained HTML set in <a href="http://osp.kitchen/foundry/fluxisch-else/">Fluxisch Else</a>.</p>
+                
                 <details>
                     <summary>Why and how, ”self-contained?”</summary>
                     <p>There has always been something charming about a self-contained website to me. 
@@ -123,7 +517,7 @@
                 <p><a href="https://gossipsweb.net">Coded from scratch</a> and in constant revision.</p>
             </section>
 
-        </main>
+        </main> -->
     </body>
 </html>
 

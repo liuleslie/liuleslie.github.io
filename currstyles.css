@@ -1,0 +1,15 @@
+body {padding-right:50vw;line-height:1.5em;font-size:15px} /* originally 50vw */
+pre {white-space: pre-wrap;}
+.center {text-align:center;}
+.ramble {color:gray;}
+.highlight {background-color:gainsboro;}
+h1 {font-size:1em;text-align:center}
+h2 {font-size:1em;}
+#threeup {display:grid;grid-template-columns:1fr 1fr 1fr;}
+aside {padding: 0 0 1em 2em}
+img {display:block;margin:0 auto;width:100%}
+img.sml {width:50%}
+img.med {width:75%}
+a {color:purple;text-decoration:1px purple solid underline}
+a:hover {color:red;text-decoration:none}
+@media (max-width: 700px) {body {padding-right:0}}
