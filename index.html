@@ -12,110 +12,55 @@
         <base target="_self">
         <style>
             body {
-               font-family:'FEBold',sans-serif;font-size:16px;line-height:1.3;letter-spacing:0.6px;
+                font-family:'FEBold',sans-serif;font-size:16px;line-height:1.3;letter-spacing:0.6px;
                 background-color:whitesmoke;color:black;
             }
-            
             main {max-width:800px;left:0}
             nav {display:block;position:fixed; top:1em; right:2.5em; text-align:right}
-            
-            img, section {
-                display:block;
-                /* position:sticky;top:1em; */
-                width:100%;
-                /* box-shadow:2px 3px 10px rgba(0,0,0,0.2); */
-                margin: 4em auto 4em 1em;
-            }
+            nav a {text-decoration:1px black dotted underline}
+            img, section {display:block; max-width:100%; margin: 4em auto 4em 1em;}
             
             section {padding:0.5em 1.25em 0.75em 2em;margin-top:0;}
             #colophon {margin:8em 0 2em 1em}
 
             a {color:black; text-decoration:1px black solid underline}
-            a:hover {text-decoration:none}
+            a:hover, a:hover {text-decoration:none}
 
             @media (max-width:800px) {
                 body {font-size:15px;}
                 img {width:100%;height:100%}
+                img, section {margin:0}
+                nav {display:none}
             }
-
-            
         </style>
     </head>
     
     <body>
         <main>
             <nav>
-                <a style="text-decoration:1px black dotted underline" href="#impressum">— top —</a><br>
-                <a href="#sentence1">SENTENCE sketch</a><br>
-                <a href="#composable2">COMPOSABLE 2</a><br>
-                <a href="#composable1">COMPOSABLE 1</a><br>
-                <a href="#abject-surrender">ABJECT/SURRENDER</a><br>
-                <a style="text-decoration:1px black dotted underline" href="#colophon">— colophon —</a><br>
+                <a href="#impressum">top</a><br>
+                <a href="#colophon">bottom</a><br>
             </nav>
-            
             
             <article id="snaps">
                 <section id="impressum">
-                    <img style="z-index:1;box-shadow:none;margin:0 0 1em 0;width:50%"src="2025/mbta-pizza.png" alt="A slice of pizza, face down, on the floor of a bus, with empty blue seats above.">
+                    <img style="margin:0 0 1em 0;width:50%"src="2025/mbta-pizza.png" alt="A slice of pizza, face down, on the floor of a bus, with empty blue seats above.">
                     <p>Leslie Liu</p>
                     <p><a href="https://densegut.tiddlyhost.com">Blog</a>, <a href="https://liuleslie.github.io/now">Now</a>, <a href="https://users3.smartgb.com/g/g.php?a=s&i=g36-36279-2f">Guestbook</a></p>
-                    
-                    
-                </blockquote>
-                
                 </section>
-                
-                <img id="sentence1" style="z-index:996" src="https://d2w9rnfcy7mm78.cloudfront.net/36913178/original_0640809be1b6c07a8a65c73672c5ca4b.gif?1747979149?bc=0" alt="Red circles and chartreuse numbers, each corresponding to a digit/point on a tracked hand, move around on a dark olive background. the red circles are tracked to the user's left and right index fingers and thumbs, respectively.">
-                <img id="composable1" style="z-index:997" src="https://d2w9rnfcy7mm78.cloudfront.net/36912548/original_a0233b4bb582cfd483d2c6ab39fdb898.png?1747975890?bc=0" alt="Two images of a mountain: above, lush sprawling green hills and below, a dried plain. Both are overlaid with various memes.">
-                <img id="composable2" style="z-index:998" src="https://d2w9rnfcy7mm78.cloudfront.net/36912549/original_d8dcade3203297d484f45b82212b4906.png?1747975890?bc=0" alt="Overlapping memes: various levels of depth and obscurity along the altitude of an iceberg, overlaid with various images of people’s brains expanding, and two astronauts confronting the earth.">
-                <img id="abject-surrender" style="z-index:999" src="https://d2w9rnfcy7mm78.cloudfront.net/33134279/original_88dbd12867159d0c10c52b8c90ce8b49.png?1734765266?bc=0" alt="An x-y box plot of seven memes, plotted on varying degrees of 'level of surrender' v. 'abjection.'">
+                <img src="https://d2w9rnfcy7mm78.cloudfront.net/36924383/original_a8474963e6cfdf00418b7d7994389c93.png?1748025905?bc=0" alt="Screenshot of a Tweet from the Pittsburgh Scanner on May 11, 2025that reads, Lawrenceville. 44th Street. If you accidentally left your rooster in your locked car, PD is about to break your window.">
+                <img src="https://d2w9rnfcy7mm78.cloudfront.net/36924384/original_904c23dbbd4cbcfd271db4f15accc82d.png?1748025906?bc=0" alt="Above a table covered in white paper, upon which are placed some juice, cups, cookies, and bananas on a reflective metal tray. Above the table is tapped to the wall two signs that, together, read—Food For the Artists—with a smiley face.">
+                <img id="composable1" src="https://d2w9rnfcy7mm78.cloudfront.net/36912548/original_a0233b4bb582cfd483d2c6ab39fdb898.png?1747975890?bc=0" alt="Two images of a mountain: above, lush sprawling green hills and below, a dried plain. Both are overlaid with various memes.">
+                <img id="composable2" src="https://d2w9rnfcy7mm78.cloudfront.net/36912549/original_d8dcade3203297d484f45b82212b4906.png?1747975890?bc=0" alt="Overlapping memes: various levels of depth and obscurity along the altitude of an iceberg, overlaid with various images of people’s brains expanding, and two astronauts confronting the earth.">
+                <img id="abject-surrender" src="https://d2w9rnfcy7mm78.cloudfront.net/33134279/original_88dbd12867159d0c10c52b8c90ce8b49.png?1734765266?bc=0" alt="An x-y box plot of seven memes, plotted on varying degrees of 'level of surrender' v. 'abjection.'">
+                <img src="2025-past/tote1.png" alt="Yellow screenprinted poster on a light brown poster, laid on a concrete floor. Large text on the poster reads, UNYIELDING RESILIENCE: Unleash Your Creativity. Self-Actualize Via Tote Bag.">
+                <img src="2025-past/teabag.png" alt="Monochrome red-brown closeup image of a hand holding a glass, inside which is a teabag whose tag reads, We all want to be understood, to be acknowledged, to be loved.">
+                <img src="2025-past/20230519.png" alt="Sun glitter gleam warmly at the surfae of water at sunset. In the foreground is a tree.">
+                <img src="2025/20230514.png" alt="Sun glitter glimmers across inky, teal-ultramarine surfaces of water.">
                 <section id="colophon">
                     <p><a href="https://en.wikipedia.org/wiki/Colophon_(publishing)#History">Rewritten, thank God.</a> This is self-contained HTML set in <a href="http://osp.kitchen/foundry/fluxisch-else/">Fluxisch Else</a>.</p>
                 </section>
             </article>
-
-
-
-
-<!-- 
-
-            <section id="quote" style="border-top: 2px gray solid">
-                <h1>Commonplace</h1>
-                <blockquote style="margin-left:2em">
-                    <span class="highlight">I really want everyone to be themselves as much as they can, all the time.</span> 
-                    I want that from everyone because, in my mind, like you say, that’s the interesting part of the person. 
-                    Expressing your inner self is sometimes confusing or might not fit certain preconceptions, so I really root for people to do it. 
-                    Maybe that’s the extrovert in me talking — it might be a very daunting thought for people who are not comfortable with it. 
-                    But <span class="highlight">I just desperately want to understand what your position is.</span> 
-                    To me that has a lot to do with being honest.
-                    <br><br>
-                    <cite style="padding-left:2em">Malte Müller, <a href="https://www.are.na/editorial/an-interview-with-malte-mueller">It’s Not Business, It’s Personal</a></cite>
-                </blockquote>
-            </section>  
-            
-            <section id="colophon" style="border-top: 2px gray solid">
-                <h1>Colophon</h1>
-                <p><a href="https://en.wikipedia.org/wiki/Colophon_(publishing)#History">Rewritten, thank God.</a> This is self-contained HTML set in <a href="http://osp.kitchen/foundry/fluxisch-else/">Fluxisch Else</a>.</p>
-                <details>
-                    <summary>Why and how, ”self-contained?”</summary>
-                    <p>There has always been something charming about a self-contained website to me. 
-                        This desire for the potential of expression made compact, travel-size, extends to other things: 
-                        sketchbooks, pockets, forms and multipurpose containers of information and thought.
-                    </p>
-                    <p>The infinite recomposability of a single HTML file is exciting to me: as I tab through 
-                        different past site-selves there is something resonant in the ways I am trying 
-                        to embody something more abstract, something aspirational: if my skeleton could be brutalist, 
-                        exacting somehow... and there is the tireless rewriting of a self, of this presence, 
-                        through the familiar tags and syntax, the usual sleight of hand by shoving things into 
-                        &lt;details&gt;.
-                    </p>
-                </details>
-                <p>Thanks to <a href="https://pitscher.net">Pitscher</a>, <a href="https://solar.lowtechmagazine.com">Low-tech Magazine</a>, <a href="https://html.energy">HTML Energy</a>, and <a href="https://multidimensional.link/southland?">more*</a> (amongst many more not listed) for their influence.</p>
-                <p><a href="https://gossipsweb.net">Coded from scratch</a> and in constant revision.</p>
-            </section> 
-            -->
-
-
         </main>
     </body>
 </html>
