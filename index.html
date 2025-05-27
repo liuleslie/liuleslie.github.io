@@ -12,80 +12,33 @@
         <base target="_self">
         <style>
             body {
-                font-family:'FEBold',sans-serif;font-size:16px;
-                line-height:1.3;letter-spacing:0.5px;
-                background-color:whitesmoke;color:black;
-                margin: 0.5em 1em 2em 0.75em; width:50vw;
+                font-family:'FEBold',sans-serif;font-size:16px;line-height:1.3;letter-spacing:0.5px;
+                background-color:whitesmoke;color:black;text-align:center;
+                max-width:50vw; margin:1em auto 2em auto;
             }
-            a {color:darkviolet;text-decoration:1.2px dotted darkviolet underline;}
-            a:hover {color:black;text-decoration:none;}
-            span.timestamp {color:slateblue;}
-            img {display:block;width:50vw}
-            h1 {font-size:1em;font-weight:normal;margin-top:2em}
-            section ul, section details, section p {padding-left:2em}
-            li {list-style:none}
-            span#advertise {color:red;padding-right:0.75em;letter-spacing:1px}   /* text-shadow:0px 1px 2px magenta,1px -1px 3px coral; */
-            @media (max-width:800px) {
-                body {width:90vw}
-            }
+            a {color:black;text-decoration:1 solid black underline;}
+            a:hover {text-decoration:none;}
+            details p, details a {color:gray}
+            img {display:block;margin:0 auto 1em auto;width:50vw}
+            h1 {font-size:1em;font-weight:normal;}
+            @media (max-width:800px) { img {width:100%} body {margin:1em;max-width:100%;} } 
         </style>
     </head>
-    
+
+    <!-- 
+    May 27, 2025, a Tuesday:
+    Within the span of a week I’ve changed this about 5 times.
+    I solemnly promise that I will only update this to change/update the links in the last <p>.
+    -->
+
     <body>
-        <main>
-            <img style="width:100px;mix-blend-mode:multiply" src="z-blab360-light.gif" alt="A black line drawing of a smiley blobby figure, rotating in 360 degrees atop a white background.">
-            <section id="webkeeper">
-                <h1>Leslie Liu</h1>
-                <img src="https://d2w9rnfcy7mm78.cloudfront.net/36924384/original_904c23dbbd4cbcfd271db4f15accc82d.png?1748025906?bc=0" alt="Above a table covered in white paper, upon which are placed some juice, cups, cookies, and bananas on a reflective metal tray. Above the table is tapped to the wall two signs that, together, read—Food For the Artists—with a smiley face.">
-                <p>
-                    Welcome to my website. 
-                    I am broadly interested in interfaces and their metaphors, advertising, 
-                    and ecstatic experiences of / encounters with technology.
-                </p>
-                <p>Elsewhere: <a href="https://liuleslie.github.io/now">Now</a>, <a href="https://users3.smartgb.com/g/g.php?a=s&i=g36-36279-2f">Guestbook</a></p>
-            </section>
-
-            <section>
-                <h1>Writing</h1>
-                <ul>
-                    <li><span id="advertise">NEW! HOT!</span><a class="misc" href="https://densegut.tiddlyhost.com">Blog</a> <span class="timestamp">(Feb 2025–)</span></li>
-                    <li><a class="misc" href="notes/n1.html">on love & joy in being</a> <span class="timestamp">(Jan 2025)</span></li> <!-- miscellaneous -->
-                    <li><a class="media" href="https://liuleslie.github.io/essays/e1.html">Existentialism at the grocery store</a> <span class="timestamp">(Jan 2024)</span></li> <!-- media, interface -->
-                    <li><a class="misc" href="https://www.are.na/blog/on-connection">On Connection</a> <span class="timestamp">(Aug 2022)</span></li> <!-- miscellaneous -->
-                    <li><a class="ads" href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/">Feelings at the Edge: A Chumbox Tour</a> <span class="timestamp">(Jan 2022)</span></li> <!-- ads, feeling -->
-                    <li><a class="media" href="essays/e3.html">Feeling From the Margins</a> <span class="timestamp">(Dec 2021)</span></li> <!-- media, interface -->
-                    <li><a class="ads" href="https://liuleslie.github.io/alainifnchm">as long as im not in fullscreen nothing can hurt me</a> <span class="timestamp">(Sept 2021)</span></li> <!-- ads, feeling -->                      
-                    <li><a class="media" href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/">Wheatpaste Mockups: Gestures of Transgression</a> <span class="timestamp">(May 2021)</span></li> <!-- media, interface -->
-                    <li><a class="interface" href="https://backslashlit.com/issues/5/leslie-liu">oneness</a> <span class="timestamp">(Sept 2021)</span></li> <!-- media, interface -->
-                    <li><a class="misc" href="essays/e2.html">Layer 29 of the Internet Onion: A Question as a Gift</a> <span class="timestamp">(Jul 2021)</span></li> <!-- miscellaneous -->
-                    <li><a class="media" href="essays/e4.html">Subway Surfers TikToks: Transcending Time and Space</a> <span class="timestamp">(Apr 2021)</span></li> <!-- media, interface -->
-                    <li><a class="misc" href="https://somewhere-always.glitch.me/">somewhere always</a> <span class="timestamp">(Mar 2021)</span></li> <!-- miscellaneous -->
-                </ul>
-            </section>
-
-            <section id="colophon">
-                <h1>Colophon</h1>
-                <p><a href="https://en.wikipedia.org/wiki/Colophon_(publishing)#History">Rewritten, thank God.</a> This is self-contained HTML set in <a href="http://osp.kitchen/foundry/fluxisch-else/">Fluxisch Else</a>.</p>
-                <details>
-                    <summary>Why and how, ”self-contained?”</summary>
-                    <p>There has always been something charming about a self-contained website to me. 
-                        This desire for the potential of expression made compact, travel-size, extends to other things: 
-                        sketchbooks, pockets, forms and multipurpose containers of information and thought.</p>
-                    <p>The infinite recomposability of a single HTML file is exciting to me: as I tab through 
-                        different past site-selves there is something resonant in the ways I am trying 
-                        to embody something more abstract, something aspirational: if my skeleton could be brutalist, 
-                        exacting somehow... and there is the tireless rewriting of a self, of this presence, 
-                        through the familiar tags and syntax, the usual sleight of hand by shoving things into 
-                        &lt;details&gt;.</p>
-                </details>
-                <p>
-                    Thanks to <a href="https://pitscher.net">Pitscher</a>, <a href="https://solar.lowtechmagazine.com">Low-tech Magazine</a>, 
-                    <a href="https://html.energy">HTML Energy</a>, and <a href="https://multidimensional.link/southland?">more*</a> (amongst many more not listed) for their influence.
-                </p>
-                <p><a href="https://gossipsweb.net">Coded from scratch</a> and in constant revision.</p>
-
-            </section>
-        </main>
+        <img src="https://d2w9rnfcy7mm78.cloudfront.net/36924384/original_904c23dbbd4cbcfd271db4f15accc82d.png?1748025906?bc=0" alt="Above a table covered in white paper, upon which are placed some juice, cups, cookies, and bananas on a reflective metal tray. Above the table is tapped to the wall two signs that, together, read—Food For the Artists—with a smiley face.">
+        <details>
+            <summary>Welcome to my website.</summary>
+            <p>This is self-contained HTML set in <a href="http://osp.kitchen/foundry/fluxisch-else/">Fluxisch Else</a>, <a href="https://gossipsweb.net">coded from scratch</a> and hopefully staying like this for a while.</p>
+        </details>
+        <p>I am broadly interested in interfaces and their metaphors, advertising, and ecstatic experiences of / encounters with technology.</p>
+        <p>Visit: <a href="https://liuleslie.github.io/now">Now</a>, <a href="https://users3.smartgb.com/g/g.php?a=s&i=g36-36279-2f">Guestbook</a></p>
     </body>
 </html>
 

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Website of Leslie Liu, designer and practicing human being.">
+    <meta name="viewport" content="width=device-width">
+    <title>*UNDER CONSTRUCTION*</title>
+    <link rel="stylesheet" href="https://use.typekit.net/zwl2xmq.css">
+    <link rel="icon" type="image/x-icon" href="https://d2w9rnfcy7mm78.cloudfront.net/21331401/original_63b6d119f86431bbe86804414cead460.png?1681171120?bc=0">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+    <base target="_self">
+    <style>
+        body { line-height: 1.2;font-size:18px; background-color: darkkhaki; font-family: sans-serif; letter-spacing: 0.5px; margin-bottom: 2em;}
+        /* body { line-height: 1.2;font-size:18px; background-color: black; color:white; font-family: sans-serif; letter-spacing: 0.5px; margin-bottom: 2em;} */
+        main {display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px white dotted;}
+        article, header, #about {padding-left: 1em; }
+        #about img {width:10%}
+        #weather, #goods, #log {border-right: 1px dotted white;}
+        header {border-bottom:1px dotted white}
+        h3 {font-size: 1em; font-weight: normal;}
+        /* a { color:dodgerblue; text-decoration: none;}
+        a:hover {text-decoration: 1px underline dodgerblue;} */
+        a { color:#000097; text-decoration: 1px underline #000097}
+        a:hover {font-style: italic;}
+        img {display: block; width:100%;}
+        figure, #goods details {margin:0;padding: 0 10px 20px 0}
+        figcaption, #goods details {font-size: .75em;padding-top:5px}
+        #goods summary {padding-bottom:5px}
+        section, header {display:grid}
+        header {grid-template-columns: 1fr 1fr;}
+        header details {padding-bottom: 1em;}
+        #weather section, #goods section {grid-template-columns: 1fr 1fr;}
+        footer {padding: 3em 0 0 1em;}
+        ul { list-style-type: square;}
+        .timestamp {padding-right:1em;font-weight: bold;}
+        .cat {font-size:0.75em;letter-spacing: 1px;}
+        img.spacer { margin-bottom: 1em }
+        @media (max-width:1200px) {
+            #weather section, #goods section {grid-template-columns: 1fr;}
+            #about img {width: 25%}
+            /* #goods details { border-top: 1px white dotted;} */
+        }
+        @media (max-width: 600px) {
+            main, header {grid-template-columns: 1fr;margin-right:1em}
+            header, #weather, #goods, #log, main {border: none}
+            #about {padding-left:0}
+            #about img {width:25%;}
+        }
+    </style>
+  </head>
+  <body>
+    <header>
+        <details id="log">
+            <summary>Change Log</summary>
+            A chronicle of layout changes. Index number denotes the n<sup>th/rd</sup> iteration.
+            <ul>
+                <li><a href="index-6.html">Index 6 (June 18)</a></li>
+                <li><a href="index-5.html">Index 5 (April 27)</a></li>
+                <li><a href="index-4.html">Index 4 (Mar 10)</a></li>
+                <li><a href="index-3.html">Index 3 (Feb 27)</a></li>
+                <li><a href="index-2.html">Index 2 (Feb 21)</a></li>
+                <li><a href="index-1.html">Index 1 (Feb 19)</a></li>
+            </ul>
+        </details>
+        <details id="about">
+            <summary>Webkeeper</summary>
+            <img src="blab360.gif" alt="a blob, drawn in black pencil, rotating 360 degrees.">
+            <p>
+                Practicing human being scurrying around in New England. Designer by trade.
+            </p>
+            Likes and Dislikes
+            <ol>
+                <li>sketchy freemium mobile game ads</li>
+                <li>internet chum</li>
+                <li>compact foods and phone charms</li>
+                <li>watches</li>
+                <li>diagrams</li>
+            </ol>
+            You are cordially invited to drop a message in the <a href="https://lesliu.123guestbook.com/">guestbook</a>.
+            <br><br>
+            <img style="width:40%" src="twentythree/episode.png" alt="screenshot of a still from the mobile game Episode. the main character has brown hair with blond highlights and stands in their bedroom. they wear a cropped striped red and white top, blue jeans, and red sneakers with white laces. they hold their phone up at arms length and their speech bubble reads, '... being a content creator is my dream job!'">
+        </details>
+    </header>
+    <main>
+        <article id="weather">
+            <h3>weather</h3>
+            <section>
+                <figure>
+                    <img style="mix-blend-mode: hard-light" src="twentythree/teabag.png" alt="a maroon/red-brown filtered photo of a teabag as a person holds up a cup. the teabg reads, 'We all want to be understood, to be acknowledged, to be loved.'">
+                    <figcaption><span class="timestamp">June 13</span>Chance encounters with text. When was the last time a teabag invited you to pause for a while?</figcaption>
+                </figure>
+                <figure>
+                    <img src="twentythree/20230603/ducks-1.png" alt="four ducks in a pond in the rain. the water is green from the surrounding trees. raindrops patter on the pond surface, creating wondrous ripples. some ducks dunk their heads underwater.">
+                    <figcaption><span class="timestamp">June 3</span>I gathered with five fellow <a href="https://html.energy">HTML Energy</a> seekers in the Boston public garden on June 3 
+                        for a freewrite. <a href="htmlday2023.html">Here is an account of the outing.</a></figcaption>
+                </figure>
+                <figure>
+                    <img src="twentythree/20230519.png" alt="sun glitter: sunlight glimmering across the surface of water, which glows in a pink-blue hue. in the foreground, some branches of a tree swaying in the wind.">
+                </figure>
+                <figure>
+                    <img style="width: 100%" src="twentythree/20230514.png" alt="sun glitter: sunlight glimmering across the surface of water, which is a rich, inky blue.">
+                </figure>
+
+            </section>
+        </article>
+        <article id="goods">
+            <h3>goods</h3>
+            <section>
+                <details>
+                    <summary>
+                        ACM WUSTL Apparel (2023)<br>
+                        <img src="twentythree/acmshirt1.png" alt="a person with black hair in an updo with a black claw clip, wearing an off-white shirt with two blocks of text arranged around three separate images, all in black and white. the main image depicts gargoyles on the facades of buildings, surrounded by keyboards and computer monitors.">
+                    </summary>
+                    Jackets and shirts for the exec team of ACM's WUSTL chapter. Floral patterns generated in partial collaboration with Dall-E, with the prompt, 'black and white floral motifs from a medieval manuscript.' Shirts: top right image source photo a gargoyle from the WUSTL campus, outpainted with Dall-E using the prompt 'gargoyles surrounded by computers and technology from past, present, and future.'
+                    <br><br>
+                    <img class="spacer" src="twentythree/acmjersey2.png" alt="close-up frontal shot of a person wearing an off-white jacket with a broad navy stripe at the elbow. on the left chest is the acronym 'ACM' lettered using punctuation marks.">
+                    <img src="twentythree/acmjersey3.png" alt="close-up shot of the back of a person wearing an off-white jacket with a broad navy panel at the bottom. on the back reads the text 'Washington University in St. Louis Association for Computing Machinery'. Between the text is an oval composition of a computer with a smiley face sitting amidst blooming floral motifs.">
+                    
+                </details>
+                <details>
+                    <summary>
+                        Remake 3 (2022)<br>
+                        <img src="twentythree/remake3_1.png" alt="a book with a white cover on a reflective metallic tabletop in front of some shop windows. in the foreground is the hand of a stranger passing by.">
+                    </summary>
+                    An annual journal celebrating first-year student work ranging from art and research to creative writing and interviews. A collaboration with the WUSTL Writing Department. [<a href="https://remake.wustl.edu/three">Online Issue</a>]
+                    <br><br>
+                    <img class="spacer" src="twentythree/remake3_3.png" alt="a hand holding a book with a white cover and upside-down black text. in the background are some buildings and a blue sky with scattered clouds.">
+                    <img class="spacer" src="twentythree/remake3_5.png" alt="a person holding a book sideways. on the open spread are some images, text boxes, and footnotes. in the background are some large leafy plants.">
+                    <img class="spacer" src="twentythree/remake3_4.png" alt="a person reading a magazine outside under the shade of some trees. on the open spread are some paragraphs of text.">
+                    <img src="twentythree/remake3_6.png" alt="a person reading a magazine beside some planters. on the open spread are two large photographs of people.">
+                    
+                </details>
+                <details>
+                    <summary>Are.na Annual 2023<br><img src="annual/23-1.png" alt="an over-the-shoulder shot of a person reading a book by the subway. the book is open to a spread of justified text."></summary>
+                    A collection of texts, conversations, art, and more about service. Designed with Daniel Pianetti. (273pp, 4.5 × 7.7") [<a href="https://store.are.na/products/are-na-annual-2023?variant=42763478794391">Are.na Store</a>]<br><br>
+                    <img class="spacer" src="annual/23-2.png" alt="a person holding a thick, narrow book, examining the back cover. the cover is in vibrant purple and beige hues, depicting an abstract texture.">
+                    <img src="annual/23-3.png" alt="an over-the-shoulder shot of a person reading a book on the train. the book is open to a spread of four images, printed in black and white.">
+                </details>
+            
+                <details>
+                    <summary>memory garden (2020)<br><img src="landing/memgarden.gif" alt="a grid of glyphs, some flickering and changing symbols. as the cursor passes over certain glyphs, a black rectangle appears, containing white text."></summary>
+                    A sketch collecting some anonymous memories from the little memory app. [<a href="https://editor.p5js.org/liuleslie/full/fR9ZGKOZ1">Program</a>]
+                </details>
+                <details>
+                    <summary>Shape of Language (2021)<br><img src="https://d2w9rnfcy7mm78.cloudfront.net/14559288/original_76245dc58418e698e35abdf2e1e4b8e4.gif?1641275930?bc=0" alt="a rapid flip through of scanned spreads of a book typeset in a black typewriter/monospace font on yellow, purple, and blue paper."></summary>
+                    Typesetting transcripts of <em>Everything Is Alive</em> episodes. A fan book (6.4MB, 5.5 × 8.5"). [<a href="twentythree/EIA.pdf">Full PDF</a>]
+                </details>
+                <details>
+                    <summary>A Window For Two (2020)<br><img src="landing/window-compressed.gif" alt="variously sized rectangles of varying opacities floating on a blue-orange gradient background." data-popupalt-original-title="null" title="variously sized rectangles of varying opacities floating on a blue-orange gradient background."></summary>
+                    A sketch exploring the poetics of screenshots and the window interface metaphor. Watch sunsets with your computer. [<a href="https://editor.p5js.org/liuleslie/full/qOwz_m-Bb">Program</a>], [<a href="https://vimeo.com/504107378/420afec708">Vimeo recording</a>]
+                </details>
+            </section>
+        </article>
+        <article id="sketches"> <!-- make a filterable checklist? -->
+            <h3>sketches</h3>
+            <ul>
+                <li><span class="cat">[REPO]</span> <a href="https://liuleslie.github.io/tinyprojects">Tiny Projects</a></li>
+                <li><span class="cat">[SKETCH]</span> <a href="sketches/figure.html">Figure</a> (Eve of the summer solstice)</li>
+                <!-- <li><span class="cat">[SKETCH]</span> <a href="sketches/fortyeighthours.html">48 hours to get to know you</a> (an adaptation of <a href="https://www.instagram.com/p/CtATO8iuNsK/">the original by Aaron Hwang</a>)</li> -->
+                <li><span class="cat">[SKETCH]</span> <a href="sketches/leaves1.html" target="popup" onclick="window.open('sketches/leaves1.html','popup','width=400,height=400'); return false;">
+                    Leaves1</a> (Inklings of summer)</li>
+                <li><span class="cat">[WEBPAGE]</span> <a href="20230429.html">Loss</a></li>
+            </ul>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:.75em">above: 2023</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;᠃ &nbsp;⚘᠂ ⚘ ˚ ⚘ ᠂ ⚘ ᠃ 
+            <ul>
+                <li><span class="cat">[ESSAY]</span> <a href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/">Chumboxes</a> (2022)</li>
+                <li><span class="cat">[ESSAY]</span> <a href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/">Wheatpaste Mockups</a> (2022)</li>
+                <li><span class="cat">[COMIC]</span> <a href="https://backslashlit.com/issues/5/leslie-liu">oneness</a> (2021)</span></li>
+                <li><span class="cat">[WEBPAGE]</span> <a href="https://somewhere-always.glitch.me/">Somewhere, Always</a> (2021)</li>
+            </ul>
+            <!-- — some haptic device that makes the typing (when muted) on an iPhone 300% louder and more dimensional —  -->
+        </article>
+    </main>
+    
+    <footer>
+        <p>Last updated June 20, 2023.</p>
+        <p><a href="https://www.are.na/block/22013489"><em>what if you're already on the other side of obliteration?</em></a></p>
+    </footer>
+
+  </body>
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Website of Leslie Liu, designer and practicing human being.">
+    <meta name="viewport" content="width=device-width">
+    <title>Leslie Liu</title>
+    <link rel="stylesheet" href="https://use.typekit.net/zwl2xmq.css">
+    <link rel="icon" type="image/x-icon" href="https://freight.cargo.site/t/original/i/aec8ffbf014e5ec50cb8d60c58a9a38c1dd753387520c7b3798300480d3083f6/lliu-favi.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <base target="_blank">
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <style>
+      @font-face {
+        font-family: "karrik";
+        src: url("https://cdn.glitch.global/e88d212e-4ce9-46a8-8c1d-7abd92ea13d8/Karrik-Regular.woff?v=1650588487689") format("woff");
+      }
+      /*@font-face {
+        font-family: "happy";
+        src: url('happy-times-NG_regular_master_web.ttf');
+      }*/
+      @font-face {
+        font-family: letter-gothic-std,monospace;
+        font-weight: 400;
+        font-style: normal;
+      }
+      body {
+        /*font-family: karrik, sans-serif;*/
+        font-family: letter-gothic-std, serif;
+        /*font-family: happy, serif;*/
+        font-size: 18px;
+        margin: 0em;
+        background-color: lightgray;
+      }
+      header {
+        margin: 1em 1em 3em 1em;
+      }
+      footer {
+        margin: 40em 1em 1em 1em;
+      }
+      .sectionheader {
+        font-weight: normal;
+        font-size: 1 rem;
+        text-decoration: 1px underline;
+      }
+      /* stuff */
+      #work tr {
+        display: none;
+      }
+      label {
+        padding-right: 1em;
+      }
+      #about {
+        padding: 10vh 15vw 10vh 15vw;
+      }
+      table {
+        border-bottom: 1px gray solid;
+      }
+      td, th {
+        border-top: 1px gray solid;
+      }
+      th {
+        text-align: left;
+        scope: row;
+        padding: 0 2em 0 2em;
+      }
+      /*tr {
+        height: 33vh;
+      }*/
+      tr:hover {
+        background-color: #efefef;
+      }
+      th a:hover {
+        background-color: #efefef;
+        text-transform: uppercase;
+      }
+      td a:hover {
+        background-color: lightgray;
+        text-decoration: 1px solid underline;
+      }
+      td img { 
+        display: block;
+        height: 33vh;
+        margin: 0 auto 0 auto; 
+      }
+      .description {
+        padding: 0 0 0 2em;
+      }
+      .timestamp { 
+        text-align: center; 
+        padding: 0 2em 0 2em;
+      }
+      a { 
+        font-weight: normal;
+        color:black; text-decoration: 1.5px black dotted underline; }
+      a:hover { 
+        background-color:#efefef; 
+        text-decoration: none;
+      }
+      #wesley:hover {
+        background-color: deepskyblue;
+      }
+      #betsy:hover {
+        background-color: orange;
+      }
+      #soso:hover {background-color: #1B69FF;color: white}
+
+      section, #work {
+        padding-top: 2em;
+        padding-bottom: 2em;
+      }
+      #work {
+        padding-bottom: 0;
+      }
+
+      #preface {
+        margin: 16em 3em 1em 2em;
+      }
+
+      #preface section {
+        /*margin: 1em;*/
+        background-color: darkgray;
+        border: 4px darkgray ridge;
+      }
+
+      #preface details ol {
+        border: 4px silver ridge;
+        background-color: silver;
+      }
+
+      blockquote {
+        border-left: 6px gray solid;
+        padding-left: 1em;
+      }
+      span.highlighted {
+        background-color: yellow;
+        mix-blend-mode: multiply;
+      }
+      #log li {
+        margin-bottom: 0.5em;
+      }
+
+      /**/
+
+      #greeting {
+        margin: 0 3em 1em 3em;
+      }
+      #greeting img {
+        display: inline-block;
+        float: right;
+        margin: 0 0 10px 20px;
+        height: 12vh;
+        border: 4px gray ridge;
+      }
+      #greeting section {
+        border: 1px #d9d9d9 ridge;
+      }
+      .firstperson {
+        font-style: italic;
+      }
+
+
+      .divider {
+        border-top: 1px white dotted;
+      }
+
+
+
+      .filter-intro-text, #now {
+        margin-left: 3em;
+      }
+      input {
+        margin-left: 4em;
+      }
+
+      #filter-tech:checked ~ #work tr[data-type-primary="tech"] {
+        display: table-row;
+      }
+
+      #filter-viscul:checked ~ #work tr[data-type-primary="viscul"] {
+        display: table-row;
+      }
+
+      #filter-digi:checked ~ #work tr[data-type-primary="digi"] {
+        display: table-row;
+      }
+
+      #filter-mtl:checked ~ #work tr[data-type-primary="mtl"] {
+        display: table-row;
+      }
+
+      #filter-collab:checked ~ #work tr[data-type-primary="collab"] {
+        display: table-row;
+      }
+
+      #filter-intro, #log {
+        margin-left: 1em;
+      }
+      #log {
+        margin-bottom: 2em;
+      }
+
+
+      #yourlocation {
+        position: fixed;
+        top: 2%;
+        left: 50%;
+        transform: translateX(-50%);
+        /* thank you Josh Crozier https://stackoverflow.com/questions/2005954/center-a-positionfixed-element */ 
+      }
+
+
+
+
+
+
+      @media (max-width: 1200px) {
+        body {
+          font-size: 15px;
+        }
+        td img {
+          height: 18vh;
+        }
+      }
+
+      @media (max-width: 850px) {
+        body {
+          font-size: 13px;
+        }
+        td img {
+          height: 5vh;
+        }
+        tr {
+          padding: 0.5em 0 0.5em 0;
+        }
+        .thumbnail {
+          display: none;
+        }
+        .description {
+          font-size: 10px;
+          padding-top: 1em;
+          padding-bottom: 1em;
+        }
+      }
+
+      @media (min-width: 1700px) {
+        body {
+          font-size: 21px;
+        }
+      }
+    </style>
+  </head>
+
+
+  <body>
+
+    <select id="yourlocation" onChange="window.location.href=this.value">
+      <optgroup label="Welcome to my website!">
+        <option value="#preface">N.B.: always reconsidering</option>
+      </optgroup>
+
+      <optgroup label=""></optgroup>
+      <!-- <option value=""></option> -->
+
+      <optgroup label="I am a general human being">
+        <option value="#greeting">living in the U.S.</option>
+        <option value="#work-top">working in design.</option>
+      </optgroup>
+
+      <optgroup label=""></optgroup>
+
+      <optgroup label="This season">
+        <option value="#commonplace">I am collecting excerpts.</option>
+      </optgroup>
+
+      <optgroup label=""></optgroup>
+
+      <optgroup label="[Back Matter]">
+        <option value="#colophon">Colophon</option>
+        <option value="#log">Log</option>
+      </optgroup>
+
+    </select>
+
+
+
+    <div class="divider"></div>
+
+    <section id="preface">
+      <details style="padding:1em">
+        <summary>This website is under constant reconsideration.</summary>
+        <section style="padding:1em">
+          <p>Every few weeks I confront the urge to redesign my website. Part of it is because I'm so shamelessly online and have spread myself so thin (online persona wise) that attempts to unify my various selves end in long bouts of introspection, often to little avail. In lieu of a construction site GIF, here's me indulging in speculating about the structure of this website:</p>
+          <p style="margin-left: 1em;">I'm interested in thinking of/using this website as a <a href="https://en.wikipedia.org/wiki/Sandwich_board">sandwichboard</a>:</p>
+          <ol style="margin-left: 2em; margin-right: 2em; padding-top:1em; margin-bottom: 0;">
+            <li>the two-sided, hinged structure of a sandwichboard makes the person wearing it part of the advertisement. inexplicably this reflects my general attitude towards personal branding/self aware self promotion in graphic design.</li>
+            <li>the format loosely reminds me of books, and how we might translate a reading experience in print to the web. it also feels like HTML (with its matching tags).</li>
+            <li>i think there's a way to use the vernacular of advertising to both accomplish the primary purpose of this website as my portfolio, but also keep it personal (the personal/professional divide is what i struggle with here)</li>
+            <li>i feel there's some expressive potential in terms of responsiveness if we take this sandwichboard metaphor to the extreme</li>
+            <br><br>
+          </ol>
+        </section>
+
+      </p>
+    </section>
+
+    <div class="divider"></div>
+   <!--   -->
+
+    <section id="greeting">
+      <p class="sectionheader">The Webmaster</p>
+      <p>An aspiring morning person <a href="https://liuleslie.github.io/now/">living</a> in New England. Works primarily across print and interaction design, with additional interests in creative technology, user research, exhibition design, and new media.</p>
+      <details>
+        <summary>more... </summary>
+        <p class="firstperson"><img src="landing/transitpizza.png" alt="a slice of pizza, face down, on the floor of a bus, with empty blue seats above.">I am interested in experiences that are magical, stuff that helps us reconsider intimacy and connection, as well as overlooked or ignored spaces online, in books, and beyond. Dedicated to silly and serious things.</p>
+        <p class="firstperson">I enjoy making friendly and generative tools, books, and programs and wading the handmade web. Recent topics that are important to me include mass/pop aesthetics, cringe and embarrassment online, and media both harsh and soft. Currently a digital designer at <a id="soso" href="https://www.sosolimited.com/">Sosolimited</a>. I would like to become part of the background; always down for a <a href="mailto:lesliu@protonmail.com">chat</a> or to collaborate.</p>
+      </details>
+    </section>
+
+
+
+    <div id="work-top" class="divider"></div>
+    <br><br>
+
+    <p class="sectionheader" style="margin-left: 3em; margin-top: 0;">Projects</p>
+    <!-- furniture div/spacer here to use as toggle id/location -->
+    
+    <span class="filter-intro-text">I am deeply invested in conversations about</span><br>
+
+    <input type="checkbox" id="filter-tech" name="filter-tech"> <!-- checked at the end -->
+    <label for="filter-tech">our relationship with technology and intimacy;</label><br>
+
+    <input type="checkbox" id="filter-digi" name="filter-digi">
+    <label for="filter-digi">memes and digital media;</label><br>
+
+    <input type="checkbox" id="filter-viscul" name="filter-viscul">
+    <label for="filter-viscul">the politics of design and visual culture;</label><br>
+
+    <input type="checkbox" id="filter-mtl" name="filter-mtl">
+    <label for="filter-mtl">& meaning, materiality, and form.</label><br>
+
+    <br>
+    <span class="filter-intro-text">I am grateful for</span>
+
+    <input type="checkbox" id="filter-collab" name="filter-collab" style="margin-left:0">
+    <label for="filter-collab">collaborators</label>
+    <br>
+    <span class="filter-intro-text">working across academia, design, and technology.</span>
+
+   <!--  <br><br> -->
+    
+    <table id="work" cellspacing="0" cellpadding="0">
+      <tbody>
+
+        <tr data-type-primary="tech">
+          <th><a href="fnf.html">Fresh Not Frozen</a></th>
+          <td class="thumbnail"><a href="fnf.html"><img src="landing/fnf-thumb.gif" alt="screengrabbed view of a red and yellow-white website with moving text on the left. to the right, a video of a person's hand holding a phone and tilting it around, against a black background."></a></td>
+          <td class="description">A small mobile site that delivers bite-size factoids about the American TV dinner, perfectly portioned for distracted reading.</td>
+          <td class="timestamp">2022</td>
+        </tr>
+
+        <tr data-type-primary="mtl">
+          <th><a href="ouija.html">Ouija Board Seance</a></th>
+          <td class="thumbnail"><a href="ouija.html"><img src="landing/ouija.png" alt="two blocks of wood next to a set of densely textured posters, against a black background."></a></td>
+          <td class="description">A crowdsourced poster that plays with the gesture of obscuring and revealing information. A collaboration with <a href="https://www.beszi.work/"><span id="betsy">Betsy Ellison</span></a>.</td>
+          <td class="timestamp">2021</td>
+        </tr>
+
+        <tr data-type-primary="tech">
+          <th><a href="junkyard.html">This book you are holding is a junkyard</a></th>
+          <td class="thumbnail"><a href="junkyard.html"><img src="landing/junk-uni-thumb.png" alt="open spread of an essay, typset in a green font with cut areas of the page revealing the textures of surrounding pages. the background is a black void."></a></td>
+          <td class="description">An adaptation of Jussi Parikka’s essay, <a href="https://malware.hetnieuweinstituut.nl/en/malware-operational-art-ifthen-geopolitics-and-tricksters">“Malware as Operational Art: On the If/Then of Geopolitics and Tricksters,”</a> from Het Nieuwe Instituut’s 2019 exhibition, <a href="https://malware.hetnieuweinstituut.nl/en/malware-symptoms-viral-infection"><em>Malware: Symptoms of Viral Infection</em></a>.</td>
+          <td class="timestamp">2020</td>
+        </tr>
+
+        <tr data-type-primary="digi">
+          <th><a href="basic.html">Basic Space</a></th>
+          <td class="thumbnail"><a href="basic.html"><img src="landing/basicspace.gif" alt="screengrabbed view of a cursor moving around a light-gray website, with the title 'BASIC SPACE' in bold black outlines. the cursor alternates between bubbling dots of blue, red, purple, and green."></a></td>
+          <td class="description">Assets for a speculative festival, Basic Space, that explores the potential of abstracting meme formats. Hover states on <a href="https://editor.p5js.org/liuleslie/present/ROlf0lZ3n">the microsite</a> reveal not only the skeleton of the title’s letterforms, but also additional information about the festival.</td>
+          <td class="timestamp">2021</td>
+        </tr>
+
+        <tr data-type-primary="collab">
+          <th><a href="annual.html">Are.na Annual</a></th>
+          <td class="thumbnail"><a href="annual.html"><img src="landing/annual-uni-thumb.png" alt="open spread of a tall book, with text and imagery in black and white, against a black background."></a></td>
+          <td class="description">Editorial design with Daniel Pianetti for the <a href="https://store.are.na/collections/frontpage/products/are-na-annual-2022">2022 Are.na Annual</a>, a collection of essays, interviews, and artwork from the Are.na community.</td>
+          <td class="timestamp">2022–</td>
+        </tr>
+
+        <tr data-type-primary="mtl">
+          <th><a href="refringo.html">Refringo</a></th>
+          <td class="thumbnail"><a href="refringo.html"><img src="landing/refringo-cropped.gif" alt="abstract composition of various distorted rectangles and shapes, each of which shifts color swiftly."></a></td>
+          <td class="description"><a href="https://refringo.glitch.me/">An interactive modular alphabet</a> that explores chance relationships between part and whole. </td>
+          <td class="timestamp">2021</td>
+        </tr>
+
+        <tr data-type-primary="collab">
+          <th><a href="remake.html">Remake</a></th>
+          <td class="thumbnail"><a href="remake.html"><img src="landing/remake-uni-thumb.png" alt="open spread of a book with text and imagery in full color, with brightly tinted margins. the background is a black void."></a></td>
+          <td class="description">Editorial design for <a href="https://remake.wustl.edu/"><em>REMAKE</em></a>, an annual journal celebrating first-year work. Dedicated to changing the top-down hierarchy of creative and academic content, <em>REMAKE</em> showcases student work ranging from art and research to creative writing and interviews.</td>
+          <td class="timestamp">2020–22</td>
+        </tr>
+
+        <tr data-type-primary="collab">
+          <th><a href="https://open.spotify.com/playlist/4TOxHziEGtfR3r4gPf45Mu">Songs for a Summer Stroll</a></th>
+          <td class="thumbnail"><a href="https://open.spotify.com/playlist/4TOxHziEGtfR3r4gPf45Mu"><img src="landing/summerstroll.png" alt="cropped view of a graphic with nested images of a person, with fanciful doodles and writing in white all over."></a></td>
+          <td class="description">Playlist cover for A24’s “Songs for a Summer Stroll”, promoting the film <em>MEN</em>. With <a href="https://regrets-only.com/">RegretsOnly</a>.</td>
+          <td class="timestamp">2022</td>
+        </tr>
+
+        <tr data-type-primary="mtl">
+          <th><a href="nostalgia.html">Nostalgia Loop</a></th>
+          <td class="thumbnail"><a href="nostalgia.html"><img src="landing/nostalgia-uni-thumb.png" alt="open spread of text in a newspaper, with imagery shaded red in some areas. the background is a black void."></a></td>
+          <td class="description">A broadsheet housing two articles about the role of nostalgia in global and American politics. Influenced by the comfort of vintage food graphics, this newspaper considers how complacency can be dangerous.</td>
+          <td class="timestamp">2021</td>
+        </tr>
+
+        <tr data-type-primary="collab">
+          <th><a href="wupr.html">Washington University Political Review</a></th>
+          <td class="thumbnail"><a href="wupr.html"><img src="landing/wuprcover.png" alt="a magazine's front and back cover, against a black void for a background. the colors across the covers range from red, yellow, and orange to olive."></a></td>
+          <td class="description">Assorted illustrations for <em>WUPR</em>.</td>
+          <td class="timestamp">2020–22</td>
+        </tr>
+        </tr>
+
+        <tr data-type-primary="tech">
+          <th><a href="window.html">A Window For Two</a></th>
+          <td class="thumbnail"><a href="window.html"><img src="landing/window-compressed.gif" alt="variously sized rectangles of varying opacities floating on a blue-orange gradient background."></a></td>
+          <td class="description"><a href="https://editor.p5js.org/liuleslie/full/qOwz_m-Bb">A program</a> exploring the poetics of screenshots; watch digital sunsets with your computer.</td>
+          <td class="timestamp">2020</td>
+        </tr>
+
+        <tr data-type-primary="viscul">
+          <th><a href="work.html">On Work</a></th>
+          <td class="thumbnail"><a href="work.html"><img src="landing/joesona-thumb.png" alt="six coffee sleeves with green illustrations and text, scanned against a black void for a background."></a></td>
+          <td class="description">A set of four coffee sleeves that link to <a href="https://joesona.glitch.me/">a prototype of a selfie filter</a>. Pondering the nature of work and coffee culture. (Prototype contains flashing images.)</td>
+          <td class="timestamp">2021</td>
+        </tr>
+
+        <tr data-type-primary="tech">
+          <th><a href="memgarden.html">memory garden</a></th>
+          <td class="thumbnail"><a href="memgarden.html"><img src="landing/memgarden.gif" alt="a grid of glyphs, some flickering and changing symbols. as the cursor passes over certain glyphs, a black rectangle appears, containing white text."></a></td>
+          <td class="description">A digital zen garden: collecting worldwide memories submitted anonymously on the little memory app, <a href="https://editor.p5js.org/liuleslie/full/fR9ZGKOZ1">this prototype</a> explores ASCII art and the metaphor of memories as blossoming flowers. </td>
+          <td class="timestamp">2020</td>
+        </tr>
+
+        <tr data-type-primary="viscul">
+          <th><a href="grass.html">Computer Grass is Natural Grass</a></th>
+          <td class="thumbnail"><a href="grass.html"><img src="landing/compgrass.png" alt="closeup of a poster with several images in full color and annotations/captions in small blocks scattered about."></a></td>
+          <td class="description">A poster/<a href="https://computer-grass.glitch.me">website</a> about the materiality of interfaces and the metaphors that shape them. One side of the poster references interface elements characteristic of macOS and neumorphism, whereas the other is heavily influenced by the Talmud and other scholarly texts that use a bracketed composition for discussion.</td>
+          <td class="timestamp">2020–</td>
+        </tr>
+
+        <tr data-type-primary="tech">
+          <th><a href="iphone.html">Some texts on the iPhone</a></th>
+          <td class="thumbnail"><a href="iphone.html"><img src="landing/stoti-thumb.png" alt="sheets of clear plastic shaped like smartphones, with a hole punched in the margin to the left, displayed against a concrete background. other sheets of plastic are placed across a wooden board."></a></td>
+          <td class="description">An art book containing various writings about and imagery of the iPhone to explore the device’s role in contemporary American society as status symbol, erotic object, spectacle of lightness, and luxury destroyed.</td>
+          <td class="timestamp">2022</td>
+        </tr>
+
+        <tr data-type-primary="digi">
+          <th><a href="engine.html">Meme Engine Sampler</a></th>
+          <td class="thumbnail"><a href="engine.html"><img src="landing/mezine.gif" alt="open spreads of a zine, printed with wojacks and dense text, boxed in to form various compositions. the background is a black void."></a></td>
+          <td class="description">Abstracting meme formats via a custom-made Drawbot program. A collaboration with Nathan Springman.</td>
+          <td class="timestamp">2021</td>
+        </tr>
+
+        <tr data-type-primary="digi">
+          <th><a href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/">Feelings at the Edge: A Chumbox Tour</a></th>
+          <td class="thumbnail"><img src=""></td>
+          <td class="description">An essay about sketchy internet chumbox ads. For Coven Berlin.</td>
+          <td class="timestamp">2022</td>
+        </tr>
+
+        <tr data-type-primary="viscul">
+          <th><a href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/">The Mockup Aesthetic: Gestures of Transgression</a></th>
+          <td class="thumbnail"><img src=""></td>
+          <td class="description">An interactive essay about the politics of wheatpaste mockups. For FLAT.</td>
+          <td class="timestamp">2022</td>
+        </tr>        
+      </tbody>
+    </table>
+
+    <div class="divider"></div>
+    <section id="now">
+      <section id="commonplace">
+        <p class="sectionheader" style="margin-top: 0;">
+          Commonplace Section
+        </p>
+
+        <section style="height:60vh; width: 75vw; overflow: scroll; border:4px silver ridge; padding:10px">
+        
+          <blockquote class="quoteback" darkmode="" data-title="The%20cleverfooted%20squirrel's%20fall%20is%20inevitable" data-author="" cite="https://murid.neocities.org/write_fall.html#homepage">
+          You can't live life on platforms or out of a wallet, lest you lose your way and become a wandering ghost that is searching for a unexplained longing.
+          <footer><cite> <a href="https://murid.neocities.org/write_fall.html#homepage">https://murid.neocities.org/write_fall.html#homepage</a></cite></footer>
+          </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+          <blockquote class="quoteback" darkmode="" data-title="Nameless%20Feeling%20%E2%80%94%20Real%20Life" data-author="@_reallifemag" cite="https://reallifemag.com/nameless-feeling/">
+          Some may worry about whether powerful new neural-network models for generating text and images will <a href="https://erikhoel.substack.com/p/big-tech-is-replacing-human-artists" target="_blank" rel="noopener">replace workers and artists</a>. But this can be true only if beauty and creativity are measurable by one-dimensional metrics, if art and human endeavors are static forms whose rules and objectives do not change, if we reject the possibility of meaning and principle and are content with just vibes.
+          <footer>@_reallifemag<cite> <a href="https://reallifemag.com/nameless-feeling/">https://reallifemag.com/nameless-feeling/</a></cite></footer>
+          </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+          <blockquote class="quoteback" darkmode="" data-title="Everyone%20Is%20Beautiful%20and%20No%20One%20Is%20Horny%20-%20Blood%20Knife" data-author="Blood Knife" cite="https://bloodknife.com/everyone-beautiful-no-one-horny/">
+          When a nation feels threatened, it gets swole.
+          <footer>Blood Knife<cite> <a href="https://bloodknife.com/everyone-beautiful-no-one-horny/">https://bloodknife.com/everyone-beautiful-no-one-horny/</a></cite></footer>
+          </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+          <blockquote class="quoteback" darkmode="" data-title="Early%20Web%20Design%20Helped%20a%20Generation%20Express%20Themselves%20Online.%20How%20Do%20We%20Capture%20That%20Feeling%20Again%3F" data-author="" cite="https://eyeondesign.aiga.org/early-web-design-helped-generation-express/">
+          There is no longer a practical need for energetic, messy community sites, but what is life without desire? The need to be seen and to participate digitally and otherwise endures.
+          <footer><cite> <a href="https://eyeondesign.aiga.org/early-web-design-helped-generation-express/">https://eyeondesign.aiga.org/early-web-design-helped-generation-express/</a></cite></footer>
+          </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+          <blockquote class="quoteback" darkmode="" data-title="Real%20Deepfakes%20and%20Fake%20Deepfakes" data-author="" cite="https://lav.io/notes/deep-fakes-real-deeps-fake-reals/">
+          The harder part, I believe, is to detect a real that seems fake. An actual erosion of reality arises from our lack of willingness to believe the true things we are seeing with out own eyes. To detect when a joke isn’t a joke, when a LARP isn’t a LARP, when a draft opinion isn’t a draft, and so on.
+          <footer><cite> <a href="https://lav.io/notes/deep-fakes-real-deeps-fake-reals/">https://lav.io/notes/deep-fakes-real-deeps-fake-reals/</a></cite></footer>
+          </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+          <blockquote class="quoteback" darkmode="" data-title="The%20Potential%20of%20a%20Garden" data-author="" cite="http://radicalsradicants.com/essays/potentialofagarden/">
+          <p>Naming is control. It establishes, if not ownership, at least a relationship of some intimacy as well as a chain of bizarre equivalences: a set of wiggles in the muscles of the mouth and larynx = a set of phonemes = a constellation of letters = a star. It’s a pretty arbitrary chain, but it’s all that allows us to talk about the world. But what does it mean to name something that cannot hear you, in a world that doesn’t care?</p>
+          <p>Susan Tallman, <em>The Collections of Barbara Bloom</em>, 2007, p. 45.</p>
+          <footer><cite> <a href="http://radicalsradicants.com/essays/potentialofagarden/">http://radicalsradicants.com/essays/potentialofagarden/</a></cite></footer>
+          </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+          <blockquote class="quoteback" darkmode="" data-title="I%20Know%20a%20Place" data-author="Everest Pipkin" cite="https://pioneerworks.org/broadcast/i-know-a-place-pipkin">
+          Even now, being online is to watch history accumulate in real time. 
+          <footer>Everest Pipkin<cite> <a href="https://pioneerworks.org/broadcast/i-know-a-place-pipkin">https://pioneerworks.org/broadcast/i-know-a-place-pipkin</a></cite></footer>
+          </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+          <blockquote class="quoteback" darkmode="" data-title="Ambient%20Cruelty%20%E2%80%94%20Real%20Life" data-author="@_reallifemag" cite="https://reallifemag.com/ambient-cruelty/">
+          negativity as a tonal choice not only lends an air of discernment, but brims with expressive opportunity: the diction of dissatisfaction offers its own satisfactions.
+          <footer>@_reallifemag<cite> <a href="https://reallifemag.com/ambient-cruelty/">https://reallifemag.com/ambient-cruelty/</a></cite></footer>
+          </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/Blogger-Peer-Review/quotebacks@1/quoteback.js"></script>
+
+        </section>
+
+      </section>
+    </section>
+
+
+    <div class="divider"></div>
+
+
+    <footer id="colophon">
+      <a target="_self" href="#">^ (back to the beginning)</a><br><br><br>
+      <p class="sectionheader">Colophon</p>
+      <p>Set in <a href="https://en.wikipedia.org/wiki/Letter_Gothic">Letter Gothic</a>. With thanks to <a href="https://wesleyac.com"><span id="wesley">Wesley Aptekar-Cassels</span></a>, whose HTML + CSS list filtering demo helped me lay the project section’s foundation, as well as <a href="https://solar.lowtechmagazine.com/about.html#how">Low-tech Magazine</a>, <a href="https://html.energy/">HTML Energy</a>, and <a href="https://multidimensional.link/southland?">more*</a> for their influence.</p>
+
+      <p>Coded from scratch. The images on this website have been dithered to avoid lagginess. For higher resolution photos, please <a href="mailto:lesliu@protonmail.com">email</a> me.</p>
+    </footer>
+    <section id="log">
+        <p class="sectionheader">Website Log</p>
+        <section style="height:8vh; width: 75vw; overflow: scroll; border:4px silver ridge; padding:10px">
+          <ul>
+            <li>February 27... everything on one main page now; need to tweak dropdown so that it updates as you scroll through</li>
+            <li>February 26... trying out <a href="index-3.html">a dropdown-based dialogue</a></li>
+            <li>February 19... tried <a href="index-2.html">a blunter layout</a> and a sans serif</li>
+            <li>c. January 8, 2023... introduced a landing page that comes before projects</li>
+            <li>June 11... bulk of project copy done</li>
+            <li>May 22, 2022... bulk of projects section fleshed out</li>
+          </ul>
+        </section>
+      </section>
+    
+  </body>
+</html>
+
+
+<!-- thank you ..... https://stackoverflow.com/questions/5684144/how-to-completely-remove-borders-from-html-table ....... https://stackoverflow.com/questions/17281486/add-target-blank-in-css ..... https://www.infradox.com/disable-right-clicking-dragging-images/ ...... -->
