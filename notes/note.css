@@ -1,0 +1,15 @@
+body {
+    font-family:sans-serif;
+    background-color: rgb(5, 40, 35); color: gainsboro ;
+    margin:0.5em auto 2em auto;
+}
+a {color:khaki;text-decoration:1px khaki dotted underline}
+h1 { text-decoration: 1px gainsboro solid underline}
+h3, aside a { color: darkkhaki}
+aside a {text-decoration: 1px solid salmon underline}
+blockquote { border-left: 2px darkkhaki solid; background-color:rgb(5,40,35); padding-left:1em }
+aside { color: salmon; }
+cite * {color:darkkhaki}
+cite a {text-decoration:1px darkkhaki dotted underline}
+span.highlight {text-decoration:1px solid teal underline}
+@media (max-width:800px) {body {margin:1em;max-width:100%;}}
