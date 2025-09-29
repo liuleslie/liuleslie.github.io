@@ -2,8 +2,8 @@
 @font-face { font-family: FELight; src: url('../FE/FluxischElse-Light.woff') format('woff');}
 @font-face { font-family: FEBold; src: url('../FE/FluxischElse-Bold.woff') format('woff');} */
 body {
-    /* font-family: 'FELight', sans-serif;  */
-    font-family: sans-serif;
+    font-family: 'FELight', sans-serif; 
+    /* font-family: sans-serif; */
     font-size:15px; letter-spacing: .5px; line-height: 1.3em;
     background-color: whitesmoke; color: indigo ;
     max-width:50vw; 
