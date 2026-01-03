@@ -12,92 +12,31 @@
         <base target="_self">
         <style>
             body {
-                font-family:FEReg, sans-serif;font-size:15px;line-height:1.3;letter-spacing:0.5px;
-                max-width:50vw; margin:1em auto 2em auto;
+                font-family:serif;
+                /* font-family:FEReg, sans-serif; */
+                font-size:15px;line-height:1.3; /* letter-spacing:0.5px; */
+                max-width:50vw; margin:2em auto 2em auto;background-color:whitesmoke;
             }
-            details { margin: 2em 0 }
-            details[open] { background-color:honeydew }
-            a { text-underline-offset:2.5px;
-                color:indigo;text-decoration:1px solid indigo underline; }
-            a:hover { color:black;text-decoration:none;background-color:aquamarine }
-            img {display:block;margin-bottom:1em;width:20vw}
-            h1 {font-size:1em;font-weight:normal;}
-            #texts { list-style:none }
-            #texts a { margin-right:2em }
-            #texts li { margin-bottom:0.25em }
-            span.timestamp { color:gray;font-size:0.8em }
-            @media (max-width:1000px) { img {width:100%} body {margin:1em;max-width:100%;} } 
+            
+            a { text-underline-offset:2.5px;color:blue;text-decoration:1px solid blue underline; }
+            a:hover { color:red;text-decoration:none;background-color:white }
+
+            h1 { font-weight:normal;font-size:1.5em }
+            p { font-size:1.5em; }
+
+            @media (max-width:1000px) { 
+                body {margin:1em;max-width:100%;} 
+            } 
         </style>
     </head>
 
     <body>
-        <details>
-            <summary>Welcome to my website.</summary>
-            <p>This is self-contained HTML <a href="https://gossipsweb.net">coded from scratch</a> and set in 
-                <a href="http://osp.kitchen/foundry/fluxisch-else/">Fluxisch Else</a>, if it loads for you. 
-                Website written using Visual Studio Code, hosted on GitHub via Microsoft.
-            </p>
-        </details>
-        <p>
-            First time human being operating across design (product/interaction/digital experience) as it meets commerce and tech. 
-            Pursuing a grad degree in <a href="https://www.architecture.cmu.edu/computational-design">Computational Design</a>, graduating in spring of 2026.
-        </p>
-        <details open>
-            <summary>I am broadly interested in interfaces and their metaphors, advertising, and ecstatic experiences of / encounters with technology.</summary>
-
-            <ul id="texts">
-                <li>
-                    <p>
-                        <a href="notes/n3.html">Scattered notes</a><br>
-                        <span class="timestamp">SU 25</span>
-                    </p>
-                </li>
-                <li>
-                    <p>
-                        <a href="essays/e5.html">Scallion minifesto: the second text</a><br>
-                        notes on human-LLM encounters.<br>
-                        <span class="timestamp">SP 25</span>
-                    </p>
-                </li>
-                <li>
-                    <p>
-                        <a href="essays/e1.html">Existentialism at the grocery store</a><br>
-                        aesthetic experience and materiality of synthetic media.<br>
-                        <span class="timestamp">WN 23/24</span>
-                    </p>
-                </li>
-                <li>
-                    <p>
-                        <a href="essays/e2.html">The Internet Onion, 2021, Layer 29</a><br>
-                        a question as a gift.<br>
-                        <span class="timestamp">SU 21</span>
-                    </p>
-                </li>
-                <li>
-                    <p>
-                        <a href="essays/e3.html">Feeling From the Margins</a><br>
-                        notes on comment sections.<br>
-                        <span class="timestamp">WN 21/22</span>
-                    </p>
-                </li>
-                <li>
-                    <p>
-                        <a href="essays/e4.html"><em>Subway Surfers</em> TikToks</a><br>
-                        thinking through a mode of media absorption.<br>
-                        <span class="timestamp">SP 21</span>
-                    </p>
-                </li>
-                
-            </ul>
-
-        </details>
-        <p>
-            My thesis research focuses on <a href="https://github.com/liuleslie/captcha">CAPTCHA</a> as a site of precarious and ambivalent work and play. 
-        </p>
-        <p>
-            Visit: <a href="https://liuleslie.github.io/now">Now</a>,
-            <a href="https://users3.smartgb.com/g/g.php?a=s&i=g36-36279-2f">Guestbook</a>, 
-            <a href="https://densegut.tiddlyhost.com/#meta%3A%20my%20wiki!">Blog</a>
+        <h1>Leslie Liu</h1>
+    
+        <p>Work: <a href="https://liuleslie.github.io/portfolio">Portfolio</a>; ____
+            Grad: <a href="https://densegut.tiddlyhost.com/#meta%3A%20my%20wiki!">Blog</a>; ____
+            Other: <a href="https://liuleslie.github.io/now">Now</a>, 
+            <a href="https://users3.smartgb.com/g/g.php?a=s&i=g36-36279-2f">Guestbook</a>
         </p>
     </body>
 </html>
