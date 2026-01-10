@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="Personal website of one Leslie.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="fonts.css">
+        <link rel="icon" type="image/x-icon" href="z-llfavi.svg">
+        <base target="_self">
+        <style>
+            /* body * { position:sticky; top:0 } */
+            img { display:block; position:fixed; z-index:-1; top:auto; bottom:0.5em; left:50%; transform:translateX(-50%) }
+            img.landscape { height:95vh; } /* margin: 2vh auto } */
+            img.portrait { width:95vw; } /* margin: 2vw auto } */
+            img+ * { z-index:3; position:sticky; top:0 }
+        </style>
+    </head>
+    <body>
+        <img src="io/010326.png" alt="">
+        <!-- <p>Esse odit sunt dolorum assumenda enim. Numquam animi nobis quisquam magni. Omnis aut vel sint sed hic. Voluptatum sint explicabo consequatur est reiciendis sit. Et officiis quia nihil qui ab aliquid. Voluptatem aut natus autem doloribus neque. Quam eum rerum non consequuntur dolorem non voluptatem. Et excepturi fuga laborum impedit consequatur mollitia corrupti. Incidunt et natus earum molestiae aut</p> -->
+         
+        <div style="margin:0 auto">
+        <pre>
+  ........::::::::::::..           .......|...............::::::::........
+     .:::::;;;;;;;;;;;:::::.... .     \   | ../....::::;;;;:::::.......
+         .       ...........   / \\_   \  |  /     ......  .     ........./\
+...:::../\\_  ......     ..._/'   \\\_  \###/   /\_    .../ \_.......   _//
+.::::./   \\\ _   .../\    /'      \\\\#######//   \/\   //   \_   ....////
+    _/      \\\\   _/ \\\ /  x       \\\\###////      \////     \__  _/////
+  ./   x       \\\/     \/ x X           \//////                   \/////
+ /     XxX     \\/         XxX X                                    ////   x
+-----XxX-------------|-------XxX-----------*--------|---*-----|------------X--
+       X        _X      *    X      **         **             x   **    *  X
+      _X                    _X           x                *          x     X_
+
+         </pre></div>
+        
+    
+
+        <script>
+        function resizeImage() {
+            const img = document.querySelector('img');
+            if (window.innerWidth > window.innerHeight) {
+                img.classList.remove('portrait');
+                img.classList.add('landscape');
+            } else {
+                img.classList.remove('landscape');
+                img.classList.add('portrait');
+            }
+        }
+
+        // Run on load
+        window.addEventListener('load', resizeImage);
+
+        // Run on window resize
+        window.addEventListener('resize', resizeImage);
+        </script>
+
+    </body>
+</html>
+

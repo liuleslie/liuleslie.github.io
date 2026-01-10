@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Leslie’s book-based projects</title>
+        <meta name="description" content="Personal website of one Leslie.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="fonts.css">
+        <link rel="icon" type="image/x-icon" href="z-llfavi.svg">
+        <!-- <script src="script.js"></script> -->
+        <base target="_self">
+        <style>
+            * { border:0.5px #303030 solid;font-family:serif }
+            article { border:0.5px #505050 solid;margin-bottom:3em }
+            body { display:grid; grid-template-columns: 1fr 4fr;background-color:black;color:white; }
+
+            nav, nav li, nav li * { border:none }
+            
+            header { position:fixed;width:20vw; }
+            main { width:70vw; margin-left:1em }
+            main article h1 { position:sticky; top:1.25em; background-color:black }
+            li { margin-bottom:0.125em }
+            .padAbove { margin-top:0.25em }
+            .width100 { width:100%;height:auto }
+            h1,h2,h3 { font-size:1em; }
+            h1 { text-decoration: 1.5px white solid underline; }
+            a { color:dodgerblue; text-decoration:1px dodgerblue solid underline }
+            h1, a { text-underline-offset:2.5px }
+            a:hover { color:white; font-style:italic; text-decoration:none; border:0.5px black solid }
+            img { display:block; height:70vh; }
+            #top details p { text-indent:2em;padding-left:2em }
+            /* .gallery { display:flex; flex-direction:row; overflow:scroll } */
+            @media (max-width:1000px) {
+                body { grid-template-columns: 1fr;} 
+                main, header { width:90vw;position:relative } 
+                main { margin-left:0 }
+                img { height:auto; width:100% }
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1>Leslie Liu</h1>
+            <p>CMU MS Computational Design ’26.</p>
+            <p>Contact: <a href="../index.html">personal website</a>, <a href="https://x.com/nbhdlady">Xwitter notetaking</a>, <a href="https://www.instagram.com/desire_engineering/">loose Instagram doc</a></p>
+            <nav>
+                Projects
+                <ol>
+                    <a href="#top">&lt; top of page &gt;</a><br>
+                    <hr>
+                    <em>Reading practices</em>
+                    <li><a href="#bkmk">Bookmark</a></li>
+                    <!-- <li><a href="#scal">Scallion</a></li> -->
+                    <li><a href="#junkyard">This book you are holding is a junkyard</a></li>
+                    <li><a href="#fnf">Fresh Not Frozen</a></li>
+                    <li><a href="#stoti">Some texts on the iPhone</a></li>
+                    <hr>
+                    <em>Writing practices</em>
+                    <li class="padAbove"><a href="#vtp">VectorTextPoetics (AxiDraw V3/A3)</a></li>
+                    <li class="padAbove"><a href="#hp">Shape of Our Images (HP7475A)</a></li>
+                </ol>
+            </nav>
+        </header><br>
+        <main>
+            
+            <article id="top">
+                <h1>Overview</h1>
+                <p>
+                    I am dedicated to textual practices*... (i) how we interact with & reinterpret books; and (ii) the gestures of reading and writing (with whatever stylus available) — whether as a design exercise, art form, technology, or medium for reflection. 
+                </p>
+                <p>
+                    My current dibble-dabbling focuses on affordances and prosthetics for reading and other book-based activities.
+                </p>
+                <details>
+                    <summary>* Why book-based investigations / textual practices?</summary>
+                    <p>I am somewhat of a <a href="https://en.wikipedia.org/wiki/Belles-lettres">belletrist</a>, a firm believer in the wonder and loveliness of cultivating personal relationships with the print media — 读物, literally translated as “reading objects” — that we hold close.</p>
+                    <p>As a sighted and hearing person I am interested in the minutia of active reading: gestures from personal annotation & notetaking systems, how people regard their books, and our relationship to commonplace media. Reading aloud is also an important ritual I’d like to dig into more.</p>
+                </details>
+            </article>
+
+            <!-- ========================= READING ========================= -->
+
+            <article id="bkmk">
+                <h1>Bookmark (2025)</h1>
+                <div class="gallery">
+                    <img class="width100" src="https://d2w9rnfcy7mm78.cloudfront.net/36291564/original_67f1a38522e53c69f18d83f50d4f2ed5.png?1745794724?bc=0" alt="">
+                </div>
+                <p>Discreet dogearing: a test for a humble bookmark that doubles as a reading light. Video recording available <a href="https://x.com/nbhdlady/status/1916620914206114237/video/1">on Xwitter</a>.</p>
+                <p>Materials: Adafruit conductive sewing thread, white LED, resistor, 3V battery on a roughly 2.5" x 3.25" piece of canvas.</p>
+            </article>
+            
+            <!-- <article id="scal">
+                <h1></h1>
+            </article> -->
+
+            <article id="junkyard">
+                <h1>This book you are holding is a junkyard (2020)</h1>
+                <img src="https://d2w9rnfcy7mm78.cloudfront.net/10034061/original_07db65923b6e1733c367669308e7d365.png?1609171030?bc=0" alt="">
+                <p>An adaptation of Jussi Parikka’s essay, “Malware as Operational Art: On the If/Then of Geopolitics and Tricksters,” from Het Nieuwe Instituut’s 2019 exhibition, <em>Malware: Symptoms of Viral Infection.</em> Full booklet’s scanned contents <a href="https://attachments.are.na/13460887/7476ef749d785efe7c44ac84f2ddf996.pdf?1633551248">available as a PDF</a>.</p>
+                <p>Materials: 3.5 x 6.5 in. newsprint booklet, hand sewn. Texture on inner folds from Zalgo “messy text” generator and generative graphics programmed with DrawBot.</p>
+            </article>
+
+            <article id="fnf">
+                <h1>Fresh Not Frozen (2022)</h1>
+                <div class="gallery">
+                    <img class="width100" src="FNF_Screens.png" alt="">
+                    <video class="width100" src="FNF_Demo.mp4" controls></video>
+                </div>
+                <p>A mobile microsite gathering assorted texts, quotes, and scholarly analyses of the advent and legacy of the American TV dinner.</p>
+                <p>Materials: p5.js on generally mobile phone-sized surfaces.</p>
+            </article>
+
+            <article id="stoti">
+                <h1>Some texts on the iPhone (2022)</h1>
+                <div class="gallery">
+                    <img class="width100" src="https://d2w9rnfcy7mm78.cloudfront.net/42421385/original_4c8dd964f3663bcae44ef406273dd382.png?1767726653?bc=0" alt="">
+                    <img class="width100" src="https://d2w9rnfcy7mm78.cloudfront.net/42421405/original_7bca8e294ea2a75a1847ca2a4107f39b.png?1767726668?bc=0" alt="">
+                    <img src="https://d2w9rnfcy7mm78.cloudfront.net/42421387/original_df690f92dc9e3649e4d8514922fc2dec.png?1767726653?bc=0" alt="">
+                </div>
+                <p>An art book containing various writings about and imagery of the iPhone to explore the device’s role in contemporary American society as status symbol, erotic object, spectacle of lightness, and luxury destroyed.</p>
+                <p>Materials: 3" × 6" × 0.12" acrylic pages, 8.5" × 11" × 0.75" wooden base, bolt, washer, and nut.</p>
+            </article>
+
+            <!-- ========================= WRITING ========================= -->
+            <article id="vtp">
+                <h1>VectorTextPoetics (2025)</h1>
+                <div class="gallery">
+                    <img src="https://d2w9rnfcy7mm78.cloudfront.net/40298424/original_e3d2e93feed04b264fad024be1a27699.jpg?1760388604?bc=0" alt="Scan of a plot of computer program code on a piece of white paper, against a black background. The program is rendered in a cursive font, with underlines in various colors.">
+                    <img src="https://d2w9rnfcy7mm78.cloudfront.net/40298425/original_f77fda35eaaf83f271d6ced2e748cfb6.jpg?1760388606?bc=0" alt="Scan of a plot of computer program code on a piece of yellow paper, against a black background. The program is rendered in an open, round font, with vertical lines stretching across the length of the page.">
+                    <img class="width100" src="https://d2w9rnfcy7mm78.cloudfront.net/40298428/original_aaecad71daea560fac35c994ff9aa98d.jpg?1760388613?bc=0" alt="Scan of a plot of text on a piece of warm pink paper, against a black background. The text is italicized, rendered in red ink.">
+                </div>
+                <p>Three compositions that examine the nature of programming SVGs for plotting on <a href="https://shop.evilmadscientist.com/productsmenu/890">the AxiDraw V3/A3</a> by Evil Mad Scientist. Plots I and II are my attempts at a <a href="https://en.wikipedia.org/wiki/Quine_(computing)">quine</a> — a program that represents its own code.</p>
+                <p>Plot I on white paper: What does it mean for the utilitarian-tinged space of a computer program to include personal inline comments about the poetics of this type of writing? After the initial plot in black ink, the composition was syntax highlighted to approximate my code editor’s interface. Video recording available <a href="https://vimeo.com/1125391518">on Vimeo</a>.</p>
+                <p>Plot II on yellow paper: Live observation and letter written to the plotter; an homage to the <a href="https://www.latenightcopies.com/product/queer-materials-2-dear-inky">“Dear Inky” series by JoAnn F. Weldon</a>, gathered by Late Night Copies Press in the second series of Queer Materials.</p>
+                <p>Plot III on pink paper: Verso plot to test if optimized SVG paths could force the plotter in moving in a linear direction approximating handwriting. Video recording available <a href="https://vimeo.com/1144558965">on Vimeo</a>.</p>
+                <p>Materials: 11" × 17" plots on paper.</p>
+            </article>
+
+            <article id="hp">
+                <h1>Shape of Our Images (2025)</h1>
+                <div class="gallery">
+                    <!-- <img src="https://d2w9rnfcy7mm78.cloudfront.net/42420095/original_846711f1ec4d72034248b473c6387968.png?1767724373?bc=0" alt=""> -->
+                    <img src="https://d2w9rnfcy7mm78.cloudfront.net/42420096/original_ea8a802588732da04b8f3e13ae5dea09.gif?1767724374?bc=0" alt="Animation of a flip through a bound book of plots in black ink on tracing paper. The plots capture the process of the plot taking form: stray lines interrupt the compositions and text is rendered in a gothic font.">
+                </div>
+                <p>Continued study of how the vpype SVG optimization algorithm influences the physical taking-form of long-form text — here, Vilém Flusser’s “Our Images,” <a href="https://www.flusserstudies.net/sites/www.flusserstudies.net/files/media/attachments/flusser-our-images.pdf">translated by Rodrigo Maltez Novaes</a> — plotted on an <a href="https://www.hpmuseum.net/display_item.php?hw=74">HP7475A</a>.</p>
+                <p>Materials: 5.5" × 8.5" plots on tracing paper.</p>
+            </article>
+
+        </main>
+
+
+    </body>
+</html>
+
