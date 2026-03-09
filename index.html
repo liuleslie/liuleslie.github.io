@@ -11,39 +11,82 @@
         <script src="script.js"></script>
         <base target="_self">
         <style>
+            :root {
+                --bg: whitesmoke;
+                --bg-details: #ededed;
+                --text: black;
+                --link: blue;
+                --link-color: blue;
+                --link-hover-bg: white;
+                --link-hover: black;
+                --link-active: purple;
+                --timestamp: gray;
+                --hr: silver;
+                --h2-underline: black;
+            }
+            [data-theme="dark"] {
+                --bg: black;
+                --bg-details: #222;
+                --text: white;
+                --link: dodgerblue;
+                --link-color: dodgerblue;
+                --link-hover-bg: #333;
+                --link-hover: #silver;
+                --link-active: violet;
+                --timestamp: gray;
+                --hr: #333;
+                --h2-underline: gray;
+            }
             body {
-                font-family:FEReg, sans-serif;
-                font-size:15px;line-height:1.3; letter-spacing:0.5px;
-                max-width:50vw; margin:2em auto 2em auto;background-color:whitesmoke;
+                font-family:FEReg, sans-serif; font-size:15px;line-height:1.3; letter-spacing:0.5px;
+                max-width:50vw; margin:2em auto 2em auto;
+                background-color:var(--bg); color:var(--text);
             }
             details { padding: 1em auto 1em auto }
             details p {font-family:FELight, sans-serif;}
-            details[open] { background-color:#ededed }
-            a { text-underline-offset:2.5px;color:blue;text-decoration:1px solid blue underline; }
-            a:hover { color:black;text-decoration:none;background-color:white }
-            a:active { color:purple; }
+            details[open] { background-color:var(--bg-details);padding-bottom:0.125em }
+            a { text-underline-offset:2.5px;color:var(--link-color);text-decoration:1px solid var(--link-color) underline; }
+            a:hover { color:var(--link-hover);text-decoration:none;background-color:var(--link-hover-bg) }
+            a:active { color:var(--link-active);text-decoration:none }
             video { width: 100% }
             ul { list-style: none }
             li { margin-bottom: 1em }
             h1 { font-size:1.25em }
             h1, h2 { font-weight:normal; }
-            h2 { font-size:1em; text-decoration:1px black solid underline }
+            h2 { font-size:1em; text-decoration:1px var(--h2-underline) solid underline }
             section { margin-bottom: 2em }
-            span.timestamp { color:gray;font-size:0.8em }
-            hr { border: 0.5px solid silver }
-            @media (max-width:1000px) { 
-                body {margin:1em;max-width:100%;} 
-            } 
+            span.timestamp { color:var(--timestamp);font-size:0.8em;text-transform:uppercase }
+            span.desc { padding-left:1em }
+            hr { border: 0.5px solid var(--hr) }
+            #theme-toggle { background:none;border:none;cursor:pointer;font-family:FEReg,sans-serif;font-size:1em;color:var(--timestamp)}
+            @media (max-width:800px) { body {margin:1em;max-width:100%;} }
         </style>
+        <script>
+            (function() {
+                var saved = localStorage.getItem('theme') ||
+                    (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+                if (saved === 'dark') document.documentElement.dataset.theme = 'dark';
+            })();
+            function toggleTheme() {
+                var isDark = document.documentElement.dataset.theme === 'dark';
+                document.documentElement.dataset.theme = isDark ? '' : 'dark';
+                localStorage.setItem('theme', isDark ? 'light' : 'dark');
+                document.getElementById('theme-toggle').textContent = isDark ? 'light' : 'dark';
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+                var isDark = document.documentElement.dataset.theme === 'dark';
+                document.getElementById('theme-toggle').textContent = isDark ? 'dark' : 'light';
+            });
+        </script>
     </head>
 
     <body>
         <section>
-            <h1>Leslie Liu</h1>
+            <h1>Leslie Liu’s website, <button id="theme-toggle" onclick="toggleTheme()">light</button></h1>
             <p>
                 Professional: <a href="https://liuleslie.github.io/portfolio">Portfolio</a>; 
-                Grad: <a href="https://densegut.tiddlyhost.com/#meta%3A%20my%20wiki!">Blog</a>, <a href="https://github.com/liuleslie/captcha">Repository</a>; 
-                News: <a href="https://liuleslie.github.io/now">Now</a>; 
+                <br>Grad: <a href="https://densegut.tiddlyhost.com/#meta%3A%20my%20wiki!">Blog</a>, <a href="https://github.com/liuleslie/captcha">Repository</a>; 
+                <br>News: <a href="https://liuleslie.github.io/now">Now</a>; 
                 Post: <a href="https://users3.smartgb.com/g/g.php?a=s&i=g36-36279-2f">Guestbook</a>
             </p>
         </section>
@@ -54,49 +97,49 @@
                 <ul id="texts">
                     <li>
                         <p>
-                            <a href="booking/index.html">Book-based practices</a><br>
-                            <span class="timestamp">SP 20 –</span>
+                            <a href="tp/sniffing.html">Sniffing</a><span class="desc">SmellPGH reports</span>
+                            <br><span class="timestamp">Mar 9, 26</span>
+                        </p>
+                        <p>
+                            <a href="booking/index.html">Book-based practices</a>
+                            <br><span class="timestamp">Spring, 20 –</span>
                         </p>
                     </li>
                     <li>
                         <p>
-                            <a href="notes/n3.html">Scattered notes</a><br>
-                            <span class="timestamp">SU 25</span>
+                            <a href="notes/n3.html">Scattered notes</a>
+                            <br><span class="timestamp">June 16, 25</span>
                         </p>
                     </li>
                     <li>
                         <p>
-                            <a href="essays/e5.html">Scallion minifesto: the second text</a><br>
-                            notes on human-LLM encounters.<br>
-                            <span class="timestamp">SP 25</span>
+                            <a href="essays/e5.html">Scallion minifesto: the second text</a><span class="desc">notes on human-LLM encounters.</span>
+                            <br><span class="timestamp">Mar 15, 25</span>
                         </p>
                     </li>
                     <li>
                         <p>
-                            <a href="essays/e1.html">Existentialism at the grocery store</a><br>
-                            aesthetic experience and materiality of synthetic media.<br>
-                            <span class="timestamp">WN 23/24</span>
+                            <a href="essays/e1.html">Existentialism at the grocery store</a><span class="desc">aesthetic experience and materiality of synthetic media.</span>
+                            <br><span class="timestamp">Jan 27, 24</span>
                         </p>
                     </li>
                     <li>
                         <p>
-                            <a href="essays/e2.html">The Internet Onion, 2021, Layer 29</a><br>
-                            a question as a gift.<br>
-                            <span class="timestamp">SU 21</span>
+                            <a href="essays/e2.html">The Internet Onion, 2021, Layer 29</a><span class="desc">a question as a gift.</span>
+                            <br><span class="timestamp">Summer, 21</span>
                         </p>
                     </li>
                     <li>
                         <p>
-                            <a href="essays/e3.html">Feeling From the Margins</a><br>
-                            notes on comment sections.<br>
-                            <span class="timestamp">WN 21/22</span>
+                            <a href="essays/e3.html">Feeling From the Margins</a><span class="desc">
+                            notes on comment sections.</span>
+                            <br><span class="timestamp">Winter, 21/22</span>
                         </p>
                     </li>
                     <li>
                         <p>
-                            <a href="essays/e4.html"><em>Subway Surfers</em> TikToks</a><br>
-                            thinking through a mode of media absorption.<br>
-                            <span class="timestamp">SP 21</span>
+                            <a href="essays/e4.html"><em>Subway Surfers</em> TikToks</a><span class="desc">thinking through a mode of media absorption.</span>
+                            <br><span class="timestamp">Apr 10, 21</span>
                         </p>
                     </li>
                 </ul>
@@ -104,7 +147,7 @@
         </section>
         <hr>
         <section>
-            <p>Last updated February 16, 2026.</p>
+            <p>Last updated March 9, 2026.</p>
         </section>
     </body>
 </html>
