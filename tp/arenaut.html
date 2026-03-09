@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>are.nauts: timeline</title>
+    <style>
+      body {
+        background-color: black; color: white; max-width: 50vw; margin: 0 auto;
+      }
+      h1, h2 { font-weight: normal }
+      a, a:visited { color: hotpink }
+    </style>
+  </head>
+  <body>
+    <h1>are.nauts: timeline</h1>
+
+    <main>
+      <div id="controls">
+        <input type="text" id="userSlugInput" placeholder="enter your are.na slug)">
+        <button id="userDone">fetch my blocks</button>
+      </div>
+
+      <div id="output">
+        <p id="status"></p>
+        <div id="timeline"></div>
+      </div>
+    </main>
+
+    <script>
+      document.getElementById("userDone").addEventListener('click', fetchUserBlocks)
+
+      async function fetchUserBlocks() {
+        // your code goes here
+
+        try {
+          const urlToFetch = `https://api.are.na/v3/users/${userSlugInput}/contents?sort=created_at_asc&type=Text&per_page=100&total_pages`
+          const response = await fetch("url here");
+
+          if (!response.ok) {
+            throw new Error(`REsponse status: ${response.status}`);
+          }
+
+          const result = await response.json();
+        }
+      }
+
+
+
+    </script>
+  </body>
+</html>

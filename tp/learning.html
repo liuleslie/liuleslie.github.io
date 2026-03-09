@@ -1,0 +1,156 @@
+<!-- tiny are.na tool exploration -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="icon" type="image/x-icon" href="favicon.ico">
+      <title>are.nauting</title>
+      <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
+      <style>
+        body {
+          background-color:black;
+          color:white;
+          max-width:50vw;
+          margin:0 auto;
+        }
+        h1, h2 { font-weight:normal }
+        a, a:visited { color: hotpink }
+        aside { margin-bottom:3em }
+        aside * { color: gray;font-size:0.75em; }
+          /* @media (prefers-color-scheme: dark){
+              body{
+                  background-color:black;
+                  color:white;
+              }
+          } */
+      </style>
+  </head>
+  <body>
+    <h1>are.nauts: wishing well</h1>
+    <aside>
+      <p>later down the line: all the IDs of your blocks (not considering channels for now)</p>
+    </aside>
+
+    <main>
+      <div id="wishing-well">
+    
+        <input type="number" id="userNumInput" placeholder="enter an integer">
+        <button id="userDone">search</button>
+
+      </div>
+
+      <div id="wellwater-surface">
+
+        <p>
+          <span id="fetchable"></span>
+          <span id="urlVisitable"></span><a id="urlToVisit" href=""></a>
+        </p>
+        
+        
+        <p id="fetched-data"></p>
+
+      </div>
+    </main>
+
+
+    <script>
+      document.getElementById("userDone").addEventListener('click',prepBlock)
+
+
+      async function prepBlock() {
+        const currInputValue = document.getElementById("userNumInput").value;
+        const blockFetchURL = `https://api.are.na/v3/blocks/${currInputValue}`;
+        const blockURL = `https://are.na/block/${currInputValue}`;
+
+        try {
+          const response = await fetch(blockFetchURL);
+
+          if (!response.ok) {
+            document.getElementById("fetchable").innerText = `${response.status}, cannot access block; try again.`;
+            document.getElementById("urlVisitable").innerText = "";
+            document.getElementById("urlToVisit").href = "";
+            document.getElementById("urlToVisit").innerHTML = "";
+            throw new Error(`Response status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          document.getElementById("fetchable").innerText = "This block is publicly accessible!";
+          document.getElementById("urlVisitable").innerText = " Visit it at ";
+          document.getElementById("urlToVisit").href = blockURL;
+          document.getElementById("urlToVisit").innerHTML = blockURL;
+          
+          // info about the block and its uploader
+          const created = new Date(result.created_at).toLocaleString("en-US", {year: "numeric", month: "long", day: "numeric"});
+          const updated = new Date(result.updated_at).toLocaleString("en-US", {year: "numeric", month: "long", day: "numeric"});
+          
+          const metadata = `It was created on ${created}\nand last modified on ${updated},\n\nby ${result.user.name} who is number ${result.user.id} in “line”`;
+          document.getElementById("fetched-data").innerText = metadata;
+          console.log(result);
+
+
+
+        } catch (error) {
+          console.error(error.message);
+        }
+      }
+    </script>
+    
+  </body>
+</html>
+
+
+<!-- 
+
+promise.all() waits for everything to be done
+promise.race() will do whenever the first is done ?
+
+
+
+
+  promises are similar to callbacks, but cleaner
+  let p = new Promise((resolve, reject) => {
+    console.log('test')
+    // get data if possible
+    // if condition ,resolve('message text')
+
+    // otherwise reject and send an error
+    // else condition, reject('message text')
+  })
+
+  p.then((message) => {
+    console.log('success, in then' + message)
+  }).catch((message) => {
+    console.log('reject/fails, in the catch' + message)
+  })
+
+  
+
+async function prepBlock() {
+        console.log('in prepBlock')
+        const blockFetchURL = `https://api.are.na/v3/blocks/${currInputValue}`;
+        const blockURL = `https://are.na/block/${currInputValue}`;
+        try {
+          const response = await fetch(blockFetchURL);
+          if (!response.ok) {
+            
+            throw new Error(`Response status: ${response.status}`);
+          }
+
+          
+          const result = await response.json();
+          console.log('we got the result');
+          // document.getElementById("userURL").target.href = blockURL;
+          document.getElementById("userURL").innerHTML = blockURL;
+          console.log(result);
+
+
+        } catch (error) {
+          console.error(error.message);
+          if (erorr.message)
+        }
+      }
+
+
+
+-->

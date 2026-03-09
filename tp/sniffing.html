@@ -359,55 +359,33 @@
     width: 100%;
     display:flex;
     flex-direction:column;
-    /* max-width: 38rem; */
   }
 
   /* random-another, random-info, random-maintext */
 
-  #random-inner * {
-    display:inline-flex;
-    vertical-align: baseline;
-  }
-
   #random-info {
-    border:1px magenta solid;
+    margin-top: 3em;
+    margin-bottom: 1em;
   }
 
-
-  #random-score {
-    border:1px hotpink solid;
-    /* font-size: 1.49em; */
-      /* 1.3rem × (16÷14) */
-    /* letter-spacing: -1px; */
-    /* margin-bottom: 0.4rem; */
+  .rfield {
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 2em;
   }
-
-  #random-meta {
-    color: var(--meta-color);
-    border:1px red solid;
-    margin: 2em 4em;
-    /* font-size: 0.89em; */
-      /* 0.78rem × (16÷14) */
-    /* margin-bottom: 1.6rem; */
-  }
-
-  /* .rfield { margin-bottom: 1.1rem; } */
 
   .rfield-label {
     color: var(--status-color);
-    /* font-size: 0.82em; */
-    /* 0.72rem × (16÷14) */
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    /* margin-bottom: 0.25rem; */
-    margin-left:1em;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
   }
 
   .rfield-text {
     color: var(--text-color);
-    font-size: 2em;     /* 0.88rem × (16÷14) ≈ 1 */
-    line-height: 1.6;
-    vertical-align: baseline
+    font-size: 4em;     /* 0.88rem × (16÷14) ≈ 1 */
+    line-height: 0.95;
+    vertical-align: baseline;
   }
 
   .rfield-empty {
@@ -431,12 +409,18 @@
     font-size: inherit;
     padding: 0.3rem 0.9rem;
     cursor: pointer;
+    align-self: flex-start;
   }
   #random-another:hover { border-color: var(--fg); }
 
   #random-empty {
     color: var(--noresults-color);
     display: none;
+  }
+
+  @media (max-width: 639px) {
+    #random-card { display: flex; }
+    #table-wrap  { display: none; }
   }
 </style>
 </head>
@@ -781,15 +765,12 @@ function renderRandomCard(reports) {
     { label: 'symptoms',    value: r.feelings_symptoms },
     { label: 'comments',    value: r.additional_comments },
   ];
-  fields.forEach(({ label, value }) => {
-    const div = document.createElement('div');
-    div.className = 'rfield';
-    div.innerHTML = `<div class="rfield-label">${label}</div>`
-      + (value
-        ? `<span class="rfield-text">${highlightText(value, searchTerm)}</span>`
-        : `<span class="rfield-empty">&nbsp;N/A</span>`);
-    fieldsEl.appendChild(div);
-  });
+  fieldsEl.innerHTML = fields
+    .filter(({ value }) => value)
+    .map(({ label, value }) =>
+      `<div class="rfield"><span class="rfield-label">${label}</span><span class="rfield-text">${highlightText(value, searchTerm)}</span></div>`
+    )
+    .join('');
 
   // dist
   const distEl = document.getElementById('random-dist');
@@ -821,12 +802,24 @@ function setViewMode(mode) {
   }
 }
 
-document.getElementById('view-toggle').addEventListener('click', () => {
+document.getElementById('view-toggle').addEventListener('click', e => {
+  e.currentTarget.blur();
   setViewMode(viewMode === 'reports' ? 'random' : 'reports');
 });
 
-document.getElementById('random-another').addEventListener('click', () => {
+document.getElementById('random-another').addEventListener('click', e => {
+  e.currentTarget.blur();
   renderRandomCard(filteredReports());
+});
+
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'r') {
+    setViewMode(viewMode === 'reports' ? 'random' : 'reports');
+  } else if (e.key === ' ' && viewMode === 'random') {
+    e.preventDefault();
+    renderRandomCard(filteredReports());
+  }
 });
 
 // ── filter ─────────────────────────────────────────────────────────────────
