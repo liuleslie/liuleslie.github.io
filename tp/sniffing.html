@@ -8,26 +8,26 @@
   /* ── theme variables ────────────────────────────────────────── */
 
   :root {
-    --bg:                #000000;
-    --fg:                #ffffff;
-    --bar-bg:            #000000;
-    --bar-border:        #000000;
-    --h1-label:          #ffffff;
-    --input-bg:          #000000;
+    --bg:                black;
+    --fg:                white;
+    --bar-bg:            black;
+    --bar-border:        black;
+    --h1-label:          silver;
+    --input-bg:          black;
     --input-border:      #303030;
     --input-focus:       gray;
     --btn-border:        gray;
     --status-color:      gray;
-    --th-color:          #ffffff;
+    --th-color:          white;
     --th-border:         #303030;
-    --th-bg:             #000000;
+    --th-bg:             black;
     --tr-border:         #303030;
     --tr-hover:          #303030;
     --idx-color:         gray;
     --int-empty:         #505050;
     --meta-color:        gray;
     --dist-color:        #7fb3d3;
-    --text-color:        #ffffff;
+    --text-color:        white;
     --empty-color:       gray;
     --marker-color:      gray;
     --noresults-color:   #303030;
@@ -419,9 +419,18 @@
     display: none;
   }
 
-  @media (max-width: 639px) {
+  @media (max-width: 640px) {
     #random-card { display: flex; }
     #table-wrap  { display: none; }
+    #random-info { font-size: 1.2em; }
+    .rfield-text { font-size: 2em; }
+
+    #top-bar { padding: 0.8rem 1rem 0.6rem; }
+    #streets-input { display: none; }
+    #zip-input { width: 4rem; }
+    #controls-row { flex-wrap: wrap; }
+    #search-wrap { min-width: 0; }
+    #view-toggle { display: none; }
   }
 </style>
 </head>
@@ -786,6 +795,7 @@ function renderRandomCard(reports) {
 // ── view toggle ────────────────────────────────────────────────────────────
 
 function setViewMode(mode) {
+  if (mode === 'reports' && window.matchMedia('(max-width: 640px)').matches) return;
   viewMode = mode;
   const btn = document.getElementById('view-toggle');
   const tableWrap = document.getElementById('table-wrap');
@@ -817,7 +827,7 @@ document.addEventListener('keydown', e => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
   if (e.key === 'r') {
     setViewMode(viewMode === 'reports' ? 'random' : 'reports');
-  } else if (e.key === ' ' && viewMode === 'random') {
+  } else if (e.key === ' ' && (viewMode === 'random' || window.matchMedia('(max-width: 640px)').matches)) {
     e.preventDefault();
     renderRandomCard(filteredReports());
   }
