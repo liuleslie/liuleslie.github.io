@@ -133,10 +133,19 @@
           const notice = document.getElementById("rate-limit-notice");
           if (failedPages.length > 0 || rateLimitedPages.length > 0) {
             notice.style.display = "block";
-            const parts = [];
-            if (rateLimitedPages.length > 0) parts.push(`rate limited on pages: ${rateLimitedPages.join(", ")} (retried)`);
-            if (failedPages.length > 0) parts.push(`permanently failed: ${failedPages.join(", ")} — data incomplete`);
-            notice.innerText = parts.join(" · ");
+            // failedPages stores strings like "p.30(429)"; extract the page numbers
+            const failedNums = failedPages.map(s => parseInt(s.replace("p.", "")));
+            const allAffected = [...new Set([...rateLimitedPages, ...failedNums])].sort((a, b) => a - b);
+            // collapse into ranges
+            const ranges = [];
+            let start = allAffected[0], end = allAffected[0];
+            for (let i = 1; i < allAffected.length; i++) {
+              if (allAffected[i] === end + 1) { end = allAffected[i]; }
+              else { ranges.push(start === end ? `${start}` : `${start}–${end}`); start = end = allAffected[i]; }
+            }
+            ranges.push(start === end ? `${start}` : `${start}–${end}`);
+            const suffix = failedPages.length > 0 ? " — data incomplete" : "";
+            notice.innerText = `rate limited on pages: ${ranges.join(", ")}${suffix}`;
           }
 
           const byDate = groupByDate(allItems);
@@ -213,6 +222,7 @@
       function renderStats(items, userData, byDate, maxPerDay) {
         const blocks = items.filter(i => i.type !== "Channel");
         const channels = items.filter(i => i.type === "Channel");
+        console.log(`renderStats: ${items.length} total, ${blocks.length} blocks, ${channels.length} channels`);
 
         const userCreatedDate = new Date(userData.created_at).toLocaleDateString("en-US", {
           year: "numeric", month: "long", day: "numeric"
@@ -247,6 +257,7 @@
         start.setDate(1);
         const end = new Date();
         end.setDate(1);
+        end.setMonth(end.getMonth() + 1); // advance past current month so it's always included
 
         let cursor = new Date(start);
         while (cursor <= end) {
