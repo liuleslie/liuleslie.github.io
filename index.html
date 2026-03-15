@@ -44,7 +44,7 @@
             }
             details { padding: 1em auto 1em auto }
             details p {font-family:FELight, sans-serif;}
-            details[open] { background-color:var(--bg-details);padding-right: 0.125em}
+            details[open] { background-color:var(--bg-details);padding: 0.25em 0.125em 0.5em 0.25em}
             a { text-underline-offset:2.5px;color:var(--link-color);text-decoration:1px solid var(--link-color) underline; }
             a:hover { color:var(--link-hover);text-decoration:none;background-color:var(--link-hover-bg) }
             a:active { color:var(--link-active);text-decoration:none }
@@ -59,7 +59,7 @@
             span.desc { padding-left:1em }
             hr { border: 0.5px solid var(--hr) }
             #theme-toggle { background:none;border:none;cursor:pointer;font-family:FEReg,sans-serif;font-size:1em;color:var(--timestamp)}
-            @media (max-width:800px) { body {margin:1em;max-width:100%;} }
+            @media (max-width:800px) { body {font-size:13px; margin:1em;max-width:100%;} ul {padding-left: 0} }
         </style>
         <script>
             (function() {
@@ -94,20 +94,24 @@
         <section>
             <details open>
                 <summary>I am broadly interested in interfaces and their metaphors, advertising, and ecstatic experiences of / encounters with technology.</summary>
-                <ul id="texts">
+                <ul id="projects">
                     <li>
+                        <p>
+                            <a href="tp/wishing.html">Wishing well</a>, <a href="tp/trawling.html">Trawling portal</a><span class="desc">two provocations for Are.na users to relate to the website and their media in a new way.</span>
+                            <br><span class="timestamp">Mar 15, 26</span>
+                        </p>
                         <p>
                             <a href="tp/sniffing.html">Sniffing</a><span class="desc">simple tabular display of SmellPGH reports for personal daily use.</span>
                             <br><span class="timestamp">Mar 9, 26</span>
                         </p>
                         <p>
-                            <a href="booking/index.html">Book-based practices</a>
+                            <a href="booking/index.html">Booking</a><span class="desc">the techne of books; interactions and book-based practices.</span>
                             <br><span class="timestamp">Spring, 20 –</span>
                         </p>
                     </li>
                     <li>
                         <p>
-                            <a href="notes/n3.html">Scattered notes</a>
+                            <a href="notes/n3.html">Scattered notes</a><span class="desc">about representation and ideas of what’s artfully or deliciously cruel.</span>
                             <br><span class="timestamp">June 16, 25</span>
                         </p>
                     </li>
@@ -147,7 +151,7 @@
         </section>
         <hr>
         <section>
-            <p>Last updated March 9, 2026.</p>
+            <p>Last updated March 16, 2026.</p>
         </section>
     </body>
 </html>
