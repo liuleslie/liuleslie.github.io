@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.are.na)",
+      "WebFetch(domain:dev.are.na)"
+    ]
+  }
+}

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>are.nauting</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        background-color: black;
+        color: white;
+        margin: 0;
+        padding: 1.5em;
+        font-family: sans-serif;
+      }
+      h1, h2, h3 { font-weight: normal; margin: 0 0 0.5em; }
+      h2, h3 { font-size:1em; }
+      h3 { color: white; margin-top: 1.5em; }
+      a, a:visited { color: hotpink; }
+      small { color: gray; }
+
+      #site-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        background: black;
+        padding: 1em 1.5em 0.75em;
+        z-index: 10;
+        border-bottom: 1px solid #222;
+      }
+      #site-header h1 { margin-bottom: 0.5em; }
+      #controls {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2em;
+        align-items: start;
+      }
+      #controls-input { display: flex; flex-direction: column; gap: 0.25em; }
+      #controls-stats { font-size: 0.85em; }
+      #status { color: gray; margin: 0; min-height: 1.2em; }
+      #rate-limit-notice { color: orange; margin: 0.25em 0 0; }
+
+      #layout {
+        display: flex;
+        gap: 1em;
+        align-items: flex-start;
+        margin-top: 9em;
+      }
+      #stats-panel {
+        flex: 1;
+        position: sticky;
+        top: 9em;
+        max-height: calc(100vh - 10em);
+        overflow-y: auto;
+        padding-right: 0.5em;
+      }
+      #timeline-panel { flex: 2; }
+
+      .stat-line { margin: 0.25em 0; }
+
+      /* calendar */
+      #calendar { margin-top: 1em; }
+      .cal-month { margin-bottom: 1em; }
+      .cal-label { color: gray; margin-bottom: 3px; }
+      .cal-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 10px);
+        gap: 2px;
+      }
+      .cal-cell {
+        width: 10px;
+        height: 10px;
+        border-radius: 2px;
+        background-color: rgba(255, 105, 180, 0.05);
+      }
+      .cal-cell.clickable { cursor: pointer; }
+      .cal-cell.active { outline: 1px solid silver; }
+
+      /* timeline */
+      .day-section { margin-bottom: 1.5em; }
+      .day-section.active { background-color: rgba(192,192,192,0.08); border-radius: 4px; padding: 0 2em; }
+      .day-entry { margin: 0.2em 0; }
+      .tag, .dash { color: gray;font-family:monospace }
+    </style>
+  </head>
+  <body>
+    <div id="site-header">
+      <h1>are.nauts: timeline</h1>
+      <div id="controls">
+        <div id="controls-input">
+          <div><input type="text" id="userSlugInput" placeholder="enter your are.na slug"> <button id="userDone">fetch</button></div>
+          <p id="status"></p>
+          <p id="rate-limit-notice" style="display:none"></p>
+        </div>
+        <div id="controls-stats"></div>
+      </div>
+    </div>
+
+    <div id="layout">
+      <aside id="stats-panel"></aside>
+      <div id="timeline-panel"></div>
+    </div>
+
+    <script>
+      document.getElementById("userDone").addEventListener('click', fetchUserBlocks)
+
+      let currentSlug = "";
+      let failedPages = [];
+      let rateLimitedPages = []; // pages that hit 429 even if eventually resolved
+
+      async function fetchUserBlocks() {
+        currentSlug = document.getElementById("userSlugInput").value.trim();
+        if (!currentSlug) return;
+
+        failedPages = [];
+        rateLimitedPages = [];
+        setStatus("fetching user profile...");
+        document.getElementById("controls-stats").innerHTML = "";
+        document.getElementById("stats-panel").innerHTML = "";
+        document.getElementById("timeline-panel").innerHTML = "";
+        document.getElementById("rate-limit-notice").style.display = "none";
+
+        try {
+          const [userData, allItems] = await Promise.all([
+            fetch(`https://api.are.na/v3/users/${currentSlug}`).then(r => r.json()),
+            getAllItems(currentSlug)
+          ]);
+
+          console.log("base_type values present:", [...new Set(allItems.map(i => i.base_type))]);
+
+          const notice = document.getElementById("rate-limit-notice");
+          if (failedPages.length > 0 || rateLimitedPages.length > 0) {
+            notice.style.display = "block";
+            const parts = [];
+            if (rateLimitedPages.length > 0) parts.push(`rate limited on pages: ${rateLimitedPages.join(", ")} (retried)`);
+            if (failedPages.length > 0) parts.push(`permanently failed: ${failedPages.join(", ")} — data incomplete`);
+            notice.innerText = parts.join(" · ");
+          }
+
+          const byDate = groupByDate(allItems);
+          const maxPerDay = Math.max(...Object.values(byDate).map(v => v.length));
+
+          renderStats(allItems, userData, byDate, maxPerDay);
+          renderTimeline(byDate);
+        } catch (err) {
+          setStatus(`error: ${err.message}`);
+        }
+      }
+
+      // fetch a single page, retrying on 429 with exponential backoff
+      async function fetchPageWithRetry(base, page, attempt = 1) {
+        const res = await fetch(`${base}&page=${page}`);
+        if (res.status === 429 && attempt <= 4) {
+          const wait = attempt * 1500;
+          if (!rateLimitedPages.includes(page)) rateLimitedPages.push(page);
+          setStatus(`rate limited on page ${page}, retrying in ${wait / 1000}s (attempt ${attempt}/4)...`);
+          await new Promise(resolve => setTimeout(resolve, wait));
+          return fetchPageWithRetry(base, page, attempt + 1);
+        }
+        if (!res.ok) {
+          failedPages.push(`p.${page}(${res.status})`);
+          return [];
+        }
+        const d = await res.json();
+        return d.data; // blocks AND channels, no filter
+      }
+
+      // fetch all pages in batches to avoid rate limits
+      async function getAllItems(slug) {
+        const base = `https://api.are.na/v3/users/${slug}/contents?per=100`;
+
+        const firstRes = await fetch(`${base}&page=1`);
+        if (!firstRes.ok) throw new Error(`${firstRes.status} — user not found?`);
+        const firstData = await firstRes.json();
+
+        const totalPages = firstData.meta.total_pages;
+        setStatus(`found ${firstData.meta.total_count} items across ${totalPages} pages, loading...`);
+
+        let allItems = firstData.data;
+
+        const BATCH_SIZE = 5;
+        const DELAY_MS = 600;
+
+        for (let page = 2; page <= totalPages; page += BATCH_SIZE) {
+          const batch = Array.from(
+            { length: Math.min(BATCH_SIZE, totalPages - page + 1) },
+            (_, i) => page + i
+          );
+          const results = await Promise.all(batch.map(p => fetchPageWithRetry(base, p)));
+          allItems = allItems.concat(results.flat());
+          setStatus(`loaded ${allItems.length} items so far (page ${Math.min(page + BATCH_SIZE - 1, totalPages)}/${totalPages})...`);
+
+          if (page + BATCH_SIZE <= totalPages) {
+            await new Promise(resolve => setTimeout(resolve, DELAY_MS));
+          }
+        }
+
+        return allItems.sort((a, b) => a.id - b.id);
+      }
+
+      function groupByDate(items) {
+        const byDate = {};
+        items.forEach(item => {
+          const date = item.created_at.split('T')[0];
+          if (!byDate[date]) byDate[date] = [];
+          byDate[date].push(item);
+        });
+        return byDate;
+      }
+
+      function renderStats(items, userData, byDate, maxPerDay) {
+        const blocks = items.filter(i => i.base_type === "Block");
+        const channels = items.filter(i => i.base_type === "Channel");
+
+        const userCreatedDate = new Date(userData.created_at).toLocaleDateString("en-US", {
+          year: "numeric", month: "long", day: "numeric"
+        });
+
+        const peakDateStr = Object.entries(byDate).reduce((a, b) => b[1].length > a[1].length ? b : a)[0];
+        const peakDateFormatted = new Date(peakDateStr + "T12:00:00").toLocaleDateString("en-US", {
+          year: "numeric", month: "long", day: "numeric"
+        });
+
+        const statsEl = document.getElementById("controls-stats");
+        statsEl.innerHTML = `
+          <p class="stat-line">account created <strong>${userCreatedDate}</strong></p>
+          <p class="stat-line">${blocks.length} blocks &middot; ${channels.length} channels</p>
+          <p class="stat-line">peak day: <strong>${maxPerDay}</strong> additions on <a id="peak-day-link" href="#" style="color:hotpink">${peakDateFormatted}</a></p>
+        `;
+        document.getElementById("peak-day-link").addEventListener("click", e => {
+          e.preventDefault();
+          setActiveDay(peakDateStr);
+          document.getElementById(`day-${peakDateStr}`)?.scrollIntoView({ behavior: "smooth" });
+        });
+
+        const panel = document.getElementById("stats-panel");
+        renderCalendar(byDate, maxPerDay, userData.created_at, panel);
+      }
+
+      function renderCalendar(byDate, maxPerDay, userCreatedAt, container) {
+        const calEl = document.createElement("div");
+        calEl.id = "calendar";
+
+        const start = new Date(userCreatedAt);
+        start.setDate(1);
+        const end = new Date();
+        end.setDate(1);
+
+        let cursor = new Date(start);
+        while (cursor <= end) {
+          const year = cursor.getFullYear();
+          const month = cursor.getMonth();
+          const monthLabel = cursor.toLocaleDateString("en-US", { month: "short", year: "numeric" });
+          const daysInMonth = new Date(year, month + 1, 0).getDate();
+          const firstDayOfWeek = new Date(year, month, 1).getDay();
+
+          const monthEl = document.createElement("div");
+          monthEl.className = "cal-month";
+          monthEl.innerHTML = `<div class="cal-label">${monthLabel}</div>`;
+
+          const gridEl = document.createElement("div");
+          gridEl.className = "cal-grid";
+
+          // pad empty cells before day 1
+          for (let i = 0; i < firstDayOfWeek; i++) {
+            const empty = document.createElement("div");
+            empty.className = "cal-cell";
+            gridEl.appendChild(empty);
+          }
+
+          for (let day = 1; day <= daysInMonth; day++) {
+            const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            const count = byDate[dateStr] ? byDate[dateStr].length : 0;
+            const opacity = count > 0 ? 0.15 + (count / maxPerDay) * 0.85 : 0.05;
+
+            const cell = document.createElement("div");
+            cell.className = "cal-cell" + (count > 0 ? " clickable" : "");
+            cell.dataset.date = dateStr;
+            cell.style.backgroundColor = `rgba(255, 105, 180, ${opacity})`;
+            cell.title = `${dateStr}: ${count} item${count !== 1 ? "s" : ""}`;
+
+            if (count > 0) {
+              cell.addEventListener("click", () => {
+                setActiveDay(dateStr);
+                document.getElementById(`day-${dateStr}`)?.scrollIntoView({ behavior: "smooth" });
+              });
+            }
+
+            gridEl.appendChild(cell);
+          }
+
+          monthEl.appendChild(gridEl);
+          calEl.appendChild(monthEl);
+          cursor.setMonth(cursor.getMonth() + 1);
+        }
+
+        container.appendChild(calEl);
+      }
+
+      function renderTimeline(byDate) {
+        const sortedDates = Object.keys(byDate).sort();
+        const container = document.getElementById("timeline-panel");
+
+        const totalItems = Object.values(byDate).reduce((sum, arr) => sum + arr.length, 0);
+        setStatus(`${totalItems} public items loaded${failedPages.length > 0 ? " (partial)" : ""}`);
+
+        sortedDates.forEach(date => {
+          const items = byDate[date];
+          const formattedDate = new Date(date + "T12:00:00").toLocaleDateString("en-US", {
+            weekday: "long", year: "numeric", month: "long", day: "numeric"
+          });
+
+          const section = document.createElement("div");
+          section.id = `day-${date}`;
+          section.className = "day-section";
+
+          const heading = document.createElement("h3");
+          heading.textContent = `${formattedDate} (${items.length})`;
+          heading.style.cursor = "pointer";
+          heading.addEventListener("click", () => {
+            setActiveDay(date);
+            document.querySelector(`.cal-cell[data-date="${date}"]`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+          });
+          section.appendChild(heading);
+
+          items.forEach(item => {
+            const isChannel = item.base_type === "Channel";
+            const url = isChannel
+              ? `https://are.na/channel/${item.id}`
+              : `https://are.na/block/${item.id}`;
+
+            const entry = document.createElement("p");
+            entry.className = "day-entry";
+            entry.innerHTML = `<span class="tag">${item.id} · ${isChannel ? "channel" : item.type}</span> <span class="dash">—</span> <a href="${url}" target="_blank">${item.title || item.id}</a>`;
+            section.appendChild(entry);
+          });
+
+          container.appendChild(section);
+        });
+      }
+
+      function setActiveDay(dateStr) {
+        document.querySelectorAll(".day-section.active").forEach(el => el.classList.remove("active"));
+        document.querySelectorAll(".cal-cell.active").forEach(el => el.classList.remove("active"));
+        document.getElementById(`day-${dateStr}`)?.classList.add("active");
+        document.querySelector(`.cal-cell[data-date="${dateStr}"]`)?.classList.add("active");
+      }
+
+      function setStatus(msg) {
+        document.getElementById("status").innerText = msg;
+      }
+    </script>
+  </body>
+</html>
