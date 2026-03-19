@@ -49,6 +49,7 @@
         border-bottom: 1px solid var(--border);
       }
       #site-header #h1 { font-size:2em; margin-bottom: 1em; }
+      details p { margin: 1em auto 1em 2em; }
 
       #theme-toggle {
         background: none;
@@ -110,6 +111,7 @@
         mask-image: linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%);
         scrollbar-width: none;
       }
+
       #dial-window::-webkit-scrollbar { display: none; }
 
       /* spacer rows so edge rows can scroll to center — height set in JS */
@@ -144,6 +146,10 @@
 
       .info-name { font-size: 1em; }
       .info-meta { font-size: 0.8em; color: var(--muted); margin-top: 0.15em; }
+      @media (max-width: 640px) {
+        body { font-size: 13px; }
+        #h1 { font-size: 1.25em; }
+      }
     </style>
     <script>
       (function() {
@@ -157,8 +163,7 @@
     <div id="site-header">
       <details>
         <summary><span id="h1">are.nauts: id neighbors, <button id="theme-toggle">light</button></span></summary>
-        <p>An interpretation of <a href="https://www.are.na/block/22017787">Aaryan Pashine’s idea</a>. With thanks to Peter Ström, Laurel Schwulst, dani bloop, and Selina Kehuan Wu for their comments.</p>
-        <p>A rougher version of this was first explored by yours truly at <a href="wishing.html">Wishing Well</a>.</p>
+        <p>An interpretation of <a href="https://www.are.na/block/22017787">Aaryan Pashine’s idea</a>. With thanks to Peter Ström, Laurel Schwulst, dani bloop, and Selina Kehuan Wu for their comments.<br>A rougher version of this was first explored by yours truly at <a href="wishing.html">Wishing Well</a>.</p>
       </details>
       
       <div id="controls">
