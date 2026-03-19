@@ -5,32 +5,42 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="icon" type="image/x-icon" href="favicon.ico">
-      <title>are.nauting</title>
+      <title>are.nauting: wishing well</title>
       <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
       <style>
+        :root { --bg: whitesmoke; --text: black; --muted: gray; }
+        [data-theme="dark"] { --bg: black; --text: white; --muted: gray; }
         body {
           font-family:sans-serif;
-          background-color:black;
-          color:white;
+          background-color:var(--bg);
+          color:var(--text);
           max-width:50vw;
           margin:0 auto;
+          transition: background-color 0.15s, color 0.15s;
         }
         h1, h2 { font-weight:normal }
         a, a:visited { color: hotpink }
         aside { margin-bottom:3em }
-        aside * { color: gray; }
-          /* @media (prefers-color-scheme: dark){
-              body{
-                  background-color:black;
-                  color:white;
-              }
-          } */
+        aside * { color: var(--muted); }
+        #theme-toggle {
+          background:none; border:none; cursor:pointer;
+          font-family:sans-serif; font-size:1em; color:var(--muted); padding:0;
+        }
+        #theme-toggle:hover { color:var(--text); }
       </style>
+      <script>
+        (function() {
+          var saved = localStorage.getItem('arena-wishing-theme') ||
+            (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          if (saved === 'dark') document.documentElement.dataset.theme = 'dark';
+        })();
+      </script>
   </head>
   <body>
-    <h1>are.nauts: wishing well</h1>
+    <h1>are.nauts: wishing well, <button id="theme-toggle">light</button></h1>
     <aside>
-      <p>think of a number and enter it here to find out if it is a key to something on Are.na.</p>
+      <p>(Check out the <a href="https://www.are.na/block/19951165">founding block</a> motivating this webpage.)</p>
+      <p>Think of a number and enter it here to find out if it is a key to something on Are.na.</p>
     </aside>
 
     <main>
@@ -56,6 +66,17 @@
 
 
     <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var isDark = document.documentElement.dataset.theme === 'dark';
+        document.getElementById('theme-toggle').textContent = isDark ? 'dark' : 'light';
+      });
+      document.getElementById('theme-toggle').addEventListener('click', function() {
+        var isDark = document.documentElement.dataset.theme === 'dark';
+        document.documentElement.dataset.theme = isDark ? '' : 'dark';
+        localStorage.setItem('arena-wishing-theme', isDark ? 'light' : 'dark');
+        this.textContent = isDark ? 'light' : 'dark';
+      });
+
       document.getElementById("userDone").addEventListener('click',prepBlock)
 
 

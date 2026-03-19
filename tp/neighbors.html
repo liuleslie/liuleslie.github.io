@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>are.nauts: neighbors</title>
+    <style>
+      :root {
+        --bg: whitesmoke;
+        --text: black;
+        --muted: gray;
+        --border: #ddd;
+        --input-bg: white;
+        --input-border: #aaa;
+        --row-border: #e8e8e8;
+        --header-bg: whitesmoke;
+      }
+      [data-theme="dark"] {
+        --bg: black;
+        --text: white;
+        --muted: gray;
+        --border: gray;
+        --input-bg: black;
+        --input-border: #303030;
+        --row-border: #303030;
+        --header-bg: black;
+      }
+
+      * { box-sizing: border-box; }
+      html, body {
+        height: 100%;
+        overflow: hidden;
+        margin: 0;
+        font-family: sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        transition: background-color 0.15s, color 0.15s;
+      }
+      #h1, h2, h3 { font-weight: normal; margin: 0 0 0.5em; }
+      a, a:visited { color: hotpink; }
+
+      #site-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        background: var(--header-bg);
+        padding: 1em 1.5em 0.75em;
+        z-index: 10;
+        border-bottom: 1px solid var(--border);
+      }
+      #site-header #h1 { font-size:2em; margin-bottom: 1em; }
+
+      #theme-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: sans-serif;
+        font-size: 1em;
+        color: var(--muted);
+        padding: 0;
+      }
+      #theme-toggle:hover { color: var(--text); }
+
+      #controls {
+        margin-top:1em;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+        align-items: flex-end;
+      }
+      #controls label {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2em;
+        font-size: 0.85em;
+        color: var(--muted);
+      }
+      #controls input[type="text"],
+      #controls input[type="number"] {
+        background: var(--input-bg);
+        color: var(--text);
+        border: 1px solid var(--input-border);
+        padding: 0.3em 0.5em;
+        font-family: sans-serif;
+        font-size: 1em;
+      }
+      #controls input[type="number"] { width: 5em; }
+      #controls button#fetchBtn {
+        background: none;
+        color: hotpink;
+        border: 1px solid hotpink;
+        padding: 0.3em 0.5em 0.15em 0.5em;
+        font-family: sans-serif;
+        font-size: 1em;
+        cursor: pointer;
+      }
+      #controls button#fetchBtn:hover { background: hotpink; color: black; }
+
+      #status { color: var(--muted); font-size: 0.85em; margin: 0.4em 0 0; min-height: 1.2em; }
+      #rate-limit-notice { color: orange; font-size: 0.85em; margin: 0.2em 0 0; }
+
+      /* dial window */
+      #dial-window {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        top: var(--header-h, 8.5em);
+        overflow-y: scroll;
+        padding: 0 1.5em;
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%);
+        mask-image: linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%);
+        scrollbar-width: none;
+      }
+      #dial-window::-webkit-scrollbar { display: none; }
+
+      /* spacer rows so edge rows can scroll to center — height set in JS */
+      .dial-spacer { height: 0; }
+
+      .neighbor-row {
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        gap: 0.5em 1em;
+        align-items: start;
+        padding: 0.5em 0;
+        border-bottom: 1px solid var(--row-border);
+        max-width: 680px;
+      }
+      .neighbor-row.is-center {
+        border-left: 2px solid hotpink;
+        padding-left: 0.75em;
+        margin-left: -0.75em;
+      }
+      .neighbor-row.is-empty { opacity: 0.6; }
+      .neighbor-row.is-pending { opacity: 0.8; }
+      .neighbor-row.is-fetching { background-color: rgba(128,128,128,0.1); }
+
+      .id-col {
+        font-family: monospace;
+        font-size: 0.85em;
+        color: var(--muted);
+        padding-top: 0.1em;
+        text-align: right;
+      }
+      .id-col.center-id { color: hotpink; }
+
+      .info-name { font-size: 1em; }
+      .info-meta { font-size: 0.8em; color: var(--muted); margin-top: 0.15em; }
+    </style>
+    <script>
+      (function() {
+        var saved = localStorage.getItem('arena-neighbors-theme') ||
+          (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        if (saved === 'dark') document.documentElement.dataset.theme = 'dark';
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="site-header">
+      <details>
+        <summary><span id="h1">are.nauts: id neighbors, <button id="theme-toggle">light</button></span></summary>
+        <p>An interpretation of <a href="https://www.are.na/block/22017787">Aaryan Pashine’s idea</a>. With thanks to Peter Ström, Laurel Schwulst, dani bloop, and Selina Kehuan Wu for their comments.</p>
+        <p>A rougher version of this was first explored by yours truly at <a href="wishing.html">Wishing Well</a>.</p>
+      </details>
+      
+      <div id="controls">
+        <button id="anchorBtn" style="display:none" onclick="scrollToAnchor()">↩ return to anchor</button>
+        <label>
+          are.na slug
+          <input type="text" id="slugInput" placeholder="e.g. aaryan-pashine">
+        </label>
+        <label>
+          ± id radius
+          <input type="number" id="radiusInput" value="10" min="1" max="200">
+        </label>
+        <button id="fetchBtn">find neighbors</button>
+      </div>
+      <p id="status">are.na assigns users sequential IDs — find who joined around the same time as the anchoring user.</p>
+      <p id="rate-limit-notice" style="display:none"></p>
+    </div>
+
+    <div id="dial-window">
+      <div class="dial-spacer"></div>
+      <div id="results"></div>
+      <div class="dial-spacer"></div>
+    </div>
+
+    <script>
+      // theme
+      document.addEventListener('DOMContentLoaded', function() {
+        var isDark = document.documentElement.dataset.theme === 'dark';
+        document.getElementById('theme-toggle').textContent = isDark ? 'dark' : 'light';
+        var headerH = document.getElementById('site-header').offsetHeight;
+        document.getElementById('dial-window').style.top = headerH + 'px';
+      });
+
+      document.getElementById('theme-toggle').addEventListener('click', function() {
+        var isDark = document.documentElement.dataset.theme === 'dark';
+        document.documentElement.dataset.theme = isDark ? '' : 'dark';
+        localStorage.setItem('arena-neighbors-theme', isDark ? 'light' : 'dark');
+        this.textContent = isDark ? 'light' : 'dark';
+      });
+
+      document.getElementById("fetchBtn").addEventListener("click", run);
+      document.getElementById("slugInput").addEventListener("keydown", e => { if (e.key === "Enter") run(); });
+
+      function setStatus(msg) {
+        document.getElementById("status").innerText = msg;
+      }
+
+      let rateLimitedIds = [];
+      let failedIds = [];
+      let currentCenterId = null;
+      let lastSlug = null;
+      const userCache = new Map(); // id → user data (null if confirmed absent)
+
+      async function fetchUserWithRetry(slugOrId, attempt = 1) {
+        const res = await fetch(`https://api.are.na/v3/users/${slugOrId}`);
+        if (res.status === 429 && attempt <= 4) {
+          const wait = attempt * 1500;
+          if (typeof slugOrId === 'number' && !rateLimitedIds.includes(slugOrId)) rateLimitedIds.push(slugOrId);
+          const dist = (currentCenterId && typeof slugOrId === 'number') ? ` (${Math.abs(slugOrId - currentCenterId)} away)` : '';
+          setStatus(`rate limited near id ${slugOrId}${dist}, retrying in ${wait / 1000}s (attempt ${attempt}/4)...`);
+          await new Promise(r => setTimeout(r, wait));
+          return fetchUserWithRetry(slugOrId, attempt + 1);
+        }
+        if (res.status === 404) return null;
+        if (!res.ok) {
+          if (typeof slugOrId === 'number') failedIds.push(slugOrId);
+          return null;
+        }
+        return res.json();
+      }
+
+      async function run() {
+        const slug = document.getElementById("slugInput").value.trim();
+        const radius = parseInt(document.getElementById("radiusInput").value) || 10;
+        if (!slug) return;
+
+        const sameSlug = slug === lastSlug;
+        rateLimitedIds = [];
+        failedIds = [];
+        document.getElementById("rate-limit-notice").style.display = "none";
+
+        if (!sameSlug) {
+          userCache.clear();
+          document.getElementById("results").innerHTML = "";
+          currentCenterId = null;
+          document.getElementById("anchorBtn").style.display = "none";
+        }
+
+        setStatus("fetching center user...");
+
+        let center;
+        if (sameSlug && currentCenterId && userCache.get(currentCenterId)) {
+          center = userCache.get(currentCenterId);
+        } else {
+          try {
+            center = await fetchUserWithRetry(slug);
+          } catch (err) {
+            setStatus(`error: ${err.message}`);
+            return;
+          }
+          if (!center) { setStatus("user not found."); return; }
+        }
+
+        const centerId = center.id;
+        userCache.set(centerId, center);
+        currentCenterId = centerId;
+        lastSlug = slug;
+        document.getElementById("anchorBtn").style.display = "";
+        setStatus(`found ${center.name} (id ${centerId}), fetching ±${radius} neighbors...`);
+
+        const allIds = [];
+        for (let i = centerId - radius; i <= centerId + radius; i++) {
+          if (i > 0) allIds.push(i);
+        }
+
+        if (sameSlug) {
+          // insert only rows we haven't seen before
+          const newIds = allIds.filter(id => !userCache.has(id));
+          if (newIds.length > 0) insertPendingRows(newIds, centerId);
+        } else {
+          preRenderRows(allIds, center, centerId);
+        }
+
+        // fetch only IDs not yet cached
+        const idsToFetch = allIds
+          .filter(id => id !== centerId && !userCache.has(id))
+          .sort((a, b) => Math.abs(a - centerId) - Math.abs(b - centerId));
+
+        const BATCH = 5;
+        const DELAY_MS = 500;
+        let fetched = allIds.length - idsToFetch.length; // already-cached count
+
+        for (let i = 0; i < idsToFetch.length; i += BATCH) {
+          const batch = idsToFetch.slice(i, i + BATCH);
+          batch.forEach(id => document.getElementById(`row-${id}`)?.classList.add('is-fetching'));
+          const responses = await Promise.all(batch.map(id => fetchUserWithRetry(id).catch(() => null)));
+          responses.forEach((user, idx) => {
+            const id = batch[idx];
+            userCache.set(id, user);
+            document.getElementById(`row-${id}`)?.classList.remove('is-fetching');
+            updateRow(id, user);
+          });
+          fetched += batch.length;
+          setStatus(`fetched ${fetched} / ${allIds.length}...`);
+          if (i + BATCH < idsToFetch.length) {
+            await new Promise(r => setTimeout(r, DELAY_MS));
+          }
+        }
+
+        const found = allIds.filter(id => userCache.get(id) != null).length;
+        const cachedNote = idsToFetch.length < allIds.length - 1 ? " (some cached)" : "";
+        setStatus(`${found} of ${allIds.length} IDs have public accounts${cachedNote}`);
+        showRateLimitNotice();
+      }
+
+      function rowHTML(user, isCenter) {
+        const joined = new Date(user.created_at).toLocaleDateString("en-US", {
+          year: "numeric", month: "short", day: "numeric"
+        });
+        const channels = user.counts?.channels ?? "?";
+        return `
+          <div class="info-name"><a href="https://www.are.na/${user.slug}" target="_blank">${user.name}</a>${isCenter ? ' <span style="color:gray">← anchor</span>' : ''}</div>
+          <div class="info-meta">joined ${joined} &middot; ${channels} channels</div>
+        `;
+      }
+
+      function buildRow(id, centerId, content) {
+        const isCenter = id === centerId;
+        const row = document.createElement("div");
+        row.id = `row-${id}`;
+        row.className = "neighbor-row" + (isCenter ? " is-center" : " is-pending");
+        if (isCenter) row.dataset.hasUser = 'true';
+        const idCol = document.createElement("div");
+        idCol.className = "id-col" + (isCenter ? " center-id" : "");
+        idCol.textContent = id;
+        const infoCol = document.createElement("div");
+        infoCol.id = `info-${id}`;
+        infoCol.innerHTML = content;
+        row.appendChild(idCol);
+        row.appendChild(infoCol);
+        return row;
+      }
+
+      function setSpacers() {
+        const dialWindow = document.getElementById("dial-window");
+        // spacer = fade zone height so it stays fully within the transparent mask area
+        const spacerH = Math.round(dialWindow.clientHeight * 0.22);
+        document.querySelectorAll(".dial-spacer").forEach(s => s.style.height = spacerH + "px");
+      }
+
+      function preRenderRows(allIds, center, centerId) {
+        const container = document.getElementById("results");
+        container.innerHTML = "";
+        [...allIds].sort((a, b) => b - a).forEach(id => {
+          const content = id === centerId
+            ? rowHTML(center, true)
+            : `<div class="info-name" style="color:gray">·</div><div class="info-meta">&nbsp;</div>`;
+          container.appendChild(buildRow(id, centerId, content));
+        });
+        requestAnimationFrame(() => { setSpacers(); scrollToAnchor(); });
+      }
+
+      function insertPendingRows(newIds, centerId) {
+        const container = document.getElementById("results");
+        [...newIds].sort((a, b) => b - a).forEach(id => {
+          const row = buildRow(id, centerId, `<div class="info-name" style="color:gray">·</div><div class="info-meta">&nbsp;</div>`);
+          // insert in descending ID order
+          const after = [...container.querySelectorAll('.neighbor-row')]
+            .find(r => parseInt(r.id.replace('row-', '')) < id);
+          after ? container.insertBefore(row, after) : container.appendChild(row);
+        });
+        requestAnimationFrame(() => setSpacers());
+      }
+
+      function scrollToAnchor() {
+        if (!currentCenterId) return;
+        const dialWindow = document.getElementById("dial-window");
+        const centerEl = document.getElementById(`row-${currentCenterId}`);
+        if (!centerEl) return;
+        const dialRect = dialWindow.getBoundingClientRect();
+        const rowRect = centerEl.getBoundingClientRect();
+        const offset = rowRect.top - dialRect.top + dialWindow.scrollTop;
+        dialWindow.scrollTop = offset - dialWindow.clientHeight / 2 + centerEl.clientHeight / 2;
+      }
+
+      function updateRow(id, user) {
+        const row = document.getElementById(`row-${id}`);
+        const infoCol = document.getElementById(`info-${id}`);
+        if (!row || !infoCol) return;
+        row.classList.remove("is-pending");
+        if (user) {
+          row.dataset.hasUser = 'true';
+          infoCol.innerHTML = rowHTML(user, false);
+        } else {
+          row.classList.add("is-empty");
+          infoCol.innerHTML = `<div class="info-name" style="color:gray">—</div><div class="info-meta">&nbsp;</div>`;
+        }
+      }
+
+      function showRateLimitNotice() {
+        const notice = document.getElementById("rate-limit-notice");
+        const allAffected = [...new Set([...rateLimitedIds, ...failedIds])].sort((a, b) => a - b);
+        if (allAffected.length === 0) return;
+        const ranges = [];
+        let start = allAffected[0], end = allAffected[0];
+        for (let i = 1; i < allAffected.length; i++) {
+          if (allAffected[i] === end + 1) { end = allAffected[i]; }
+          else { ranges.push(start === end ? `${start}` : `${start}–${end}`); start = end = allAffected[i]; }
+        }
+        ranges.push(start === end ? `${start}` : `${start}–${end}`);
+        const suffix = failedIds.length > 0 ? " — data incomplete" : "";
+        notice.innerText = `rate limited on ids: ${ranges.join(", ")}${suffix}`;
+        notice.style.display = "block";
+      }
+    </script>
+  </body>
+</html>
