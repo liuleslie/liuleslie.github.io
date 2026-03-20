@@ -9,12 +9,12 @@
       :root {
         --bg: whitesmoke; --text: black; --muted: gray;
         --border: #ddd; --input-bg: white; --input-border: #aaa;
-        --row-border: #e8e8e8; --header-bg: whitesmoke; --anchor-border:gainsboro;
+        --row-border: #e8e8e8; --header-bg: whitesmoke;
       }
       [data-theme="dark"] {
         --bg: black; --text: white; --muted: gray;
         --border: gray; --input-bg: black; --input-border: #303030;
-        --row-border: #303030; --header-bg: black;--anchor-border:#303030;
+        --row-border: #303030; --header-bg: black;
       }
       * { box-sizing: border-box; }
       html, body {
@@ -55,39 +55,45 @@
         padding: 0.3em 0.5em 0.15em; font-family: sans-serif; font-size: 1em; cursor: pointer;
       }
       #fetchBtn:hover { background: hotpink; color: black; }
+      #returnBtn {
+        background: none; color: var(--muted); border: 1px solid var(--border);
+        padding: 0.3em 0.5em 0.15em; font-family: sans-serif; font-size: 1em; cursor: pointer;
+        display: none;
+      }
+      #returnBtn:hover { color: var(--text); border-color: var(--text); }
       #status { color: var(--muted); font-size: 0.85em; margin: 0.4em 0 0; min-height: 1.2em; }
       #rate-limit-notice { color: orange; font-size: 0.85em; margin: 0.2em 0 0; }
 
-      /* main layout: flex column filling space below header */
+      /* main layout: single scrollable column below header */
       #content-area {
         position: fixed; left: 0; right: 0; bottom: 0;
         top: 0; padding-top: var(--header-h, 0px);
         display: flex; flex-direction: column;
       }
 
-      /* above and below columns: equal halves */
-      #above-col, #below-col {
+      /* single scrollable column */
+      #col {
         flex: 1; overflow-y: scroll; scrollbar-width: none;
         padding: 0 1.5em;
-        /* opt out of scroll anchoring — prevents height-change oscillation warnings */
         overflow-anchor: none;
+        display: flex; flex-direction: column;
       }
-      #above-col::-webkit-scrollbar, #below-col::-webkit-scrollbar { display: none; }
+      #col::-webkit-scrollbar { display: none; }
 
-      /* above-col: higher IDs (later registrants), closest to anchor at bottom.
-         column-reverse pins scroll to the bottom naturally — no justify-content hack needed.
-         DOM order is ascending (centerId+1 first); column-reverse flips visual order
-         so centerId+1 appears at bottom (adjacent to anchor) and centerId+radius at top. */
-      #above-col { display: flex; flex-direction: column-reverse; }
-
-      /* anchor row — always visible, fixed at center */
+      /* anchor row — inline in the scroll column, visually pinned by scroll-to on load */
       #anchor-row {
         flex-shrink: 0; padding: 0.65em 1.5em;
-        border-top: 2px solid var(--anchor-border); border-bottom: 2px solid var(--anchor-border);
+        border-top: 2px solid hotpink; border-bottom: 2px solid hotpink;
         background: var(--bg); z-index: 2; min-height: 52px;
       }
       #anchor-row .anchor-name { font-size: 1em; }
       #anchor-row .anchor-meta { font-size: 0.8em; color: var(--muted); margin-top: 0.1em; }
+      #anchor-row.flash { animation: anchorFlash 0.4s ease; }
+      @keyframes anchorFlash {
+        0%   { background-color: var(--bg); }
+        40%  { background-color: rgba(255,105,180,0.25); }
+        100% { background-color: var(--bg); }
+      }
 
       /* slivers */
       .sliver {
@@ -97,15 +103,13 @@
         transition: height 0.08s ease, background-color 0.15s;
         cursor: default; min-height: 0;
       }
-      /* outline-offset: -2px draws the outline 2px inside the border box — inset without border doubling */
+      /* outline-offset: -2px draws the outline 2px inside the border box */
       .sliver:focus { outline: 2px solid hotpink; outline-offset: -2px; }
-      /* loaded = resolved and has a user account */
       .sliver.is-loaded { background-color: rgba(255,105,180,0.15); }
       .sliver.is-fetching { background-color: rgba(128,128,128,0.08); }
       .sliver.is-empty { opacity: 0.45; }
       .sliver.is-hidden { display: none; }
       .sliver.is-selected { outline: 2px solid hotpink; outline-offset: -2px; background-color: rgba(255,105,180,0.3) !important; }
-      /* disable text selection on slivers — click interactions are for row-select, not text drag */
       .sliver { user-select: none; }
       .sliver-id {
         font-family: monospace; font-size: 0.75em; color: var(--muted);
@@ -175,20 +179,20 @@
           <input type="number" id="radiusInput" value="10" min="1" max="200">
         </label>
         <button id="fetchBtn">find neighbors</button>
+        <button id="returnBtn">↩ anchor</button>
       </div>
       <p id="status">are.na assigns users sequential IDs — find who joined around the same time as the anchoring user.</p>
       <p id="rate-limit-notice" style="display:none"></p>
     </div>
 
     <div id="content-area">
-      <!-- higher IDs (later registrants) above anchor; closest at bottom of this column -->
-      <div id="above-col" role="list" aria-label="users who joined after anchor"></div>
-      <!-- anchor always visible in center -->
-      <div id="anchor-row" aria-live="polite">
-        <div style="color:var(--muted)">enter a slug above to begin</div>
+      <div id="col" role="list" aria-label="neighbors by registration order">
+        <!-- slivers for higher IDs inserted before anchor-row -->
+        <div id="anchor-row" aria-live="polite">
+          <div style="color:var(--muted)">enter a slug above to begin</div>
+        </div>
+        <!-- slivers for lower IDs inserted after anchor-row -->
       </div>
-      <!-- lower IDs (earlier registrants) below anchor; closest at top of this column -->
-      <div id="below-col" role="list" aria-label="users who joined before anchor"></div>
     </div>
 
     <div id="copy-toolbar" role="toolbar" aria-label="selection actions">
@@ -217,8 +221,8 @@
       }
 
       // --- constants ---
-      const MIN_H    = 28;   // px, minimum sliver height (one text line + padding)
-      const EXP_H    = 72;   // px, expanded sliver height (two lines)
+      const MIN_H    = 28;   // px, minimum sliver height
+      const EXP_H    = 72;   // px, expanded sliver height
       const SIGMA    = 85;   // px, Gaussian spread for dock magnification
       const MAX_BUMP = 44;   // px, max extra height at cursor
 
@@ -253,6 +257,15 @@
       document.getElementById('fetchBtn').addEventListener('click', run);
       document.getElementById('slugInput').addEventListener('keydown', e => { if (e.key === 'Enter') run(); });
 
+      document.getElementById('returnBtn').addEventListener('click', () => {
+        const anchor = document.getElementById('anchor-row');
+        anchor.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        anchor.classList.remove('flash');
+        void anchor.offsetWidth; // reflow to restart animation
+        anchor.classList.add('flash');
+        anchor.addEventListener('animationend', () => anchor.classList.remove('flash'), { once: true });
+      });
+
       async function run() {
         const slug   = document.getElementById('slugInput').value.trim();
         const radius = parseInt(document.getElementById('radiusInput').value) || 10;
@@ -265,10 +278,11 @@
         if (!sameSlug) {
           userCache.clear(); currentCenterId = null;
           clearSelection();
-          document.getElementById('above-col').innerHTML = '';
-          document.getElementById('below-col').innerHTML = '';
+          // clear all slivers and date dividers, keep anchor-row
+          document.querySelectorAll('#col .sliver, #col .date-divider').forEach(el => el.remove());
           document.getElementById('anchor-row').innerHTML =
             '<div style="color:var(--muted)">fetching…</div>';
+          document.getElementById('returnBtn').style.display = 'none';
         }
 
         setStatus('fetching anchor user…');
@@ -288,33 +302,38 @@
         lastSlug = slug;
         renderAnchorRow(center);
         syncHeaderHeight();
+        document.getElementById('returnBtn').style.display = '';
 
-        // above = centerId+1 … centerId+radius (later/higher IDs, sit above anchor)
-        // below = centerId-1 … centerId-radius (earlier/lower IDs, sit below anchor)
+        // above = centerId+1 … centerId+radius (higher IDs, rendered above anchor)
+        // below = centerId-1 … centerId-radius (lower IDs, rendered below anchor)
         const aboveIds = [], belowIds = [];
         for (let i = 1; i <= radius; i++) {
           aboveIds.push(centerId + i);
           if (centerId - i > 0) belowIds.push(centerId - i);
         }
+        const allNeighborIds = [...aboveIds, ...belowIds];
 
         if (sameSlug) {
-          insertNewSlivers('above', aboveIds.filter(id => !userCache.has(id)));
-          insertNewSlivers('below', belowIds.filter(id => !userCache.has(id)));
+          const newIds = allNeighborIds.filter(id => !userCache.has(id));
+          insertNewSlivers(newIds);
         } else {
-          renderColumn('above', aboveIds);
-          renderColumn('below', belowIds);
+          renderColumn(aboveIds, belowIds);
+          // scroll anchor to center after layout settles
+          requestAnimationFrame(() => {
+            document.getElementById('anchor-row').scrollIntoView({ block: 'center' });
+          });
         }
-        syncVisibleRows(aboveIds, belowIds);
+        syncVisibleRows(allNeighborIds);
         setSliverHeights();
 
         setStatus(`found ${center.name} (id ${centerId}), fetching ±${radius} neighbors…`);
 
-        const idsToFetch = [...aboveIds, ...belowIds]
+        const idsToFetch = allNeighborIds
           .filter(id => !userCache.has(id))
           .sort((a, b) => Math.abs(a - centerId) - Math.abs(b - centerId));
 
         const BATCH = 5, DELAY = 500;
-        let fetched = aboveIds.length + belowIds.length - idsToFetch.length;
+        let fetched = allNeighborIds.length - idsToFetch.length;
 
         for (let i = 0; i < idsToFetch.length; i += BATCH) {
           const batch = idsToFetch.slice(i, i + BATCH);
@@ -327,14 +346,13 @@
             updateSliver(id, user);
           });
           fetched += batch.length;
-          setStatus(`fetched ${fetched} / ${aboveIds.length + belowIds.length}…`);
+          setStatus(`fetched ${fetched} / ${allNeighborIds.length}…`);
           if (i + BATCH < idsToFetch.length) await new Promise(r => setTimeout(r, DELAY));
         }
 
-        const total = aboveIds.length + belowIds.length;
-        const found  = [...aboveIds, ...belowIds].filter(id => userCache.get(id) != null).length;
-        const note   = idsToFetch.length < total ? ' (some cached)' : '';
-        setStatus(`${found} of ${total} neighbor IDs have public accounts${note}`);
+        const found = allNeighborIds.filter(id => userCache.get(id) != null).length;
+        const note  = idsToFetch.length < allNeighborIds.length ? ' (some cached)' : '';
+        setStatus(`${found} of ${allNeighborIds.length} neighbor IDs have public accounts${note}`);
         insertDateDividers();
         showRateLimitNotice();
       }
@@ -377,39 +395,40 @@
         return el;
       }
 
-      // above-col uses flex-direction: column-reverse, so DOM order is ASCENDING
-      //   (centerId+1 first → renders at bottom; centerId+radius last → renders at top)
-      // below-col uses normal flex column, DOM order is DESCENDING
-      //   (centerId-1 first → at top, adjacent to anchor; centerId-radius last → at bottom)
-      function renderColumn(which, ids) {
-        const col = document.getElementById(which + '-col');
-        col.innerHTML = '';
-        const sorted = which === 'above'
-          ? [...ids].sort((a, b) => a - b)   // ascending for column-reverse
-          : [...ids].sort((a, b) => b - a);  // descending for normal column
-        sorted.forEach(id => col.appendChild(makeSliverEl(id)));
+      // Both above and below use descending ID order (highest first).
+      // above slivers inserted before anchor-row; below slivers appended after.
+      function renderColumn(aboveIds, belowIds) {
+        const col    = document.getElementById('col');
+        const anchor = document.getElementById('anchor-row');
+        col.querySelectorAll('.sliver, .date-divider').forEach(el => el.remove());
+        // above: descending (centerId+radius at top, centerId+1 just above anchor)
+        [...aboveIds].sort((a, b) => b - a).forEach(id => col.insertBefore(makeSliverEl(id), anchor));
+        // below: descending (centerId-1 just below anchor, centerId-radius at bottom)
+        [...belowIds].sort((a, b) => b - a).forEach(id => col.appendChild(makeSliverEl(id)));
       }
 
-      function insertNewSlivers(which, newIds) {
+      function insertNewSlivers(newIds) {
         if (!newIds.length) return;
-        const col = document.getElementById(which + '-col');
-        if (which === 'above') {
-          // ascending order; centerId+1 at DOM start (visually bottom via column-reverse)
-          [...newIds].sort((a, b) => a - b).forEach(id => {
-            const el = makeSliverEl(id);
-            const before = [...col.querySelectorAll('.sliver')]
-              .find(r => parseInt(r.id.replace('sliver-', '')) > id);
+        const col    = document.getElementById('col');
+        const anchor = document.getElementById('anchor-row');
+        const centerId = currentCenterId;
+
+        newIds.forEach(id => {
+          const el = makeSliverEl(id);
+          if (id > centerId) {
+            // above: descending among above slivers (insert before first sliver with id < this one)
+            const aboveSlivers = [...col.querySelectorAll('.sliver')]
+              .filter(s => parseInt(s.id.replace('sliver-', '')) > centerId);
+            const before = aboveSlivers.find(s => parseInt(s.id.replace('sliver-', '')) < id);
+            before ? col.insertBefore(el, before) : col.insertBefore(el, anchor);
+          } else {
+            // below: descending among below slivers (insert before first sliver with id < this one)
+            const belowSlivers = [...col.querySelectorAll('.sliver')]
+              .filter(s => parseInt(s.id.replace('sliver-', '')) < centerId);
+            const before = belowSlivers.find(s => parseInt(s.id.replace('sliver-', '')) < id);
             before ? col.insertBefore(el, before) : col.appendChild(el);
-          });
-        } else {
-          // descending order; centerId-1 at DOM start (visually top)
-          [...newIds].sort((a, b) => b - a).forEach(id => {
-            const el = makeSliverEl(id);
-            const after = [...col.querySelectorAll('.sliver')]
-              .find(r => parseInt(r.id.replace('sliver-', '')) < id);
-            after ? col.insertBefore(el, after) : col.appendChild(el);
-          });
-        }
+          }
+        });
         requestAnimationFrame(recordStableCenters);
       }
 
@@ -441,32 +460,21 @@
 
       // --- sliver heights ---
       function setSliverHeights() {
-        ['above-col', 'below-col'].forEach(colId => {
-          const col     = document.getElementById(colId);
-          const slivers = col.querySelectorAll('.sliver:not(.is-hidden)');
-          if (!slivers.length) return;
-          const base = Math.max(MIN_H, col.clientHeight / slivers.length);
-          slivers.forEach(s => {
-            s.dataset.baseH = base;
-            if (!s.classList.contains('expanded')) s.style.height = base + 'px';
-          });
+        const col     = document.getElementById('col');
+        const slivers = col.querySelectorAll('.sliver:not(.is-hidden)');
+        if (!slivers.length) return;
+        slivers.forEach(s => {
+          s.dataset.baseH = MIN_H;
+          if (!s.classList.contains('expanded')) s.style.height = MIN_H + 'px';
         });
-        // record stable centers after the browser has applied the new heights
         requestAnimationFrame(recordStableCenters);
       }
 
-      // Precompute each sliver's resting center in scroll-space so applyDock
-      // never reads live getBoundingClientRect during animation (which causes
-      // oscillation as magnified slivers push neighbors and shift their centers).
       function recordStableCenters() {
-        ['above-col', 'below-col'].forEach(colId => {
-          const col = document.getElementById(colId);
-          col.querySelectorAll('.sliver:not(.is-hidden)').forEach(s => {
-            const base = parseFloat(s.dataset.baseH || MIN_H);
-            // offsetTop is relative to the scroll container; use base height
-            // (not current animated height) for the center so it stays fixed
-            s.dataset.stableCenter = s.offsetTop + base / 2;
-          });
+        const col = document.getElementById('col');
+        col.querySelectorAll('.sliver:not(.is-hidden)').forEach(s => {
+          const base = parseFloat(s.dataset.baseH || MIN_H);
+          s.dataset.stableCenter = s.offsetTop + base / 2;
         });
       }
 
@@ -474,7 +482,6 @@
         el.classList.add('expanded');
         el.setAttribute('aria-expanded', 'true');
         el.style.height = Math.max(EXP_H, parseFloat(el.dataset.baseH || MIN_H)) + 'px';
-        // neighbors shift after expansion; re-record after transition settles
         setTimeout(recordStableCenters, 120);
       }
       function collapseSliver(el) {
@@ -484,41 +491,12 @@
         setTimeout(recordStableCenters, 120);
       }
 
-      // --- responsive gradient mask ---
-      // Fades recede when the cursor enters the fade zone so hovered rows aren't masked.
-      const FADE_PCT = 30; // default fade zone as % of column height
-      function setColMask(col, fadeStop) {
-        const isAbove = col.id === 'above-col';
-        const m = isAbove
-          ? `linear-gradient(to bottom, transparent 0%, black ${fadeStop}%)`
-          : `linear-gradient(to top,    transparent 0%, black ${fadeStop}%)`;
-        col.style.webkitMaskImage = m;
-        col.style.maskImage = m;
-      }
-      function updateColMask(col, mouseY) {
-        const rect = col.getBoundingClientRect();
-        const relY = (mouseY - rect.top) / col.clientHeight; // 0=top, 1=bottom
-        const isAbove = col.id === 'above-col';
-        // proximity to the fade edge (top for above, bottom for below)
-        const proximity = isAbove ? relY : (1 - relY);
-        // linearly shrink fade when cursor is within the top/bottom 30%
-        const fadeStop = Math.round(FADE_PCT * Math.max(0, Math.min(1, (proximity - 0.02) / 0.28)));
-        setColMask(col, fadeStop);
-      }
-      function initMasks() {
-        ['above-col', 'below-col'].forEach(colId => setColMask(document.getElementById(colId), FADE_PCT));
-      }
-      document.addEventListener('DOMContentLoaded', initMasks);
-
       // --- dock magnification ---
-      ['above-col', 'below-col'].forEach(colId => {
-        const col = document.getElementById(colId);
-        col.addEventListener('mousemove', e => { applyDock(col, e.clientY); updateColMask(col, e.clientY); });
-        col.addEventListener('mouseleave', () => { resetDock(col); setColMask(col, FADE_PCT); });
-      });
+      const col = document.getElementById('col');
+      col.addEventListener('mousemove', e => applyDock(col, e.clientY));
+      col.addEventListener('mouseleave', () => resetDock(col));
+
       function applyDock(col, mouseY) {
-        // Convert viewport mouseY into the column's own scroll coordinate space
-        // so the comparison against stableCenter (which is in offsetTop space) is correct.
         const colRect     = col.getBoundingClientRect();
         const mouseScroll = mouseY - colRect.top + col.scrollTop;
         col.querySelectorAll('.sliver:not(.expanded):not(.is-hidden)').forEach(s => {
@@ -538,75 +516,50 @@
       window.addEventListener('resize', () => { syncHeaderHeight(); setSliverHeights(); });
 
       // --- date dividers ---
-      // Inserted as structural section labels between groups of same-day registrants.
-      // Both columns are in descending ID order, so dates go from newer → older top to bottom.
       function insertDateDividers() {
-        ['above-col', 'below-col'].forEach(colId => {
-          const col = document.getElementById(colId);
-          col.querySelectorAll('.date-divider').forEach(d => d.remove());
-          let lastDay = null;
-          [...col.querySelectorAll('.sliver:not(.is-hidden)')].forEach(s => {
-            const day = s.dataset.joinedDay;
-            if (!day || day === lastDay) return;
-            const div = document.createElement('div');
-            div.className = 'date-divider';
-            div.setAttribute('role', 'separator');
-            div.textContent = new Date(s.dataset.joinedDate).toLocaleDateString('en-US',
-              { year: 'numeric', month: 'short', day: 'numeric' });
-            col.insertBefore(div, s);
-            lastDay = day;
-          });
-          // recalculate heights now that dividers occupy space
-          const slivers = col.querySelectorAll('.sliver:not(.is-hidden)');
-          if (!slivers.length) return;
-          const base = Math.max(MIN_H, col.clientHeight / slivers.length);
-          slivers.forEach(s => {
-            s.dataset.baseH = base;
-            if (!s.classList.contains('expanded')) s.style.height = base + 'px';
-          });
+        const col = document.getElementById('col');
+        col.querySelectorAll('.date-divider').forEach(d => d.remove());
+        let lastDay = null;
+        [...col.querySelectorAll('.sliver:not(.is-hidden)')].forEach(s => {
+          const day = s.dataset.joinedDay;
+          if (!day || day === lastDay) return;
+          const div = document.createElement('div');
+          div.className = 'date-divider';
+          div.setAttribute('role', 'separator');
+          div.textContent = new Date(s.dataset.joinedDate).toLocaleDateString('en-US',
+            { year: 'numeric', month: 'short', day: 'numeric' });
+          col.insertBefore(div, s);
+          lastDay = day;
         });
-        // dividers shift offsetTops; re-record after layout settles
         requestAnimationFrame(recordStableCenters);
       }
 
       // --- sync visible rows by current radius ---
-      // Hides slivers outside the active radius without removing cached data.
-      function syncVisibleRows(aboveIds, belowIds) {
-        const aboveSet = new Set(aboveIds);
-        const belowSet = new Set(belowIds);
-        document.querySelectorAll('#above-col .sliver').forEach(el => {
+      function syncVisibleRows(activeIds) {
+        const activeSet = new Set(activeIds);
+        document.querySelectorAll('#col .sliver').forEach(el => {
           const id = parseInt(el.id.replace('sliver-', ''));
-          el.classList.toggle('is-hidden', !aboveSet.has(id));
+          el.classList.toggle('is-hidden', !activeSet.has(id));
         });
-        document.querySelectorAll('#below-col .sliver').forEach(el => {
-          const id = parseInt(el.id.replace('sliver-', ''));
-          el.classList.toggle('is-hidden', !belowSet.has(id));
-        });
-        // also hide date dividers — easiest to just re-insert after a tick
-        requestAnimationFrame(() => { insertDateDividers(); });
+        requestAnimationFrame(() => insertDateDividers());
       }
 
       // --- multiselect ---
-      let selectedIds   = new Set();
+      let selectedIds    = new Set();
       let lastSelectedId = null;
-      let copyFormat    = 'md'; // 'md' | 'html'
+      let copyFormat     = 'md'; // 'md' | 'html'
 
       function allVisibleSlivers() {
-        // visual order: above-col renders column-reverse so DOM-last = visual-top;
-        // reverse above-col DOM order to get visual top→bottom, then append below-col
-        const above = [...document.querySelectorAll('#above-col .sliver:not(.is-hidden)')].reverse();
-        const below = [...document.querySelectorAll('#below-col .sliver:not(.is-hidden)')];
-        return [...above, ...below];
+        return [...document.querySelectorAll('#col .sliver:not(.is-hidden)')];
       }
 
       function handleSliverClick(el, e) {
-        if (!el.classList.contains('is-loaded')) return; // only selectable if resolved
+        if (!el.classList.contains('is-loaded')) return;
         const id = parseInt(el.id.replace('sliver-', ''));
 
         if (e.shiftKey && lastSelectedId !== null) {
-          // range select between lastSelectedId and current
           const all = allVisibleSlivers().filter(s => s.classList.contains('is-loaded'));
-          const lastEl = document.getElementById(`sliver-${lastSelectedId}`);
+          const lastEl  = document.getElementById(`sliver-${lastSelectedId}`);
           const lastIdx = all.indexOf(lastEl);
           const currIdx = all.indexOf(el);
           if (lastIdx !== -1 && currIdx !== -1) {
@@ -618,7 +571,6 @@
             }
           }
         } else if (e.metaKey || e.ctrlKey) {
-          // toggle individual
           if (selectedIds.has(id)) {
             selectedIds.delete(id);
             el.classList.remove('is-selected');
@@ -628,7 +580,6 @@
             lastSelectedId = id;
           }
         } else {
-          // single select — deselect all others
           clearSelection();
           selectedIds.add(id);
           el.classList.add('is-selected');
@@ -649,8 +600,7 @@
         const count   = selectedIds.size;
         document.getElementById('sel-count').textContent = `${count} selected`;
         toolbar.classList.toggle('visible', count > 0);
-        // make below-col not obscured by toolbar
-        document.getElementById('below-col').style.paddingBottom = count > 0 ? '3em' : '';
+        document.getElementById('col').style.paddingBottom = count > 0 ? '3em' : '';
       }
 
       // copy toolbar wiring
@@ -678,7 +628,6 @@
 
       // keyboard shortcuts: Escape = deselect, c = copy, f = toggle format
       document.addEventListener('keydown', e => {
-        // don't fire when typing in an input
         if (e.target.tagName === 'INPUT') return;
         if (e.key === 'Escape') { clearSelection(); }
         if (e.key === 'c' && !e.metaKey && !e.ctrlKey && selectedIds.size > 0) {
