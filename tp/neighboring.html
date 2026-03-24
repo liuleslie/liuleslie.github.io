@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>are.nauts: webring</title>
+    <style>
+      :root {
+        --bg: whitesmoke; --text: black; --muted: gray;
+        --border: #ddd; --input-bg: white; --input-border: #aaa;
+        --header-bg: whitesmoke;
+      }
+      [data-theme="dark"] {
+        --bg: black; --text: white; --muted: gray;
+        --border: gray; --input-bg: black; --input-border: #303030;
+        --header-bg: black;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        min-height: 100%; margin: 0;
+        font-family: sans-serif; background-color: var(--bg); color: var(--text);
+        transition: background-color 0.15s, color 0.15s;
+      }
+      a, a:visited { color: hotpink; }
+
+      /* header */
+      #site-header {
+        position: fixed; top: 0; left: 0; right: 0;
+        background: var(--header-bg); padding: 1em 1.5em 0.75em;
+        z-index: 10; border-bottom: 1px solid var(--border);
+      }
+      #h1 { font-size: 2em; font-weight: normal; margin: 0 0 0.5em; }
+      details p { margin: 1em auto 1em 2em; }
+      #theme-toggle {
+        background: none; border: none; cursor: pointer;
+        font-family: sans-serif; font-size: 1em; color: var(--muted); padding: 0;
+      }
+      #theme-toggle:hover { color: var(--text); }
+      #controls {
+        margin-top: 1em; display: flex; flex-wrap: wrap; gap: 1em; align-items: flex-end;
+      }
+      #controls label {
+        display: flex; flex-direction: column; gap: 0.2em;
+        font-size: 0.85em; color: var(--muted);
+      }
+      #controls input[type="text"] {
+        background: var(--input-bg); color: var(--text);
+        border: 1px solid var(--input-border);
+        padding: 0.3em 0.5em; font-family: sans-serif; font-size: 1em;
+        min-width: 22em;
+      }
+      #fetchBtn {
+        background: none; color: hotpink; border: 1px solid hotpink;
+        padding: 0.3em 0.5em 0.15em; font-family: sans-serif; font-size: 1em; cursor: pointer;
+      }
+      #fetchBtn:hover { background: hotpink; color: black; }
+      #status { color: var(--muted); font-size: 0.85em; margin: 0.4em 0 0; min-height: 1.2em; }
+
+      /* main content */
+      #content-area {
+        padding-top: var(--header-h, 0px);
+        padding: var(--header-h, 0px) 1.5em 3em;
+      }
+
+      /* block info */
+      #block-info { display: none; }
+      #block-title {
+        /* font-size: 0.85em;  */
+        color: var(--fg); margin-bottom: 0.3em;
+      }
+      #block-title a { color: hotpink; }
+
+      /* webring display */
+      #webring-wrap {
+        margin-top: 1.5em;
+      }
+      #webring-controls {
+        display: flex; gap: 0.75em; align-items: center; margin-bottom: 1.2em; flex-wrap: wrap;
+      }
+      .toggle-btn {
+        background: none; border: 1px solid var(--border);
+        color: var(--muted); padding: 0.2em 0.6em 0.15em;
+        font-family: sans-serif; font-size: 0.85em; cursor: pointer;
+      }
+      .toggle-btn:hover { color: var(--text); border-color: var(--text); }
+      .toggle-btn.active { color: hotpink; border-color: hotpink; }
+
+      /* the ring itself */
+      #webring-display {
+        font-size: 1.5em; line-height: 2;
+        display: flex; flex-wrap: wrap; align-items: center; gap: 0;
+        margin-bottom: 1.5em;
+      }
+      .ring-sep {
+        color: var(--muted); padding: 0 0.4em; user-select: none;
+        font-size: 0.8em; letter-spacing: 0.05em;
+      }
+      .ring-node a {
+        color: var(--text); text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.1s, color 0.1s;
+      }
+      .ring-node a:hover { color: hotpink; border-bottom-color: hotpink; }
+      .ring-node a:visited { color: var(--text); }
+      .ring-node a:visited:hover { color: hotpink; }
+      /* glyph mode: use hotpink for the glyph */
+      .ring-node.glyph-mode a { color: hotpink; font-size: 1em; text-decoration: none; border-bottom: none; }
+      .ring-node.glyph-mode a:visited { color: hotpink; }
+
+      /* copy export box */
+      #export-wrap {
+        display: none; margin-top: 1.5em;
+      }
+      #export-wrap.visible { display: block; }
+      .export-section { margin-bottom: 1em; }
+      .export-label {
+        font-size: 0.78em; color: var(--muted); margin-bottom: 0.3em;
+        display: flex; align-items: center; gap: 0.6em;
+      }
+      .copy-inline-btn {
+        background: none; border: 1px solid var(--border); color: var(--muted);
+        padding: 0.1em 0.4em; font-family: sans-serif; font-size: 1em; cursor: pointer;
+      }
+      .copy-inline-btn:hover { color: hotpink; border-color: hotpink; }
+      .export-code {
+        background: var(--input-bg); border: 1px solid var(--border);
+        padding: 0.6em 0.8em; font-family: monospace; font-size: 0.82em;
+        color: var(--text); word-break: break-all; white-space: pre-wrap;
+        user-select: all;
+      }
+
+      /* user list */
+      #user-list-wrap {
+        margin-top: 2em; display: none;
+      }
+      #user-list-label { font-size: 0.78em; color: var(--muted); margin-bottom: 0.5em; }
+      .user-entry {
+        font-size: 0.85em; padding: 0.3em 0;
+        border-bottom: 1px solid var(--border);
+        display: flex; gap: 1em; align-items: baseline;
+      }
+      .user-entry-id { font-family: monospace; color: var(--muted); width: 5em; text-align: right; flex-shrink: 0; }
+      .user-entry-role { color: var(--muted); font-size: 0.9em; flex-shrink: 0; }
+
+      @media (max-width: 640px) { body { font-size: 13px; } }
+    </style>
+    <script>
+      (function() {
+        var saved = localStorage.getItem('arena-webring-theme') ||
+          (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        if (saved === 'dark') document.documentElement.dataset.theme = 'dark';
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="site-header">
+      <details>
+        <summary><span id="h1">are.nauts: webring, <button id="theme-toggle">light</button></span></summary>
+        <p>An interpretation of Peter Ström’s <a href="https://www.are.na/block/22017787">idea for an Are.na webring</a>.</p>
+        <p>Given an <a href="https://www.are.na" target="_blank">are.na</a> block URL, assembles a webring from the creator of the block and all commenters — ordered by user ID, newest left.</p>
+      </details>
+      <div id="controls">
+        <label>
+          block URL or ID
+          <input type="text" id="blockInput" placeholder="e.g. https://www.are.na/block/22017787 or 22017787">
+        </label>
+        <button id="fetchBtn">build webring</button>
+      </div>
+      <p id="status">enter a block URL or ID above to begin.</p>
+    </div>
+
+    <div id="content-area">
+      <div id="block-info">
+        <div id="block-title"></div>
+
+        <div id="webring-wrap">
+          <div id="webring-controls">
+            <button class="toggle-btn active" id="display-btn">glyphs</button>
+            <label style="display:flex;align-items:center;gap:0.4em;font-size:0.85em;color:var(--muted)">
+              sep <input type="text" id="sep-input" value="——"
+                style="width:5em;background:var(--input-bg);color:var(--text);border:1px solid var(--input-border);padding:0.2em 0.4em;font-family:monospace;font-size:1em">
+            </label>
+          </div>
+          <div id="webring-display"></div>
+          <div id="export-wrap" class="visible">
+            <div class="export-section">
+              <div class="export-label">
+                markdown
+                <button class="copy-inline-btn" data-target="md-code">copy</button>
+              </div>
+              <div class="export-code" id="md-code"></div>
+            </div>
+            <div class="export-section">
+              <div class="export-label">
+                html
+                <button class="copy-inline-btn" data-target="html-code">copy</button>
+              </div>
+              <div class="export-code" id="html-code"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="user-list-wrap">
+          <div id="user-list-label"></div>
+          <div id="user-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // --- theme ---
+      document.addEventListener('DOMContentLoaded', () => {
+        const isDark = document.documentElement.dataset.theme === 'dark';
+        document.getElementById('theme-toggle').textContent = isDark ? 'dark' : 'light';
+        syncHeaderHeight();
+      });
+      document.getElementById('theme-toggle').addEventListener('click', function() {
+        const isDark = document.documentElement.dataset.theme === 'dark';
+        document.documentElement.dataset.theme = isDark ? '' : 'dark';
+        localStorage.setItem('arena-webring-theme', isDark ? 'light' : 'dark');
+        this.textContent = isDark ? 'light' : 'dark';
+      });
+      function syncHeaderHeight() {
+        const h = document.getElementById('site-header').offsetHeight;
+        document.documentElement.style.setProperty('--header-h', h + 'px');
+        document.getElementById('content-area').style.paddingTop = (h + 16) + 'px';
+      }
+      window.addEventListener('resize', syncHeaderHeight);
+
+      // --- state ---
+      const GLYPH = '✶';
+      let ringUsers  = [];   // [{id, name, slug, role}] sorted descending by id
+      let showGlyph  = true;
+
+      function getSep() { return document.getElementById('sep-input').value; }
+
+      // --- controls ---
+      document.getElementById('fetchBtn').addEventListener('click', run);
+      document.getElementById('blockInput').addEventListener('keydown', e => {
+        if (e.key === 'Enter') run();
+      });
+      document.getElementById('sep-input').addEventListener('input', () => {
+        if (ringUsers.length) renderWebring();
+      });
+
+      document.getElementById('display-btn').addEventListener('click', () => {
+        showGlyph = !showGlyph;
+        const btn = document.getElementById('display-btn');
+        btn.textContent = showGlyph ? 'glyphs' : 'names';
+        renderWebring();
+      });
+
+      // inline copy buttons
+      document.querySelectorAll('.copy-inline-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const target = document.getElementById(this.dataset.target);
+          if (!target) return;
+          navigator.clipboard.writeText(target.textContent).then(() => {
+            const orig = this.textContent;
+            this.textContent = 'copied!';
+            setTimeout(() => { this.textContent = orig; }, 1500);
+          });
+        });
+      });
+
+      // --- extract block ID from URL or plain number ---
+      function extractBlockId(input) {
+        input = input.trim();
+        // plain number
+        if (/^\d+$/.test(input)) return input;
+        // are.na/block/ID
+        const m = input.match(/are\.na\/block\/(\d+)/);
+        if (m) return m[1];
+        return null;
+      }
+
+      function setStatus(msg) { document.getElementById('status').textContent = msg; }
+
+      // --- fetch with retry ---
+      async function apiFetch(path, attempt = 1) {
+        const res = await fetch(`https://api.are.na/v3${path}`);
+        if (res.status === 429 && attempt <= 4) {
+          const wait = attempt * 1500;
+          setStatus(`rate limited, retrying in ${wait / 1000}s (attempt ${attempt}/4)…`);
+          await new Promise(r => setTimeout(r, wait));
+          return apiFetch(path, attempt + 1);
+        }
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      }
+
+      // --- main ---
+      async function run() {
+        const raw = document.getElementById('blockInput').value;
+        const blockId = extractBlockId(raw);
+        if (!blockId) {
+          setStatus('could not parse a block ID from that input.');
+          return;
+        }
+
+        ringUsers = [];
+        document.getElementById('block-info').style.display = 'none';
+        setStatus('fetching block and comments…');
+
+        let block, comments = [];
+        try {
+          const [blockRaw, commentsRaw] = await Promise.all([
+            apiFetch(`/blocks/${blockId}`),
+            apiFetch(`/blocks/${blockId}/comments`)
+          ]);
+          block    = blockRaw.data    || blockRaw;
+          comments = Array.isArray(commentsRaw.data) ? commentsRaw.data : [];
+        } catch (err) {
+          setStatus(`error: ${err.message}`);
+          return;
+        }
+
+        // title / link
+        const blockUrl = `https://www.are.na/block/${blockId}`;
+        const rawTitle = block.title || block.generated_title || block.content;
+        const blockTitle = (rawTitle && typeof rawTitle === 'string' && rawTitle.trim()) ? rawTitle.trim() : 'untitled';
+        document.getElementById('block-title').innerHTML =
+          `block: <a href="${blockUrl}" target="_blank">${escHtml(blockTitle)}</a>` +
+          (block.user ? ` <br>posted by <a href="https://www.are.na/${block.user.slug}" target="_blank">${escHtml(block.user.name)}</a>` : '');
+
+        // collect users: poster first, then commenters (deduped by id)
+        const seen = new Map();
+        if (block.user) {
+          seen.set(block.user.id, { id: block.user.id, name: block.user.name, slug: block.user.slug, role: 'poster' });
+        }
+
+        for (const c of comments) {
+          if (c.user && !seen.has(c.user.id)) {
+            seen.set(c.user.id, { id: c.user.id, name: c.user.name, slug: c.user.slug, role: 'commenter' });
+          }
+        }
+
+        // sort descending by id (newest/highest id at left)
+        ringUsers = [...seen.values()].sort((a, b) => b.id - a.id);
+
+        const n = ringUsers.length;
+        const commentCount = comments.length;
+        setStatus(`${n} user${n !== 1 ? 's' : ''} · ${commentCount} comment${commentCount !== 1 ? 's' : ''}`);
+
+        renderWebring();
+        renderUserList();
+
+        document.getElementById('block-info').style.display = 'block';
+        syncHeaderHeight();
+      }
+
+      // --- render webring ---
+      function renderWebring() {
+        const display = document.getElementById('webring-display');
+        if (!ringUsers.length) { display.innerHTML = ''; return; }
+
+        display.innerHTML = '';
+        ringUsers.forEach((u, i) => {
+          if (i > 0) {
+            const sep = document.createElement('span');
+            sep.className = 'ring-sep';
+            sep.textContent = getSep();
+            display.appendChild(sep);
+          }
+          const node = document.createElement('span');
+          node.className = 'ring-node' + (showGlyph ? ' glyph-mode' : '');
+          const a = document.createElement('a');
+          a.href = `https://www.are.na/${u.slug}`;
+          a.target = '_blank';
+          a.title = u.name;
+          a.textContent = showGlyph ? GLYPH : u.name;
+          node.appendChild(a);
+          display.appendChild(node);
+        });
+
+        renderExport();
+      }
+
+      // --- render export strings ---
+      function renderExport() {
+        if (!ringUsers.length) return;
+
+        const label    = showGlyph ? GLYPH : null;
+        const mdParts  = ringUsers.map(u => `[${label ?? u.name}](https://www.are.na/${u.slug})`);
+        const htmParts = ringUsers.map(u => `<a href="https://www.are.na/${u.slug}">${escHtml(label ?? u.name)}</a>`);
+
+        const sep    = getSep();
+        const sepMd  = ` ${sep} `;
+        const sepHtm = ` ${sep} `;
+
+        document.getElementById('md-code').textContent   = mdParts.join(sepMd);
+        document.getElementById('html-code').textContent = htmParts.join(sepHtm);
+      }
+
+      // --- render user list ---
+      function renderUserList() {
+        const wrap  = document.getElementById('user-list-wrap');
+        const list  = document.getElementById('user-list');
+        const label = document.getElementById('user-list-label');
+        list.innerHTML = '';
+        if (!ringUsers.length) { wrap.style.display = 'none'; return; }
+
+        label.textContent = `${ringUsers.length} member${ringUsers.length !== 1 ? 's' : ''} (by id, newest first)`;
+        ringUsers.forEach(u => {
+          const row = document.createElement('div');
+          row.className = 'user-entry';
+          row.innerHTML = `
+            <span class="user-entry-id">${u.id}</span>
+            <span><a href="https://www.are.na/${u.slug}" target="_blank">${escHtml(u.name)}</a></span>
+            <span class="user-entry-role">${u.role}</span>
+          `;
+          list.appendChild(row);
+        });
+        wrap.style.display = '';
+      }
+
+      // --- util ---
+      function escHtml(s) {
+        return String(s)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+    </script>
+  </body>
+</html>
