@@ -1,0 +1,11 @@
+section { border-top: 1px silver solid; margin-top:3em }
+body { font-size:16px; color:black; font-family:serif; line-height:1.2em }
+a { color:blue; text-decoration:1px blue solid underline }
+a:hover { color:black; text-decoration:none }
+button a { text-decoration:none }
+img { width:50%; border:1px silver solid; }
+nav li { list-style-type:none }
+header { margin-bottom:1em }
+header nav { margin-bottom:3em }
+h1 { margin-bottom:0.5em;font-weight:normal;font-size:1.25em;color:gray }
+details[open] * { background-color:aliceblue; }

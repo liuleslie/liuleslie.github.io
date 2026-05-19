@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Leslie Liu</title>
+        <meta name="description" content="Personal website of one Leslie.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="fonts.css">
+        <style id="filter-style"></style>
+        <link rel="icon" type="image/x-icon" href="z-llfavi.svg">
+        <script src="script.js"></script>
+        <base target="_self">
+        <style>
+            :root {
+                --bg: whitesmoke;
+                --bg-details: #ededed;
+                --text: black;
+                --link: blue;
+                --link-color: blue;
+                --link-hover-bg: white;
+                --link-hover: black;
+                --link-active: purple;
+                --timestamp: gray;
+                --hr: silver;
+                --h2-underline: black;
+            }
+            [data-theme="dark"] {
+                --bg: black;
+                --bg-details: #222;
+                --text: white;
+                --link: dodgerblue;
+                --link-color: dodgerblue;
+                --link-hover-bg: #333;
+                --link-hover: #silver;
+                --link-active: violet;
+                --timestamp: gray;
+                --hr: #333;
+                --h2-underline: gray;
+            }
+            body {
+                font-family:FEReg, sans-serif; font-size:15px;line-height:1.3; letter-spacing:0.5px;
+                max-width:50vw; margin:2em auto;
+                background-color:var(--bg); color:var(--text);
+            }
+            details { padding: 1em auto 1em auto }
+            details p {font-family:FELight, sans-serif;}
+            details[open] { background-color:var(--bg-details);padding: 0.25em 0.125em 0.5em 0.25em}
+            a { text-underline-offset:2.5px;color:var(--link-color);text-decoration:1px solid var(--link-color) underline; }
+            a:hover { color:var(--link-hover);text-decoration:none;background-color:var(--link-hover-bg) }
+            a:active { color:var(--link-active);text-decoration:none }
+            video { width: 100% }
+            ul { list-style: none }
+            li { margin-bottom: 1em;padding-right:0.25em }
+            h1 { font-size:1.25em }
+            h1, h2 { font-weight:normal; }
+            h2 { font-size:1em; text-decoration:1px var(--h2-underline) solid underline }
+            section { margin-bottom: 2em }
+            span.timestamp { color:var(--timestamp);font-size:0.8em;text-transform:uppercase }
+            span.desc { padding-left:1em }
+            #projects hr { margin-right:3em }
+            hr { border: 0.5px solid var(--hr) }
+            #theme-toggle { background:none;border:none;cursor:pointer;font-family:FEReg,sans-serif;font-size:1em;color:var(--timestamp)}
+            @media (max-width:800px) { body {font-size:13px; margin:1em;max-width:100%;} ul {padding-left: 0} }
+
+            #filter-bar ul { display:flex; flex-wrap:wrap; gap:0.5em 1.25em; padding:0; list-style:none; margin:0 0 0.5em 0 }
+            #filter-bar label { font-family:monospace; font-size:0.9em; cursor:pointer; color:var(--timestamp) }
+            #filter-bar label:has(input:checked) { color:var(--text) }
+            #filter-bar input[type="checkbox"] { appearance:none; width:0.6em; height:0.6em; border:0.5px solid currentColor; vertical-align:middle; cursor:pointer; margin-right:0.2em }
+            #filter-bar input[type="checkbox"]:checked { background-color:currentColor }
+            #active-rule { font-size:0.75em; color:var(--timestamp); margin:0; min-height:1.2em; font-family:monospace }
+
+            aside#log { display:none }
+            [data-mode="edit"] body { max-width:80vw; display:grid; grid-template-columns:1fr 280px; column-gap:3em }
+            [data-mode="edit"] body > * { grid-column:1 }
+            [data-mode="edit"] aside#log { display:block; grid-column:2; grid-row:1 / -1; align-self:start; position:sticky; top:2em; border-left:0.5px solid var(--hr); padding-left:1em }
+            #log-list { list-style:none; padding:0; margin:0 }
+            #log-list li { margin-bottom:0.75em; cursor:pointer; opacity:0.6; font-family:monospace; font-size:0.75em; line-height:1.4; white-space:pre-wrap; word-break:break-all }
+            #log-list li:hover { opacity:1 }
+            #log-list li.selected { opacity:1; outline:0.5px solid var(--text); padding:0.25em }
+            #edit-toggle { background:none; border:none; cursor:pointer; font-family:FEReg,sans-serif; font-size:1em; color:var(--timestamp); padding:0 }
+
+            #var-editor { margin-bottom:1.5em; padding-bottom:1em; border-bottom:0.5px solid var(--hr) }
+            .var-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4em; font-family:monospace; font-size:0.75em; color:var(--timestamp) }
+            .var-row input[type="color"] { border:none; background:none; cursor:pointer; width:1.4em; height:1.4em; padding:0 }
+            #var-actions { margin-top:0.75em; display:flex; gap:0.75em }
+            #var-actions button { background:none; border:none; cursor:pointer; font-family:FEReg,sans-serif; font-size:0.85em; color:var(--timestamp); padding:0 }
+            #var-actions button:hover { color:var(--text) }
+
+            [data-mode="edit"] [data-editable] { cursor:pointer }
+            [data-mode="edit"] [data-editable]:hover { outline:0.5px dashed var(--timestamp) }
+            [data-mode="edit"] a { pointer-events:none }
+            .insertion-gap { display:block; width:100%; padding:0.2em 0; background:none; border:none; border-top:0.5px dashed var(--timestamp); cursor:pointer; opacity:0.4; box-sizing:border-box }
+            .insertion-gap:hover { opacity:1; border-top-color:var(--text) }
+        </style>
+        <script>
+            (function() {
+                var saved = localStorage.getItem('theme') ||
+                    (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+                if (saved === 'dark') document.documentElement.dataset.theme = 'dark';
+            })();
+            function toggleTheme() {
+                var isDark = document.documentElement.dataset.theme === 'dark';
+                document.documentElement.dataset.theme = isDark ? '' : 'dark';
+                localStorage.setItem('theme', isDark ? 'light' : 'dark');
+                document.getElementById('theme-toggle').textContent = isDark ? 'light' : 'dark';
+            }
+            // semantic grammar: tags that transform rather than just hide
+            var SEMANTIC_TAGS = ['a', 'span'];
+
+            function transformOff(tag) {
+                if (tag === 'a') {
+                    document.querySelectorAll('a:not([data-was])').forEach(function(el) {
+                        var carrier = document.createElement('span');
+                        carrier.dataset.was = 'a';
+                        carrier.dataset.href = el.getAttribute('href') || '';
+                        carrier.dataset.attrs = JSON.stringify(
+                            Array.from(el.attributes).reduce(function(acc, attr) {
+                                acc[attr.name] = attr.value; return acc;
+                            }, {})
+                        );
+                        carrier.textContent = el.textContent + ' [' + (el.getAttribute('href') || '') + ']';
+                        el.replaceWith(carrier);
+                    });
+                } else if (tag === 'span') {
+                    document.querySelectorAll('span:not([data-was])').forEach(function(el) {
+                        var carrier = document.createElement('span');
+                        carrier.dataset.was = 'span';
+                        carrier.dataset.attrs = JSON.stringify(
+                            Array.from(el.attributes).reduce(function(acc, attr) {
+                                acc[attr.name] = attr.value; return acc;
+                            }, {})
+                        );
+                        carrier.textContent = el.textContent;
+                        el.replaceWith(carrier);
+                    });
+                }
+            }
+
+            function transformOn(tag) {
+                if (tag === 'a') {
+                    document.querySelectorAll('[data-was="a"]').forEach(function(carrier) {
+                        var attrs = JSON.parse(carrier.dataset.attrs || '{}');
+                        var el = document.createElement('a');
+                        Object.entries(attrs).forEach(function(pair) { el.setAttribute(pair[0], pair[1]); });
+                        // restore original text (strip the appended [url])
+                        var href = carrier.dataset.href;
+                        var text = carrier.textContent.replace(' [' + href + ']', '');
+                        el.textContent = text;
+                        carrier.replaceWith(el);
+                    });
+                } else if (tag === 'span') {
+                    document.querySelectorAll('[data-was="span"]').forEach(function(carrier) {
+                        var attrs = JSON.parse(carrier.dataset.attrs || '{}');
+                        var el = document.createElement('span');
+                        Object.entries(attrs).forEach(function(pair) {
+                            if (pair[0] !== 'data-was' && pair[0] !== 'data-attrs') {
+                                el.setAttribute(pair[0], pair[1]);
+                            }
+                        });
+                        el.textContent = carrier.textContent;
+                        carrier.replaceWith(el);
+                    });
+                }
+            }
+
+            function updateFilter(changed) {
+                var checks = Array.from(document.querySelectorAll('#filter-checks input'));
+                var star = document.querySelector('#filter-checks input[value="*"]');
+
+                if (changed.value === '*') {
+                    checks.forEach(function(c) { c.checked = changed.checked });
+                } else {
+                    var tags = checks.filter(function(c) { return c.value !== '*' });
+                    star.checked = tags.every(function(c) { return c.checked });
+                }
+
+                // apply semantic transforms for a and span
+                checks.filter(function(c) { return SEMANTIC_TAGS.indexOf(c.value) !== -1; }).forEach(function(c) {
+                    if (!c.checked) {
+                        transformOff(c.value);
+                    } else {
+                        transformOn(c.value);
+                    }
+                });
+
+                // CSS rules for all other off tags
+                var off = checks.filter(function(c) {
+                    return c.value !== '*' && !c.checked && SEMANTIC_TAGS.indexOf(c.value) === -1;
+                }).map(function(c) { return c.value });
+
+                var styleTag = document.getElementById('filter-style');
+                var ruleDisplay = document.getElementById('active-rule');
+
+                if (off.length === 0) {
+                    styleTag.textContent = '';
+                    ruleDisplay.textContent = '';
+                } else {
+                    var rule = off.join(', ') + ' { display: none }';
+                    styleTag.textContent = rule;
+                    ruleDisplay.textContent = rule;
+                }
+            }
+
+            var CSS_VARS = ['--bg', '--text', '--link-color', '--timestamp', '--hr'];
+
+            function applyVar(input) {
+                document.documentElement.style.setProperty(input.dataset.var, input.value);
+            }
+
+            function saveVars() {
+                CSS_VARS.forEach(function(v) {
+                    var val = document.documentElement.style.getPropertyValue(v);
+                    if (val) localStorage.setItem('cssvar' + v, val);
+                });
+            }
+
+            function resetVars() {
+                CSS_VARS.forEach(function(v) {
+                    localStorage.removeItem('cssvar' + v);
+                    document.documentElement.style.removeProperty(v);
+                });
+                syncVarEditorInputs();
+            }
+
+            function syncVarEditorInputs() {
+                document.querySelectorAll('#var-editor input[type="color"]').forEach(function(input) {
+                    var computed = getComputedStyle(document.documentElement).getPropertyValue(input.dataset.var).trim();
+                    // color inputs need hex — convert named/rgb values best-effort via a canvas trick
+                    if (computed) {
+                        var ctx = document.createElement('canvas').getContext('2d');
+                        ctx.fillStyle = computed;
+                        input.value = ctx.fillStyle; // canvas normalizes to #rrggbb
+                    }
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var isDark = document.documentElement.dataset.theme === 'dark';
+                document.getElementById('theme-toggle').textContent = isDark ? 'dark' : 'light';
+
+                CSS_VARS.forEach(function(v) {
+                    var saved = localStorage.getItem('cssvar' + v);
+                    if (saved) document.documentElement.style.setProperty(v, saved);
+                });
+                syncVarEditorInputs();
+            });
+
+            var logMeta = new Map();
+            var selectedLogEntry = null;
+
+            function enterEditMode() {
+                document.querySelectorAll('body > section:not(#filter-bar), #projects > li, #projects p').forEach(function(el) {
+                    el.dataset.editable = '';
+                    el.addEventListener('click', handleEditableClick);
+                });
+            }
+
+            function exitEditMode() {
+                document.querySelectorAll('[data-editable]').forEach(function(el) {
+                    delete el.dataset.editable;
+                    el.removeEventListener('click', handleEditableClick);
+                });
+                clearGaps();
+                if (selectedLogEntry) {
+                    selectedLogEntry.classList.remove('selected');
+                    selectedLogEntry = null;
+                }
+            }
+
+            function handleEditableClick(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var el = this;
+                var tag = el.tagName.toLowerCase();
+                var preview = el.textContent.trim().slice(0, 80);
+
+                var logLi = document.createElement('li');
+                logLi.textContent = '<' + tag + '> ' + preview;
+                logLi.addEventListener('click', function() { selectLogEntry(logLi); });
+                document.getElementById('log-list').appendChild(logLi);
+                logMeta.set(logLi, { el: el, parent: el.parentNode });
+
+                el.remove();
+            }
+
+            function selectLogEntry(logLi) {
+                clearGaps();
+                if (selectedLogEntry) selectedLogEntry.classList.remove('selected');
+
+                if (selectedLogEntry === logLi) {
+                    selectedLogEntry = null;
+                    return;
+                }
+                selectedLogEntry = logLi;
+                logLi.classList.add('selected');
+
+                var meta = logMeta.get(logLi);
+                showGaps(meta.parent, meta.el);
+            }
+
+            function showGaps(parent, el) {
+                var children = Array.from(parent.children);
+                parent.insertBefore(makeGap(el), parent.firstChild);
+                children.forEach(function(child) {
+                    child.after(makeGap(el));
+                });
+            }
+
+            function makeGap(el) {
+                var gap = document.createElement('button');
+                gap.className = 'insertion-gap';
+                gap.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    gap.parentNode.insertBefore(el, gap);
+                    clearGaps();
+                    logMeta.delete(selectedLogEntry);
+                    selectedLogEntry.remove();
+                    selectedLogEntry = null;
+                    if (document.documentElement.dataset.mode === 'edit') {
+                        el.addEventListener('click', handleEditableClick);
+                    }
+                });
+                return gap;
+            }
+
+            function clearGaps() {
+                document.querySelectorAll('.insertion-gap').forEach(function(g) { g.remove(); });
+            }
+
+            function toggleEdit() {
+                var isEdit = document.documentElement.dataset.mode === 'edit';
+                if (isEdit) {
+                    document.documentElement.dataset.mode = '';
+                    exitEditMode();
+                } else {
+                    document.documentElement.dataset.mode = 'edit';
+                    enterEditMode();
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <section>
+            <h1>Leslie Liu’s website, <button id="theme-toggle" onclick="toggleTheme()">light</button></h1>
+            <p>
+                Professional: <a href="https://liuleslie.github.io/portfolio">Portfolio</a>; 
+                <br>Grad: <a href="https://densegut.tiddlyhost.com/#meta%3A%20my%20wiki!">Blog</a>, <a href="https://github.com/liuleslie/captcha">Repository</a>; 
+                <br>News: <a href="https://liuleslie.github.io/now">Now</a>; 
+                Post: <a href="https://users3.smartgb.com/g/g.php?a=s&i=g36-36279-2f">Guestbook</a>
+            </p>
+        </section>
+        <hr>
+        <section id="filter-bar">
+            <ul id="filter-checks">
+                <li><label><input type="checkbox" value="*" checked onchange="updateFilter(this)"> *</label></li>
+                <li><label><input type="checkbox" value="p" checked onchange="updateFilter(this)"> p</label></li>
+                <li><label><input type="checkbox" value="a" checked onchange="updateFilter(this)"> a</label></li>
+                <li><label><input type="checkbox" value="span" checked onchange="updateFilter(this)"> span</label></li>
+                <li><label><input type="checkbox" value="hr" checked onchange="updateFilter(this)"> hr</label></li>
+                <li><label><input type="checkbox" value="details" checked onchange="updateFilter(this)"> details</label></li>
+            </ul>
+            <pre id="active-rule"></pre>
+        </section>
+        <hr>
+        <section>
+            <details open>
+                <summary>I am broadly interested in interfaces and their metaphors, advertising, and ecstatic experiences of / encounters with technology.</summary>
+                <ul id="projects">
+                    <li>
+                        <p>
+                            <a href="tp/neighboring.html">Neighboring</a><span class="desc">small webring maker via Are.na block comments.</span>
+                            <br><span class="timestamp">Mar 24, 26</span>
+                        </p>
+                        <p>
+                            <a href="tp/neighbors.html">ID neighbors</a><span class="desc">find proximate Are.na accounts/users.</span>
+                            <br><span class="timestamp">Mar 19, 26</span>
+                        </p>
+                        <p>
+                            <a href="tp/wishing.html">Wishing well</a>, <a href="tp/trawling.html">Trawling portal</a><span class="desc">two provocations for Are.na users to relate to the website and their media in a new way.</span>
+                            <br><span class="timestamp">Mar 15, 26</span>
+                        </p>
+                        <p>
+                            <a href="tp/sniffing.html">Sniffing</a><span class="desc">simple tabular display of SmellPGH reports for personal daily use.</span>
+                            <br><span class="timestamp">Mar 9, 26</span>
+                        </p>
+                        <p>
+                            <a href="booking/index.html">Booking</a><span class="desc">the techne of books; interactions and book-based practices.</span>
+                            <br><span class="timestamp">Spring, 20 –</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <a href="notes/n3.html">Scattered notes</a><span class="desc">about representation and ideas of what’s artfully or deliciously cruel.</span>
+                            <br><span class="timestamp">June 16, 25</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <a href="essays/e5.html">Scallion minifesto: the second text</a><span class="desc">notes on human-LLM encounters.</span>
+                            <br><span class="timestamp">Mar 15, 25</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <a href="essays/e1.html">Existentialism at the grocery store</a><span class="desc">aesthetic experience and materiality of AIML-synthesized media.</span>
+                            <br><span class="timestamp">Jan 27, 24</span>
+                        </p>
+                    </li>
+                    <hr>
+                    <li>
+                        <p>
+                            <a href="https://www.covenberlin.com/feelings-at-the-edge-a-chumbox-tour/">Feelings at the Edge: A Chumbox Tour</a><span class="desc">notes on one-weird-trick advertising.</span>
+                            <br><span class="timestamp">Spring, 22</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <a href="https://flatjournal.com/work/the-mockup-aesthetic-gestures-of-transgression/">Gestures of Transgression</a><span class="desc">.PSD essay about wheatpaste mockups.</span>
+                            <br><span class="timestamp">Winter, 21/22</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <a href="essays/e2.html">The Internet Onion, 2021, Layer 29</a><span class="desc">a question as a gift.</span>
+                            <br><span class="timestamp">Summer, 21</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <a href="essays/e3.html">Feeling From the Margins</a><span class="desc">
+                            notes on comment sections.</span>
+                            <br><span class="timestamp">Winter, 21/22</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <a href="essays/e4.html"><em>Subway Surfers</em> TikToks</a><span class="desc">thinking through a mode of media absorption.</span>
+                            <br><span class="timestamp">Apr 10, 21</span>
+                        </p>
+                    </li>
+                </ul>
+            </details>
+        </section>
+        <hr>
+        <section>
+            <p>Last updated April 9, 2026.</p>
+            <details><summary>Colophon</summary>
+                <p>This is self-contained HTML <a href="https://gossipsweb.net/">coded from scratch</a> and set in <a href="http://osp.kitchen/foundry/fluxisch-else/">Fluxisch Else</a> from Open Source Publishing, if it loads for you. Website written using Visual Studio Code, hosted on GitHub via Microsoft.</p>
+                <!-- <p>Links for the Spring/Summer 2026 season:</p> -->
+                <button id="edit-toggle" onclick="toggleEdit()">edit</button>
+            </details>
+        </section>
+        <aside id="log">
+            <div id="var-editor">
+                <div class="var-row"><label>--bg<input type="color" data-var="--bg" oninput="applyVar(this)"></label></div>
+                <div class="var-row"><label>--text<input type="color" data-var="--text" oninput="applyVar(this)"></label></div>
+                <div class="var-row"><label>--link<input type="color" data-var="--link-color" oninput="applyVar(this)"></label></div>
+                <div class="var-row"><label>--timestamp<input type="color" data-var="--timestamp" oninput="applyVar(this)"></label></div>
+                <div class="var-row"><label>--hr<input type="color" data-var="--hr" oninput="applyVar(this)"></label></div>
+                <div id="var-actions">
+                    <button onclick="saveVars()">save</button>
+                    <button onclick="resetVars()">reset</button>
+                </div>
+            </div>
+            <ul id="log-list"></ul>
+        </aside>
+    </body>
+</html>
+
+
+<!-- 
+                    <li>
+                        <p>
+                            <a href=""></a><span class="desc">.</span>
+                            <br><span class="timestamp"></span>
+                        </p>
+                    </li>
+-->
