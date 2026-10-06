@@ -1,34 +1,35 @@
 
 
-body { background-color: white; max-width: 60%; font-size: 18px;
-    font-family: sans-serif;
+body { background-color: white; font-size: 21px;
+    font-family: FELight, sans-serif; text-align: center; margin: 0 1em;
 }
 body > section:not(:first-child) { margin-top:3em }
 
+
 img { display:block; width:100% }
-h1 { font-size:1em; font-weight:bold }
-/* font-size:1.25em  */
+h1 { font-size:1em; font-family:FEBold, sans-serif; }
 table, table * { border:1px solid #a4a4a4; border-collapse: collapse}
 td { padding: 4px 8px }
 thead, nav { background-color: #f2f2f2 }
 
 a { transition: 0.2s;
-    color: maroon; text-decoration: none; 
-    text-decoration: 1px maroon solid underline;
-    text-underline-offset: 2px;
+    font-family:FEReg, sans-serif;
+    color: purple; text-decoration: none; 
 }
 
 a:hover {
     transition: 0.1s;
-    color:gray;
-    text-decoration: 1px gray dotted underline;
+    color: black;
 }
 
-summary + ul { margin-top: 0.125em }
-li { margin-bottom: 0.25em }
+summary { font-family: FEReg, sans-serif; }
+summary + ul { margin-top: 0.5em }
+ul { list-style-type: none }
+li { margin-bottom: 0.5em; }
 
+.timestamp { color: orchid}
 
 footer { margin-top:2em }
 @media (max-width: 900px) {
-    body { max-width: 100% }
+    body { font-size: 16px; text-align:left }
 }
