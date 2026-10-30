@@ -51,4 +51,5 @@ section { margin-bottom: var(--sp-5) }
 @media (max-width: 1000px) {
    body { max-width: 90% }
    details { grid-template-columns: 1fr }
+   span.sc { font-size: 1em; }
 }
