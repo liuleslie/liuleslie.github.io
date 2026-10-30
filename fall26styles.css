@@ -1,35 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
+:root {
+    /* Color */
+    --bg: white;
+    --light: #EDEDEB;
+    --lighter: #f2f2f1;
+    --text:     black;
+    --muted:    gray;
+    --accent: olivedrab;
+    --accentmuted: rgb(163, 167, 156); 
 
-body { background-color: white; font-size: 21px;
-    font-family: FELight, sans-serif; text-align: center; margin: 0 1em;
+    /* Space */
+    --sp-1: 0.5rem;
+    --sp-2: 1rem;
+    --sp-3: 1.75rem;
+    --sp-4: 3rem;
+    --sp-5: 5rem;
+
+    /* Type */
+    --font:        'Public Sans', sans-serif;
+    --weight-body: 300;
+    --weight-bold: 600;
+    --leading:     1.25;
+    --tracking:    0px; /* prev 0.3 */
 }
-body > section:not(:first-child) { margin-top:3em }
 
-
-img { display:block; width:100% }
-h1 { font-size:1em; font-family:FEBold, sans-serif; }
-table, table * { border:1px solid #a4a4a4; border-collapse: collapse}
-td { padding: 4px 8px }
-thead, nav { background-color: #f2f2f2 }
-
-a { transition: 0.2s;
-    font-family:FEReg, sans-serif;
-    color: purple; text-decoration: none; 
+body {
+   font-family: var(--font), sans-serif;
+   max-width:55%;
+   margin: 0 auto;
 }
 
-a:hover {
-    transition: 0.1s;
-    color: black;
+h1, h2, h3 {
+   font-size: 1em; 
+   font-weight: var(--weight-bold);
 }
 
-summary { font-family: FEReg, sans-serif; }
-summary + ul { margin-top: 0.5em }
-ul { list-style-type: none }
-li { margin-bottom: 0.5em; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color:black; text-decoration: none }
 
-.timestamp { color: orchid}
+details { display: grid; grid-template-columns: 4fr 5fr; margin-bottom: var(--sp-3) }
+details summary { background-color: var(--lighter) }
+details summary:hover { background-color: var(--light); cursor:pointer }
+span.timestamp { color: var(--accentmuted) }
+span.sc { font-size: 0.8em; text-transform: uppercase; color:var(--accentmuted); font-weight:500 } /* sc = small caps */
+ul { padding-left: var(--sp-3)}
+li { list-style: none; margin-bottom:var(--sp-1) }
+section { margin-bottom: var(--sp-5) }
 
-footer { margin-top:2em }
-@media (max-width: 900px) {
-    body { font-size: 16px; text-align:left }
+@media (max-width: 1000px) {
+   body { max-width: 90% }
+   details { grid-template-columns: 1fr }
 }
