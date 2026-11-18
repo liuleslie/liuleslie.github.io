@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@2.3.4/lib/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.2/dist/p5.sound.min.js"></script>
+    
+    
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+    <style>
+      body { margin: 10em; }
+    </style>
+
+  </head>
+  <body>
+    <main>
+    </main>
+    <!-- <script src="FAVICONSKETCH.js"></script> -->
+    <script>
+      const side = 400;
+      let divisions = 10;
+      const margin = side * 0.1;
+      let curveAmount = 0;
+      let wavesPerCell = 1;
+      let densitySlider;
+      let curveSlider;
+      let wavesSlider;
+      let densityReadout;
+      let curveReadout;
+      let wavesReadout;
+      let controlPanel;
+      let canvasRenderer;
+      let exportGraphics;
+
+      let corners;
+      let strokes = [];
+      let currentStroke = null;
+      let mode = "edit"; // "edit" or "draw"
+      let dragging = null;
+      let eraserActive = false;
+      let eraserClearAll = false;
+      let clearAllDragStart = null;
+      let orbitYaw = 0;
+      let orbitPitch = 0;
+
+      function setup() {
+        canvasRenderer = createCanvas(side, side);
+        exportGraphics = createGraphics(side, side);
+        describe("An interactive perspective grid for drawing a favicon.");
+        resetGrid();
+        createControls();
+      }
+
+      function createControls() {
+        controlPanel = createDiv();
+        controlPanel.style("position", "absolute");
+        controlPanel.style("display", "flex");
+        controlPanel.style("flex-direction", "column");
+        controlPanel.style("gap", "8px");
+        controlPanel.style("font", "12px sans-serif");
+        controlPanel.style("color", "#222");
+
+        const densityRow = createDiv();
+        densityRow.parent(controlPanel);
+        densityRow.style("display", "flex");
+        densityRow.style("align-items", "center");
+        densityRow.style("gap", "8px");
+        createSpan("Grid segments per side").parent(densityRow);
+        densitySlider = createSlider(2, 20, divisions, 1);
+        densitySlider.parent(densityRow);
+        densityReadout = createSpan(String(divisions));
+        densityReadout.parent(densityRow);
+        densitySlider.input(() => {
+          const nextDivisions = Number(densitySlider.value());
+          if (nextDivisions !== divisions) {
+            divisions = nextDivisions;
+            remapStrokesToDensity(divisions);
+          }
+          densityReadout.html(String(divisions));
+        });
+
+        const curveRow = createDiv();
+        curveRow.parent(controlPanel);
+        curveRow.style("display", "flex");
+        curveRow.style("align-items", "center");
+        curveRow.style("gap", "8px");
+        createSpan("Z amplitude per cell").parent(curveRow);
+        curveSlider = createSlider(0, 24, 0, 1);
+        curveSlider.parent(curveRow);
+        curveReadout = createSpan("0 px");
+        curveReadout.parent(curveRow);
+        curveSlider.input(() => {
+          curveAmount = Number(curveSlider.value());
+          curveReadout.html(`${curveAmount} px`);
+        });
+
+        const wavesRow = createDiv();
+        wavesRow.parent(controlPanel);
+        wavesRow.style("display", "flex");
+        wavesRow.style("align-items", "center");
+        wavesRow.style("gap", "8px");
+        createSpan("Waves per cell").parent(wavesRow);
+        wavesSlider = createSlider(1, 8, wavesPerCell, 1);
+        wavesSlider.parent(wavesRow);
+        wavesReadout = createSpan(String(wavesPerCell));
+        wavesReadout.parent(wavesRow);
+        wavesSlider.input(() => {
+          wavesPerCell = Number(wavesSlider.value());
+          wavesReadout.html(String(wavesPerCell));
+        });
+
+        const saveButton = createButton("Save PNG");
+        saveButton.parent(controlPanel);
+        saveButton.mousePressed(saveDrawing);
+        positionControls();
+      }
+
+      function positionControls() {
+        if (!controlPanel || !canvasRenderer) return;
+        const rect = canvasRenderer.elt.getBoundingClientRect();
+        controlPanel.position(rect.left + window.scrollX, rect.bottom + window.scrollY + 10);
+      }
+
+      function windowResized() {
+        positionControls();
+      }
+
+      function remapStrokesToDensity(newDivisions) {
+        const remapPath = points => {
+          const remapped = [];
+          for (const point of points) {
+            const next = {
+              u: round(point.u * newDivisions) / newDivisions,
+              v: round(point.v * newDivisions) / newDivisions,
+            };
+            const previous = remapped[remapped.length - 1];
+            if (!previous || abs(previous.u - next.u) > 1e-7 || abs(previous.v - next.v) > 1e-7) {
+              remapped.push(next);
+            }
+          }
+          return remapped;
+        };
+        strokes = strokes.map(remapPath).filter(points => points.length > 1);
+        if (currentStroke) {
+          currentStroke.points = remapPath(currentStroke.points);
+          currentStroke.anchor = currentStroke.points[currentStroke.points.length - 1];
+        }
+      }
+
+      function resetGrid() {
+        corners = [
+          createVector(margin, margin),
+          createVector(side - margin, margin),
+          createVector(side - margin, side - margin),
+          createVector(margin, side - margin),
+        ];
+        orbitYaw = 0;
+        orbitPitch = 0;
+        curveAmount = 0;
+        if (curveSlider) curveSlider.value(0);
+        if (curveReadout) curveReadout.html("0 px");
+        currentStroke = null;
+        dragging = null;
+      }
+
+      function draw() {
+        background(245);
+        drawGrid();
+        drawStrokes();
+
+        if (mode === "edit") drawHandles();
+        drawInstructions();
+      }
+
+      function gridPoint(u, v) {
+        const top = p5.Vector.lerp(corners[0], corners[1], u);
+        const bottom = p5.Vector.lerp(corners[3], corners[2], u);
+        return p5.Vector.lerp(top, bottom, v);
+      }
+
+      function orbitCenter() {
+        return corners.reduce((center, corner) => center.add(corner), createVector(0, 0))
+          .div(corners.length);
+      }
+
+      // Apply a perspective camera view to every point in the design plane.
+      function projectView(point) {
+        const center = orbitCenter();
+        const x = point.x - center.x;
+        const y = point.y - center.y;
+        const z = point.z || 0;
+        const cosYaw = cos(orbitYaw);
+        const sinYaw = sin(orbitYaw);
+        const cosPitch = cos(orbitPitch);
+        const sinPitch = sin(orbitPitch);
+        const rotatedY = y * cosPitch - z * sinPitch;
+        const rotatedZ = y * sinPitch + z * cosPitch;
+        const x3 = x * cosYaw + rotatedZ * sinYaw;
+        const y3 = rotatedY;
+        const z3 = -x * sinYaw + rotatedZ * cosYaw;
+        const cameraDistance = side * 2.5;
+        const perspective = cameraDistance / (cameraDistance - z3);
+        return createVector(center.x + x3 * perspective, center.y + y3 * perspective);
+      }
+
+      // Convert a dragged screen position back onto the editable design plane.
+      function unprojectView(screenPoint) {
+        let guess = createVector(screenPoint.x, screenPoint.y);
+        const epsilon = 0.1;
+        for (let i = 0; i < 10; i++) {
+          const projected = projectView(guess);
+          const errorX = projected.x - screenPoint.x;
+          const errorY = projected.y - screenPoint.y;
+          if (abs(errorX) + abs(errorY) < 0.01) break;
+
+          const projectedX = projectView(createVector(guess.x + epsilon, guess.y));
+          const projectedY = projectView(createVector(guess.x, guess.y + epsilon));
+          const j11 = (projectedX.x - projected.x) / epsilon;
+          const j21 = (projectedX.y - projected.y) / epsilon;
+          const j12 = (projectedY.x - projected.x) / epsilon;
+          const j22 = (projectedY.y - projected.y) / epsilon;
+          const determinant = j11 * j22 - j12 * j21;
+          if (abs(determinant) < 1e-8) break;
+          guess.x -= (j22 * errorX - j12 * errorY) / determinant;
+          guess.y -= (-j21 * errorX + j11 * errorY) / determinant;
+        }
+        return guess;
+      }
+
+      // Produce the line segments used for rendering and intersection snapping.
+      function getGridSegments() {
+        const segments = [];
+        for (let i = 0; i <= divisions; i++) {
+          const t = i / divisions;
+          for (let j = 0; j < divisions; j++) {
+            segments.push({ a: { u: t, v: j / divisions }, b: { u: t, v: (j + 1) / divisions } });
+            segments.push({ a: { u: j / divisions, v: t }, b: { u: (j + 1) / divisions, v: t } });
+          }
+        }
+        return segments;
+      }
+
+      function drawGrid() {
+        stroke(0, 0, 0, 77); // rgba(0, 0, 0, 0.3)
+        strokeWeight(1.5);
+        noFill();
+        for (const { a, b } of getGridSegments()) {
+          drawGridCurve(a, b);
+        }
+      }
+
+      function curveGeometry(a, b) {
+        const vertical = abs(a.u - b.u) < 1e-7;
+        const varyingA = vertical ? a.v : a.u;
+        const varyingB = vertical ? b.v : b.u;
+        const reversed = varyingA > varyingB;
+        const startCoord = reversed ? b : a;
+        const endCoord = reversed ? a : b;
+        const start = gridPoint(startCoord.u, startCoord.v);
+        const end = gridPoint(endCoord.u, endCoord.v);
+        const fixedIndex = round((vertical ? a.u : a.v) * divisions);
+        const segmentIndex = floor(min(varyingA, varyingB) * divisions + 1e-7);
+        const direction = (fixedIndex + segmentIndex) % 2 === 0 ? 1 : -1;
+        return { start, end, direction };
+      }
+
+      function drawGridCurve(a, b) {
+        const curve = curveGeometry(a, b);
+        const start = projectView(curve.start);
+        beginShape();
+        vertex(start.x, start.y);
+        appendCurveVertices(curve);
+        endShape();
+      }
+
+      function cubicPoint(curve, t) {
+        const x = curve.start.x + (curve.end.x - curve.start.x) * t;
+        const y = curve.start.y + (curve.end.y - curve.start.y) * t;
+        return createVector(
+          x,
+          y,
+          curve.direction * curveAmount * sin(TWO_PI * wavesPerCell * t)
+        );
+      }
+
+      function appendCurveVertices(curve) {
+        const samples = max(8, wavesPerCell * 8);
+        for (let i = 1; i <= samples; i++) {
+          const point = projectView(cubicPoint(curve, i / samples));
+          vertex(point.x, point.y);
+        }
+      }
+
+      function drawStrokes() {
+        stroke(120, 65, 255);
+        strokeWeight(8);
+        strokeCap(ROUND);
+        strokeJoin(ROUND);
+        noFill();
+        for (const points of strokes) drawStroke(points);
+        if (currentStroke) drawStroke(currentStroke.points);
+      }
+
+      function drawStroke(points) {
+        drawStrokeOnCanvas(points, null);
+      }
+
+      function drawStrokeOnCanvas(points, target) {
+        if (points.length < 2) return;
+        const begin = target ? () => target.beginShape() : () => beginShape();
+        const addVertex = (x, y) => target ? target.vertex(x, y) : vertex(x, y);
+        const end = target ? () => target.endShape() : () => endShape();
+        const path = [];
+        const add = point => {
+          if (!path.length || dist(point.x, point.y, path[path.length - 1].x, path[path.length - 1].y) > 0.01) path.push(point);
+        };
+        add(projectView(gridPoint(points[0].u, points[0].v)));
+        for (let i = 0; i < points.length - 1; i++) {
+          const curve = curveGeometry(points[i], points[i + 1]);
+          const samples = max(8, wavesPerCell * 8);
+          for (let sample = 1; sample <= samples; sample++) add(projectView(cubicPoint(curve, sample / samples)));
+        }
+
+        begin();
+        const first = path[0];
+        addVertex(first.x, first.y);
+        for (let i = 1; i < path.length; i++) addVertex(path[i].x, path[i].y);
+        const last = path[path.length - 1];
+        addVertex(last.x, last.y);
+        end();
+      }
+
+      function saveDrawing() {
+        exportGraphics.clear();
+        exportGraphics.stroke(120, 65, 255);
+        exportGraphics.strokeWeight(8);
+        exportGraphics.strokeCap(ROUND);
+        exportGraphics.strokeJoin(ROUND);
+        exportGraphics.noFill();
+        for (const points of strokes) drawStrokeOnCanvas(points, exportGraphics);
+        if (currentStroke) drawStrokeOnCanvas(currentStroke.points, exportGraphics);
+        // p5's saveCanvas overload does not consistently accept a createGraphics
+        // buffer. Export its backing canvas directly so the actual artwork is saved.
+        exportGraphics.canvas.toBlob(blob => {
+          if (!blob) return;
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = "favicon-sketch.png";
+          link.click();
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }, "image/png");
+      }
+
+      function drawHandles() {
+        noStroke();
+        fill(120, 65, 255);
+        for (const p of corners) {
+          const projected = projectView(p);
+          circle(projected.x, projected.y, 12);
+        }
+      }
+
+      function drawInstructions() {
+        noStroke();
+        fill(30);
+        textSize(10);
+        textAlign(LEFT, TOP);
+        const tool = eraserActive
+          ? `ERASER: ${eraserClearAll ? "clear canvas on drag" : "grid segments"}`
+          : mode === "draw" ? "DRAW: move node-to-node" : "EDIT";
+        text(`${tool}  |  E: eraser  Shift+E: type  M: mode  R: reset  S: save`, 8, 8);
+        if (!eraserActive && mode === "edit") {
+          text("Drag handles to reshape; drag outside to orbit the grid.", 8, 21);
+        }
+      }
+
+      // Return the nearest visible grid intersection to the cursor.
+      function nearestGridNode(x, y, predicate = () => true, from = null) {
+        let best = null;
+        let bestDistance = Infinity;
+        for (let row = 0; row <= divisions; row++) {
+          for (let col = 0; col <= divisions; col++) {
+            if (!predicate(col, row)) continue;
+            const point = { u: col / divisions, v: row / divisions };
+            const projected = projectView(gridPoint(point.u, point.v));
+            let distance;
+            if (from) {
+              const dx = x - from.x;
+              const dy = y - from.y;
+              const lengthSquared = dx * dx + dy * dy;
+              const t = lengthSquared === 0
+                ? 0
+                : constrain(((projected.x - from.x) * dx + (projected.y - from.y) * dy) / lengthSquared, 0, 1);
+              distance = dist(projected.x, projected.y, from.x + t * dx, from.y + t * dy);
+            } else {
+              distance = dist(x, y, projected.x, projected.y);
+            }
+            if (distance < bestDistance) {
+              best = point;
+              bestDistance = distance;
+            }
+          }
+        }
+        return best ? { point: best, distance: bestDistance } : null;
+      }
+
+      function advanceStrokeToReachedNode(x, y) {
+        const anchor = currentStroke.anchor;
+        const anchorCol = round(anchor.u * divisions);
+        const anchorRow = round(anchor.v * divisions);
+
+        // Only nodes in the anchor's row or column can complete the next segment.
+        // Requiring proximity to the node means no partial edge is painted while
+        // the cursor is between intersections.
+        const reached = nearestGridNode(x, y, (col, row) =>
+          (col === anchorCol || row === anchorRow) &&
+          !(col === anchorCol && row === anchorRow),
+          currentStroke.cursorPrev
+        );
+        currentStroke.cursorPrev = { x, y };
+        if (!reached || reached.distance > 12) return;
+
+        const targetCol = round(reached.point.u * divisions);
+        const targetRow = round(reached.point.v * divisions);
+        const stepCol = Math.sign(targetCol - anchorCol);
+        const stepRow = Math.sign(targetRow - anchorRow);
+        let col = anchorCol;
+        let row = anchorRow;
+
+        // Add each intervening node so strokes follow the current grid density.
+        while (col !== targetCol || row !== targetRow) {
+          col += stepCol;
+          row += stepRow;
+          const point = { u: col / divisions, v: row / divisions };
+          const previous = currentStroke.points[currentStroke.points.length - 1];
+          if (abs(previous.u - point.u) > 1e-7 || abs(previous.v - point.v) > 1e-7) {
+            currentStroke.points.push(point);
+          }
+        }
+        currentStroke.anchor = reached.point;
+      }
+
+      function isCanvasPointerEvent(event) {
+        if (event && event.target) return canvasRenderer.elt.contains(event.target);
+        return mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height;
+      }
+
+      function mousePressed(event) {
+        if (!isCanvasPointerEvent(event)) return;
+
+        if (eraserActive) {
+          if (eraserClearAll) {
+            clearAllDragStart = { x: mouseX, y: mouseY };
+          } else {
+            eraseAt(mouseX, mouseY);
+          }
+          return;
+        }
+
+        if (mode === "draw") {
+          const start = nearestGridNode(mouseX, mouseY);
+          currentStroke = {
+            points: [start.point],
+            anchor: start.point,
+            cursorPrev: { x: mouseX, y: mouseY },
+          };
+          return;
+        }
+
+        if (mouseButton === RIGHT) return false;
+        dragging = findHandle(mouseX, mouseY);
+        if (!dragging && !isInsideGrid(mouseX, mouseY)) {
+          dragging = { type: "orbit", lastX: mouseX, lastY: mouseY };
+        }
+      }
+
+      function mouseDragged() {
+        if (eraserActive) {
+          if (eraserClearAll) {
+            if (clearAllDragStart && dist(mouseX, mouseY, clearAllDragStart.x, clearAllDragStart.y) > 2) {
+              strokes = [];
+              currentStroke = null;
+              clearAllDragStart = null;
+            }
+          } else {
+            eraseAt(mouseX, mouseY);
+          }
+          return;
+        }
+
+        if (mode === "draw" && currentStroke) {
+          advanceStrokeToReachedNode(mouseX, mouseY);
+          return;
+        }
+
+        if (!dragging) return;
+        if (dragging.type === "orbit") {
+          const dx = mouseX - dragging.lastX;
+          const dy = mouseY - dragging.lastY;
+          orbitYaw = constrain(orbitYaw + dx * 0.01, -1.25, 1.25);
+          orbitPitch = constrain(orbitPitch + dy * 0.01, -1.25, 1.25);
+          dragging.lastX = mouseX;
+          dragging.lastY = mouseY;
+          return;
+        }
+        const p = unprojectView(createVector(mouseX, mouseY));
+        corners[dragging.index] = p;
+      }
+
+      function mouseReleased() {
+        clearAllDragStart = null;
+        if (currentStroke) {
+          if (currentStroke.points.length > 1) strokes.push(currentStroke.points);
+          currentStroke = null;
+        }
+        dragging = null;
+      }
+
+      function pointSegmentDistance(px, py, ax, ay, bx, by) {
+        const dx = bx - ax;
+        const dy = by - ay;
+        const lengthSquared = dx * dx + dy * dy;
+        const t = lengthSquared === 0
+          ? 0
+          : constrain(((px - ax) * dx + (py - ay) * dy) / lengthSquared, 0, 1);
+        return dist(px, py, ax + t * dx, ay + t * dy);
+      }
+
+      function strokeSegmentDistance(x, y, a, b) {
+        const curve = curveGeometry(a, b);
+        let best = Infinity;
+        let previous = projectView(curve.start);
+        for (let i = 1; i <= 12; i++) {
+          const projected = projectView(cubicPoint(curve, i / 12));
+          best = min(best, pointSegmentDistance(x, y, previous.x, previous.y, projected.x, projected.y));
+          previous = projected;
+        }
+        return best;
+      }
+
+      function eraseAt(x, y) {
+        const hitRadius = 10;
+        // Find and remove the closest individual grid edge under the eraser.
+        let bestStroke = -1;
+        let bestSegment = -1;
+        let bestDistance = hitRadius;
+        for (let s = 0; s < strokes.length; s++) {
+          for (let i = 0; i < strokes[s].length - 1; i++) {
+            const distance = strokeSegmentDistance(x, y, strokes[s][i], strokes[s][i + 1]);
+            if (distance <= bestDistance) {
+              bestDistance = distance;
+              bestStroke = s;
+              bestSegment = i;
+            }
+          }
+        }
+        if (bestStroke < 0) return;
+
+        const points = strokes[bestStroke];
+        const fragments = [points.slice(0, bestSegment + 1), points.slice(bestSegment + 1)]
+          .filter(fragment => fragment.length > 1);
+        strokes.splice(bestStroke, 1, ...fragments);
+      }
+
+      function findHandle(x, y) {
+        for (let i = 0; i < corners.length; i++) {
+          const p = projectView(corners[i]);
+          if (dist(x, y, p.x, p.y) < 12) {
+            return { type: "corner", index: i };
+          }
+        }
+        return null;
+      }
+
+      function isInsideGrid(x, y) {
+        const outline = [];
+        for (let col = 0; col <= divisions; col++) {
+          outline.push(projectView(gridPoint(col / divisions, 0)));
+        }
+        for (let row = 1; row <= divisions; row++) {
+          outline.push(projectView(gridPoint(1, row / divisions)));
+        }
+        for (let col = divisions - 1; col >= 0; col--) {
+          outline.push(projectView(gridPoint(col / divisions, 1)));
+        }
+        for (let row = divisions - 1; row > 0; row--) {
+          outline.push(projectView(gridPoint(0, row / divisions)));
+        }
+
+        let inside = false;
+        for (let i = 0, j = outline.length - 1; i < outline.length; j = i++) {
+          const a = outline[i];
+          const b = outline[j];
+          const crosses = (a.y > y) !== (b.y > y) &&
+            x < ((b.x - a.x) * (y - a.y)) / (b.y - a.y) + a.x;
+          if (crosses) inside = !inside;
+        }
+        return inside;
+      }
+
+      function keyPressed() {
+        if (key === "e" || key === "E") {
+          if (keyIsDown(SHIFT)) {
+            eraserClearAll = !eraserClearAll;
+            eraserActive = true;
+          } else {
+            eraserActive = !eraserActive;
+          }
+          currentStroke = null;
+        } else if (key === "m" || key === "M") {
+          mode = mode === "edit" ? "draw" : "edit";
+        } else if (key === "d" || key === "D") {
+          mode = "draw";
+        } else if (key === "s" || key === "S") {
+          saveDrawing();
+        } else if (key === "r" || key === "R") {
+          resetGrid();
+        }
+      }
+
+      function contextMenu() {
+        return false;
+      }
+
+    </script>
+  </body>
+</html>
